@@ -10,10 +10,10 @@ class AccountRepository {
 
 AccountModel cash = AccountModel(
   id: '1',
-  name: 'Cash',
+  name: 'Efectivo',
   description: '',
   balance: 0,
-  type: cashType,
+  type: moneyType,
   color: 0xFFE0E0E0,
   includeInTotal: true,
   isHidden: false,
