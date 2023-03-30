@@ -21,7 +21,7 @@ class SummariceCard extends StatelessWidget {
   final String title;
   final Color color;
   final IconData icon;
-  final int value;
+  final double value;
 
   @override
   Widget build(BuildContext context) {

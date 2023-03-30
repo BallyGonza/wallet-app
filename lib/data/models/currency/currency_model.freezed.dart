@@ -20,10 +20,15 @@ CurrencyModel _$CurrencyModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CurrencyModel {
+  @HiveField(0)
   String get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get name => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get symbol => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get code => throw _privateConstructorUsedError;
+  @HiveField(4)
   String get flag => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +43,12 @@ abstract class $CurrencyModelCopyWith<$Res> {
           CurrencyModel value, $Res Function(CurrencyModel) then) =
       _$CurrencyModelCopyWithImpl<$Res, CurrencyModel>;
   @useResult
-  $Res call({String id, String name, String symbol, String code, String flag});
+  $Res call(
+      {@HiveField(0) String id,
+      @HiveField(1) String name,
+      @HiveField(2) String symbol,
+      @HiveField(3) String code,
+      @HiveField(4) String flag});
 }
 
 /// @nodoc
@@ -93,7 +103,12 @@ abstract class _$$_CurrencyModelCopyWith<$Res>
       __$$_CurrencyModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String name, String symbol, String code, String flag});
+  $Res call(
+      {@HiveField(0) String id,
+      @HiveField(1) String name,
+      @HiveField(2) String symbol,
+      @HiveField(3) String code,
+      @HiveField(4) String flag});
 }
 
 /// @nodoc
@@ -142,24 +157,29 @@ class __$$_CurrencyModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CurrencyModel implements _CurrencyModel {
   const _$_CurrencyModel(
-      {required this.id,
-      required this.name,
-      required this.symbol,
-      required this.code,
-      required this.flag});
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.name,
+      @HiveField(2) required this.symbol,
+      @HiveField(3) required this.code,
+      @HiveField(4) required this.flag});
 
   factory _$_CurrencyModel.fromJson(Map<String, dynamic> json) =>
       _$$_CurrencyModelFromJson(json);
 
   @override
+  @HiveField(0)
   final String id;
   @override
+  @HiveField(1)
   final String name;
   @override
+  @HiveField(2)
   final String symbol;
   @override
+  @HiveField(3)
   final String code;
   @override
+  @HiveField(4)
   final String flag;
 
   @override
@@ -199,24 +219,29 @@ class _$_CurrencyModel implements _CurrencyModel {
 
 abstract class _CurrencyModel implements CurrencyModel {
   const factory _CurrencyModel(
-      {required final String id,
-      required final String name,
-      required final String symbol,
-      required final String code,
-      required final String flag}) = _$_CurrencyModel;
+      {@HiveField(0) required final String id,
+      @HiveField(1) required final String name,
+      @HiveField(2) required final String symbol,
+      @HiveField(3) required final String code,
+      @HiveField(4) required final String flag}) = _$_CurrencyModel;
 
   factory _CurrencyModel.fromJson(Map<String, dynamic> json) =
       _$_CurrencyModel.fromJson;
 
   @override
+  @HiveField(0)
   String get id;
   @override
+  @HiveField(1)
   String get name;
   @override
+  @HiveField(2)
   String get symbol;
   @override
+  @HiveField(3)
   String get code;
   @override
+  @HiveField(4)
   String get flag;
   @override
   @JsonKey(ignore: true)

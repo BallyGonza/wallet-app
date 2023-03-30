@@ -26,14 +26,15 @@ class AccountModelAdapter extends TypeAdapter<AccountModel> {
       balance: fields[6] as double,
       includeInTotal: fields[7] as bool,
       isHidden: fields[8] as bool,
-      registers: (fields[9] as List).cast<TransactionModel>(),
+      transactions: (fields[9] as List).cast<TransactionModel>(),
+      currency: fields[10] as CurrencyModel,
     );
   }
 
   @override
   void write(BinaryWriter writer, AccountModel obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -53,7 +54,9 @@ class AccountModelAdapter extends TypeAdapter<AccountModel> {
       ..writeByte(8)
       ..write(obj.isHidden)
       ..writeByte(9)
-      ..write(obj.registers);
+      ..write(obj.transactions)
+      ..writeByte(10)
+      ..write(obj.currency);
   }
 
   @override
@@ -83,9 +86,11 @@ _$_AccountModel _$$_AccountModelFromJson(Map<String, dynamic> json) =>
       balance: (json['balance'] as num).toDouble(),
       includeInTotal: json['includeInTotal'] as bool,
       isHidden: json['isHidden'] as bool,
-      registers: (json['registers'] as List<dynamic>)
+      transactions: (json['transactions'] as List<dynamic>)
           .map((e) => TransactionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      currency:
+          CurrencyModel.fromJson(json['currency'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_AccountModelToJson(_$_AccountModel instance) =>
@@ -99,5 +104,6 @@ Map<String, dynamic> _$$_AccountModelToJson(_$_AccountModel instance) =>
       'balance': instance.balance,
       'includeInTotal': instance.includeInTotal,
       'isHidden': instance.isHidden,
-      'registers': instance.registers,
+      'transactions': instance.transactions,
+      'currency': instance.currency,
     };

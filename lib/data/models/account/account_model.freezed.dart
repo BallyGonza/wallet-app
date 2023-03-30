@@ -39,7 +39,9 @@ mixin _$AccountModel {
   @HiveField(8)
   bool get isHidden => throw _privateConstructorUsedError;
   @HiveField(9)
-  List<TransactionModel> get registers => throw _privateConstructorUsedError;
+  List<TransactionModel> get transactions => throw _privateConstructorUsedError;
+  @HiveField(10)
+  CurrencyModel get currency => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,10 +65,12 @@ abstract class $AccountModelCopyWith<$Res> {
       @HiveField(6) double balance,
       @HiveField(7) bool includeInTotal,
       @HiveField(8) bool isHidden,
-      @HiveField(9) List<TransactionModel> registers});
+      @HiveField(9) List<TransactionModel> transactions,
+      @HiveField(10) CurrencyModel currency});
 
   $InstitutionModelCopyWith<$Res> get institution;
   $AccountTypeModelCopyWith<$Res> get type;
+  $CurrencyModelCopyWith<$Res> get currency;
 }
 
 /// @nodoc
@@ -91,7 +95,8 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
     Object? balance = null,
     Object? includeInTotal = null,
     Object? isHidden = null,
-    Object? registers = null,
+    Object? transactions = null,
+    Object? currency = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -130,10 +135,14 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
           ? _value.isHidden
           : isHidden // ignore: cast_nullable_to_non_nullable
               as bool,
-      registers: null == registers
-          ? _value.registers
-          : registers // ignore: cast_nullable_to_non_nullable
+      transactions: null == transactions
+          ? _value.transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionModel>,
+      currency: null == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as CurrencyModel,
     ) as $Val);
   }
 
@@ -150,6 +159,14 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
   $AccountTypeModelCopyWith<$Res> get type {
     return $AccountTypeModelCopyWith<$Res>(_value.type, (value) {
       return _then(_value.copyWith(type: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CurrencyModelCopyWith<$Res> get currency {
+    return $CurrencyModelCopyWith<$Res>(_value.currency, (value) {
+      return _then(_value.copyWith(currency: value) as $Val);
     });
   }
 }
@@ -172,12 +189,15 @@ abstract class _$$_AccountModelCopyWith<$Res>
       @HiveField(6) double balance,
       @HiveField(7) bool includeInTotal,
       @HiveField(8) bool isHidden,
-      @HiveField(9) List<TransactionModel> registers});
+      @HiveField(9) List<TransactionModel> transactions,
+      @HiveField(10) CurrencyModel currency});
 
   @override
   $InstitutionModelCopyWith<$Res> get institution;
   @override
   $AccountTypeModelCopyWith<$Res> get type;
+  @override
+  $CurrencyModelCopyWith<$Res> get currency;
 }
 
 /// @nodoc
@@ -200,7 +220,8 @@ class __$$_AccountModelCopyWithImpl<$Res>
     Object? balance = null,
     Object? includeInTotal = null,
     Object? isHidden = null,
-    Object? registers = null,
+    Object? transactions = null,
+    Object? currency = null,
   }) {
     return _then(_$_AccountModel(
       id: null == id
@@ -239,10 +260,14 @@ class __$$_AccountModelCopyWithImpl<$Res>
           ? _value.isHidden
           : isHidden // ignore: cast_nullable_to_non_nullable
               as bool,
-      registers: null == registers
-          ? _value._registers
-          : registers // ignore: cast_nullable_to_non_nullable
+      transactions: null == transactions
+          ? _value._transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
               as List<TransactionModel>,
+      currency: null == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as CurrencyModel,
     ));
   }
 }
@@ -260,8 +285,9 @@ class _$_AccountModel implements _AccountModel {
       @HiveField(6) required this.balance,
       @HiveField(7) required this.includeInTotal,
       @HiveField(8) required this.isHidden,
-      @HiveField(9) required final List<TransactionModel> registers})
-      : _registers = registers;
+      @HiveField(9) required final List<TransactionModel> transactions,
+      @HiveField(10) required this.currency})
+      : _transactions = transactions;
 
   factory _$_AccountModel.fromJson(Map<String, dynamic> json) =>
       _$$_AccountModelFromJson(json);
@@ -293,18 +319,22 @@ class _$_AccountModel implements _AccountModel {
   @override
   @HiveField(8)
   final bool isHidden;
-  final List<TransactionModel> _registers;
+  final List<TransactionModel> _transactions;
   @override
   @HiveField(9)
-  List<TransactionModel> get registers {
-    if (_registers is EqualUnmodifiableListView) return _registers;
+  List<TransactionModel> get transactions {
+    if (_transactions is EqualUnmodifiableListView) return _transactions;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_registers);
+    return EqualUnmodifiableListView(_transactions);
   }
 
   @override
+  @HiveField(10)
+  final CurrencyModel currency;
+
+  @override
   String toString() {
-    return 'AccountModel(id: $id, name: $name, description: $description, institution: $institution, type: $type, color: $color, balance: $balance, includeInTotal: $includeInTotal, isHidden: $isHidden, registers: $registers)';
+    return 'AccountModel(id: $id, name: $name, description: $description, institution: $institution, type: $type, color: $color, balance: $balance, includeInTotal: $includeInTotal, isHidden: $isHidden, transactions: $transactions, currency: $currency)';
   }
 
   @override
@@ -326,7 +356,9 @@ class _$_AccountModel implements _AccountModel {
             (identical(other.isHidden, isHidden) ||
                 other.isHidden == isHidden) &&
             const DeepCollectionEquality()
-                .equals(other._registers, _registers));
+                .equals(other._transactions, _transactions) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency));
   }
 
   @JsonKey(ignore: true)
@@ -342,7 +374,8 @@ class _$_AccountModel implements _AccountModel {
       balance,
       includeInTotal,
       isHidden,
-      const DeepCollectionEquality().hash(_registers));
+      const DeepCollectionEquality().hash(_transactions),
+      currency);
 
   @JsonKey(ignore: true)
   @override
@@ -360,17 +393,17 @@ class _$_AccountModel implements _AccountModel {
 
 abstract class _AccountModel implements AccountModel {
   const factory _AccountModel(
-          {@HiveField(0) required final String id,
-          @HiveField(1) required final String name,
-          @HiveField(2) required final String description,
-          @HiveField(3) required final InstitutionModel institution,
-          @HiveField(4) required final AccountTypeModel type,
-          @HiveField(5) required final int color,
-          @HiveField(6) required final double balance,
-          @HiveField(7) required final bool includeInTotal,
-          @HiveField(8) required final bool isHidden,
-          @HiveField(9) required final List<TransactionModel> registers}) =
-      _$_AccountModel;
+      {@HiveField(0) required final String id,
+      @HiveField(1) required final String name,
+      @HiveField(2) required final String description,
+      @HiveField(3) required final InstitutionModel institution,
+      @HiveField(4) required final AccountTypeModel type,
+      @HiveField(5) required final int color,
+      @HiveField(6) required final double balance,
+      @HiveField(7) required final bool includeInTotal,
+      @HiveField(8) required final bool isHidden,
+      @HiveField(9) required final List<TransactionModel> transactions,
+      @HiveField(10) required final CurrencyModel currency}) = _$_AccountModel;
 
   factory _AccountModel.fromJson(Map<String, dynamic> json) =
       _$_AccountModel.fromJson;
@@ -404,7 +437,10 @@ abstract class _AccountModel implements AccountModel {
   bool get isHidden;
   @override
   @HiveField(9)
-  List<TransactionModel> get registers;
+  List<TransactionModel> get transactions;
+  @override
+  @HiveField(10)
+  CurrencyModel get currency;
   @override
   @JsonKey(ignore: true)
   _$$_AccountModelCopyWith<_$_AccountModel> get copyWith =>

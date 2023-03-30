@@ -8,7 +8,7 @@ part of 'tag_model.dart';
 
 class TagModelAdapter extends TypeAdapter<TagModel> {
   @override
-  final int typeId = 5;
+  final int typeId = 6;
 
   @override
   TagModel read(BinaryReader reader) {

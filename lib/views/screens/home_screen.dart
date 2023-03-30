@@ -3,8 +3,35 @@ import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/theme.dart';
 import 'package:wallet_app/views/views.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({required this.users, super.key});
+
+  final List<UserModel> users;
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late Iterable<double> _income;
+  late Iterable<double> _expense;
+
+  @override
+  void initState() {
+    _income = widget.users.first.accounts.map((e) => e.transactions.isEmpty
+        ? 0
+        : e.transactions
+            .where((element) => element.isIncome)
+            .map((e) => e.amount)
+            .reduce((value, element) => value + element));
+    _expense = widget.users.first.accounts.map((e) => e.transactions.isEmpty
+        ? 0
+        : e.transactions
+            .where((element) => !element.isIncome)
+            .map((e) => e.amount)
+            .reduce((value, element) => value + element));
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,20 +43,26 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            const AccountsBalance(
-              value: 1000,
+            AccountsBalance(
+              value: widget.users.first.accounts
+                  .map((e) => e.balance)
+                  .reduce((value, element) => value + element),
             ),
             const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                SummariceCard.icome(value: 1000),
-                SummariceCard.expense(value: 500),
+              children: [
+                SummariceCard.icome(
+                  value: _income.reduce((value, element) => value + element),
+                ),
+                SummariceCard.expense(
+                    value:
+                        _expense.reduce((value, element) => value + element)),
               ],
             ),
             const SizedBox(height: 16),
             AccountsList(
-              accounts: defaultAccounts,
+              accounts: widget.users.first.accounts,
             ),
           ],
         ),

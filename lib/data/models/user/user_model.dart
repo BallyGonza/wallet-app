@@ -6,7 +6,7 @@ part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
 @freezed
-@HiveType(typeId: 7)
+@HiveType(typeId: 8)
 abstract class UserModel with _$UserModel {
   const factory UserModel({
     @HiveField(0) required String id,

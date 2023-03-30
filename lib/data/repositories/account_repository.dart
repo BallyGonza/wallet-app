@@ -1,4 +1,5 @@
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/data/repositories/currency_repository.dart';
 import 'package:wallet_app/data/repositories/institution_repository.dart';
 
 class AccountRepository {
@@ -19,7 +20,8 @@ AccountModel cash = AccountModel(
   color: 0xFFE0E0E0,
   includeInTotal: true,
   isHidden: false,
-  registers: [],
+  currency: pesoArg,
+  transactions: [],
 );
 
 AccountModel hsbc = AccountModel(
@@ -32,7 +34,8 @@ AccountModel hsbc = AccountModel(
   color: 0xFFE0E0E0,
   includeInTotal: true,
   isHidden: false,
-  registers: [],
+  currency: pesoArg,
+  transactions: [],
 );
 
 List<AccountModel> defaultAccounts = [cash, hsbc];

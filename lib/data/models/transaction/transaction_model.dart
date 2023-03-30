@@ -6,7 +6,7 @@ part 'transaction_model.freezed.dart';
 part 'transaction_model.g.dart';
 
 @freezed
-@HiveType(typeId: 6)
+@HiveType(typeId: 7)
 abstract class TransactionModel with _$TransactionModel {
   const factory TransactionModel({
     @HiveField(0) required String id,

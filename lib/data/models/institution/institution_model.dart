@@ -5,7 +5,7 @@ part 'institution_model.freezed.dart';
 part 'institution_model.g.dart';
 
 @freezed
-@HiveType(typeId: 4)
+@HiveType(typeId: 5)
 abstract class InstitutionModel with _$InstitutionModel {
   const factory InstitutionModel({
     @HiveField(0) required String id,

@@ -8,7 +8,7 @@ part of 'institution_model.dart';
 
 class InstitutionModelAdapter extends TypeAdapter<InstitutionModel> {
   @override
-  final int typeId = 4;
+  final int typeId = 5;
 
   @override
   InstitutionModel read(BinaryReader reader) {

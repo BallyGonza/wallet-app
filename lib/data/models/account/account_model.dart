@@ -18,7 +18,8 @@ abstract class AccountModel with _$AccountModel {
     @HiveField(6) required double balance,
     @HiveField(7) required bool includeInTotal,
     @HiveField(8) required bool isHidden,
-    @HiveField(9) required List<TransactionModel> registers,
+    @HiveField(9) required List<TransactionModel> transactions,
+    @HiveField(10) required CurrencyModel currency,
   }) = _AccountModel;
 
   factory AccountModel.fromJson(Map<String, dynamic> json) =>
