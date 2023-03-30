@@ -12,7 +12,7 @@ abstract class AccountModel with _$AccountModel {
     @HiveField(0) required String id,
     @HiveField(1) required String name,
     @HiveField(2) required String description,
-    @HiveField(3) InstitutionModel? institution,
+    @HiveField(3) required InstitutionModel institution,
     @HiveField(4) required AccountTypeModel type,
     @HiveField(5) required int color,
     @HiveField(6) required double balance,

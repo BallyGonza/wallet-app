@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/theme.dart';
+import 'package:wallet_app/views/views.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -7,175 +9,30 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff1E1E1E),
+      backgroundColor: walletAppTheme.scaffoldBackgroundColor,
+      bottomNavigationBar: const BottomNavBar(),
+      floatingActionButton: const AddFloatingActionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: SafeArea(
         child: Column(
           children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 16.0),
-              child: Text(
-                'Accounts balance',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            const Card(
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  'Balance',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+            const AccountsBalance(
+              value: 1000,
             ),
             const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
-                IncomeCard(),
-                ExpenseCard(),
+                SummariceCard.icome(value: 1000),
+                SummariceCard.expense(value: 500),
               ],
             ),
             const SizedBox(height: 16),
-            const Card(
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  'Transactions',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return const Card(
-                    child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Text(
-                        'Transactions',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+            AccountsList(
+              accounts: defaultAccounts,
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class IncomeCard extends StatelessWidget {
-  const IncomeCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Row(
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(right: 4.0),
-            child: CircleAvatar(
-              backgroundColor: Colors.green,
-              radius: 10,
-              child: FaIcon(
-                FontAwesomeIcons.arrowUp,
-                size: 12,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          Column(
-            children: const [
-              Text(
-                'Icomes',
-                style: TextStyle(
-                  fontSize: 9,
-                  color: Colors.black,
-                ),
-              ),
-              Text(
-                '\$ 1,000.00',
-                style: TextStyle(
-                  fontSize: 9,
-                  color: Colors.green,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ExpenseCard extends StatelessWidget {
-  const ExpenseCard({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Row(
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(right: 4.0),
-            child: CircleAvatar(
-              backgroundColor: Colors.red,
-              radius: 10,
-              child: FaIcon(
-                FontAwesomeIcons.arrowDown,
-                size: 12,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
-              Text(
-                'Expenses',
-                style: TextStyle(
-                  fontSize: 8,
-                  color: Colors.grey,
-                ),
-              ),
-              Text(
-                '\$ 1,000.00',
-                style: TextStyle(
-                  fontSize: 9,
-                  color: Colors.red,
-                ),
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:wallet_app/data/data.dart';
 AccountTypeModel moneyType = const AccountTypeModel(
   id: '1',
   name: 'Efectivo',
-  image: 'assets/icons/cash.png',
+  image: 'assets/icons/institutions/money.png',
   color: 0xFFE0E0E0,
 );
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-ThemeData appTheme = ThemeData(
+ThemeData walletAppTheme = ThemeData(
   primaryColor: Colors.white,
-  scaffoldBackgroundColor: Colors.white,
+  scaffoldBackgroundColor: const Color(0xff1E1E1E),
   textTheme: const TextTheme(
     headline1: TextStyle(
       fontSize: 72.0,
