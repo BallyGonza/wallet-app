@@ -27,7 +27,7 @@ mixin _$AccountModel {
   @HiveField(2)
   String get description => throw _privateConstructorUsedError;
   @HiveField(3)
-  InstitutionModel get institution => throw _privateConstructorUsedError;
+  InstitutionModel? get institution => throw _privateConstructorUsedError;
   @HiveField(4)
   AccountTypeModel get type => throw _privateConstructorUsedError;
   @HiveField(5)
@@ -57,7 +57,7 @@ abstract class $AccountModelCopyWith<$Res> {
       {@HiveField(0) String id,
       @HiveField(1) String name,
       @HiveField(2) String description,
-      @HiveField(3) InstitutionModel institution,
+      @HiveField(3) InstitutionModel? institution,
       @HiveField(4) AccountTypeModel type,
       @HiveField(5) int color,
       @HiveField(6) double balance,
@@ -65,7 +65,7 @@ abstract class $AccountModelCopyWith<$Res> {
       @HiveField(8) bool isHidden,
       @HiveField(9) List<TransactionModel> registers});
 
-  $InstitutionModelCopyWith<$Res> get institution;
+  $InstitutionModelCopyWith<$Res>? get institution;
   $AccountTypeModelCopyWith<$Res> get type;
 }
 
@@ -85,7 +85,7 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
     Object? id = null,
     Object? name = null,
     Object? description = null,
-    Object? institution = null,
+    Object? institution = freezed,
     Object? type = null,
     Object? color = null,
     Object? balance = null,
@@ -106,10 +106,10 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      institution: null == institution
+      institution: freezed == institution
           ? _value.institution
           : institution // ignore: cast_nullable_to_non_nullable
-              as InstitutionModel,
+              as InstitutionModel?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -139,8 +139,12 @@ class _$AccountModelCopyWithImpl<$Res, $Val extends AccountModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $InstitutionModelCopyWith<$Res> get institution {
-    return $InstitutionModelCopyWith<$Res>(_value.institution, (value) {
+  $InstitutionModelCopyWith<$Res>? get institution {
+    if (_value.institution == null) {
+      return null;
+    }
+
+    return $InstitutionModelCopyWith<$Res>(_value.institution!, (value) {
       return _then(_value.copyWith(institution: value) as $Val);
     });
   }
@@ -166,7 +170,7 @@ abstract class _$$_AccountModelCopyWith<$Res>
       {@HiveField(0) String id,
       @HiveField(1) String name,
       @HiveField(2) String description,
-      @HiveField(3) InstitutionModel institution,
+      @HiveField(3) InstitutionModel? institution,
       @HiveField(4) AccountTypeModel type,
       @HiveField(5) int color,
       @HiveField(6) double balance,
@@ -175,7 +179,7 @@ abstract class _$$_AccountModelCopyWith<$Res>
       @HiveField(9) List<TransactionModel> registers});
 
   @override
-  $InstitutionModelCopyWith<$Res> get institution;
+  $InstitutionModelCopyWith<$Res>? get institution;
   @override
   $AccountTypeModelCopyWith<$Res> get type;
 }
@@ -194,7 +198,7 @@ class __$$_AccountModelCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? description = null,
-    Object? institution = null,
+    Object? institution = freezed,
     Object? type = null,
     Object? color = null,
     Object? balance = null,
@@ -215,10 +219,10 @@ class __$$_AccountModelCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      institution: null == institution
+      institution: freezed == institution
           ? _value.institution
           : institution // ignore: cast_nullable_to_non_nullable
-              as InstitutionModel,
+              as InstitutionModel?,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -254,7 +258,7 @@ class _$_AccountModel implements _AccountModel {
       {@HiveField(0) required this.id,
       @HiveField(1) required this.name,
       @HiveField(2) required this.description,
-      @HiveField(3) required this.institution,
+      @HiveField(3) this.institution,
       @HiveField(4) required this.type,
       @HiveField(5) required this.color,
       @HiveField(6) required this.balance,
@@ -277,7 +281,7 @@ class _$_AccountModel implements _AccountModel {
   final String description;
   @override
   @HiveField(3)
-  final InstitutionModel institution;
+  final InstitutionModel? institution;
   @override
   @HiveField(4)
   final AccountTypeModel type;
@@ -363,7 +367,7 @@ abstract class _AccountModel implements AccountModel {
           {@HiveField(0) required final String id,
           @HiveField(1) required final String name,
           @HiveField(2) required final String description,
-          @HiveField(3) required final InstitutionModel institution,
+          @HiveField(3) final InstitutionModel? institution,
           @HiveField(4) required final AccountTypeModel type,
           @HiveField(5) required final int color,
           @HiveField(6) required final double balance,
@@ -386,7 +390,7 @@ abstract class _AccountModel implements AccountModel {
   String get description;
   @override
   @HiveField(3)
-  InstitutionModel get institution;
+  InstitutionModel? get institution;
   @override
   @HiveField(4)
   AccountTypeModel get type;

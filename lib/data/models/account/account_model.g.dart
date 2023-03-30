@@ -20,7 +20,7 @@ class AccountModelAdapter extends TypeAdapter<AccountModel> {
       id: fields[0] as String,
       name: fields[1] as String,
       description: fields[2] as String,
-      institution: fields[3] as InstitutionModel,
+      institution: fields[3] as InstitutionModel?,
       type: fields[4] as AccountTypeModel,
       color: fields[5] as int,
       balance: fields[6] as double,
@@ -76,8 +76,10 @@ _$_AccountModel _$$_AccountModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
-      institution: InstitutionModel.fromJson(
-          json['institution'] as Map<String, dynamic>),
+      institution: json['institution'] == null
+          ? null
+          : InstitutionModel.fromJson(
+              json['institution'] as Map<String, dynamic>),
       type: AccountTypeModel.fromJson(json['type'] as Map<String, dynamic>),
       color: json['color'] as int,
       balance: (json['balance'] as num).toDouble(),
