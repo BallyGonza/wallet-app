@@ -5,3 +5,4 @@ export 'institution/institution.dart';
 export 'transaction/transaction.dart';
 export 'tag/tag.dart';
 export 'category/category.dart';
+export 'user/user.dart';
