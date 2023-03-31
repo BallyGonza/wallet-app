@@ -4,32 +4,25 @@ import 'package:wallet_app/theme.dart';
 import 'package:wallet_app/views/views.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({required this.users, super.key});
+  const HomeScreen({required this.user, super.key});
 
-  final List<UserModel> users;
+  final UserModel user;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Iterable<double> _income;
-  late Iterable<double> _expense;
+  final _userRepository = UserRepository();
+  late double _totalBalance;
+  late double _totalIncome;
+  late double _totalExpense;
 
   @override
   void initState() {
-    _income = widget.users.first.accounts.map((e) => e.transactions.isEmpty
-        ? 0
-        : e.transactions
-            .where((element) => element.isIncome)
-            .map((e) => e.amount)
-            .reduce((value, element) => value + element));
-    _expense = widget.users.first.accounts.map((e) => e.transactions.isEmpty
-        ? 0
-        : e.transactions
-            .where((element) => !element.isIncome)
-            .map((e) => e.amount)
-            .reduce((value, element) => value + element));
+    _totalBalance = _userRepository.getTotalBalance(widget.user.accounts);
+    _totalIncome = _userRepository.getTotalIncome(widget.user.accounts);
+    _totalExpense = _userRepository.getTotalExpense(widget.user.accounts);
     super.initState();
   }
 
@@ -38,31 +31,38 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: walletAppTheme.scaffoldBackgroundColor,
       bottomNavigationBar: const BottomNavBar(),
-      floatingActionButton: const AddFloatingActionButton(),
+      floatingActionButton: AddFloatingActionButton(
+        onAddPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddTransactionScreen(),
+            ),
+          );
+        },
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: SafeArea(
         child: Column(
           children: [
             AccountsBalance(
-              value: widget.users.first.accounts
-                  .map((e) => e.balance)
-                  .reduce((value, element) => value + element),
+              value: _totalBalance,
             ),
             const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SummariceCard.icome(
-                  value: _income.reduce((value, element) => value + element),
+                  value: _totalIncome,
                 ),
                 SummariceCard.expense(
-                    value:
-                        _expense.reduce((value, element) => value + element)),
+                  value: _totalExpense,
+                ),
               ],
             ),
             const SizedBox(height: 16),
             AccountsList(
-              accounts: widget.users.first.accounts,
+              accounts: user.accounts,
             ),
           ],
         ),

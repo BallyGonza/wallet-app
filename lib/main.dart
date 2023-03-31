@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               updated: (users) => HomeScreen(
-                users: users,
+                user: users.first,
               ),
             );
           },
