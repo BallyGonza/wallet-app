@@ -329,24 +329,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       ),
                       onPressed: () {
                         setState(() {
-                          context.read<UserBloc>().add(
-                                UserEvent.addTransaction(
-                                  user,
-                                  TransactionModel(
-                                    id: DateTime.now().toString(),
-                                    amount:
-                                        double.parse(_amountController.text),
-                                    category: _selectedCategory,
-                                    account: _selectedAccount,
-                                    date: _selectedDate,
-                                    tags: _selectedTags,
-                                    description: _noteController.text,
-                                    isIncome: _isIncome,
-                                    isRecurrent: false,
-                                    attachment: '',
-                                  ),
-                                ),
-                              );
+                          //TODO: add transaction
                         });
                         Navigator.pop(context);
                       },
