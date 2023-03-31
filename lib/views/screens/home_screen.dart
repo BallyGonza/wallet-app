@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/theme.dart';
 import 'package:wallet_app/views/views.dart';
@@ -33,10 +35,42 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: const BottomNavBar(),
       floatingActionButton: AddFloatingActionButton(
         onAddPressed: () {
-          Navigator.push(
-            context,
+          Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const AddTransactionScreen(),
+              builder: (_) => BlocProvider.value(
+                value: context.read<UserBloc>(),
+                child: AddTransactionScreen(
+                  onSaved: (
+                    String description,
+                    double amount,
+                    AccountModel account,
+                    CategoryModel category,
+                    String date,
+                    bool isIncome,
+                    List<TagModel> tags,
+                  ) {
+                    setState(() {
+                      context.read<UserBloc>().add(
+                            UserEvent.addTransaction(
+                              widget.user,
+                              TransactionModel(
+                                id: '0',
+                                description: description,
+                                amount: amount,
+                                category: category,
+                                account: account,
+                                date: date,
+                                isIncome: isIncome,
+                                attachment: '',
+                                tags: tags,
+                                isRecurrent: false,
+                              ),
+                            ),
+                          );
+                    });
+                  },
+                ),
+              ),
             ),
           );
         },

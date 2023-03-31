@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:wallet_app/blocs/blocs.dart';
 
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
 class AddTransactionScreen extends StatefulWidget {
-  const AddTransactionScreen({super.key});
+  const AddTransactionScreen({required this.onSaved, super.key});
+
+  final Function onSaved;
 
   @override
   State<AddTransactionScreen> createState() => _AddTransactionScreenState();
@@ -328,10 +329,16 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             _isIncome ? Colors.green[300] : Colors.red[300],
                       ),
                       onPressed: () {
-                        setState(() {
-                          //TODO: add transaction
-                        });
-                        Navigator.pop(context);
+                        widget.onSaved(
+                          _noteController.text,
+                          double.parse(_amountController.text),
+                          _selectedAccount,
+                          _selectedCategory,
+                          _selectedDate,
+                          _isIncome,
+                          _selectedTags,
+                        );
+                        Navigator.of(context).pop();
                       },
                       child: const Text('Save', style: TextStyle(fontSize: 16)),
                     ),
