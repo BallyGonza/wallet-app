@@ -20,7 +20,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   final _noteController = TextEditingController();
   late CategoryModel _selectedCategory;
   late AccountModel _selectedAccount;
-  String _selectedDate = '';
+  String _selectedDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
   List<TagModel> _selectedTags = [];
   bool _isIncome = true;
 
@@ -149,18 +149,19 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                           MediaQuery.of(context).size.height *
                                               0.45,
                                       child: ListView.builder(
-                                        itemCount: user.categories.length,
+                                        itemCount: user.categories.length - 1,
                                         itemBuilder: (context, index) {
                                           return InkWell(
                                             onTap: () {
                                               setState(() {
                                                 _selectedCategory =
-                                                    user.categories[index];
+                                                    user.categories[index + 1];
                                               });
                                               Navigator.pop(context);
                                             },
                                             child: CategoryListItem(
-                                              category: user.categories[index],
+                                              category:
+                                                  user.categories[index + 1],
                                             ),
                                           );
                                         },
@@ -211,18 +212,18 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                           MediaQuery.of(context).size.height *
                                               0.45,
                                       child: ListView.builder(
-                                        itemCount: user.accounts.length,
+                                        itemCount: user.accounts.length - 1,
                                         itemBuilder: (context, index) {
                                           return InkWell(
                                             onTap: () {
                                               setState(() {
                                                 _selectedAccount =
-                                                    user.accounts[index];
+                                                    user.accounts[index + 1];
                                               });
                                               Navigator.pop(context);
                                             },
                                             child: AccountListItem(
-                                              account: user.accounts[index],
+                                              account: user.accounts[index + 1],
                                             ),
                                           );
                                         },
