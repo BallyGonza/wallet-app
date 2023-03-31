@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:wallet_app/blocs/blocs.dart';
 
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
@@ -13,15 +16,18 @@ class AddTransactionScreen extends StatefulWidget {
 }
 
 class _AddTransactionScreenState extends State<AddTransactionScreen> {
-  final _inputController = TextEditingController();
-  String _selectedCategory = '';
-  String _selectedAccount = '';
+  final _amountController = TextEditingController();
+  final _noteController = TextEditingController();
+  late CategoryModel _selectedCategory;
+  late AccountModel _selectedAccount;
   String _selectedDate = '';
   List<TagModel> _selectedTags = [];
   bool _isIncome = true;
 
   @override
   void initState() {
+    _selectedCategory = user.categories[0];
+    _selectedAccount = user.accounts[0];
     super.initState();
   }
 
@@ -72,14 +78,25 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                     const SizedBox(width: 16),
-                    Text(
-                      _inputController.text.isEmpty
-                          ? '0,00'
-                          : _inputController.text,
-                      style: const TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width - 100,
+                      child: TextField(
+                        showCursor: false,
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: '0,00',
+                          hintStyle: TextStyle(
+                              fontSize: 32,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white),
+                        ),
+                        controller: _amountController,
+                        keyboardType: TextInputType.number,
+                        style: const TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
                     )
                   ],
                 ),
@@ -102,28 +119,126 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                     WalletListTile(
                       icon: Icons.category,
                       content: Text(
-                        _selectedCategory == ''
-                            ? 'Select category'
-                            : _selectedCategory,
+                        _selectedCategory.name,
                         style: const TextStyle(color: Colors.grey),
                       ),
                       trailing: const FaIcon(
                         FontAwesomeIcons.chevronRight,
                         color: Colors.grey,
                       ),
+                      onTap: () {
+                        showModalBottomSheet(
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) {
+                            return Container(
+                              decoration: const BoxDecoration(
+                                color: colorCards,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30),
+                                ),
+                              ),
+                              height: MediaQuery.of(context).size.height * 20,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.45,
+                                      child: ListView.builder(
+                                        itemCount: user.categories.length,
+                                        itemBuilder: (context, index) {
+                                          return InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                _selectedCategory =
+                                                    user.categories[index];
+                                              });
+                                              Navigator.pop(context);
+                                            },
+                                            child: CategoryListItem(
+                                              category: user.categories[index],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    ActionButton(
+                                      text: 'Add new category',
+                                      onPressed: () {},
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ),
                     WalletListTile(
                       icon: FontAwesomeIcons.wallet,
                       content: Text(
-                        _selectedAccount == ''
-                            ? 'Select account'
-                            : _selectedAccount,
+                        _selectedAccount.name,
                         style: const TextStyle(color: Colors.grey),
                       ),
                       trailing: const FaIcon(
                         FontAwesomeIcons.chevronRight,
                         color: Colors.grey,
                       ),
+                      onTap: () {
+                        showModalBottomSheet(
+                          backgroundColor: Colors.transparent,
+                          context: context,
+                          builder: (context) {
+                            return Container(
+                              decoration: const BoxDecoration(
+                                color: colorCards,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30),
+                                ),
+                              ),
+                              height: MediaQuery.of(context).size.height * 20,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.45,
+                                      child: ListView.builder(
+                                        itemCount: user.accounts.length,
+                                        itemBuilder: (context, index) {
+                                          return InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                _selectedAccount =
+                                                    user.accounts[index];
+                                              });
+                                              Navigator.pop(context);
+                                            },
+                                            child: AccountListItem(
+                                              account: user.accounts[index],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                    ActionButton(
+                                      text: 'Add new account',
+                                      onPressed: () {},
+                                    )
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ),
                     WalletListTile(
                       icon: FontAwesomeIcons.calendarDay,
@@ -135,6 +250,38 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         FontAwesomeIcons.chevronRight,
                         color: Colors.grey,
                       ),
+                      onTap: () {
+                        // cupertinoDatePicker
+                        showCupertinoModalPopup(
+                          context: context,
+                          builder: (context) {
+                            return SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.3,
+                              child: CupertinoTheme(
+                                data: const CupertinoThemeData(
+                                  textTheme: CupertinoTextThemeData(
+                                    dateTimePickerTextStyle: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                                child: CupertinoDatePicker(
+                                  dateOrder: DatePickerDateOrder.dmy,
+                                  backgroundColor: colorCards,
+                                  mode: CupertinoDatePickerMode.date,
+                                  initialDateTime: DateTime.now(),
+                                  onDateTimeChanged: (value) {
+                                    setState(() {
+                                      _selectedDate = DateFormat('dd/MM/yyyy')
+                                          .format(value);
+                                    });
+                                  },
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ),
                     WalletListTile(
                       icon: FontAwesomeIcons.tags,
@@ -154,12 +301,21 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                   )
                                   .toList(),
                             ),
+                      onTap: () {},
                     ),
-                    const WalletListTile(
+                    WalletListTile(
                       icon: FontAwesomeIcons.solidNoteSticky,
-                      content: Text(
-                        'Add note',
-                        style: TextStyle(color: Colors.grey),
+                      content: TextFormField(
+                        controller: _noteController,
+                        cursorColor: Colors.grey,
+                        style: const TextStyle(color: Colors.grey),
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Add note',
+                          hintStyle: TextStyle(color: Colors.grey),
+                        ),
+                        maxLines: 1,
+                        keyboardType: TextInputType.multiline,
                       ),
                     ),
                     ElevatedButton(
@@ -170,7 +326,29 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         backgroundColor:
                             _isIncome ? Colors.green[300] : Colors.red[300],
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          context.read<UserBloc>().add(
+                                UserEvent.addTransaction(
+                                  user,
+                                  TransactionModel(
+                                    id: DateTime.now().toString(),
+                                    amount:
+                                        double.parse(_amountController.text),
+                                    category: _selectedCategory,
+                                    account: _selectedAccount,
+                                    date: _selectedDate,
+                                    tags: _selectedTags,
+                                    description: _noteController.text,
+                                    isIncome: _isIncome,
+                                    isRecurrent: false,
+                                    attachment: '',
+                                  ),
+                                ),
+                              );
+                        });
+                        Navigator.pop(context);
+                      },
                       child: const Text('Save', style: TextStyle(fontSize: 16)),
                     ),
                   ],

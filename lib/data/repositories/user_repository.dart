@@ -48,7 +48,7 @@ UserModel user = UserModel(
   image: '',
   accounts: [...defaultAccounts],
   transactions: [],
-  categories: [],
+  categories: [...defaultCategories],
   creditCards: [],
   tags: [],
 );

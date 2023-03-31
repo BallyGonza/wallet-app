@@ -8,7 +8,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     this.usersRepository,
   ) : super(const UserState.initial()) {
     on<UserInitialEvent>(_onInit);
-    on<UserAddEvent>(_onAdd);
+    on<UserAddTransactionEvent>(_onAddTransaction);
     on<UserSubtractEvent>(_onRemove);
 
     add(const UserEvent.init());
@@ -36,10 +36,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     emit(UserState.updated(users));
   }
 
-  void _onAdd(
-    UserAddEvent event,
+  void _onAddTransaction(
+    UserAddTransactionEvent event,
     Emitter<UserState> emit,
   ) {
+    box.get(event.user.id)!.transactions.add(event.transaction);
     emit(UserState.updated(users));
   }
 

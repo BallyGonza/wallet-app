@@ -38,16 +38,16 @@ class AccountsList extends StatelessWidget {
             ),
           ),
           Container(
-            height: accounts.length * 73.0,
+            height: accounts.length * 49.0,
             decoration: const BoxDecoration(
               color: colorCards,
               borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
             child: ListView.builder(
-              itemCount: accounts.length,
+              itemCount: accounts.length - 1,
               itemBuilder: (context, index) {
                 return AccountListItem(
-                  account: accounts[index],
+                  account: accounts[index + 1],
                 );
               },
             ),

@@ -10,6 +10,20 @@ class AccountRepository {
   }
 }
 
+AccountModel defaultAccount = AccountModel(
+  id: '0',
+  name: 'Select Account',
+  description: '',
+  balance: 0,
+  type: moneyType,
+  institution: wallet,
+  color: 0xFFE0E0E0,
+  includeInTotal: true,
+  isHidden: false,
+  currency: pesoArg,
+  transactions: [],
+);
+
 AccountModel cash = AccountModel(
   id: '1',
   name: 'Efectivo',
@@ -38,4 +52,4 @@ AccountModel hsbc = AccountModel(
   transactions: [],
 );
 
-List<AccountModel> defaultAccounts = [cash, hsbc];
+List<AccountModel> defaultAccounts = [defaultAccount, cash, hsbc];

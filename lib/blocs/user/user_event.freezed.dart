@@ -19,21 +19,24 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() add,
+    required TResult Function(UserModel user, TransactionModel transaction)
+        addTransaction,
     required TResult Function() remove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? add,
+    TResult? Function(UserModel user, TransactionModel transaction)?
+        addTransaction,
     TResult? Function()? remove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? add,
+    TResult Function(UserModel user, TransactionModel transaction)?
+        addTransaction,
     TResult Function()? remove,
     required TResult orElse(),
   }) =>
@@ -41,21 +44,21 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitialEvent value) init,
-    required TResult Function(UserAddEvent value) add,
+    required TResult Function(UserAddTransactionEvent value) addTransaction,
     required TResult Function(UserSubtractEvent value) remove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitialEvent value)? init,
-    TResult? Function(UserAddEvent value)? add,
+    TResult? Function(UserAddTransactionEvent value)? addTransaction,
     TResult? Function(UserSubtractEvent value)? remove,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitialEvent value)? init,
-    TResult Function(UserAddEvent value)? add,
+    TResult Function(UserAddTransactionEvent value)? addTransaction,
     TResult Function(UserSubtractEvent value)? remove,
     required TResult orElse(),
   }) =>
@@ -118,7 +121,8 @@ class _$UserInitialEvent implements UserInitialEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() add,
+    required TResult Function(UserModel user, TransactionModel transaction)
+        addTransaction,
     required TResult Function() remove,
   }) {
     return init();
@@ -128,7 +132,8 @@ class _$UserInitialEvent implements UserInitialEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? add,
+    TResult? Function(UserModel user, TransactionModel transaction)?
+        addTransaction,
     TResult? Function()? remove,
   }) {
     return init?.call();
@@ -138,7 +143,8 @@ class _$UserInitialEvent implements UserInitialEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? add,
+    TResult Function(UserModel user, TransactionModel transaction)?
+        addTransaction,
     TResult Function()? remove,
     required TResult orElse(),
   }) {
@@ -152,7 +158,7 @@ class _$UserInitialEvent implements UserInitialEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitialEvent value) init,
-    required TResult Function(UserAddEvent value) add,
+    required TResult Function(UserAddTransactionEvent value) addTransaction,
     required TResult Function(UserSubtractEvent value) remove,
   }) {
     return init(this);
@@ -162,7 +168,7 @@ class _$UserInitialEvent implements UserInitialEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitialEvent value)? init,
-    TResult? Function(UserAddEvent value)? add,
+    TResult? Function(UserAddTransactionEvent value)? addTransaction,
     TResult? Function(UserSubtractEvent value)? remove,
   }) {
     return init?.call(this);
@@ -172,7 +178,7 @@ class _$UserInitialEvent implements UserInitialEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitialEvent value)? init,
-    TResult Function(UserAddEvent value)? add,
+    TResult Function(UserAddTransactionEvent value)? addTransaction,
     TResult Function(UserSubtractEvent value)? remove,
     required TResult orElse(),
   }) {
@@ -188,70 +194,128 @@ abstract class UserInitialEvent implements UserEvent {
 }
 
 /// @nodoc
-abstract class _$$UserAddEventCopyWith<$Res> {
-  factory _$$UserAddEventCopyWith(
-          _$UserAddEvent value, $Res Function(_$UserAddEvent) then) =
-      __$$UserAddEventCopyWithImpl<$Res>;
+abstract class _$$UserAddTransactionEventCopyWith<$Res> {
+  factory _$$UserAddTransactionEventCopyWith(_$UserAddTransactionEvent value,
+          $Res Function(_$UserAddTransactionEvent) then) =
+      __$$UserAddTransactionEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserModel user, TransactionModel transaction});
+
+  $UserModelCopyWith<$Res> get user;
+  $TransactionModelCopyWith<$Res> get transaction;
 }
 
 /// @nodoc
-class __$$UserAddEventCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$UserAddEvent>
-    implements _$$UserAddEventCopyWith<$Res> {
-  __$$UserAddEventCopyWithImpl(
-      _$UserAddEvent _value, $Res Function(_$UserAddEvent) _then)
+class __$$UserAddTransactionEventCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserAddTransactionEvent>
+    implements _$$UserAddTransactionEventCopyWith<$Res> {
+  __$$UserAddTransactionEventCopyWithImpl(_$UserAddTransactionEvent _value,
+      $Res Function(_$UserAddTransactionEvent) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+    Object? transaction = null,
+  }) {
+    return _then(_$UserAddTransactionEvent(
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+      null == transaction
+          ? _value.transaction
+          : transaction // ignore: cast_nullable_to_non_nullable
+              as TransactionModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserModelCopyWith<$Res> get user {
+    return $UserModelCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TransactionModelCopyWith<$Res> get transaction {
+    return $TransactionModelCopyWith<$Res>(_value.transaction, (value) {
+      return _then(_value.copyWith(transaction: value));
+    });
+  }
 }
 
 /// @nodoc
 
-class _$UserAddEvent implements UserAddEvent {
-  const _$UserAddEvent();
+class _$UserAddTransactionEvent implements UserAddTransactionEvent {
+  const _$UserAddTransactionEvent(this.user, this.transaction);
+
+  @override
+  final UserModel user;
+  @override
+  final TransactionModel transaction;
 
   @override
   String toString() {
-    return 'UserEvent.add()';
+    return 'UserEvent.addTransaction(user: $user, transaction: $transaction)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UserAddEvent);
+        (other.runtimeType == runtimeType &&
+            other is _$UserAddTransactionEvent &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.transaction, transaction) ||
+                other.transaction == transaction));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, user, transaction);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserAddTransactionEventCopyWith<_$UserAddTransactionEvent> get copyWith =>
+      __$$UserAddTransactionEventCopyWithImpl<_$UserAddTransactionEvent>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() add,
+    required TResult Function(UserModel user, TransactionModel transaction)
+        addTransaction,
     required TResult Function() remove,
   }) {
-    return add();
+    return addTransaction(user, transaction);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? add,
+    TResult? Function(UserModel user, TransactionModel transaction)?
+        addTransaction,
     TResult? Function()? remove,
   }) {
-    return add?.call();
+    return addTransaction?.call(user, transaction);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? add,
+    TResult Function(UserModel user, TransactionModel transaction)?
+        addTransaction,
     TResult Function()? remove,
     required TResult orElse(),
   }) {
-    if (add != null) {
-      return add();
+    if (addTransaction != null) {
+      return addTransaction(user, transaction);
     }
     return orElse();
   }
@@ -260,39 +324,47 @@ class _$UserAddEvent implements UserAddEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitialEvent value) init,
-    required TResult Function(UserAddEvent value) add,
+    required TResult Function(UserAddTransactionEvent value) addTransaction,
     required TResult Function(UserSubtractEvent value) remove,
   }) {
-    return add(this);
+    return addTransaction(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitialEvent value)? init,
-    TResult? Function(UserAddEvent value)? add,
+    TResult? Function(UserAddTransactionEvent value)? addTransaction,
     TResult? Function(UserSubtractEvent value)? remove,
   }) {
-    return add?.call(this);
+    return addTransaction?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitialEvent value)? init,
-    TResult Function(UserAddEvent value)? add,
+    TResult Function(UserAddTransactionEvent value)? addTransaction,
     TResult Function(UserSubtractEvent value)? remove,
     required TResult orElse(),
   }) {
-    if (add != null) {
-      return add(this);
+    if (addTransaction != null) {
+      return addTransaction(this);
     }
     return orElse();
   }
 }
 
-abstract class UserAddEvent implements UserEvent {
-  const factory UserAddEvent() = _$UserAddEvent;
+abstract class UserAddTransactionEvent implements UserEvent {
+  const factory UserAddTransactionEvent(
+          final UserModel user, final TransactionModel transaction) =
+      _$UserAddTransactionEvent;
+
+  UserModel get user;
+  TransactionModel get transaction;
+  @JsonKey(ignore: true)
+  _$$UserAddTransactionEventCopyWith<_$UserAddTransactionEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -334,7 +406,8 @@ class _$UserSubtractEvent implements UserSubtractEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() add,
+    required TResult Function(UserModel user, TransactionModel transaction)
+        addTransaction,
     required TResult Function() remove,
   }) {
     return remove();
@@ -344,7 +417,8 @@ class _$UserSubtractEvent implements UserSubtractEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? add,
+    TResult? Function(UserModel user, TransactionModel transaction)?
+        addTransaction,
     TResult? Function()? remove,
   }) {
     return remove?.call();
@@ -354,7 +428,8 @@ class _$UserSubtractEvent implements UserSubtractEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? add,
+    TResult Function(UserModel user, TransactionModel transaction)?
+        addTransaction,
     TResult Function()? remove,
     required TResult orElse(),
   }) {
@@ -368,7 +443,7 @@ class _$UserSubtractEvent implements UserSubtractEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitialEvent value) init,
-    required TResult Function(UserAddEvent value) add,
+    required TResult Function(UserAddTransactionEvent value) addTransaction,
     required TResult Function(UserSubtractEvent value) remove,
   }) {
     return remove(this);
@@ -378,7 +453,7 @@ class _$UserSubtractEvent implements UserSubtractEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitialEvent value)? init,
-    TResult? Function(UserAddEvent value)? add,
+    TResult? Function(UserAddTransactionEvent value)? addTransaction,
     TResult? Function(UserSubtractEvent value)? remove,
   }) {
     return remove?.call(this);
@@ -388,7 +463,7 @@ class _$UserSubtractEvent implements UserSubtractEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitialEvent value)? init,
-    TResult Function(UserAddEvent value)? add,
+    TResult Function(UserAddTransactionEvent value)? addTransaction,
     TResult Function(UserSubtractEvent value)? remove,
     required TResult orElse(),
   }) {

@@ -23,30 +23,22 @@ mixin _$TransactionModel {
   @HiveField(0)
   String get id => throw _privateConstructorUsedError;
   @HiveField(1)
-  String get name => throw _privateConstructorUsedError;
-  @HiveField(2)
   String get description => throw _privateConstructorUsedError;
-  @HiveField(3)
+  @HiveField(2)
   double get amount => throw _privateConstructorUsedError;
+  @HiveField(3)
+  String get date => throw _privateConstructorUsedError;
   @HiveField(4)
-  DateTime get date => throw _privateConstructorUsedError;
-  @HiveField(5)
   bool get isIncome => throw _privateConstructorUsedError;
-  @HiveField(6)
-  bool get isExpense => throw _privateConstructorUsedError;
-  @HiveField(7)
-  bool get isTransfer => throw _privateConstructorUsedError;
-  @HiveField(8)
+  @HiveField(5)
   bool get isRecurrent => throw _privateConstructorUsedError;
-  @HiveField(9)
-  bool get isReceived => throw _privateConstructorUsedError;
-  @HiveField(10)
+  @HiveField(6)
   CategoryModel get category => throw _privateConstructorUsedError;
-  @HiveField(11)
+  @HiveField(7)
   List<TagModel> get tags => throw _privateConstructorUsedError;
-  @HiveField(12)
+  @HiveField(10)
   AccountModel get account => throw _privateConstructorUsedError;
-  @HiveField(13)
+  @HiveField(11)
   String get attachment => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -63,19 +55,15 @@ abstract class $TransactionModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@HiveField(0) String id,
-      @HiveField(1) String name,
-      @HiveField(2) String description,
-      @HiveField(3) double amount,
-      @HiveField(4) DateTime date,
-      @HiveField(5) bool isIncome,
-      @HiveField(6) bool isExpense,
-      @HiveField(7) bool isTransfer,
-      @HiveField(8) bool isRecurrent,
-      @HiveField(9) bool isReceived,
-      @HiveField(10) CategoryModel category,
-      @HiveField(11) List<TagModel> tags,
-      @HiveField(12) AccountModel account,
-      @HiveField(13) String attachment});
+      @HiveField(1) String description,
+      @HiveField(2) double amount,
+      @HiveField(3) String date,
+      @HiveField(4) bool isIncome,
+      @HiveField(5) bool isRecurrent,
+      @HiveField(6) CategoryModel category,
+      @HiveField(7) List<TagModel> tags,
+      @HiveField(10) AccountModel account,
+      @HiveField(11) String attachment});
 
   $CategoryModelCopyWith<$Res> get category;
   $AccountModelCopyWith<$Res> get account;
@@ -95,15 +83,11 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
     Object? description = null,
     Object? amount = null,
     Object? date = null,
     Object? isIncome = null,
-    Object? isExpense = null,
-    Object? isTransfer = null,
     Object? isRecurrent = null,
-    Object? isReceived = null,
     Object? category = null,
     Object? tags = null,
     Object? account = null,
@@ -113,10 +97,6 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -129,26 +109,14 @@ class _$TransactionModelCopyWithImpl<$Res, $Val extends TransactionModel>
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       isIncome: null == isIncome
           ? _value.isIncome
           : isIncome // ignore: cast_nullable_to_non_nullable
               as bool,
-      isExpense: null == isExpense
-          ? _value.isExpense
-          : isExpense // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isTransfer: null == isTransfer
-          ? _value.isTransfer
-          : isTransfer // ignore: cast_nullable_to_non_nullable
-              as bool,
       isRecurrent: null == isRecurrent
           ? _value.isRecurrent
           : isRecurrent // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isReceived: null == isReceived
-          ? _value.isReceived
-          : isReceived // ignore: cast_nullable_to_non_nullable
               as bool,
       category: null == category
           ? _value.category
@@ -196,19 +164,15 @@ abstract class _$$_TransactionModelCopyWith<$Res>
   @useResult
   $Res call(
       {@HiveField(0) String id,
-      @HiveField(1) String name,
-      @HiveField(2) String description,
-      @HiveField(3) double amount,
-      @HiveField(4) DateTime date,
-      @HiveField(5) bool isIncome,
-      @HiveField(6) bool isExpense,
-      @HiveField(7) bool isTransfer,
-      @HiveField(8) bool isRecurrent,
-      @HiveField(9) bool isReceived,
-      @HiveField(10) CategoryModel category,
-      @HiveField(11) List<TagModel> tags,
-      @HiveField(12) AccountModel account,
-      @HiveField(13) String attachment});
+      @HiveField(1) String description,
+      @HiveField(2) double amount,
+      @HiveField(3) String date,
+      @HiveField(4) bool isIncome,
+      @HiveField(5) bool isRecurrent,
+      @HiveField(6) CategoryModel category,
+      @HiveField(7) List<TagModel> tags,
+      @HiveField(10) AccountModel account,
+      @HiveField(11) String attachment});
 
   @override
   $CategoryModelCopyWith<$Res> get category;
@@ -228,15 +192,11 @@ class __$$_TransactionModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
     Object? description = null,
     Object? amount = null,
     Object? date = null,
     Object? isIncome = null,
-    Object? isExpense = null,
-    Object? isTransfer = null,
     Object? isRecurrent = null,
-    Object? isReceived = null,
     Object? category = null,
     Object? tags = null,
     Object? account = null,
@@ -246,10 +206,6 @@ class __$$_TransactionModelCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String,
       description: null == description
           ? _value.description
@@ -262,26 +218,14 @@ class __$$_TransactionModelCopyWithImpl<$Res>
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as String,
       isIncome: null == isIncome
           ? _value.isIncome
           : isIncome // ignore: cast_nullable_to_non_nullable
               as bool,
-      isExpense: null == isExpense
-          ? _value.isExpense
-          : isExpense // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isTransfer: null == isTransfer
-          ? _value.isTransfer
-          : isTransfer // ignore: cast_nullable_to_non_nullable
-              as bool,
       isRecurrent: null == isRecurrent
           ? _value.isRecurrent
           : isRecurrent // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isReceived: null == isReceived
-          ? _value.isReceived
-          : isReceived // ignore: cast_nullable_to_non_nullable
               as bool,
       category: null == category
           ? _value.category
@@ -308,19 +252,15 @@ class __$$_TransactionModelCopyWithImpl<$Res>
 class _$_TransactionModel implements _TransactionModel {
   const _$_TransactionModel(
       {@HiveField(0) required this.id,
-      @HiveField(1) required this.name,
-      @HiveField(2) required this.description,
-      @HiveField(3) required this.amount,
-      @HiveField(4) required this.date,
-      @HiveField(5) required this.isIncome,
-      @HiveField(6) required this.isExpense,
-      @HiveField(7) required this.isTransfer,
-      @HiveField(8) required this.isRecurrent,
-      @HiveField(9) required this.isReceived,
-      @HiveField(10) required this.category,
-      @HiveField(11) required final List<TagModel> tags,
-      @HiveField(12) required this.account,
-      @HiveField(13) required this.attachment})
+      @HiveField(1) required this.description,
+      @HiveField(2) required this.amount,
+      @HiveField(3) required this.date,
+      @HiveField(4) required this.isIncome,
+      @HiveField(5) required this.isRecurrent,
+      @HiveField(6) required this.category,
+      @HiveField(7) required final List<TagModel> tags,
+      @HiveField(10) required this.account,
+      @HiveField(11) required this.attachment})
       : _tags = tags;
 
   factory _$_TransactionModel.fromJson(Map<String, dynamic> json) =>
@@ -331,37 +271,25 @@ class _$_TransactionModel implements _TransactionModel {
   final String id;
   @override
   @HiveField(1)
-  final String name;
-  @override
-  @HiveField(2)
   final String description;
   @override
-  @HiveField(3)
+  @HiveField(2)
   final double amount;
   @override
-  @HiveField(4)
-  final DateTime date;
+  @HiveField(3)
+  final String date;
   @override
-  @HiveField(5)
+  @HiveField(4)
   final bool isIncome;
   @override
-  @HiveField(6)
-  final bool isExpense;
-  @override
-  @HiveField(7)
-  final bool isTransfer;
-  @override
-  @HiveField(8)
+  @HiveField(5)
   final bool isRecurrent;
   @override
-  @HiveField(9)
-  final bool isReceived;
-  @override
-  @HiveField(10)
+  @HiveField(6)
   final CategoryModel category;
   final List<TagModel> _tags;
   @override
-  @HiveField(11)
+  @HiveField(7)
   List<TagModel> get tags {
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
@@ -369,15 +297,15 @@ class _$_TransactionModel implements _TransactionModel {
   }
 
   @override
-  @HiveField(12)
+  @HiveField(10)
   final AccountModel account;
   @override
-  @HiveField(13)
+  @HiveField(11)
   final String attachment;
 
   @override
   String toString() {
-    return 'TransactionModel(id: $id, name: $name, description: $description, amount: $amount, date: $date, isIncome: $isIncome, isExpense: $isExpense, isTransfer: $isTransfer, isRecurrent: $isRecurrent, isReceived: $isReceived, category: $category, tags: $tags, account: $account, attachment: $attachment)';
+    return 'TransactionModel(id: $id, description: $description, amount: $amount, date: $date, isIncome: $isIncome, isRecurrent: $isRecurrent, category: $category, tags: $tags, account: $account, attachment: $attachment)';
   }
 
   @override
@@ -386,21 +314,14 @@ class _$_TransactionModel implements _TransactionModel {
         (other.runtimeType == runtimeType &&
             other is _$_TransactionModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.isIncome, isIncome) ||
                 other.isIncome == isIncome) &&
-            (identical(other.isExpense, isExpense) ||
-                other.isExpense == isExpense) &&
-            (identical(other.isTransfer, isTransfer) ||
-                other.isTransfer == isTransfer) &&
             (identical(other.isRecurrent, isRecurrent) ||
                 other.isRecurrent == isRecurrent) &&
-            (identical(other.isReceived, isReceived) ||
-                other.isReceived == isReceived) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
@@ -414,15 +335,11 @@ class _$_TransactionModel implements _TransactionModel {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      name,
       description,
       amount,
       date,
       isIncome,
-      isExpense,
-      isTransfer,
       isRecurrent,
-      isReceived,
       category,
       const DeepCollectionEquality().hash(_tags),
       account,
@@ -445,19 +362,15 @@ class _$_TransactionModel implements _TransactionModel {
 abstract class _TransactionModel implements TransactionModel {
   const factory _TransactionModel(
       {@HiveField(0) required final String id,
-      @HiveField(1) required final String name,
-      @HiveField(2) required final String description,
-      @HiveField(3) required final double amount,
-      @HiveField(4) required final DateTime date,
-      @HiveField(5) required final bool isIncome,
-      @HiveField(6) required final bool isExpense,
-      @HiveField(7) required final bool isTransfer,
-      @HiveField(8) required final bool isRecurrent,
-      @HiveField(9) required final bool isReceived,
-      @HiveField(10) required final CategoryModel category,
-      @HiveField(11) required final List<TagModel> tags,
-      @HiveField(12) required final AccountModel account,
-      @HiveField(13) required final String attachment}) = _$_TransactionModel;
+      @HiveField(1) required final String description,
+      @HiveField(2) required final double amount,
+      @HiveField(3) required final String date,
+      @HiveField(4) required final bool isIncome,
+      @HiveField(5) required final bool isRecurrent,
+      @HiveField(6) required final CategoryModel category,
+      @HiveField(7) required final List<TagModel> tags,
+      @HiveField(10) required final AccountModel account,
+      @HiveField(11) required final String attachment}) = _$_TransactionModel;
 
   factory _TransactionModel.fromJson(Map<String, dynamic> json) =
       _$_TransactionModel.fromJson;
@@ -467,42 +380,30 @@ abstract class _TransactionModel implements TransactionModel {
   String get id;
   @override
   @HiveField(1)
-  String get name;
-  @override
-  @HiveField(2)
   String get description;
   @override
-  @HiveField(3)
+  @HiveField(2)
   double get amount;
   @override
-  @HiveField(4)
-  DateTime get date;
+  @HiveField(3)
+  String get date;
   @override
-  @HiveField(5)
+  @HiveField(4)
   bool get isIncome;
   @override
-  @HiveField(6)
-  bool get isExpense;
-  @override
-  @HiveField(7)
-  bool get isTransfer;
-  @override
-  @HiveField(8)
+  @HiveField(5)
   bool get isRecurrent;
   @override
-  @HiveField(9)
-  bool get isReceived;
-  @override
-  @HiveField(10)
+  @HiveField(6)
   CategoryModel get category;
   @override
-  @HiveField(11)
+  @HiveField(7)
   List<TagModel> get tags;
   @override
-  @HiveField(12)
+  @HiveField(10)
   AccountModel get account;
   @override
-  @HiveField(13)
+  @HiveField(11)
   String get attachment;
   @override
   @JsonKey(ignore: true)
