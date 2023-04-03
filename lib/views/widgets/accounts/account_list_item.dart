@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/data/data.dart';
 
 class AccountListItem extends StatelessWidget {
-  const AccountListItem({
-    required this.account,
-    super.key,
-  });
+  const AccountListItem({required this.account, Key? key}) : super(key: key);
 
   final AccountModel account;
 
@@ -13,7 +10,10 @@ class AccountListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
+        // backgroundImage: AssetImage(account.institution.image),
         backgroundColor: Color(account.institution.color),
+        radius: 18,
+        // backgroundImage: AssetImage(account.institution.image),
         child: Image.asset(
           account.institution.image,
           width: 24,
@@ -29,11 +29,9 @@ class AccountListItem extends StatelessWidget {
       ),
       subtitle: Text(
         '\$ ${amountFormat.format(account.balance)}',
-        style: TextStyle(
-          color: account.balance >= 0 ? Colors.green : Colors.red,
-          fontSize: 12,
-          fontWeight: FontWeight.normal,
-        ),
+        style: Theme.of(context).textTheme.subtitle2!.copyWith(
+              color: account.balance >= 0 ? Colors.green : Colors.red,
+            ),
       ),
       trailing: const Icon(
         Icons.arrow_forward_ios,

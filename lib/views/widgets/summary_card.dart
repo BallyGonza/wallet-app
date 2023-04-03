@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wallet_app/data/data.dart';
 
-class SummariceCard extends StatelessWidget {
-  const SummariceCard.icome({
-    required this.value,
+class SummaryCard extends StatelessWidget {
+  const SummaryCard.income({
+    required this.amount,
     Key? key,
   })  : title = 'Income',
         color = Colors.green,
         icon = FontAwesomeIcons.arrowUp,
         super(key: key);
 
-  const SummariceCard.expense({
-    required this.value,
+  const SummaryCard.expense({
+    required this.amount,
     Key? key,
   })  : title = 'Expense',
         color = Colors.red,
@@ -22,7 +22,7 @@ class SummariceCard extends StatelessWidget {
   final String title;
   final Color color;
   final IconData icon;
-  final double value;
+  final double amount;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class SummariceCard extends StatelessWidget {
                 ),
               ),
               Text(
-                '\$ ${amountFormat.format(value)}',
+                '\$ ${amountFormat.format(amount)}',
                 style: TextStyle(
                   fontSize: 15,
                   color: color,

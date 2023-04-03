@@ -17,12 +17,13 @@ class UserRepository {
   }
 
   // calculate the total income of all accounts
-  double getTotalIncome(List<AccountModel> accounts) {
+  double getTotalIncome(List<AccountModel> accounts, DateTime date) {
     return accounts
         .map((e) => e.transactions.isEmpty
             ? 0
             : e.transactions
                 .where((element) => element.isIncome)
+                .where((element) => element.date.month == date.month)
                 .map((e) => e.amount)
                 .reduce((value, element) => value + element))
         .reduce((value, element) => value + element)

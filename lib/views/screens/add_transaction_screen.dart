@@ -151,19 +151,18 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                           MediaQuery.of(context).size.height *
                                               0.45,
                                       child: ListView.builder(
-                                        itemCount: user.categories.length - 1,
+                                        itemCount: user.categories.length,
                                         itemBuilder: (context, index) {
                                           return InkWell(
                                             onTap: () {
                                               setState(() {
                                                 _selectedCategory =
-                                                    user.categories[index + 1];
+                                                    user.categories[index];
                                               });
                                               Navigator.pop(context);
                                             },
                                             child: CategoryListItem(
-                                              category:
-                                                  user.categories[index + 1],
+                                              category: user.categories[index],
                                             ),
                                           );
                                         },

@@ -10,20 +10,6 @@ class AccountRepository {
   }
 }
 
-AccountModel defaultAccount = AccountModel(
-  id: '0',
-  name: 'Select Account',
-  description: '',
-  balance: 0,
-  type: moneyType,
-  institution: wallet,
-  color: 0xFFE0E0E0,
-  includeInTotal: true,
-  isHidden: false,
-  currency: pesoArg,
-  transactions: [],
-);
-
 AccountModel cash = AccountModel(
   id: '1',
   name: 'Efectivo',
@@ -35,7 +21,20 @@ AccountModel cash = AccountModel(
   includeInTotal: true,
   isHidden: false,
   currency: pesoArg,
-  transactions: [],
+  transactions: [
+    // TransactionModel(
+    //   id: '1',
+    //   amount: 100,
+    //   date: DateTime.now(),
+    //   account: cash,
+    //   category: salary,
+    //   isRecurrent: false,
+    //   isIncome: true,
+    //   description: 'Salario',
+    //   tags: [],
+    //   attachment: '',
+    // ),
+  ],
 );
 
 AccountModel hsbc = AccountModel(
@@ -52,4 +51,4 @@ AccountModel hsbc = AccountModel(
   transactions: [],
 );
 
-List<AccountModel> defaultAccounts = [defaultAccount, cash, hsbc];
+List<AccountModel> defaultAccounts = [cash, hsbc];

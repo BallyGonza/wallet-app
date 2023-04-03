@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/data/data.dart';
 
 class AccountsBalance extends StatelessWidget {
-  const AccountsBalance({required this.value, super.key});
+  const AccountsBalance({Key? key, required this.accounts}) : super(key: key);
 
-  final double value;
+  final List<AccountModel> accounts;
 
   @override
   Widget build(BuildContext context) {
+    double totalBalance = 0;
+    for (final account in accounts) {
+      totalBalance += account.balance;
+    }
     return Column(
       children: [
         const Padding(
@@ -26,7 +30,7 @@ class AccountsBalance extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              '\$ ${amountFormat.format(value)}',
+              '\$ ${amountFormat.format(totalBalance)}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,

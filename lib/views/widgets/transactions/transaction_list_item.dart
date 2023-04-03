@@ -41,7 +41,7 @@ class TransactionListItem extends StatelessWidget {
           transaction.amount,
         )}',
         style: TextStyle(
-          color: transaction.amount >= 0 ? Colors.green : Colors.red,
+          color: transaction.isIncome ? Colors.green : Colors.red,
           fontSize: 12,
           fontWeight: FontWeight.normal,
         ),

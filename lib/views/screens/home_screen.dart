@@ -1,30 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/theme.dart';
 import 'package:wallet_app/views/views.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({required this.user, super.key});
+  const HomeScreen({
+    super.key,
+    required this.user,
+    required this.transactions,
+    required this.accounts,
+  });
 
   final UserModel user;
+  final List<TransactionModel> transactions;
+  final List<AccountModel> accounts;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final _userRepository = UserRepository();
-  late double _totalBalance;
-  late double _totalIncome;
-  late double _totalExpense;
+  Box<UserModel>? box;
 
   @override
   void initState() {
-    _totalBalance = _userRepository.getTotalBalance(widget.user.accounts);
-    _totalIncome = _userRepository.getTotalIncome(widget.user.accounts);
-    _totalExpense = _userRepository.getTotalExpense(widget.user.accounts);
+    box = Hive.box<UserModel>('users_box');
+    box!.get(widget.user.id);
+
     super.initState();
   }
 
@@ -32,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => TransactionBloc(
-        widget.user,
+        box!.getAt(widget.user.id)!,
       ),
       child: Scaffold(
         backgroundColor: walletAppTheme.scaffoldBackgroundColor,
@@ -43,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
               MaterialPageRoute(
                 builder: (context) => BlocProvider(
                   create: (context) => TransactionBloc(
-                    widget.user,
+                    box!.getAt(widget.user.id)!,
                   ),
                   child: const AddTransactionScreen(),
                 ),
@@ -54,33 +59,23 @@ class _HomeScreenState extends State<HomeScreen> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: SafeArea(
           child: SingleChildScrollView(
-            child: Expanded(
-              child: Column(
-                children: [
-                  AccountsBalance(
-                    value: _totalBalance,
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SummariceCard.icome(
-                        value: _totalIncome,
-                      ),
-                      SummariceCard.expense(
-                        value: _totalExpense,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  AccountsList(
-                    accounts: user.accounts,
-                  ),
-                  TransactionsList(
-                    transactions: user.transactions,
-                  ),
-                ],
-              ),
+            child: Column(
+              children: [
+                const AccountsBalance(
+                  accounts: [],
+                ),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                    SummaryCard.income(amount: 0),
+                    SummaryCard.expense(amount: 0),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                AccountsListView(accounts: widget.accounts),
+                TransactionsList(transactions: widget.transactions),
+              ],
             ),
           ),
         ),
