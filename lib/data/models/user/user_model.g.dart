@@ -68,7 +68,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
+UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       id: json['id'] as String,
       name: json['name'] as String,
       password: json['password'] as String,
@@ -90,8 +90,7 @@ _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
           .toList(),
     );
 
-Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'password': instance.password,

@@ -56,8 +56,8 @@ class CurrencyModelAdapter extends TypeAdapter<CurrencyModel> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CurrencyModel _$$_CurrencyModelFromJson(Map<String, dynamic> json) =>
-    _$_CurrencyModel(
+CurrencyModel _$CurrencyModelFromJson(Map<String, dynamic> json) =>
+    CurrencyModel(
       id: json['id'] as String,
       name: json['name'] as String,
       symbol: json['symbol'] as String,
@@ -65,7 +65,7 @@ _$_CurrencyModel _$$_CurrencyModelFromJson(Map<String, dynamic> json) =>
       flag: json['flag'] as String,
     );
 
-Map<String, dynamic> _$$_CurrencyModelToJson(_$_CurrencyModel instance) =>
+Map<String, dynamic> _$CurrencyModelToJson(CurrencyModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

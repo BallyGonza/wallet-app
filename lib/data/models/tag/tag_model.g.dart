@@ -53,15 +53,14 @@ class TagModelAdapter extends TypeAdapter<TagModel> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TagModel _$$_TagModelFromJson(Map<String, dynamic> json) => _$_TagModel(
+TagModel _$TagModelFromJson(Map<String, dynamic> json) => TagModel(
       id: json['id'] as String,
       name: json['name'] as String,
       image: json['image'] as String,
       color: json['color'] as int,
     );
 
-Map<String, dynamic> _$$_TagModelToJson(_$_TagModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$TagModelToJson(TagModel instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'image': instance.image,

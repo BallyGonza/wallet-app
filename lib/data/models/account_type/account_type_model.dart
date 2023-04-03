@@ -1,22 +1,29 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
-part 'account_type_model.freezed.dart';
 part 'account_type_model.g.dart';
 
-@freezed
+@JsonSerializable()
 @HiveType(typeId: 1)
-abstract class AccountTypeModel with _$AccountTypeModel {
-  const factory AccountTypeModel({
-    @HiveField(0) required String id,
-    @HiveField(1) required String name,
-    @HiveField(2) required String image,
-    @HiveField(3) required int color,
-  }) = _AccountTypeModel;
+class AccountTypeModel extends HiveObject {
+  @HiveField(0)
+  String id;
+  @HiveField(1)
+  String name;
+  @HiveField(2)
+  String image;
+  @HiveField(3)
+  int color;
+
+  AccountTypeModel({
+    required this.id,
+    required this.name,
+    required this.image,
+    required this.color,
+  });
 
   factory AccountTypeModel.fromJson(Map<String, dynamic> json) =>
       _$AccountTypeModelFromJson(json);
 
-  factory AccountTypeModel.fromHive(Map<String, dynamic> json) =>
-      _$AccountTypeModelFromJson(json);
+  Map<String, dynamic> toJson() => _$AccountTypeModelToJson(this);
 }

@@ -77,8 +77,8 @@ class CreditCardModelAdapter extends TypeAdapter<CreditCardModel> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CreditCardModel _$$_CreditCardModelFromJson(Map<String, dynamic> json) =>
-    _$_CreditCardModel(
+CreditCardModel _$CreditCardModelFromJson(Map<String, dynamic> json) =>
+    CreditCardModel(
       id: json['id'] as String,
       name: json['name'] as String,
       image: json['image'] as String,
@@ -96,7 +96,7 @@ _$_CreditCardModel _$$_CreditCardModelFromJson(Map<String, dynamic> json) =>
       balance: (json['balance'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$_CreditCardModelToJson(_$_CreditCardModel instance) =>
+Map<String, dynamic> _$CreditCardModelToJson(CreditCardModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

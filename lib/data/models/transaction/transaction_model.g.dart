@@ -20,7 +20,7 @@ class TransactionModelAdapter extends TypeAdapter<TransactionModel> {
       id: fields[0] as String,
       description: fields[1] as String,
       amount: fields[2] as double,
-      date: fields[3] as String,
+      date: fields[3] as DateTime,
       isIncome: fields[4] as bool,
       isRecurrent: fields[5] as bool,
       category: fields[6] as CategoryModel,
@@ -71,12 +71,12 @@ class TransactionModelAdapter extends TypeAdapter<TransactionModel> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TransactionModel _$$_TransactionModelFromJson(Map<String, dynamic> json) =>
-    _$_TransactionModel(
+TransactionModel _$TransactionModelFromJson(Map<String, dynamic> json) =>
+    TransactionModel(
       id: json['id'] as String,
       description: json['description'] as String,
       amount: (json['amount'] as num).toDouble(),
-      date: json['date'] as String,
+      date: DateTime.parse(json['date'] as String),
       isIncome: json['isIncome'] as bool,
       isRecurrent: json['isRecurrent'] as bool,
       category:
@@ -88,12 +88,12 @@ _$_TransactionModel _$$_TransactionModelFromJson(Map<String, dynamic> json) =>
       attachment: json['attachment'] as String,
     );
 
-Map<String, dynamic> _$$_TransactionModelToJson(_$_TransactionModel instance) =>
+Map<String, dynamic> _$TransactionModelToJson(TransactionModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'description': instance.description,
       'amount': instance.amount,
-      'date': instance.date,
+      'date': instance.date.toIso8601String(),
       'isIncome': instance.isIncome,
       'isRecurrent': instance.isRecurrent,
       'category': instance.category,

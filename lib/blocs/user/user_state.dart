@@ -8,7 +8,7 @@ part 'user_state.g.dart';
 class UserState with _$UserState {
   const factory UserState.initial() = UserInitial;
   const factory UserState.updated(
-    List<UserModel> users,
+    UserModel user,
   ) = UserUpdated;
   factory UserState.fromJson(Map<String, dynamic> json) =>
       _$UserStateFromJson(json);

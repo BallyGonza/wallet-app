@@ -44,6 +44,7 @@ class AccountsList extends StatelessWidget {
               borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
             child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: accounts.length - 1,
               itemBuilder: (context, index) {
                 return AccountListItem(

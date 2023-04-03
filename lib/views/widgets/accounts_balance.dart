@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/data/data.dart';
 
 class AccountsBalance extends StatelessWidget {
   const AccountsBalance({required this.value, super.key});
@@ -25,7 +26,7 @@ class AccountsBalance extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              '\$ $value',
+              '\$ ${amountFormat.format(value)}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,

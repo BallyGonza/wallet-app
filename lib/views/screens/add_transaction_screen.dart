@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:wallet_app/blocs/blocs.dart';
 
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
 class AddTransactionScreen extends StatefulWidget {
-  const AddTransactionScreen({required this.onSaved, super.key});
-
-  final Function onSaved;
+  const AddTransactionScreen({super.key});
 
   @override
   State<AddTransactionScreen> createState() => _AddTransactionScreenState();
@@ -22,6 +22,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   late CategoryModel _selectedCategory;
   late AccountModel _selectedAccount;
   String _selectedDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
+  DateTime _selectedDateTime = DateTime.now();
   List<TagModel> _selectedTags = [];
   bool _isIncome = true;
 
@@ -274,8 +275,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                   initialDateTime: DateTime.now(),
                                   onDateTimeChanged: (value) {
                                     setState(() {
-                                      _selectedDate = DateFormat('dd/MM/yyyy')
+                                      _selectedDate = DateFormat('dd.MM.yyyy')
                                           .format(value);
+                                      _selectedDateTime = value;
                                     });
                                   },
                                 ),
@@ -329,14 +331,21 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             _isIncome ? Colors.green[300] : Colors.red[300],
                       ),
                       onPressed: () {
-                        widget.onSaved(
-                          _noteController.text,
-                          double.parse(_amountController.text),
-                          _selectedAccount,
-                          _selectedCategory,
-                          _selectedDate,
-                          _isIncome,
-                          _selectedTags,
+                        BlocProvider.of<TransactionBloc>(context).add(
+                          TransactionEvent.addTransaction(
+                            TransactionModel(
+                              id: '0',
+                              description: _noteController.text,
+                              amount: double.parse(_amountController.text),
+                              category: _selectedCategory,
+                              account: _selectedAccount,
+                              date: _selectedDateTime,
+                              isIncome: _isIncome,
+                              attachment: '',
+                              tags: _selectedTags,
+                              isRecurrent: false,
+                            ),
+                          ),
                         );
                         Navigator.of(context).pop();
                       },

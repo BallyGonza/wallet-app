@@ -32,19 +32,19 @@ mixin _$UserState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<UserModel> users) updated,
+    required TResult Function(UserModel user) updated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<UserModel> users)? updated,
+    TResult? Function(UserModel user)? updated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<UserModel> users)? updated,
+    TResult Function(UserModel user)? updated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,7 +133,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<UserModel> users) updated,
+    required TResult Function(UserModel user) updated,
   }) {
     return initial();
   }
@@ -142,7 +142,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<UserModel> users)? updated,
+    TResult? Function(UserModel user)? updated,
   }) {
     return initial?.call();
   }
@@ -151,7 +151,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<UserModel> users)? updated,
+    TResult Function(UserModel user)? updated,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -212,7 +212,7 @@ abstract class _$$UserUpdatedCopyWith<$Res> {
           _$UserUpdated value, $Res Function(_$UserUpdated) then) =
       __$$UserUpdatedCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<UserModel> users});
+  $Res call({UserModel user});
 }
 
 /// @nodoc
@@ -226,13 +226,13 @@ class __$$UserUpdatedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? users = null,
+    Object? user = null,
   }) {
     return _then(_$UserUpdated(
-      null == users
-          ? _value._users
-          : users // ignore: cast_nullable_to_non_nullable
-              as List<UserModel>,
+      null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
     ));
   }
 }
@@ -240,27 +240,21 @@ class __$$UserUpdatedCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserUpdated implements UserUpdated {
-  const _$UserUpdated(final List<UserModel> users, {final String? $type})
-      : _users = users,
-        $type = $type ?? 'updated';
+  const _$UserUpdated(this.user, {final String? $type})
+      : $type = $type ?? 'updated';
 
   factory _$UserUpdated.fromJson(Map<String, dynamic> json) =>
       _$$UserUpdatedFromJson(json);
 
-  final List<UserModel> _users;
   @override
-  List<UserModel> get users {
-    if (_users is EqualUnmodifiableListView) return _users;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_users);
-  }
+  final UserModel user;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'UserState.updated(users: $users)';
+    return 'UserState.updated(user: $user)';
   }
 
   @override
@@ -268,13 +262,12 @@ class _$UserUpdated implements UserUpdated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserUpdated &&
-            const DeepCollectionEquality().equals(other._users, _users));
+            (identical(other.user, user) || other.user == user));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_users));
+  int get hashCode => Object.hash(runtimeType, user);
 
   @JsonKey(ignore: true)
   @override
@@ -286,29 +279,29 @@ class _$UserUpdated implements UserUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(List<UserModel> users) updated,
+    required TResult Function(UserModel user) updated,
   }) {
-    return updated(users);
+    return updated(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(List<UserModel> users)? updated,
+    TResult? Function(UserModel user)? updated,
   }) {
-    return updated?.call(users);
+    return updated?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(List<UserModel> users)? updated,
+    TResult Function(UserModel user)? updated,
     required TResult orElse(),
   }) {
     if (updated != null) {
-      return updated(users);
+      return updated(user);
     }
     return orElse();
   }
@@ -353,12 +346,12 @@ class _$UserUpdated implements UserUpdated {
 }
 
 abstract class UserUpdated implements UserState {
-  const factory UserUpdated(final List<UserModel> users) = _$UserUpdated;
+  const factory UserUpdated(final UserModel user) = _$UserUpdated;
 
   factory UserUpdated.fromJson(Map<String, dynamic> json) =
       _$UserUpdated.fromJson;
 
-  List<UserModel> get users;
+  UserModel get user;
   @JsonKey(ignore: true)
   _$$UserUpdatedCopyWith<_$UserUpdated> get copyWith =>
       throw _privateConstructorUsedError;

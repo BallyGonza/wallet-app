@@ -6,3 +6,4 @@ export 'accounts/accounts.dart';
 export 'wallet_list_tile.dart';
 export 'buttons/buttons.dart';
 export 'categories/categories.dart';
+export 'transactions/transactions.dart';

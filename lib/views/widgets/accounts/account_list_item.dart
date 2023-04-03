@@ -28,7 +28,7 @@ class AccountListItem extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        '\$ ${account.balance}',
+        '\$ ${amountFormat.format(account.balance)}',
         style: TextStyle(
           color: account.balance >= 0 ? Colors.green : Colors.red,
           fontSize: 12,

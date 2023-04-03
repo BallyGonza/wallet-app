@@ -1,24 +1,35 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
-part 'category_model.freezed.dart';
 part 'category_model.g.dart';
 
-@freezed
+@JsonSerializable()
 @HiveType(typeId: 2)
-abstract class CategoryModel with _$CategoryModel {
-  const factory CategoryModel({
-    @HiveField(0) required String id,
-    @HiveField(1) required String name,
-    @HiveField(2) required String image,
-    @HiveField(3) required int color,
-    @HiveField(4) List<CategoryModel>? subCategories,
-    @HiveField(5) required bool isIncome,
-  }) = _CategoryModel;
+class CategoryModel extends HiveObject {
+  @HiveField(0)
+  String id;
+  @HiveField(1)
+  String name;
+  @HiveField(2)
+  String image;
+  @HiveField(3)
+  int color;
+  @HiveField(4)
+  List<CategoryModel>? subCategories;
+  @HiveField(5)
+  bool isIncome;
+
+  CategoryModel({
+    required this.id,
+    required this.name,
+    required this.image,
+    required this.color,
+    this.subCategories,
+    required this.isIncome,
+  });
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>
       _$CategoryModelFromJson(json);
 
-  factory CategoryModel.fromHive(Map<String, dynamic> json) =>
-      _$CategoryModelFromJson(json);
+  Map<String, dynamic> toJson() => _$CategoryModelToJson(this);
 }

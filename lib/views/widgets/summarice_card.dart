@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wallet_app/data/data.dart';
 
 class SummariceCard extends StatelessWidget {
   const SummariceCard.icome({
@@ -51,7 +52,7 @@ class SummariceCard extends StatelessWidget {
                 ),
               ),
               Text(
-                '\$ $value',
+                '\$ ${amountFormat.format(value)}',
                 style: TextStyle(
                   fontSize: 15,
                   color: color,

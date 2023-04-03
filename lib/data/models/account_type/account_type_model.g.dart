@@ -53,15 +53,15 @@ class AccountTypeModelAdapter extends TypeAdapter<AccountTypeModel> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AccountTypeModel _$$_AccountTypeModelFromJson(Map<String, dynamic> json) =>
-    _$_AccountTypeModel(
+AccountTypeModel _$AccountTypeModelFromJson(Map<String, dynamic> json) =>
+    AccountTypeModel(
       id: json['id'] as String,
       name: json['name'] as String,
       image: json['image'] as String,
       color: json['color'] as int,
     );
 
-Map<String, dynamic> _$$_AccountTypeModelToJson(_$_AccountTypeModel instance) =>
+Map<String, dynamic> _$AccountTypeModelToJson(AccountTypeModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

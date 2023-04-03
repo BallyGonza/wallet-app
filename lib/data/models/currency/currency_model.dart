@@ -1,20 +1,32 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-part 'currency_model.freezed.dart';
 part 'currency_model.g.dart';
 
-@freezed
+@JsonSerializable()
 @HiveType(typeId: 4)
-class CurrencyModel with _$CurrencyModel {
-  const factory CurrencyModel({
-    @HiveField(0) required String id,
-    @HiveField(1) required String name,
-    @HiveField(2) required String symbol,
-    @HiveField(3) required String code,
-    @HiveField(4) required String flag,
-  }) = _CurrencyModel;
+class CurrencyModel extends HiveObject {
+  @HiveField(0)
+  String id;
+  @HiveField(1)
+  String name;
+  @HiveField(2)
+  String symbol;
+  @HiveField(3)
+  String code;
+  @HiveField(4)
+  String flag;
+
+  CurrencyModel({
+    required this.id,
+    required this.name,
+    required this.symbol,
+    required this.code,
+    required this.flag,
+  });
 
   factory CurrencyModel.fromJson(Map<String, dynamic> json) =>
       _$CurrencyModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$CurrencyModelToJson(this);
 }

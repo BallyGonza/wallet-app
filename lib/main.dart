@@ -23,7 +23,12 @@ Future<void> main() async {
   await Hive.initFlutter();
   await Hive.openBox<UserModel>('users_box');
 
-  runApp(const MyApp());
+  runApp(BlocProvider(
+    create: (context) => UserBloc(
+      UserRepository(),
+    ),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -34,24 +39,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: walletAppTheme,
-      home: BlocProvider(
-        create: (context) => UserBloc(
-          UserRepository(),
-        ),
-        child: BlocBuilder<UserBloc, UserState>(
-          builder: (context, state) {
-            return state.maybeWhen(
-              orElse: () => const Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(),
-                ),
+      home: BlocBuilder<UserBloc, UserState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            orElse: () => const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
               ),
-              updated: (users) => HomeScreen(
-                user: users.first,
-              ),
-            );
-          },
-        ),
+            ),
+            updated: (user) => HomeScreen(
+              user: user,
+            ),
+          );
+        },
       ),
     );
   }

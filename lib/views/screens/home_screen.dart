@@ -30,75 +30,59 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: walletAppTheme.scaffoldBackgroundColor,
-      bottomNavigationBar: const BottomNavBar(),
-      floatingActionButton: AddFloatingActionButton(
-        onAddPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => BlocProvider.value(
-                value: context.read<UserBloc>(),
-                child: AddTransactionScreen(
-                  onSaved: (
-                    String description,
-                    double amount,
-                    AccountModel account,
-                    CategoryModel category,
-                    String date,
-                    bool isIncome,
-                    List<TagModel> tags,
-                  ) {
-                    setState(() {
-                      context.read<UserBloc>().add(
-                            UserEvent.addTransaction(
-                              widget.user,
-                              TransactionModel(
-                                id: '0',
-                                description: description,
-                                amount: amount,
-                                category: category,
-                                account: account,
-                                date: date,
-                                isIncome: isIncome,
-                                attachment: '',
-                                tags: tags,
-                                isRecurrent: false,
-                              ),
-                            ),
-                          );
-                    });
-                  },
+    return BlocProvider(
+      create: (context) => TransactionBloc(
+        widget.user,
+      ),
+      child: Scaffold(
+        backgroundColor: walletAppTheme.scaffoldBackgroundColor,
+        bottomNavigationBar: const BottomNavBar(),
+        floatingActionButton: AddFloatingActionButton(
+          onAddPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => BlocProvider(
+                  create: (context) => TransactionBloc(
+                    widget.user,
+                  ),
+                  child: const AddTransactionScreen(),
                 ),
               ),
+            );
+          },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Expanded(
+              child: Column(
+                children: [
+                  AccountsBalance(
+                    value: _totalBalance,
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SummariceCard.icome(
+                        value: _totalIncome,
+                      ),
+                      SummariceCard.expense(
+                        value: _totalExpense,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  AccountsList(
+                    accounts: user.accounts,
+                  ),
+                  TransactionsList(
+                    transactions: user.transactions,
+                  ),
+                ],
+              ),
             ),
-          );
-        },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: SafeArea(
-        child: Column(
-          children: [
-            AccountsBalance(
-              value: _totalBalance,
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SummariceCard.icome(
-                  value: _totalIncome,
-                ),
-                SummariceCard.expense(
-                  value: _totalExpense,
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            AccountsList(
-              accounts: user.accounts,
-            ),
-          ],
+          ),
         ),
       ),
     );

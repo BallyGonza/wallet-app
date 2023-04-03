@@ -3,12 +3,14 @@ import 'package:wallet_app/data/data.dart';
 class UserRepository {
   UserRepository();
 
-  Future<List<UserModel>> getUsers() async {
-    return defaultUsers;
+  Future<UserModel> getUser() async {
+    return user;
   }
 
   // calculate the total balance of all accounts
-  double getTotalBalance(List<AccountModel> accounts) {
+  double getTotalBalance(
+    List<AccountModel> accounts,
+  ) {
     return accounts
         .map((e) => e.balance)
         .reduce((value, element) => value + element);
@@ -52,5 +54,3 @@ UserModel user = UserModel(
   creditCards: [],
   tags: [],
 );
-
-List<UserModel> defaultUsers = [user];

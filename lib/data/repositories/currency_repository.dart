@@ -1,6 +1,6 @@
 import 'package:wallet_app/data/models/currency/currency_model.dart';
 
-CurrencyModel pesoArg = const CurrencyModel(
+CurrencyModel pesoArg = CurrencyModel(
   id: '1',
   name: 'Peso Argentino',
   symbol: '\$',
@@ -8,7 +8,7 @@ CurrencyModel pesoArg = const CurrencyModel(
   flag: 'assets/icons/currencies/ars.png',
 );
 
-CurrencyModel usd = const CurrencyModel(
+CurrencyModel usd = CurrencyModel(
   id: '2',
   name: 'Dolar Estadounidense',
   symbol: 'U\$D',

@@ -53,15 +53,15 @@ class InstitutionModelAdapter extends TypeAdapter<InstitutionModel> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_InstitutionModel _$$_InstitutionModelFromJson(Map<String, dynamic> json) =>
-    _$_InstitutionModel(
+InstitutionModel _$InstitutionModelFromJson(Map<String, dynamic> json) =>
+    InstitutionModel(
       id: json['id'] as String,
       name: json['name'] as String,
       image: json['image'] as String,
       color: json['color'] as int,
     );
 
-Map<String, dynamic> _$$_InstitutionModelToJson(_$_InstitutionModel instance) =>
+Map<String, dynamic> _$InstitutionModelToJson(InstitutionModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

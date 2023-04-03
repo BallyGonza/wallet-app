@@ -1,22 +1,29 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
-part 'institution_model.freezed.dart';
 part 'institution_model.g.dart';
 
-@freezed
+@JsonSerializable()
 @HiveType(typeId: 5)
-abstract class InstitutionModel with _$InstitutionModel {
-  const factory InstitutionModel({
-    @HiveField(0) required String id,
-    @HiveField(1) required String name,
-    @HiveField(2) required String image,
-    @HiveField(3) required int color,
-  }) = _InstitutionModel;
+class InstitutionModel extends HiveObject {
+  @HiveField(0)
+  String id;
+  @HiveField(1)
+  String name;
+  @HiveField(2)
+  String image;
+  @HiveField(3)
+  int color;
+
+  InstitutionModel({
+    required this.id,
+    required this.name,
+    required this.image,
+    required this.color,
+  });
 
   factory InstitutionModel.fromJson(Map<String, dynamic> json) =>
       _$InstitutionModelFromJson(json);
 
-  factory InstitutionModel.fromHive(Map<String, dynamic> json) =>
-      _$InstitutionModelFromJson(json);
+  Map<String, dynamic> toJson() => _$InstitutionModelToJson(this);
 }
