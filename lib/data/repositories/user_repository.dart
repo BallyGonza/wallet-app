@@ -44,7 +44,7 @@ class UserRepository {
 }
 
 UserModel user = UserModel(
-  id: '0',
+  id: 0,
   name: 'Gonzalo Bally',
   password: '1234',
   image: '',
