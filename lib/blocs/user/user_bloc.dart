@@ -91,9 +91,15 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     UserUpdateTransactionEvent event,
     Emitter<UserState> emit,
   ) async {
-    transactions[event.transaction.id] = event.transaction;
-    await box.put(user.id, user);
+    transactions.firstWhere((element) => element.id == event.transaction.id)
+      ..amount = event.transaction.amount
+      ..date = event.transaction.date
+      ..note = event.transaction.note
+      ..account = event.transaction.account
+      ..category = event.transaction.category;
 
+    user.transactions = transactions;
+    await box.put(user.id, user);
     emit(UserState.updated(user));
   }
 
@@ -101,7 +107,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     UserRemoveTransactionEvent event,
     Emitter<UserState> emit,
   ) async {
-    transactions.removeAt(event.transaction.id);
+    transactions.removeWhere((element) => element.id == event.transaction.id);
+    user.transactions = transactions;
     await box.put(user.id, user);
     emit(UserState.updated(user));
   }

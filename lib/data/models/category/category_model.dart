@@ -15,8 +15,10 @@ class CategoryModel extends HiveObject {
   @HiveField(3)
   int color;
   @HiveField(4)
-  List<CategoryModel>? subCategories;
+  int iconColor;
   @HiveField(5)
+  List<CategoryModel>? subCategories;
+  @HiveField(6)
   bool isIncome;
 
   CategoryModel({
@@ -24,6 +26,7 @@ class CategoryModel extends HiveObject {
     required this.name,
     required this.image,
     required this.color,
+    required this.iconColor,
     this.subCategories,
     required this.isIncome,
   });

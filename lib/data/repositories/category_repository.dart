@@ -1,11 +1,31 @@
 import 'package:wallet_app/data/data.dart';
 
+List<CategoryModel> defaultCategories = [salary, food];
+
 CategoryModel salary = CategoryModel(
   id: 0,
-  name: 'Salary',
+  name: 'Sueldo',
   image: 'assets/icons/categories/salary.png',
   isIncome: true,
-  color: 0xFF2ab22a,
+  color: green,
+  iconColor: black,
 );
 
-List<CategoryModel> defaultCategories = [salary];
+CategoryModel food = CategoryModel(
+  id: 1,
+  name: 'Comida',
+  image: 'assets/icons/categories/food.png',
+  isIncome: false,
+  color: red,
+  subCategories: [market],
+  iconColor: white,
+);
+
+CategoryModel market = CategoryModel(
+  id: 2,
+  name: 'Mercado',
+  image: 'assets/icons/categories/groceries.png',
+  isIncome: false,
+  color: red,
+  iconColor: white,
+);

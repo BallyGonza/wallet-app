@@ -1,39 +1,51 @@
 import 'package:wallet_app/data/data.dart';
 
-class AccountRepository {
-  AccountRepository();
+class InstitutionRepository {
+  InstitutionRepository();
 
-  Future<List<AccountModel>> getAccounts() async {
-    return defaultAccounts;
+  Future<List<InstitutionModel>> getInstitutions() async {
+    return defaultInstitutions;
   }
 }
 
-List<AccountModel> defaultAccounts = [cash, hsbc];
+List<InstitutionModel> defaultInstitutions = [
+  wallet,
+  hsbcInstitution,
+  bbvaInstitution,
+  mercadoPagoInstitution
+];
 
 InstitutionModel wallet = InstitutionModel(
   id: 0,
   name: 'Efectivo',
   image: 'assets/icons/institutions/money.png',
-  color: 0xFF2ab22a,
+  color: green,
 );
 
-InstitutionModel hSBC = InstitutionModel(
+InstitutionModel hsbcInstitution = InstitutionModel(
   id: 1,
   name: 'HSBC',
   image: 'assets/icons/institutions/hsbc.png',
-  color: 0xFFE0E0E0,
+  color: white,
 );
 
-InstitutionModel bBVA = InstitutionModel(
+InstitutionModel bbvaInstitution = InstitutionModel(
   id: 2,
   name: 'BBVA',
-  image: '',
-  color: 0xFFE0E0E0,
+  image: 'assets/icons/institutions/bbva.png',
+  color: white,
 );
 
-InstitutionModel mercadoPago = InstitutionModel(
+InstitutionModel mercadoPagoInstitution = InstitutionModel(
   id: 3,
   name: 'Mercado Pago',
-  image: '',
-  color: 0xFFE0E0E0,
+  image: 'assets/icons/institutions/mercado_pago.png',
+  color: white,
+);
+
+InstitutionModel savingsInstitution = InstitutionModel(
+  id: 0,
+  name: 'Ahorros',
+  image: 'assets/icons/institutions/savings.png',
+  color: green,
 );

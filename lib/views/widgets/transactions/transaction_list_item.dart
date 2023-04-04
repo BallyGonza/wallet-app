@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:wallet_app/data/data.dart';
-import 'package:wallet_app/views/views.dart';
 
 class TransactionListItem extends StatelessWidget {
   const TransactionListItem({
     required this.transaction,
+    required this.onPressDelete,
     super.key,
   });
 
   final TransactionModel transaction;
+
+  final VoidCallback onPressDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +42,7 @@ class TransactionListItem extends StatelessWidget {
                           DescriptionItem(
                             title: 'Category',
                             icon: transaction.category.image,
+                            iconColor: transaction.category.iconColor,
                             color: transaction.category.color,
                             description: transaction.category.name,
                             transaction: transaction,
@@ -46,7 +50,7 @@ class TransactionListItem extends StatelessWidget {
                           DescriptionItem(
                             title: 'Account',
                             icon: transaction.account.institution.image,
-                            color: transaction.account.color,
+                            color: transaction.account.institution.color,
                             description: transaction.account.name,
                             transaction: transaction,
                           ),
@@ -57,6 +61,9 @@ class TransactionListItem extends StatelessWidget {
                             description: '\$ ${amountFormat.format(
                               transaction.amount,
                             )}',
+                            descriptionColor: transaction.isIncome
+                                ? Colors.green[300]
+                                : Colors.red[300],
                             transaction: transaction,
                           ),
                           DescriptionItem(
@@ -78,9 +85,22 @@ class TransactionListItem extends StatelessWidget {
                         ],
                       ),
                     ),
-                    ActionButton(
-                      text: 'Edit',
-                      onPressed: () {},
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          backgroundColor: Colors.red[300],
+                        ),
+                        onPressed: onPressDelete,
+                        child: const FaIcon(
+                          FontAwesomeIcons.trash,
+                          color: Colors.white,
+                          size: 16,
+                        ),
+                      ),
                     )
                   ],
                 ),
@@ -95,6 +115,7 @@ class TransactionListItem extends StatelessWidget {
           child: Image.asset(
             transaction.category.image,
             width: 24,
+            color: Color(transaction.category.iconColor),
           ),
         ),
         title: Text(
@@ -138,15 +159,19 @@ class DescriptionItem extends StatelessWidget {
     Key? key,
     required this.title,
     required this.icon,
+    this.iconColor,
     required this.color,
     required this.description,
+    this.descriptionColor,
     required this.transaction,
   }) : super(key: key);
 
   final String title;
   final String icon;
+  final int? iconColor;
   final int color;
   final String description;
+  final Color? descriptionColor;
   final TransactionModel transaction;
 
   @override
@@ -160,6 +185,7 @@ class DescriptionItem extends StatelessWidget {
             child: Image.asset(
               icon,
               width: 24,
+              color: iconColor != null ? Color(iconColor!) : null,
             ),
           ),
           const SizedBox(width: 10),
@@ -179,8 +205,10 @@ class DescriptionItem extends StatelessWidget {
               ),
               Text(
                 description,
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: descriptionColor != null
+                      ? descriptionColor
+                      : Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.normal,
                 ),

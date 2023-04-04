@@ -8,28 +8,43 @@ import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
 class AddTransactionScreen extends StatefulWidget {
-  const AddTransactionScreen({required this.onPressed, super.key});
+  const AddTransactionScreen(
+      {required this.onPressed, this.transaction, super.key});
 
   final Function(TransactionModel) onPressed;
+  final TransactionModel? transaction;
 
   @override
   State<AddTransactionScreen> createState() => _AddTransactionScreenState();
 }
 
 class _AddTransactionScreenState extends State<AddTransactionScreen> {
-  final _amountController = TextEditingController();
-  final _noteController = TextEditingController();
-  late CategoryModel _selectedCategory;
+  late TextEditingController _amountController;
+  late TextEditingController _noteController;
+  CategoryModel _selectedCategory = user.categories[0];
   late AccountModel _selectedAccount;
 
   String _selectedDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
   DateTime _selectedDateTime = DateTime.now();
+  List<CategoryModel> _incomeCategories = [];
+  List<CategoryModel> _expenseCategories = [];
   bool _isIncome = true;
 
   @override
   void initState() {
+    _amountController = TextEditingController(
+        text: widget.transaction == null
+            ? ''
+            : widget.transaction!.amount.toString());
+    _noteController = TextEditingController(
+      text: widget.transaction == null ? '' : widget.transaction!.note,
+    );
+
     _selectedCategory = user.categories[0];
     _selectedAccount = user.accounts[0];
+
+    _incomeCategories = user.categories.where((e) => e.isIncome).toList();
+    _expenseCategories = user.categories.where((e) => !e.isIncome).toList();
 
     super.initState();
   }
@@ -44,14 +59,31 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            backgroundColor: _isIncome ? Colors.green[300] : Colors.red[300],
+            backgroundColor: widget.transaction == null
+                ? _isIncome
+                    ? Colors.green[300]
+                    : Colors.red[300]
+                : widget.transaction!.isIncome
+                    ? Colors.green[300]
+                    : Colors.red[300],
           ),
           onPressed: () {
+            if (widget.transaction != null) {
+              return;
+            }
+
             setState(() {
               _isIncome = !_isIncome;
             });
           },
-          child: Text(_isIncome ? 'Income' : 'Expense',
+          child: Text(
+              widget.transaction == null
+                  ? _isIncome
+                      ? 'Income'
+                      : 'Expense'
+                  : widget.transaction!.isIncome
+                      ? 'Income'
+                      : 'Expense',
               style: const TextStyle(fontSize: 16)),
         ),
       ),
@@ -66,7 +98,13 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    _isIncome ? 'Income value' : 'Expense value',
+                    widget.transaction == null
+                        ? _isIncome
+                            ? 'Income value'
+                            : 'Expense value'
+                        : widget.transaction!.isIncome
+                            ? 'Income value'
+                            : 'Expense value',
                     style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.normal,
@@ -76,30 +114,52 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 const SizedBox(height: 5),
                 Row(
                   children: [
-                    const Text(
+                    Text(
                       '\$',
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: widget.transaction == null
+                            ? _isIncome
+                                ? Colors.green[300]
+                                : Colors.red[300]
+                            : widget.transaction!.isIncome
+                                ? Colors.green[300]
+                                : Colors.red[300],
+                      ),
                     ),
                     const SizedBox(width: 16),
                     SizedBox(
                       width: MediaQuery.of(context).size.width - 100,
-                      child: TextField(
+                      child: TextFormField(
                         autofocus: true,
                         showCursor: false,
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: '0,00',
                           hintStyle: TextStyle(
-                              fontSize: 32,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: widget.transaction == null
+                                ? _isIncome
+                                    ? Colors.green[300]
+                                    : Colors.red[300]
+                                : widget.transaction!.isIncome
+                                    ? Colors.green[300]
+                                    : Colors.red[300],
+                          ),
                         ),
                         controller: _amountController,
                         keyboardType: TextInputType.number,
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: widget.transaction == null
+                                ? _isIncome
+                                    ? Colors.green[300]
+                                    : Colors.red[300]
+                                : widget.transaction!.isIncome
+                                    ? Colors.green[300]
+                                    : Colors.red[300]),
                       ),
                     )
                   ],
@@ -123,7 +183,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                     WalletListTile(
                       icon: Icons.category,
                       content: Text(
-                        _selectedCategory.name,
+                        widget.transaction == null
+                            ? _selectedCategory.name
+                            : widget.transaction!.category.name,
                         style: const TextStyle(color: Colors.grey),
                       ),
                       trailing: const FaIcon(
@@ -153,18 +215,23 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                           MediaQuery.of(context).size.height *
                                               0.45,
                                       child: ListView.builder(
-                                        itemCount: user.categories.length,
+                                        itemCount: _isIncome
+                                            ? _incomeCategories.length
+                                            : _expenseCategories.length,
                                         itemBuilder: (context, index) {
                                           return InkWell(
                                             onTap: () {
                                               setState(() {
-                                                _selectedCategory =
-                                                    user.categories[index];
+                                                _selectedCategory = _isIncome
+                                                    ? _incomeCategories[index]
+                                                    : _expenseCategories[index];
                                               });
                                               Navigator.pop(context);
                                             },
                                             child: CategoryListItem(
-                                              category: user.categories[index],
+                                              category: _isIncome
+                                                  ? _incomeCategories[index]
+                                                  : _expenseCategories[index],
                                             ),
                                           );
                                         },
@@ -185,7 +252,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                     WalletListTile(
                       icon: FontAwesomeIcons.wallet,
                       content: Text(
-                        _selectedAccount.name,
+                        widget.transaction == null
+                            ? _selectedAccount.name
+                            : widget.transaction!.account.name,
                         style: const TextStyle(color: Colors.grey),
                       ),
                       trailing: const FaIcon(
@@ -247,7 +316,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                     WalletListTile(
                       icon: FontAwesomeIcons.calendarDay,
                       content: Text(
-                        _selectedDate == '' ? 'Select date' : _selectedDate,
+                        widget.transaction == null
+                            ? _selectedDate
+                            : dateFormat.format(widget.transaction!.date),
                         style: const TextStyle(color: Colors.grey),
                       ),
                       trailing: const FaIcon(
@@ -312,11 +383,15 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             _isIncome ? Colors.green[300] : Colors.red[300],
                       ),
                       onPressed: () {
+                        if (_amountController.text == '') {
+                          return;
+                        }
                         setState(() {
                           var transaction = TransactionModel(
-                            id: 0,
+                            id: widget.transaction == null
+                                ? DateTime.now().millisecondsSinceEpoch
+                                : widget.transaction!.id,
                             note: _noteController.text,
-                            // parse amunt to double, and if it is not
                             amount: _isIncome
                                 ? double.parse(_amountController.text)
                                 : -double.parse(_amountController.text),

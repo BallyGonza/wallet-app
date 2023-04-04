@@ -21,15 +21,16 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
       name: fields[1] as String,
       image: fields[2] as String,
       color: fields[3] as int,
-      subCategories: (fields[4] as List?)?.cast<CategoryModel>(),
-      isIncome: fields[5] as bool,
+      iconColor: fields[4] as int,
+      subCategories: (fields[5] as List?)?.cast<CategoryModel>(),
+      isIncome: fields[6] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, CategoryModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -39,8 +40,10 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
       ..writeByte(3)
       ..write(obj.color)
       ..writeByte(4)
-      ..write(obj.subCategories)
+      ..write(obj.iconColor)
       ..writeByte(5)
+      ..write(obj.subCategories)
+      ..writeByte(6)
       ..write(obj.isIncome);
   }
 
@@ -65,6 +68,7 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       image: json['image'] as String,
       color: json['color'] as int,
+      iconColor: json['iconColor'] as int,
       subCategories: (json['subCategories'] as List<dynamic>?)
           ?.map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -77,6 +81,7 @@ Map<String, dynamic> _$CategoryModelToJson(CategoryModel instance) =>
       'name': instance.name,
       'image': instance.image,
       'color': instance.color,
+      'iconColor': instance.iconColor,
       'subCategories': instance.subCategories,
       'isIncome': instance.isIncome,
     };

@@ -18,6 +18,7 @@ class CategoryListItem extends StatelessWidget {
         backgroundColor: Color(category.color),
         child: Image.asset(
           category.image,
+          color: Color(category.iconColor),
           width: 24,
         ),
       ),

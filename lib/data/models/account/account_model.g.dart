@@ -19,22 +19,19 @@ class AccountModelAdapter extends TypeAdapter<AccountModel> {
     return AccountModel(
       id: fields[0] as int,
       name: fields[1] as String,
-      institution: fields[3] as InstitutionModel,
-      color: fields[2] as int,
+      institution: fields[2] as InstitutionModel,
     );
   }
 
   @override
   void write(BinaryWriter writer, AccountModel obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.color)
-      ..writeByte(3)
       ..write(obj.institution);
   }
 
@@ -58,13 +55,11 @@ AccountModel _$AccountModelFromJson(Map<String, dynamic> json) => AccountModel(
       name: json['name'] as String,
       institution: InstitutionModel.fromJson(
           json['institution'] as Map<String, dynamic>),
-      color: json['color'] as int,
     );
 
 Map<String, dynamic> _$AccountModelToJson(AccountModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'color': instance.color,
       'institution': instance.institution,
     };

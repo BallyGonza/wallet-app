@@ -22,10 +22,8 @@ class _AccountListItemState extends State<AccountListItem> {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        // backgroundImage: AssetImage(account.institution.image),
         backgroundColor: Color(widget.account.institution.color),
         radius: 18,
-        // backgroundImage: AssetImage(account.institution.image),
         child: Image.asset(
           widget.account.institution.image,
           width: 24,

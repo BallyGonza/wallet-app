@@ -72,22 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const Spacer(),
                             InkWell(
-                              onTap: () {
-                                // Navigator.of(context).push(
-                                //   MaterialPageRoute(
-                                //     builder: (_) => AddAccountScreen(
-                                //       onPressed: (account) {
-                                //         setState(() {
-                                //           context.read<AccountBloc>().add(
-                                //                 AccountEvent.addAccount(
-                                //                     account),
-                                //               );
-                                //         });
-                                //       },
-                                //     ),
-                                //   ),
-                                // );
-                              },
+                              onTap: () {},
                               child: const FaIcon(
                                 FontAwesomeIcons.plus,
                                 color: Colors.grey,
@@ -224,6 +209,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                       final transaction =
                                           user.transactions[index];
                                       return TransactionListItem(
+                                        onPressDelete: () {
+                                          setState(() {
+                                            context.read<UserBloc>().add(
+                                                  UserEvent.removeTransaction(
+                                                    transaction,
+                                                  ),
+                                                );
+                                          });
+                                          Navigator.of(context).pop();
+                                        },
                                         transaction: transaction,
                                       );
                                     },
