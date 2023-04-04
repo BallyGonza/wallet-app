@@ -13,9 +13,7 @@ Future<void> main() async {
   Hive.registerAdapter(AccountModelAdapter());
   Hive.registerAdapter(AccountTypeModelAdapter());
   Hive.registerAdapter(TransactionModelAdapter());
-  Hive.registerAdapter(TagModelAdapter());
   Hive.registerAdapter(CategoryModelAdapter());
-  Hive.registerAdapter(CreditCardModelAdapter());
   Hive.registerAdapter(CurrencyModelAdapter());
 
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,31 +31,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => UserRepository(),
-      child: BlocProvider(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: walletAppTheme,
+      home: BlocProvider(
         create: (context) => UserBloc(
-          context.read<UserRepository>(),
+          UserRepository(),
         ),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: walletAppTheme,
-          home: BlocBuilder<UserBloc, UserState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                orElse: () => const Scaffold(
-                  body: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-                updated: (user) => HomeScreen(
-                  user: user,
-                  transactions: user.transactions,
-                  accounts: user.accounts,
-                ),
-              );
-            },
-          ),
+        child: BlocConsumer<UserBloc, UserState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            return state.maybeWhen(
+              updated: (user) {
+                return HomeScreen(user: user);
+              },
+              orElse: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          },
         ),
       ),
     );

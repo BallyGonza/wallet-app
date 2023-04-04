@@ -20,9 +20,8 @@ mixin _$TransactionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(TransactionModel transaction) addTransaction,
-    required TResult Function(int index, TransactionModel transaction)
-        updateTransaction,
-    required TResult Function(int index) removeTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
     required TResult Function() removeAllTransactions,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,9 +29,8 @@ mixin _$TransactionEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(TransactionModel transaction)? addTransaction,
-    TResult? Function(int index, TransactionModel transaction)?
-        updateTransaction,
-    TResult? Function(int index)? removeTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
     TResult? Function()? removeAllTransactions,
   }) =>
       throw _privateConstructorUsedError;
@@ -40,9 +38,8 @@ mixin _$TransactionEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(TransactionModel transaction)? addTransaction,
-    TResult Function(int index, TransactionModel transaction)?
-        updateTransaction,
-    TResult Function(int index)? removeTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
     TResult Function()? removeAllTransactions,
     required TResult orElse(),
   }) =>
@@ -137,9 +134,8 @@ class _$TransactionInitialEvent implements TransactionInitialEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(TransactionModel transaction) addTransaction,
-    required TResult Function(int index, TransactionModel transaction)
-        updateTransaction,
-    required TResult Function(int index) removeTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
     required TResult Function() removeAllTransactions,
   }) {
     return init();
@@ -150,9 +146,8 @@ class _$TransactionInitialEvent implements TransactionInitialEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(TransactionModel transaction)? addTransaction,
-    TResult? Function(int index, TransactionModel transaction)?
-        updateTransaction,
-    TResult? Function(int index)? removeTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
     TResult? Function()? removeAllTransactions,
   }) {
     return init?.call();
@@ -163,9 +158,8 @@ class _$TransactionInitialEvent implements TransactionInitialEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(TransactionModel transaction)? addTransaction,
-    TResult Function(int index, TransactionModel transaction)?
-        updateTransaction,
-    TResult Function(int index)? removeTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
     TResult Function()? removeAllTransactions,
     required TResult orElse(),
   }) {
@@ -289,9 +283,8 @@ class _$AddTransactionEvent implements AddTransactionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(TransactionModel transaction) addTransaction,
-    required TResult Function(int index, TransactionModel transaction)
-        updateTransaction,
-    required TResult Function(int index) removeTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
     required TResult Function() removeAllTransactions,
   }) {
     return addTransaction(transaction);
@@ -302,9 +295,8 @@ class _$AddTransactionEvent implements AddTransactionEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(TransactionModel transaction)? addTransaction,
-    TResult? Function(int index, TransactionModel transaction)?
-        updateTransaction,
-    TResult? Function(int index)? removeTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
     TResult? Function()? removeAllTransactions,
   }) {
     return addTransaction?.call(transaction);
@@ -315,9 +307,8 @@ class _$AddTransactionEvent implements AddTransactionEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(TransactionModel transaction)? addTransaction,
-    TResult Function(int index, TransactionModel transaction)?
-        updateTransaction,
-    TResult Function(int index)? removeTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
     TResult Function()? removeAllTransactions,
     required TResult orElse(),
   }) {
@@ -385,7 +376,7 @@ abstract class _$$UpdateTransactionEventCopyWith<$Res> {
           $Res Function(_$UpdateTransactionEvent) then) =
       __$$UpdateTransactionEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({int index, TransactionModel transaction});
+  $Res call({TransactionModel transaction});
 }
 
 /// @nodoc
@@ -399,14 +390,9 @@ class __$$UpdateTransactionEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? index = null,
     Object? transaction = null,
   }) {
     return _then(_$UpdateTransactionEvent(
-      null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
       null == transaction
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
@@ -418,16 +404,14 @@ class __$$UpdateTransactionEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdateTransactionEvent implements UpdateTransactionEvent {
-  const _$UpdateTransactionEvent(this.index, this.transaction);
+  const _$UpdateTransactionEvent(this.transaction);
 
-  @override
-  final int index;
   @override
   final TransactionModel transaction;
 
   @override
   String toString() {
-    return 'TransactionEvent.updateTransaction(index: $index, transaction: $transaction)';
+    return 'TransactionEvent.updateTransaction(transaction: $transaction)';
   }
 
   @override
@@ -435,13 +419,12 @@ class _$UpdateTransactionEvent implements UpdateTransactionEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateTransactionEvent &&
-            (identical(other.index, index) || other.index == index) &&
             (identical(other.transaction, transaction) ||
                 other.transaction == transaction));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index, transaction);
+  int get hashCode => Object.hash(runtimeType, transaction);
 
   @JsonKey(ignore: true)
   @override
@@ -455,12 +438,11 @@ class _$UpdateTransactionEvent implements UpdateTransactionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(TransactionModel transaction) addTransaction,
-    required TResult Function(int index, TransactionModel transaction)
-        updateTransaction,
-    required TResult Function(int index) removeTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
     required TResult Function() removeAllTransactions,
   }) {
-    return updateTransaction(index, transaction);
+    return updateTransaction(transaction);
   }
 
   @override
@@ -468,12 +450,11 @@ class _$UpdateTransactionEvent implements UpdateTransactionEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(TransactionModel transaction)? addTransaction,
-    TResult? Function(int index, TransactionModel transaction)?
-        updateTransaction,
-    TResult? Function(int index)? removeTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
     TResult? Function()? removeAllTransactions,
   }) {
-    return updateTransaction?.call(index, transaction);
+    return updateTransaction?.call(transaction);
   }
 
   @override
@@ -481,14 +462,13 @@ class _$UpdateTransactionEvent implements UpdateTransactionEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(TransactionModel transaction)? addTransaction,
-    TResult Function(int index, TransactionModel transaction)?
-        updateTransaction,
-    TResult Function(int index)? removeTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
     TResult Function()? removeAllTransactions,
     required TResult orElse(),
   }) {
     if (updateTransaction != null) {
-      return updateTransaction(index, transaction);
+      return updateTransaction(transaction);
     }
     return orElse();
   }
@@ -536,11 +516,9 @@ class _$UpdateTransactionEvent implements UpdateTransactionEvent {
 }
 
 abstract class UpdateTransactionEvent implements TransactionEvent {
-  const factory UpdateTransactionEvent(
-          final int index, final TransactionModel transaction) =
+  const factory UpdateTransactionEvent(final TransactionModel transaction) =
       _$UpdateTransactionEvent;
 
-  int get index;
   TransactionModel get transaction;
   @JsonKey(ignore: true)
   _$$UpdateTransactionEventCopyWith<_$UpdateTransactionEvent> get copyWith =>
@@ -553,7 +531,7 @@ abstract class _$$RemoveTransactionEventCopyWith<$Res> {
           $Res Function(_$RemoveTransactionEvent) then) =
       __$$RemoveTransactionEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({int index});
+  $Res call({TransactionModel transaction});
 }
 
 /// @nodoc
@@ -567,13 +545,13 @@ class __$$RemoveTransactionEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? index = null,
+    Object? transaction = null,
   }) {
     return _then(_$RemoveTransactionEvent(
-      null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
+      null == transaction
+          ? _value.transaction
+          : transaction // ignore: cast_nullable_to_non_nullable
+              as TransactionModel,
     ));
   }
 }
@@ -581,14 +559,14 @@ class __$$RemoveTransactionEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RemoveTransactionEvent implements RemoveTransactionEvent {
-  const _$RemoveTransactionEvent(this.index);
+  const _$RemoveTransactionEvent(this.transaction);
 
   @override
-  final int index;
+  final TransactionModel transaction;
 
   @override
   String toString() {
-    return 'TransactionEvent.removeTransaction(index: $index)';
+    return 'TransactionEvent.removeTransaction(transaction: $transaction)';
   }
 
   @override
@@ -596,11 +574,12 @@ class _$RemoveTransactionEvent implements RemoveTransactionEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RemoveTransactionEvent &&
-            (identical(other.index, index) || other.index == index));
+            (identical(other.transaction, transaction) ||
+                other.transaction == transaction));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, index);
+  int get hashCode => Object.hash(runtimeType, transaction);
 
   @JsonKey(ignore: true)
   @override
@@ -614,12 +593,11 @@ class _$RemoveTransactionEvent implements RemoveTransactionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(TransactionModel transaction) addTransaction,
-    required TResult Function(int index, TransactionModel transaction)
-        updateTransaction,
-    required TResult Function(int index) removeTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
     required TResult Function() removeAllTransactions,
   }) {
-    return removeTransaction(index);
+    return removeTransaction(transaction);
   }
 
   @override
@@ -627,12 +605,11 @@ class _$RemoveTransactionEvent implements RemoveTransactionEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(TransactionModel transaction)? addTransaction,
-    TResult? Function(int index, TransactionModel transaction)?
-        updateTransaction,
-    TResult? Function(int index)? removeTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
     TResult? Function()? removeAllTransactions,
   }) {
-    return removeTransaction?.call(index);
+    return removeTransaction?.call(transaction);
   }
 
   @override
@@ -640,14 +617,13 @@ class _$RemoveTransactionEvent implements RemoveTransactionEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(TransactionModel transaction)? addTransaction,
-    TResult Function(int index, TransactionModel transaction)?
-        updateTransaction,
-    TResult Function(int index)? removeTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
     TResult Function()? removeAllTransactions,
     required TResult orElse(),
   }) {
     if (removeTransaction != null) {
-      return removeTransaction(index);
+      return removeTransaction(transaction);
     }
     return orElse();
   }
@@ -695,10 +671,10 @@ class _$RemoveTransactionEvent implements RemoveTransactionEvent {
 }
 
 abstract class RemoveTransactionEvent implements TransactionEvent {
-  const factory RemoveTransactionEvent(final int index) =
+  const factory RemoveTransactionEvent(final TransactionModel transaction) =
       _$RemoveTransactionEvent;
 
-  int get index;
+  TransactionModel get transaction;
   @JsonKey(ignore: true)
   _$$RemoveTransactionEventCopyWith<_$RemoveTransactionEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -747,9 +723,8 @@ class _$RemoveAllTransactionsEvent implements RemoveAllTransactionsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(TransactionModel transaction) addTransaction,
-    required TResult Function(int index, TransactionModel transaction)
-        updateTransaction,
-    required TResult Function(int index) removeTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
     required TResult Function() removeAllTransactions,
   }) {
     return removeAllTransactions();
@@ -760,9 +735,8 @@ class _$RemoveAllTransactionsEvent implements RemoveAllTransactionsEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(TransactionModel transaction)? addTransaction,
-    TResult? Function(int index, TransactionModel transaction)?
-        updateTransaction,
-    TResult? Function(int index)? removeTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
     TResult? Function()? removeAllTransactions,
   }) {
     return removeAllTransactions?.call();
@@ -773,9 +747,8 @@ class _$RemoveAllTransactionsEvent implements RemoveAllTransactionsEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(TransactionModel transaction)? addTransaction,
-    TResult Function(int index, TransactionModel transaction)?
-        updateTransaction,
-    TResult Function(int index)? removeTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
     TResult Function()? removeAllTransactions,
     required TResult orElse(),
   }) {

@@ -17,7 +17,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   }
 
   late UserModel user;
-  late List<TransactionModel> transactions;
+  List<TransactionModel> transactions = [];
 
   final Box<UserModel> box = Hive.box<UserModel>('users_box');
 
@@ -26,35 +26,53 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     Emitter<TransactionState> emit,
   ) async {
     user = box.get(user.id)!;
-    transactions = user.transactions;
-    emit(TransactionState.updated(user.transactions));
+    for (final account in user.accounts) {
+      transactions.addAll(account.transactions);
+    }
+    emit(TransactionState.updated(transactions));
   }
 
-  void _onAddTransaction(
+  Future<void> _onAddTransaction(
     AddTransactionEvent event,
     Emitter<TransactionState> emit,
   ) async {
+    for (final account in user.accounts) {
+      if (account.name == event.transaction.account.name) {
+        account.transactions.add(event.transaction);
+      }
+    }
     transactions.add(event.transaction);
     await box.put(user.id, user);
-    emit(TransactionState.updated(user.transactions));
+    emit(TransactionState.updated(transactions));
   }
 
   void _onUpdateTransaction(
     UpdateTransactionEvent event,
     Emitter<TransactionState> emit,
   ) async {
-    transactions[event.index] = event.transaction;
+    for (final account in user.accounts) {
+      if (account.name == event.transaction.account.name) {
+        account.transactions[event.transaction.id] = event.transaction;
+      }
+    }
+    transactions[event.transaction.id] = event.transaction;
     await box.put(user.id, user);
-    emit(TransactionState.updated(user.transactions));
+    emit(TransactionState.updated(transactions));
   }
 
   void _onRemoveTransaction(
     RemoveTransactionEvent event,
     Emitter<TransactionState> emit,
   ) async {
-    transactions.removeAt(event.index);
+    for (final account in user.accounts) {
+      if (account.name == event.transaction.account.name) {
+        account.transactions
+            .removeWhere((element) => element.id == event.transaction.id);
+      }
+    }
+    transactions.removeAt(event.transaction.id);
     await box.put(user.id, user);
-    emit(TransactionState.updated(user.transactions));
+    emit(TransactionState.updated(transactions));
   }
 
   void _onRemoveAllTransactions(
@@ -63,16 +81,6 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   ) async {
     transactions.clear();
     await box.put(user.id, user);
-    emit(TransactionState.updated(user.transactions));
-  }
-
-  //  ----------------------------
-
-  TransactionState? fromJson(Map<String, dynamic> json) {
-    return TransactionState.fromJson(json);
-  }
-
-  Map<String, dynamic>? toJson(TransactionState state) {
-    return state.toJson();
+    emit(TransactionState.updated(transactions));
   }
 }

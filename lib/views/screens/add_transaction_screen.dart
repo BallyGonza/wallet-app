@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:wallet_app/blocs/blocs.dart';
 
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
 class AddTransactionScreen extends StatefulWidget {
-  const AddTransactionScreen({super.key});
+  const AddTransactionScreen({required this.onPressed, super.key});
+
+  final Function(TransactionModel) onPressed;
 
   @override
   State<AddTransactionScreen> createState() => _AddTransactionScreenState();
@@ -21,15 +21,16 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   final _noteController = TextEditingController();
   late CategoryModel _selectedCategory;
   late AccountModel _selectedAccount;
+
   String _selectedDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
   DateTime _selectedDateTime = DateTime.now();
-  List<TagModel> _selectedTags = [];
   bool _isIncome = true;
 
   @override
   void initState() {
     _selectedCategory = user.categories[0];
     _selectedAccount = user.accounts[0];
+
     super.initState();
   }
 
@@ -83,6 +84,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width - 100,
                       child: TextField(
+                        autofocus: true,
                         showCursor: false,
                         decoration: const InputDecoration(
                           border: InputBorder.none,
@@ -213,18 +215,18 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                           MediaQuery.of(context).size.height *
                                               0.45,
                                       child: ListView.builder(
-                                        itemCount: user.accounts.length - 1,
+                                        itemCount: user.accounts.length,
                                         itemBuilder: (context, index) {
                                           return InkWell(
                                             onTap: () {
                                               setState(() {
                                                 _selectedAccount =
-                                                    user.accounts[index + 1];
+                                                    user.accounts[index];
                                               });
                                               Navigator.pop(context);
                                             },
                                             child: AccountListItem(
-                                              account: user.accounts[index + 1],
+                                              account: user.accounts[index],
                                             ),
                                           );
                                         },
@@ -287,26 +289,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       },
                     ),
                     WalletListTile(
-                      icon: FontAwesomeIcons.tags,
-                      content: _selectedTags.isEmpty
-                          ? const Text(
-                              'Add tags',
-                              style: TextStyle(color: Colors.grey),
-                            )
-                          : Wrap(
-                              spacing: 8,
-                              children: _selectedTags
-                                  .map(
-                                    (e) => Chip(
-                                      label: Text(e.name),
-                                      backgroundColor: Colors.grey[300],
-                                    ),
-                                  )
-                                  .toList(),
-                            ),
-                      onTap: () {},
-                    ),
-                    WalletListTile(
                       icon: FontAwesomeIcons.solidNoteSticky,
                       content: TextFormField(
                         controller: _noteController,
@@ -330,23 +312,19 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             _isIncome ? Colors.green[300] : Colors.red[300],
                       ),
                       onPressed: () {
-                        BlocProvider.of<TransactionBloc>(context).add(
-                          TransactionEvent.addTransaction(
-                            TransactionModel(
-                              id: '0',
-                              description: _noteController.text,
-                              amount: double.parse(_amountController.text),
-                              category: _selectedCategory,
-                              account: _selectedAccount,
-                              date: _selectedDateTime,
-                              isIncome: _isIncome,
-                              attachment: '',
-                              tags: _selectedTags,
-                              isRecurrent: false,
-                            ),
-                          ),
-                        );
-                        Navigator.of(context).pop();
+                        setState(() {
+                          var transaction = TransactionModel(
+                            id: 0,
+                            note: _noteController.text,
+                            amount: double.parse(_amountController.text),
+                            category: _selectedCategory,
+                            account: _selectedAccount,
+                            date: _selectedDateTime,
+                            isIncome: _isIncome,
+                          );
+                          widget.onPressed(transaction);
+                        });
+                        Navigator.pop(context);
                       },
                       child: const Text('Save', style: TextStyle(fontSize: 16)),
                     ),

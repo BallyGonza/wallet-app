@@ -3,81 +3,118 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/views/views.dart';
 
-import 'transactions.dart';
+class TransactionsList extends StatefulWidget {
+  const TransactionsList({required this.user, Key? key}) : super(key: key);
 
-class TransactionsList extends StatelessWidget {
-  const TransactionsList({required this.transactions, Key? key})
-      : super(key: key);
+  final UserModel user;
 
-  final List<TransactionModel> transactions;
+  @override
+  State<TransactionsList> createState() => _TransactionsListState();
+}
+
+class _TransactionsListState extends State<TransactionsList> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TransactionBloc, TransactionState>(
-      builder: (context, state) {
-        return state.maybeWhen(
-          orElse: () => const Center(
-            child: CircularProgressIndicator(),
-          ),
-          updated: (transactions) => Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: const [
-                      Text(
-                        'Transactions',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15,
-                          fontWeight: FontWeight.normal,
-                        ),
+    return BlocProvider(
+      create: (context) => TransactionBloc(
+        widget.user,
+      ),
+      child: BlocConsumer<TransactionBloc, TransactionState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return state.maybeWhen(
+            updated: (updatedTransactions) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          const Text(
+                            'Transactions',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                          const Spacer(),
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => AddTransactionScreen(
+                                    onPressed: (transaction) {
+                                      setState(() {
+                                        context.read<TransactionBloc>().add(
+                                              TransactionEvent.addTransaction(
+                                                  transaction),
+                                            );
+                                      });
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                            child: const FaIcon(
+                              FontAwesomeIcons.plus,
+                              color: Colors.grey,
+                              size: 15,
+                            ),
+                          ),
+                        ],
                       ),
-                      Spacer(),
-                      FaIcon(
-                        FontAwesomeIcons.plus,
-                        color: Colors.grey,
-                        size: 15,
+                    ),
+                    Container(
+                      height: updatedTransactions.length * 73.0,
+                      decoration: const BoxDecoration(
+                        color: colorCards,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
                       ),
-                    ],
-                  ),
+                      child: updatedTransactions.isEmpty
+                          ? const Center(
+                              child: Text('No transactions yet'),
+                            )
+                          : _buildTransactionsList(
+                              context, updatedTransactions),
+                    ),
+                  ],
                 ),
-                Container(
-                  height: transactions.length * 85.0,
-                  decoration: const BoxDecoration(
-                    color: colorCards,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  child: transactions.isEmpty
-                      ? const Center(
-                          child: Text('No transactions yet'),
-                        )
-                      : _buildTransactionsList(context, transactions),
-                ),
-              ],
+              );
+            },
+            orElse: () => const Center(
+              child: CircularProgressIndicator(),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
   Widget _buildTransactionsList(
       BuildContext context, List<TransactionModel> transactions) {
-    return ListView.separated(
+    return ListView(
+      reverse: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: transactions.length,
-      separatorBuilder: (context, index) => const Divider(),
-      itemBuilder: (context, index) {
-        final transaction = transactions[index];
-        return TransactionListItem(
-          transaction: transaction,
-        );
-      },
+      children: List.generate(
+        transactions.length,
+        (index) {
+          final transaction = transactions[index];
+          return TransactionListItem(
+            transaction: transaction,
+          );
+        },
+      ),
     );
   }
 }

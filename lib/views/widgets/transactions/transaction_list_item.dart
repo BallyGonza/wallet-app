@@ -28,13 +28,18 @@ class TransactionListItem extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      subtitle: Text(
-        transaction.account.name,
-        style: const TextStyle(
-          color: Colors.grey,
-          fontSize: 12,
-          fontWeight: FontWeight.normal,
-        ),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            transaction.account.name,
+            style: const TextStyle(
+              color: Colors.grey,
+              fontSize: 12,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+        ],
       ),
       trailing: Text(
         '\$ ${amountFormat.format(

@@ -13,17 +13,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserUpdateAccountEvent>(_onUpdateAccount);
     on<UserRemoveAccountEvent>(_onRemoveAccount);
 
-    on<UserAddTagEvent>(_onAddTag);
-    on<UserUpdateTagEvent>(_onUpdateTag);
-    on<UserRemoveTagEvent>(_onRemoveTag);
-
     on<UserAddCategoryEvent>(_onAddCategory);
     on<UserUpdateCategoryEvent>(_onUpdateCategory);
     on<UserRemoveCategoryEvent>(_onRemoveCategory);
-
-    on<UserAddCreditCardEvent>(_onAddCreditCard);
-    on<UserUpdateCreditCardEvent>(_onUpdateCreditCard);
-    on<UserRemoveCreditCardEvent>(_onRemoveCreditCard);
 
     add(const UserEvent.init());
   }
@@ -100,64 +92,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     Emitter<UserState> emit,
   ) {
     user.categories.remove(event.category);
-    box.put(event.user.id, event.user);
-    emit(UserState.updated(user));
-  }
-
-  // Credit Card
-
-  void _onAddCreditCard(
-    UserAddCreditCardEvent event,
-    Emitter<UserState> emit,
-  ) {
-    user.creditCards.add(event.creditCard);
-    box.put(event.user.id, event.user);
-    emit(UserState.updated(user));
-  }
-
-  void _onUpdateCreditCard(
-    UserUpdateCreditCardEvent event,
-    Emitter<UserState> emit,
-  ) {
-    user.creditCards[event.index] = event.creditCard;
-    box.put(event.user.id, event.user);
-    emit(UserState.updated(user));
-  }
-
-  void _onRemoveCreditCard(
-    UserRemoveCreditCardEvent event,
-    Emitter<UserState> emit,
-  ) {
-    user.creditCards.remove(event.creditCard);
-    box.put(event.user.id, event.user);
-    emit(UserState.updated(user));
-  }
-
-  // Tag
-
-  void _onAddTag(
-    UserAddTagEvent event,
-    Emitter<UserState> emit,
-  ) {
-    user.tags.add(event.tag);
-    box.put(event.user.id, event.user);
-    emit(UserState.updated(user));
-  }
-
-  void _onUpdateTag(
-    UserUpdateTagEvent event,
-    Emitter<UserState> emit,
-  ) {
-    user.tags[event.index] = event.tag;
-    box.put(event.user.id, event.user);
-    emit(UserState.updated(user));
-  }
-
-  void _onRemoveTag(
-    UserRemoveTagEvent event,
-    Emitter<UserState> emit,
-  ) {
-    user.tags.remove(event.tag);
     box.put(event.user.id, event.user);
     emit(UserState.updated(user));
   }

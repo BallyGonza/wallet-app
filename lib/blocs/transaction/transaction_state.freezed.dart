@@ -14,19 +14,6 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TransactionState _$TransactionStateFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType']) {
-    case 'initial':
-      return TransactionInitial.fromJson(json);
-    case 'updated':
-      return TransactionUpdated.fromJson(json);
-
-    default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'TransactionState',
-          'Invalid union type "${json['runtimeType']}"!');
-  }
-}
-
 /// @nodoc
 mixin _$TransactionState {
   @optionalTypeArgs
@@ -67,7 +54,6 @@ mixin _$TransactionState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -105,16 +91,9 @@ class __$$TransactionInitialCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$TransactionInitial implements TransactionInitial {
-  const _$TransactionInitial({final String? $type})
-      : $type = $type ?? 'initial';
-
-  factory _$TransactionInitial.fromJson(Map<String, dynamic> json) =>
-      _$$TransactionInitialFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+  const _$TransactionInitial();
 
   @override
   String toString() {
@@ -127,7 +106,6 @@ class _$TransactionInitial implements TransactionInitial {
         (other.runtimeType == runtimeType && other is _$TransactionInitial);
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -192,20 +170,10 @@ class _$TransactionInitial implements TransactionInitial {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TransactionInitialToJson(
-      this,
-    );
-  }
 }
 
 abstract class TransactionInitial implements TransactionState {
   const factory TransactionInitial() = _$TransactionInitial;
-
-  factory TransactionInitial.fromJson(Map<String, dynamic> json) =
-      _$TransactionInitial.fromJson;
 }
 
 /// @nodoc
@@ -240,15 +208,10 @@ class __$$TransactionUpdatedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$TransactionUpdated implements TransactionUpdated {
-  const _$TransactionUpdated(final List<TransactionModel> transactions,
-      {final String? $type})
-      : _transactions = transactions,
-        $type = $type ?? 'updated';
 
-  factory _$TransactionUpdated.fromJson(Map<String, dynamic> json) =>
-      _$$TransactionUpdatedFromJson(json);
+class _$TransactionUpdated implements TransactionUpdated {
+  const _$TransactionUpdated(final List<TransactionModel> transactions)
+      : _transactions = transactions;
 
   final List<TransactionModel> _transactions;
   @override
@@ -257,9 +220,6 @@ class _$TransactionUpdated implements TransactionUpdated {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_transactions);
   }
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   @override
   String toString() {
@@ -275,7 +235,6 @@ class _$TransactionUpdated implements TransactionUpdated {
                 .equals(other._transactions, _transactions));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_transactions));
@@ -348,21 +307,11 @@ class _$TransactionUpdated implements TransactionUpdated {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TransactionUpdatedToJson(
-      this,
-    );
-  }
 }
 
 abstract class TransactionUpdated implements TransactionState {
   const factory TransactionUpdated(final List<TransactionModel> transactions) =
       _$TransactionUpdated;
-
-  factory TransactionUpdated.fromJson(Map<String, dynamic> json) =
-      _$TransactionUpdated.fromJson;
 
   List<TransactionModel> get transactions;
   @JsonKey(ignore: true)

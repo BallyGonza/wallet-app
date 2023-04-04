@@ -31,23 +31,12 @@ mixin _$UserEvent {
         updateAccount,
     required TResult Function(UserModel user, AccountModel account)
         removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
     required TResult Function(UserModel user, CategoryModel category)
         addCategory,
     required TResult Function(UserModel user, CategoryModel category, int index)
         updateCategory,
     required TResult Function(UserModel user, CategoryModel category)
         removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,19 +52,10 @@ mixin _$UserEvent {
     TResult? Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
     TResult? Function(UserModel user, CategoryModel category)? addCategory,
     TResult? Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -91,18 +71,10 @@ mixin _$UserEvent {
     TResult Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
     TResult Function(UserModel user, CategoryModel category)? addCategory,
     TResult Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -117,15 +89,9 @@ mixin _$UserEvent {
     required TResult Function(UserAddAccountEvent value) addAccount,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -137,15 +103,9 @@ mixin _$UserEvent {
     TResult? Function(UserAddAccountEvent value)? addAccount,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -157,15 +117,9 @@ mixin _$UserEvent {
     TResult Function(UserAddAccountEvent value)? addAccount,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -239,23 +193,12 @@ class _$UserInitialEvent implements UserInitialEvent {
         updateAccount,
     required TResult Function(UserModel user, AccountModel account)
         removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
     required TResult Function(UserModel user, CategoryModel category)
         addCategory,
     required TResult Function(UserModel user, CategoryModel category, int index)
         updateCategory,
     required TResult Function(UserModel user, CategoryModel category)
         removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
   }) {
     return init();
   }
@@ -274,19 +217,10 @@ class _$UserInitialEvent implements UserInitialEvent {
     TResult? Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
     TResult? Function(UserModel user, CategoryModel category)? addCategory,
     TResult? Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
   }) {
     return init?.call();
   }
@@ -305,18 +239,10 @@ class _$UserInitialEvent implements UserInitialEvent {
     TResult Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
     TResult Function(UserModel user, CategoryModel category)? addCategory,
     TResult Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -337,15 +263,9 @@ class _$UserInitialEvent implements UserInitialEvent {
     required TResult Function(UserAddAccountEvent value) addAccount,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
   }) {
     return init(this);
   }
@@ -360,15 +280,9 @@ class _$UserInitialEvent implements UserInitialEvent {
     TResult? Function(UserAddAccountEvent value)? addAccount,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
   }) {
     return init?.call(this);
   }
@@ -383,15 +297,9 @@ class _$UserInitialEvent implements UserInitialEvent {
     TResult Function(UserAddAccountEvent value)? addAccount,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -492,23 +400,12 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
         updateAccount,
     required TResult Function(UserModel user, AccountModel account)
         removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
     required TResult Function(UserModel user, CategoryModel category)
         addCategory,
     required TResult Function(UserModel user, CategoryModel category, int index)
         updateCategory,
     required TResult Function(UserModel user, CategoryModel category)
         removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
   }) {
     return addTransaction(user, transaction);
   }
@@ -527,19 +424,10 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     TResult? Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
     TResult? Function(UserModel user, CategoryModel category)? addCategory,
     TResult? Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
   }) {
     return addTransaction?.call(user, transaction);
   }
@@ -558,18 +446,10 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     TResult Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
     TResult Function(UserModel user, CategoryModel category)? addCategory,
     TResult Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
     required TResult orElse(),
   }) {
     if (addTransaction != null) {
@@ -590,15 +470,9 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     required TResult Function(UserAddAccountEvent value) addAccount,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
   }) {
     return addTransaction(this);
   }
@@ -613,15 +487,9 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     TResult? Function(UserAddAccountEvent value)? addAccount,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
   }) {
     return addTransaction?.call(this);
   }
@@ -636,15 +504,9 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     TResult Function(UserAddAccountEvent value)? addAccount,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
     required TResult orElse(),
   }) {
     if (addTransaction != null) {
@@ -763,23 +625,12 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
         updateAccount,
     required TResult Function(UserModel user, AccountModel account)
         removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
     required TResult Function(UserModel user, CategoryModel category)
         addCategory,
     required TResult Function(UserModel user, CategoryModel category, int index)
         updateCategory,
     required TResult Function(UserModel user, CategoryModel category)
         removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
   }) {
     return updateTransaction(user, transaction, index);
   }
@@ -798,19 +649,10 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     TResult? Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
     TResult? Function(UserModel user, CategoryModel category)? addCategory,
     TResult? Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
   }) {
     return updateTransaction?.call(user, transaction, index);
   }
@@ -829,18 +671,10 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     TResult Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
     TResult Function(UserModel user, CategoryModel category)? addCategory,
     TResult Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
     required TResult orElse(),
   }) {
     if (updateTransaction != null) {
@@ -861,15 +695,9 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     required TResult Function(UserAddAccountEvent value) addAccount,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
   }) {
     return updateTransaction(this);
   }
@@ -884,15 +712,9 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     TResult? Function(UserAddAccountEvent value)? addAccount,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
   }) {
     return updateTransaction?.call(this);
   }
@@ -907,15 +729,9 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     TResult Function(UserAddAccountEvent value)? addAccount,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
     required TResult orElse(),
   }) {
     if (updateTransaction != null) {
@@ -1028,23 +844,12 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
         updateAccount,
     required TResult Function(UserModel user, AccountModel account)
         removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
     required TResult Function(UserModel user, CategoryModel category)
         addCategory,
     required TResult Function(UserModel user, CategoryModel category, int index)
         updateCategory,
     required TResult Function(UserModel user, CategoryModel category)
         removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
   }) {
     return removeTransaction(user, transaction);
   }
@@ -1063,19 +868,10 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     TResult? Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
     TResult? Function(UserModel user, CategoryModel category)? addCategory,
     TResult? Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
   }) {
     return removeTransaction?.call(user, transaction);
   }
@@ -1094,18 +890,10 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     TResult Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
     TResult Function(UserModel user, CategoryModel category)? addCategory,
     TResult Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
     required TResult orElse(),
   }) {
     if (removeTransaction != null) {
@@ -1126,15 +914,9 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     required TResult Function(UserAddAccountEvent value) addAccount,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
   }) {
     return removeTransaction(this);
   }
@@ -1149,15 +931,9 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     TResult? Function(UserAddAccountEvent value)? addAccount,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
   }) {
     return removeTransaction?.call(this);
   }
@@ -1172,15 +948,9 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     TResult Function(UserAddAccountEvent value)? addAccount,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
     required TResult orElse(),
   }) {
     if (removeTransaction != null) {
@@ -1288,23 +1058,12 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
         updateAccount,
     required TResult Function(UserModel user, AccountModel account)
         removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
     required TResult Function(UserModel user, CategoryModel category)
         addCategory,
     required TResult Function(UserModel user, CategoryModel category, int index)
         updateCategory,
     required TResult Function(UserModel user, CategoryModel category)
         removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
   }) {
     return addAccount(user, account);
   }
@@ -1323,19 +1082,10 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     TResult? Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
     TResult? Function(UserModel user, CategoryModel category)? addCategory,
     TResult? Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
   }) {
     return addAccount?.call(user, account);
   }
@@ -1354,18 +1104,10 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     TResult Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
     TResult Function(UserModel user, CategoryModel category)? addCategory,
     TResult Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
     required TResult orElse(),
   }) {
     if (addAccount != null) {
@@ -1386,15 +1128,9 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     required TResult Function(UserAddAccountEvent value) addAccount,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
   }) {
     return addAccount(this);
   }
@@ -1409,15 +1145,9 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     TResult? Function(UserAddAccountEvent value)? addAccount,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
   }) {
     return addAccount?.call(this);
   }
@@ -1432,15 +1162,9 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     TResult Function(UserAddAccountEvent value)? addAccount,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
     required TResult orElse(),
   }) {
     if (addAccount != null) {
@@ -1555,23 +1279,12 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
         updateAccount,
     required TResult Function(UserModel user, AccountModel account)
         removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
     required TResult Function(UserModel user, CategoryModel category)
         addCategory,
     required TResult Function(UserModel user, CategoryModel category, int index)
         updateCategory,
     required TResult Function(UserModel user, CategoryModel category)
         removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
   }) {
     return updateAccount(user, account, index);
   }
@@ -1590,19 +1303,10 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     TResult? Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
     TResult? Function(UserModel user, CategoryModel category)? addCategory,
     TResult? Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
   }) {
     return updateAccount?.call(user, account, index);
   }
@@ -1621,18 +1325,10 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     TResult Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
     TResult Function(UserModel user, CategoryModel category)? addCategory,
     TResult Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
     required TResult orElse(),
   }) {
     if (updateAccount != null) {
@@ -1653,15 +1349,9 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     required TResult Function(UserAddAccountEvent value) addAccount,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
   }) {
     return updateAccount(this);
   }
@@ -1676,15 +1366,9 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     TResult? Function(UserAddAccountEvent value)? addAccount,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
   }) {
     return updateAccount?.call(this);
   }
@@ -1699,15 +1383,9 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     TResult Function(UserAddAccountEvent value)? addAccount,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
     required TResult orElse(),
   }) {
     if (updateAccount != null) {
@@ -1816,23 +1494,12 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
         updateAccount,
     required TResult Function(UserModel user, AccountModel account)
         removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
     required TResult Function(UserModel user, CategoryModel category)
         addCategory,
     required TResult Function(UserModel user, CategoryModel category, int index)
         updateCategory,
     required TResult Function(UserModel user, CategoryModel category)
         removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
   }) {
     return removeAccount(user, account);
   }
@@ -1851,19 +1518,10 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     TResult? Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
     TResult? Function(UserModel user, CategoryModel category)? addCategory,
     TResult? Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
   }) {
     return removeAccount?.call(user, account);
   }
@@ -1882,18 +1540,10 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     TResult Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
     TResult Function(UserModel user, CategoryModel category)? addCategory,
     TResult Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
     required TResult orElse(),
   }) {
     if (removeAccount != null) {
@@ -1914,15 +1564,9 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     required TResult Function(UserAddAccountEvent value) addAccount,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
   }) {
     return removeAccount(this);
   }
@@ -1937,15 +1581,9 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     TResult? Function(UserAddAccountEvent value)? addAccount,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
   }) {
     return removeAccount?.call(this);
   }
@@ -1960,15 +1598,9 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     TResult Function(UserAddAccountEvent value)? addAccount,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
     required TResult orElse(),
   }) {
     if (removeAccount != null) {
@@ -1987,792 +1619,6 @@ abstract class UserRemoveAccountEvent implements UserEvent {
   AccountModel get account;
   @JsonKey(ignore: true)
   _$$UserRemoveAccountEventCopyWith<_$UserRemoveAccountEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UserAddTagEventCopyWith<$Res> {
-  factory _$$UserAddTagEventCopyWith(
-          _$UserAddTagEvent value, $Res Function(_$UserAddTagEvent) then) =
-      __$$UserAddTagEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserModel user, TagModel tag});
-}
-
-/// @nodoc
-class __$$UserAddTagEventCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$UserAddTagEvent>
-    implements _$$UserAddTagEventCopyWith<$Res> {
-  __$$UserAddTagEventCopyWithImpl(
-      _$UserAddTagEvent _value, $Res Function(_$UserAddTagEvent) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-    Object? tag = null,
-  }) {
-    return _then(_$UserAddTagEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      null == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
-              as TagModel,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UserAddTagEvent implements UserAddTagEvent {
-  const _$UserAddTagEvent(this.user, this.tag);
-
-  @override
-  final UserModel user;
-  @override
-  final TagModel tag;
-
-  @override
-  String toString() {
-    return 'UserEvent.addTag(user: $user, tag: $tag)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserAddTagEvent &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.tag, tag) || other.tag == tag));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user, tag);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserAddTagEventCopyWith<_$UserAddTagEvent> get copyWith =>
-      __$$UserAddTagEventCopyWithImpl<_$UserAddTagEvent>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
-  }) {
-    return addTag(user, tag);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
-  }) {
-    return addTag?.call(user, tag);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
-    required TResult orElse(),
-  }) {
-    if (addTag != null) {
-      return addTag(user, tag);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UserInitialEvent value) init,
-    required TResult Function(UserAddTransactionEvent value) addTransaction,
-    required TResult Function(UserUpdateTransactionEvent value)
-        updateTransaction,
-    required TResult Function(UserRemoveTransactionEvent value)
-        removeTransaction,
-    required TResult Function(UserAddAccountEvent value) addAccount,
-    required TResult Function(UserUpdateAccountEvent value) updateAccount,
-    required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
-    required TResult Function(UserAddCategoryEvent value) addCategory,
-    required TResult Function(UserUpdateCategoryEvent value) updateCategory,
-    required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
-  }) {
-    return addTag(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UserInitialEvent value)? init,
-    TResult? Function(UserAddTransactionEvent value)? addTransaction,
-    TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
-    TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
-    TResult? Function(UserAddAccountEvent value)? addAccount,
-    TResult? Function(UserUpdateAccountEvent value)? updateAccount,
-    TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
-    TResult? Function(UserAddCategoryEvent value)? addCategory,
-    TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
-    TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
-  }) {
-    return addTag?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserInitialEvent value)? init,
-    TResult Function(UserAddTransactionEvent value)? addTransaction,
-    TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
-    TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
-    TResult Function(UserAddAccountEvent value)? addAccount,
-    TResult Function(UserUpdateAccountEvent value)? updateAccount,
-    TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
-    TResult Function(UserAddCategoryEvent value)? addCategory,
-    TResult Function(UserUpdateCategoryEvent value)? updateCategory,
-    TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
-    required TResult orElse(),
-  }) {
-    if (addTag != null) {
-      return addTag(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UserAddTagEvent implements UserEvent {
-  const factory UserAddTagEvent(final UserModel user, final TagModel tag) =
-      _$UserAddTagEvent;
-
-  UserModel get user;
-  TagModel get tag;
-  @JsonKey(ignore: true)
-  _$$UserAddTagEventCopyWith<_$UserAddTagEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UserUpdateTagEventCopyWith<$Res> {
-  factory _$$UserUpdateTagEventCopyWith(_$UserUpdateTagEvent value,
-          $Res Function(_$UserUpdateTagEvent) then) =
-      __$$UserUpdateTagEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserModel user, TagModel tag, int index});
-}
-
-/// @nodoc
-class __$$UserUpdateTagEventCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$UserUpdateTagEvent>
-    implements _$$UserUpdateTagEventCopyWith<$Res> {
-  __$$UserUpdateTagEventCopyWithImpl(
-      _$UserUpdateTagEvent _value, $Res Function(_$UserUpdateTagEvent) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-    Object? tag = null,
-    Object? index = null,
-  }) {
-    return _then(_$UserUpdateTagEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      null == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
-              as TagModel,
-      null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UserUpdateTagEvent implements UserUpdateTagEvent {
-  const _$UserUpdateTagEvent(this.user, this.tag, this.index);
-
-  @override
-  final UserModel user;
-  @override
-  final TagModel tag;
-  @override
-  final int index;
-
-  @override
-  String toString() {
-    return 'UserEvent.updateTag(user: $user, tag: $tag, index: $index)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserUpdateTagEvent &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.tag, tag) || other.tag == tag) &&
-            (identical(other.index, index) || other.index == index));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user, tag, index);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserUpdateTagEventCopyWith<_$UserUpdateTagEvent> get copyWith =>
-      __$$UserUpdateTagEventCopyWithImpl<_$UserUpdateTagEvent>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
-  }) {
-    return updateTag(user, tag, index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
-  }) {
-    return updateTag?.call(user, tag, index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
-    required TResult orElse(),
-  }) {
-    if (updateTag != null) {
-      return updateTag(user, tag, index);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UserInitialEvent value) init,
-    required TResult Function(UserAddTransactionEvent value) addTransaction,
-    required TResult Function(UserUpdateTransactionEvent value)
-        updateTransaction,
-    required TResult Function(UserRemoveTransactionEvent value)
-        removeTransaction,
-    required TResult Function(UserAddAccountEvent value) addAccount,
-    required TResult Function(UserUpdateAccountEvent value) updateAccount,
-    required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
-    required TResult Function(UserAddCategoryEvent value) addCategory,
-    required TResult Function(UserUpdateCategoryEvent value) updateCategory,
-    required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
-  }) {
-    return updateTag(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UserInitialEvent value)? init,
-    TResult? Function(UserAddTransactionEvent value)? addTransaction,
-    TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
-    TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
-    TResult? Function(UserAddAccountEvent value)? addAccount,
-    TResult? Function(UserUpdateAccountEvent value)? updateAccount,
-    TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
-    TResult? Function(UserAddCategoryEvent value)? addCategory,
-    TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
-    TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
-  }) {
-    return updateTag?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserInitialEvent value)? init,
-    TResult Function(UserAddTransactionEvent value)? addTransaction,
-    TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
-    TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
-    TResult Function(UserAddAccountEvent value)? addAccount,
-    TResult Function(UserUpdateAccountEvent value)? updateAccount,
-    TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
-    TResult Function(UserAddCategoryEvent value)? addCategory,
-    TResult Function(UserUpdateCategoryEvent value)? updateCategory,
-    TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
-    required TResult orElse(),
-  }) {
-    if (updateTag != null) {
-      return updateTag(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UserUpdateTagEvent implements UserEvent {
-  const factory UserUpdateTagEvent(
-          final UserModel user, final TagModel tag, final int index) =
-      _$UserUpdateTagEvent;
-
-  UserModel get user;
-  TagModel get tag;
-  int get index;
-  @JsonKey(ignore: true)
-  _$$UserUpdateTagEventCopyWith<_$UserUpdateTagEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UserRemoveTagEventCopyWith<$Res> {
-  factory _$$UserRemoveTagEventCopyWith(_$UserRemoveTagEvent value,
-          $Res Function(_$UserRemoveTagEvent) then) =
-      __$$UserRemoveTagEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserModel user, TagModel tag});
-}
-
-/// @nodoc
-class __$$UserRemoveTagEventCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$UserRemoveTagEvent>
-    implements _$$UserRemoveTagEventCopyWith<$Res> {
-  __$$UserRemoveTagEventCopyWithImpl(
-      _$UserRemoveTagEvent _value, $Res Function(_$UserRemoveTagEvent) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-    Object? tag = null,
-  }) {
-    return _then(_$UserRemoveTagEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      null == tag
-          ? _value.tag
-          : tag // ignore: cast_nullable_to_non_nullable
-              as TagModel,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UserRemoveTagEvent implements UserRemoveTagEvent {
-  const _$UserRemoveTagEvent(this.user, this.tag);
-
-  @override
-  final UserModel user;
-  @override
-  final TagModel tag;
-
-  @override
-  String toString() {
-    return 'UserEvent.removeTag(user: $user, tag: $tag)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserRemoveTagEvent &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.tag, tag) || other.tag == tag));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user, tag);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserRemoveTagEventCopyWith<_$UserRemoveTagEvent> get copyWith =>
-      __$$UserRemoveTagEventCopyWithImpl<_$UserRemoveTagEvent>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
-  }) {
-    return removeTag(user, tag);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
-  }) {
-    return removeTag?.call(user, tag);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
-    required TResult orElse(),
-  }) {
-    if (removeTag != null) {
-      return removeTag(user, tag);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UserInitialEvent value) init,
-    required TResult Function(UserAddTransactionEvent value) addTransaction,
-    required TResult Function(UserUpdateTransactionEvent value)
-        updateTransaction,
-    required TResult Function(UserRemoveTransactionEvent value)
-        removeTransaction,
-    required TResult Function(UserAddAccountEvent value) addAccount,
-    required TResult Function(UserUpdateAccountEvent value) updateAccount,
-    required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
-    required TResult Function(UserAddCategoryEvent value) addCategory,
-    required TResult Function(UserUpdateCategoryEvent value) updateCategory,
-    required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
-  }) {
-    return removeTag(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UserInitialEvent value)? init,
-    TResult? Function(UserAddTransactionEvent value)? addTransaction,
-    TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
-    TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
-    TResult? Function(UserAddAccountEvent value)? addAccount,
-    TResult? Function(UserUpdateAccountEvent value)? updateAccount,
-    TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
-    TResult? Function(UserAddCategoryEvent value)? addCategory,
-    TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
-    TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
-  }) {
-    return removeTag?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserInitialEvent value)? init,
-    TResult Function(UserAddTransactionEvent value)? addTransaction,
-    TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
-    TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
-    TResult Function(UserAddAccountEvent value)? addAccount,
-    TResult Function(UserUpdateAccountEvent value)? updateAccount,
-    TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
-    TResult Function(UserAddCategoryEvent value)? addCategory,
-    TResult Function(UserUpdateCategoryEvent value)? updateCategory,
-    TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
-    required TResult orElse(),
-  }) {
-    if (removeTag != null) {
-      return removeTag(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UserRemoveTagEvent implements UserEvent {
-  const factory UserRemoveTagEvent(final UserModel user, final TagModel tag) =
-      _$UserRemoveTagEvent;
-
-  UserModel get user;
-  TagModel get tag;
-  @JsonKey(ignore: true)
-  _$$UserRemoveTagEventCopyWith<_$UserRemoveTagEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2863,23 +1709,12 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
         updateAccount,
     required TResult Function(UserModel user, AccountModel account)
         removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
     required TResult Function(UserModel user, CategoryModel category)
         addCategory,
     required TResult Function(UserModel user, CategoryModel category, int index)
         updateCategory,
     required TResult Function(UserModel user, CategoryModel category)
         removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
   }) {
     return addCategory(user, category);
   }
@@ -2898,19 +1733,10 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     TResult? Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
     TResult? Function(UserModel user, CategoryModel category)? addCategory,
     TResult? Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
   }) {
     return addCategory?.call(user, category);
   }
@@ -2929,18 +1755,10 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     TResult Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
     TResult Function(UserModel user, CategoryModel category)? addCategory,
     TResult Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
     required TResult orElse(),
   }) {
     if (addCategory != null) {
@@ -2961,15 +1779,9 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     required TResult Function(UserAddAccountEvent value) addAccount,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
   }) {
     return addCategory(this);
   }
@@ -2984,15 +1796,9 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     TResult? Function(UserAddAccountEvent value)? addAccount,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
   }) {
     return addCategory?.call(this);
   }
@@ -3007,15 +1813,9 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     TResult Function(UserAddAccountEvent value)? addAccount,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
     required TResult orElse(),
   }) {
     if (addCategory != null) {
@@ -3132,23 +1932,12 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
         updateAccount,
     required TResult Function(UserModel user, AccountModel account)
         removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
     required TResult Function(UserModel user, CategoryModel category)
         addCategory,
     required TResult Function(UserModel user, CategoryModel category, int index)
         updateCategory,
     required TResult Function(UserModel user, CategoryModel category)
         removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
   }) {
     return updateCategory(user, category, index);
   }
@@ -3167,19 +1956,10 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     TResult? Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
     TResult? Function(UserModel user, CategoryModel category)? addCategory,
     TResult? Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
   }) {
     return updateCategory?.call(user, category, index);
   }
@@ -3198,18 +1978,10 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     TResult Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
     TResult Function(UserModel user, CategoryModel category)? addCategory,
     TResult Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
     required TResult orElse(),
   }) {
     if (updateCategory != null) {
@@ -3230,15 +2002,9 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     required TResult Function(UserAddAccountEvent value) addAccount,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
   }) {
     return updateCategory(this);
   }
@@ -3253,15 +2019,9 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     TResult? Function(UserAddAccountEvent value)? addAccount,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
   }) {
     return updateCategory?.call(this);
   }
@@ -3276,15 +2036,9 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     TResult Function(UserAddAccountEvent value)? addAccount,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
     required TResult orElse(),
   }) {
     if (updateCategory != null) {
@@ -3394,23 +2148,12 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
         updateAccount,
     required TResult Function(UserModel user, AccountModel account)
         removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
     required TResult Function(UserModel user, CategoryModel category)
         addCategory,
     required TResult Function(UserModel user, CategoryModel category, int index)
         updateCategory,
     required TResult Function(UserModel user, CategoryModel category)
         removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
   }) {
     return removeCategory(user, category);
   }
@@ -3429,19 +2172,10 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     TResult? Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
     TResult? Function(UserModel user, CategoryModel category)? addCategory,
     TResult? Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
   }) {
     return removeCategory?.call(user, category);
   }
@@ -3460,18 +2194,10 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     TResult Function(UserModel user, AccountModel account, int index)?
         updateAccount,
     TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
     TResult Function(UserModel user, CategoryModel category)? addCategory,
     TResult Function(UserModel user, CategoryModel category, int index)?
         updateCategory,
     TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
     required TResult orElse(),
   }) {
     if (removeCategory != null) {
@@ -3492,15 +2218,9 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     required TResult Function(UserAddAccountEvent value) addAccount,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
   }) {
     return removeCategory(this);
   }
@@ -3515,15 +2235,9 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     TResult? Function(UserAddAccountEvent value)? addAccount,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
   }) {
     return removeCategory?.call(this);
   }
@@ -3538,15 +2252,9 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     TResult Function(UserAddAccountEvent value)? addAccount,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
     required TResult orElse(),
   }) {
     if (removeCategory != null) {
@@ -3566,799 +2274,4 @@ abstract class UserRemoveCategoryEvent implements UserEvent {
   @JsonKey(ignore: true)
   _$$UserRemoveCategoryEventCopyWith<_$UserRemoveCategoryEvent> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UserAddCreditCardEventCopyWith<$Res> {
-  factory _$$UserAddCreditCardEventCopyWith(_$UserAddCreditCardEvent value,
-          $Res Function(_$UserAddCreditCardEvent) then) =
-      __$$UserAddCreditCardEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserModel user, CreditCardModel creditCard});
-}
-
-/// @nodoc
-class __$$UserAddCreditCardEventCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$UserAddCreditCardEvent>
-    implements _$$UserAddCreditCardEventCopyWith<$Res> {
-  __$$UserAddCreditCardEventCopyWithImpl(_$UserAddCreditCardEvent _value,
-      $Res Function(_$UserAddCreditCardEvent) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-    Object? creditCard = null,
-  }) {
-    return _then(_$UserAddCreditCardEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      null == creditCard
-          ? _value.creditCard
-          : creditCard // ignore: cast_nullable_to_non_nullable
-              as CreditCardModel,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UserAddCreditCardEvent implements UserAddCreditCardEvent {
-  const _$UserAddCreditCardEvent(this.user, this.creditCard);
-
-  @override
-  final UserModel user;
-  @override
-  final CreditCardModel creditCard;
-
-  @override
-  String toString() {
-    return 'UserEvent.addCreditCard(user: $user, creditCard: $creditCard)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserAddCreditCardEvent &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.creditCard, creditCard) ||
-                other.creditCard == creditCard));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user, creditCard);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserAddCreditCardEventCopyWith<_$UserAddCreditCardEvent> get copyWith =>
-      __$$UserAddCreditCardEventCopyWithImpl<_$UserAddCreditCardEvent>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
-  }) {
-    return addCreditCard(user, creditCard);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
-  }) {
-    return addCreditCard?.call(user, creditCard);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
-    required TResult orElse(),
-  }) {
-    if (addCreditCard != null) {
-      return addCreditCard(user, creditCard);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UserInitialEvent value) init,
-    required TResult Function(UserAddTransactionEvent value) addTransaction,
-    required TResult Function(UserUpdateTransactionEvent value)
-        updateTransaction,
-    required TResult Function(UserRemoveTransactionEvent value)
-        removeTransaction,
-    required TResult Function(UserAddAccountEvent value) addAccount,
-    required TResult Function(UserUpdateAccountEvent value) updateAccount,
-    required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
-    required TResult Function(UserAddCategoryEvent value) addCategory,
-    required TResult Function(UserUpdateCategoryEvent value) updateCategory,
-    required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
-  }) {
-    return addCreditCard(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UserInitialEvent value)? init,
-    TResult? Function(UserAddTransactionEvent value)? addTransaction,
-    TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
-    TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
-    TResult? Function(UserAddAccountEvent value)? addAccount,
-    TResult? Function(UserUpdateAccountEvent value)? updateAccount,
-    TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
-    TResult? Function(UserAddCategoryEvent value)? addCategory,
-    TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
-    TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
-  }) {
-    return addCreditCard?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserInitialEvent value)? init,
-    TResult Function(UserAddTransactionEvent value)? addTransaction,
-    TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
-    TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
-    TResult Function(UserAddAccountEvent value)? addAccount,
-    TResult Function(UserUpdateAccountEvent value)? updateAccount,
-    TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
-    TResult Function(UserAddCategoryEvent value)? addCategory,
-    TResult Function(UserUpdateCategoryEvent value)? updateCategory,
-    TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
-    required TResult orElse(),
-  }) {
-    if (addCreditCard != null) {
-      return addCreditCard(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UserAddCreditCardEvent implements UserEvent {
-  const factory UserAddCreditCardEvent(
-          final UserModel user, final CreditCardModel creditCard) =
-      _$UserAddCreditCardEvent;
-
-  UserModel get user;
-  CreditCardModel get creditCard;
-  @JsonKey(ignore: true)
-  _$$UserAddCreditCardEventCopyWith<_$UserAddCreditCardEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UserUpdateCreditCardEventCopyWith<$Res> {
-  factory _$$UserUpdateCreditCardEventCopyWith(
-          _$UserUpdateCreditCardEvent value,
-          $Res Function(_$UserUpdateCreditCardEvent) then) =
-      __$$UserUpdateCreditCardEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserModel user, CreditCardModel creditCard, int index});
-}
-
-/// @nodoc
-class __$$UserUpdateCreditCardEventCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$UserUpdateCreditCardEvent>
-    implements _$$UserUpdateCreditCardEventCopyWith<$Res> {
-  __$$UserUpdateCreditCardEventCopyWithImpl(_$UserUpdateCreditCardEvent _value,
-      $Res Function(_$UserUpdateCreditCardEvent) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-    Object? creditCard = null,
-    Object? index = null,
-  }) {
-    return _then(_$UserUpdateCreditCardEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      null == creditCard
-          ? _value.creditCard
-          : creditCard // ignore: cast_nullable_to_non_nullable
-              as CreditCardModel,
-      null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UserUpdateCreditCardEvent implements UserUpdateCreditCardEvent {
-  const _$UserUpdateCreditCardEvent(this.user, this.creditCard, this.index);
-
-  @override
-  final UserModel user;
-  @override
-  final CreditCardModel creditCard;
-  @override
-  final int index;
-
-  @override
-  String toString() {
-    return 'UserEvent.updateCreditCard(user: $user, creditCard: $creditCard, index: $index)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserUpdateCreditCardEvent &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.creditCard, creditCard) ||
-                other.creditCard == creditCard) &&
-            (identical(other.index, index) || other.index == index));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user, creditCard, index);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserUpdateCreditCardEventCopyWith<_$UserUpdateCreditCardEvent>
-      get copyWith => __$$UserUpdateCreditCardEventCopyWithImpl<
-          _$UserUpdateCreditCardEvent>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
-  }) {
-    return updateCreditCard(user, creditCard, index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
-  }) {
-    return updateCreditCard?.call(user, creditCard, index);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
-    required TResult orElse(),
-  }) {
-    if (updateCreditCard != null) {
-      return updateCreditCard(user, creditCard, index);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UserInitialEvent value) init,
-    required TResult Function(UserAddTransactionEvent value) addTransaction,
-    required TResult Function(UserUpdateTransactionEvent value)
-        updateTransaction,
-    required TResult Function(UserRemoveTransactionEvent value)
-        removeTransaction,
-    required TResult Function(UserAddAccountEvent value) addAccount,
-    required TResult Function(UserUpdateAccountEvent value) updateAccount,
-    required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
-    required TResult Function(UserAddCategoryEvent value) addCategory,
-    required TResult Function(UserUpdateCategoryEvent value) updateCategory,
-    required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
-  }) {
-    return updateCreditCard(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UserInitialEvent value)? init,
-    TResult? Function(UserAddTransactionEvent value)? addTransaction,
-    TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
-    TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
-    TResult? Function(UserAddAccountEvent value)? addAccount,
-    TResult? Function(UserUpdateAccountEvent value)? updateAccount,
-    TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
-    TResult? Function(UserAddCategoryEvent value)? addCategory,
-    TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
-    TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
-  }) {
-    return updateCreditCard?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserInitialEvent value)? init,
-    TResult Function(UserAddTransactionEvent value)? addTransaction,
-    TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
-    TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
-    TResult Function(UserAddAccountEvent value)? addAccount,
-    TResult Function(UserUpdateAccountEvent value)? updateAccount,
-    TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
-    TResult Function(UserAddCategoryEvent value)? addCategory,
-    TResult Function(UserUpdateCategoryEvent value)? updateCategory,
-    TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
-    required TResult orElse(),
-  }) {
-    if (updateCreditCard != null) {
-      return updateCreditCard(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UserUpdateCreditCardEvent implements UserEvent {
-  const factory UserUpdateCreditCardEvent(
-      final UserModel user,
-      final CreditCardModel creditCard,
-      final int index) = _$UserUpdateCreditCardEvent;
-
-  UserModel get user;
-  CreditCardModel get creditCard;
-  int get index;
-  @JsonKey(ignore: true)
-  _$$UserUpdateCreditCardEventCopyWith<_$UserUpdateCreditCardEvent>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UserRemoveCreditCardEventCopyWith<$Res> {
-  factory _$$UserRemoveCreditCardEventCopyWith(
-          _$UserRemoveCreditCardEvent value,
-          $Res Function(_$UserRemoveCreditCardEvent) then) =
-      __$$UserRemoveCreditCardEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserModel user, CreditCardModel creditCard});
-}
-
-/// @nodoc
-class __$$UserRemoveCreditCardEventCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$UserRemoveCreditCardEvent>
-    implements _$$UserRemoveCreditCardEventCopyWith<$Res> {
-  __$$UserRemoveCreditCardEventCopyWithImpl(_$UserRemoveCreditCardEvent _value,
-      $Res Function(_$UserRemoveCreditCardEvent) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-    Object? creditCard = null,
-  }) {
-    return _then(_$UserRemoveCreditCardEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      null == creditCard
-          ? _value.creditCard
-          : creditCard // ignore: cast_nullable_to_non_nullable
-              as CreditCardModel,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UserRemoveCreditCardEvent implements UserRemoveCreditCardEvent {
-  const _$UserRemoveCreditCardEvent(this.user, this.creditCard);
-
-  @override
-  final UserModel user;
-  @override
-  final CreditCardModel creditCard;
-
-  @override
-  String toString() {
-    return 'UserEvent.removeCreditCard(user: $user, creditCard: $creditCard)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UserRemoveCreditCardEvent &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.creditCard, creditCard) ||
-                other.creditCard == creditCard));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user, creditCard);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserRemoveCreditCardEventCopyWith<_$UserRemoveCreditCardEvent>
-      get copyWith => __$$UserRemoveCreditCardEventCopyWithImpl<
-          _$UserRemoveCreditCardEvent>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, TagModel tag) addTag,
-    required TResult Function(UserModel user, TagModel tag, int index)
-        updateTag,
-    required TResult Function(UserModel user, TagModel tag) removeTag,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        addCreditCard,
-    required TResult Function(
-            UserModel user, CreditCardModel creditCard, int index)
-        updateCreditCard,
-    required TResult Function(UserModel user, CreditCardModel creditCard)
-        removeCreditCard,
-  }) {
-    return removeCreditCard(user, creditCard);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, TagModel tag)? addTag,
-    TResult? Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult? Function(UserModel user, TagModel tag)? removeTag,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        addCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult? Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
-  }) {
-    return removeCreditCard?.call(user, creditCard);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, TagModel tag)? addTag,
-    TResult Function(UserModel user, TagModel tag, int index)? updateTag,
-    TResult Function(UserModel user, TagModel tag)? removeTag,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
-    TResult Function(UserModel user, CreditCardModel creditCard)? addCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard, int index)?
-        updateCreditCard,
-    TResult Function(UserModel user, CreditCardModel creditCard)?
-        removeCreditCard,
-    required TResult orElse(),
-  }) {
-    if (removeCreditCard != null) {
-      return removeCreditCard(user, creditCard);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UserInitialEvent value) init,
-    required TResult Function(UserAddTransactionEvent value) addTransaction,
-    required TResult Function(UserUpdateTransactionEvent value)
-        updateTransaction,
-    required TResult Function(UserRemoveTransactionEvent value)
-        removeTransaction,
-    required TResult Function(UserAddAccountEvent value) addAccount,
-    required TResult Function(UserUpdateAccountEvent value) updateAccount,
-    required TResult Function(UserRemoveAccountEvent value) removeAccount,
-    required TResult Function(UserAddTagEvent value) addTag,
-    required TResult Function(UserUpdateTagEvent value) updateTag,
-    required TResult Function(UserRemoveTagEvent value) removeTag,
-    required TResult Function(UserAddCategoryEvent value) addCategory,
-    required TResult Function(UserUpdateCategoryEvent value) updateCategory,
-    required TResult Function(UserRemoveCategoryEvent value) removeCategory,
-    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
-    required TResult Function(UserUpdateCreditCardEvent value) updateCreditCard,
-    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
-  }) {
-    return removeCreditCard(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UserInitialEvent value)? init,
-    TResult? Function(UserAddTransactionEvent value)? addTransaction,
-    TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
-    TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
-    TResult? Function(UserAddAccountEvent value)? addAccount,
-    TResult? Function(UserUpdateAccountEvent value)? updateAccount,
-    TResult? Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult? Function(UserAddTagEvent value)? addTag,
-    TResult? Function(UserUpdateTagEvent value)? updateTag,
-    TResult? Function(UserRemoveTagEvent value)? removeTag,
-    TResult? Function(UserAddCategoryEvent value)? addCategory,
-    TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
-    TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult? Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
-  }) {
-    return removeCreditCard?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UserInitialEvent value)? init,
-    TResult Function(UserAddTransactionEvent value)? addTransaction,
-    TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
-    TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
-    TResult Function(UserAddAccountEvent value)? addAccount,
-    TResult Function(UserUpdateAccountEvent value)? updateAccount,
-    TResult Function(UserRemoveAccountEvent value)? removeAccount,
-    TResult Function(UserAddTagEvent value)? addTag,
-    TResult Function(UserUpdateTagEvent value)? updateTag,
-    TResult Function(UserRemoveTagEvent value)? removeTag,
-    TResult Function(UserAddCategoryEvent value)? addCategory,
-    TResult Function(UserUpdateCategoryEvent value)? updateCategory,
-    TResult Function(UserRemoveCategoryEvent value)? removeCategory,
-    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
-    TResult Function(UserUpdateCreditCardEvent value)? updateCreditCard,
-    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
-    required TResult orElse(),
-  }) {
-    if (removeCreditCard != null) {
-      return removeCreditCard(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UserRemoveCreditCardEvent implements UserEvent {
-  const factory UserRemoveCreditCardEvent(
-          final UserModel user, final CreditCardModel creditCard) =
-      _$UserRemoveCreditCardEvent;
-
-  UserModel get user;
-  CreditCardModel get creditCard;
-  @JsonKey(ignore: true)
-  _$$UserRemoveCreditCardEventCopyWith<_$UserRemoveCreditCardEvent>
-      get copyWith => throw _privateConstructorUsedError;
 }

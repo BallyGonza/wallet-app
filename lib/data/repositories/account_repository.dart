@@ -10,6 +10,8 @@ class AccountRepository {
   }
 }
 
+List<AccountModel> defaultAccounts = [cash, hsbc];
+
 AccountModel cash = AccountModel(
   id: '1',
   name: 'Efectivo',
@@ -21,20 +23,7 @@ AccountModel cash = AccountModel(
   includeInTotal: true,
   isHidden: false,
   currency: pesoArg,
-  transactions: [
-    // TransactionModel(
-    //   id: '1',
-    //   amount: 100,
-    //   date: DateTime.now(),
-    //   account: cash,
-    //   category: salary,
-    //   isRecurrent: false,
-    //   isIncome: true,
-    //   description: 'Salario',
-    //   tags: [],
-    //   attachment: '',
-    // ),
-  ],
+  transactions: [],
 );
 
 AccountModel hsbc = AccountModel(
@@ -50,5 +39,3 @@ AccountModel hsbc = AccountModel(
   currency: pesoArg,
   transactions: [],
 );
-
-List<AccountModel> defaultAccounts = [cash, hsbc];

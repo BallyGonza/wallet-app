@@ -32,19 +32,7 @@ class UserEvent with _$UserEvent {
     UserModel user,
     AccountModel account,
   ) = UserRemoveAccountEvent;
-  const factory UserEvent.addTag(
-    UserModel user,
-    TagModel tag,
-  ) = UserAddTagEvent;
-  const factory UserEvent.updateTag(
-    UserModel user,
-    TagModel tag,
-    int index,
-  ) = UserUpdateTagEvent;
-  const factory UserEvent.removeTag(
-    UserModel user,
-    TagModel tag,
-  ) = UserRemoveTagEvent;
+
   const factory UserEvent.addCategory(
     UserModel user,
     CategoryModel category,
@@ -58,17 +46,4 @@ class UserEvent with _$UserEvent {
     UserModel user,
     CategoryModel category,
   ) = UserRemoveCategoryEvent;
-  const factory UserEvent.addCreditCard(
-    UserModel user,
-    CreditCardModel creditCard,
-  ) = UserAddCreditCardEvent;
-  const factory UserEvent.updateCreditCard(
-    UserModel user,
-    CreditCardModel creditCard,
-    int index,
-  ) = UserUpdateCreditCardEvent;
-  const factory UserEvent.removeCreditCard(
-    UserModel user,
-    CreditCardModel creditCard,
-  ) = UserRemoveCreditCardEvent;
 }

@@ -10,11 +10,10 @@ class TransactionEvent with _$TransactionEvent {
     TransactionModel transaction,
   ) = AddTransactionEvent;
   const factory TransactionEvent.updateTransaction(
-    int index,
     TransactionModel transaction,
   ) = UpdateTransactionEvent;
   const factory TransactionEvent.removeTransaction(
-    int index,
+    TransactionModel transaction,
   ) = RemoveTransactionEvent;
   const factory TransactionEvent.removeAllTransactions() =
       RemoveAllTransactionsEvent;
