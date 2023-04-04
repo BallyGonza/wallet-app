@@ -5,19 +5,24 @@ import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
-class TransactionsList extends StatefulWidget {
-  const TransactionsList({required this.user, Key? key}) : super(key: key);
+class AccountsList extends StatefulWidget {
+  const AccountsList({required this.user, Key? key}) : super(key: key);
 
   final UserModel user;
 
   @override
-  State<TransactionsList> createState() => _TransactionsListState();
+  State<AccountsList> createState() => _AccountsListState();
 }
 
-class _TransactionsListState extends State<TransactionsList> {
+class _AccountsListState extends State<AccountsList> {
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -26,7 +31,7 @@ class _TransactionsListState extends State<TransactionsList> {
       listener: (context, state) {},
       builder: (context, state) {
         return state.maybeWhen(
-          updated: (user) {
+          updated: (updatedAccount) {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Column(
@@ -37,7 +42,7 @@ class _TransactionsListState extends State<TransactionsList> {
                     child: Row(
                       children: [
                         const Text(
-                          'Transactions',
+                          'Account',
                           style: TextStyle(
                             color: Colors.grey,
                             fontSize: 15,
@@ -47,20 +52,20 @@ class _TransactionsListState extends State<TransactionsList> {
                         const Spacer(),
                         InkWell(
                           onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => AddTransactionScreen(
-                                  onPressed: (transaction) {
-                                    setState(() {
-                                      context.read<UserBloc>().add(
-                                            UserEvent.addTransaction(
-                                                transaction),
-                                          );
-                                    });
-                                  },
-                                ),
-                              ),
-                            );
+                            // Navigator.of(context).push(
+                            //   MaterialPageRoute(
+                            //     builder: (_) => AddAccountScreen(
+                            //       onPressed: (account) {
+                            //         setState(() {
+                            //           context.read<AccountBloc>().add(
+                            //                 AccountEvent.addAccount(
+                            //                     account),
+                            //               );
+                            //         });
+                            //       },
+                            //     ),
+                            //   ),
+                            // );
                           },
                           child: const FaIcon(
                             FontAwesomeIcons.plus,
@@ -77,18 +82,17 @@ class _TransactionsListState extends State<TransactionsList> {
                       return state.maybeWhen(
                         updated: (user) {
                           return Container(
-                            height: user.transactions.length * 73.0,
+                            height: user.accounts.length * 73.0,
                             decoration: const BoxDecoration(
                               color: colorCards,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20)),
                             ),
-                            child: user.transactions.isEmpty
+                            child: user.accounts.isEmpty
                                 ? const Center(
-                                    child: Text('No transactions yet'),
+                                    child: Text('No accounts yet'),
                                   )
-                                : _buildTransactionsList(
-                                    context, user.transactions),
+                                : _buildAccountList(context, user.accounts),
                           );
                         },
                         orElse: () => const Center(
@@ -109,17 +113,16 @@ class _TransactionsListState extends State<TransactionsList> {
     );
   }
 
-  Widget _buildTransactionsList(
-      BuildContext context, List<TransactionModel> transactions) {
+  Widget _buildAccountList(BuildContext context, List<AccountModel> accounts) {
     return ListView(
       reverse: true,
       physics: const NeverScrollableScrollPhysics(),
       children: List.generate(
-        transactions.length,
+        accounts.length,
         (index) {
-          final transaction = transactions[index];
-          return TransactionListItem(
-            transaction: transaction,
+          final account = accounts[index];
+          return AccountListItem(
+            account: account,
           );
         },
       ),

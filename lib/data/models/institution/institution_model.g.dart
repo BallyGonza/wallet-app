@@ -17,7 +17,7 @@ class InstitutionModelAdapter extends TypeAdapter<InstitutionModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return InstitutionModel(
-      id: fields[0] as String,
+      id: fields[0] as int,
       name: fields[1] as String,
       image: fields[2] as String,
       color: fields[3] as int,
@@ -55,7 +55,7 @@ class InstitutionModelAdapter extends TypeAdapter<InstitutionModel> {
 
 InstitutionModel _$InstitutionModelFromJson(Map<String, dynamic> json) =>
     InstitutionModel(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
       image: json['image'] as String,
       color: json['color'] as int,

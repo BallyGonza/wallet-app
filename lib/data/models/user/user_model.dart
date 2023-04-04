@@ -12,11 +12,14 @@ class UserModel extends HiveObject {
   @HiveField(1)
   List<AccountModel> accounts;
   @HiveField(2)
+  List<TransactionModel> transactions;
+  @HiveField(3)
   List<CategoryModel> categories;
 
   UserModel({
     required this.id,
     required this.accounts,
+    required this.transactions,
     required this.categories,
   });
 

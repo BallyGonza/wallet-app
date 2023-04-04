@@ -7,7 +7,7 @@ part 'institution_model.g.dart';
 @HiveType(typeId: 5)
 class InstitutionModel extends HiveObject {
   @HiveField(0)
-  String id;
+  int id;
   @HiveField(1)
   String name;
   @HiveField(2)

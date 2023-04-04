@@ -1,2 +1,2 @@
-export 'accounts_list_view.dart';
+export 'accounts_list.dart';
 export 'account_list_item.dart';

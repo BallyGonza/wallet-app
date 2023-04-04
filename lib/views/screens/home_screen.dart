@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         const SizedBox(height: 16),
-        AccountsListView(accounts: user.accounts),
+        AccountsList(user: user),
         TransactionsList(user: user),
       ],
     );

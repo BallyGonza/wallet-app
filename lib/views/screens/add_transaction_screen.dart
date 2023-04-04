@@ -316,7 +316,10 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           var transaction = TransactionModel(
                             id: 0,
                             note: _noteController.text,
-                            amount: double.parse(_amountController.text),
+                            // parse amunt to double, and if it is not
+                            amount: _isIncome
+                                ? double.parse(_amountController.text)
+                                : -double.parse(_amountController.text),
                             category: _selectedCategory,
                             account: _selectedAccount,
                             date: _selectedDateTime,

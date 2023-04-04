@@ -17,7 +17,7 @@ class CurrencyModelAdapter extends TypeAdapter<CurrencyModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CurrencyModel(
-      id: fields[0] as String,
+      id: fields[0] as int,
       name: fields[1] as String,
       symbol: fields[2] as String,
       code: fields[3] as String,
@@ -58,7 +58,7 @@ class CurrencyModelAdapter extends TypeAdapter<CurrencyModel> {
 
 CurrencyModel _$CurrencyModelFromJson(Map<String, dynamic> json) =>
     CurrencyModel(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
       symbol: json['symbol'] as String,
       code: json['code'] as String,

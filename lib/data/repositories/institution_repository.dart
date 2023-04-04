@@ -8,29 +8,31 @@ class AccountRepository {
   }
 }
 
+List<AccountModel> defaultAccounts = [cash, hsbc];
+
 InstitutionModel wallet = InstitutionModel(
-  id: '0',
+  id: 0,
   name: 'Efectivo',
   image: 'assets/icons/institutions/money.png',
   color: 0xFF2ab22a,
 );
 
 InstitutionModel hSBC = InstitutionModel(
-  id: '1',
+  id: 1,
   name: 'HSBC',
   image: 'assets/icons/institutions/hsbc.png',
   color: 0xFFE0E0E0,
 );
 
 InstitutionModel bBVA = InstitutionModel(
-  id: '2',
+  id: 2,
   name: 'BBVA',
   image: '',
   color: 0xFFE0E0E0,
 );
 
 InstitutionModel mercadoPago = InstitutionModel(
-  id: '3',
+  id: 3,
   name: 'Mercado Pago',
   image: '',
   color: 0xFFE0E0E0,

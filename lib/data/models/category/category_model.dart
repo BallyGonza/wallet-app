@@ -7,7 +7,7 @@ part 'category_model.g.dart';
 @HiveType(typeId: 2)
 class CategoryModel extends HiveObject {
   @HiveField(0)
-  String id;
+  int id;
   @HiveField(1)
   String name;
   @HiveField(2)

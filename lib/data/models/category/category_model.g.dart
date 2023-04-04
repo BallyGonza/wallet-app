@@ -17,7 +17,7 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CategoryModel(
-      id: fields[0] as String,
+      id: fields[0] as int,
       name: fields[1] as String,
       image: fields[2] as String,
       color: fields[3] as int,
@@ -61,7 +61,7 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
 
 CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
     CategoryModel(
-      id: json['id'] as String,
+      id: json['id'] as int,
       name: json['name'] as String,
       image: json['image'] as String,
       color: json['color'] as int,

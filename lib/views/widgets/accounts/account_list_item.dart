@@ -1,26 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/data/data.dart';
 
-class AccountListItem extends StatelessWidget {
+class AccountListItem extends StatefulWidget {
   const AccountListItem({required this.account, Key? key}) : super(key: key);
 
   final AccountModel account;
+
+  @override
+  State<AccountListItem> createState() => _AccountListItemState();
+}
+
+class _AccountListItemState extends State<AccountListItem> {
+  double _balance = 0;
+
+  @override
+  void initState() {
+    // for (final transaction in widget.user.transactions) {
+    //   _balance += transaction.amount;
+    // }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
         // backgroundImage: AssetImage(account.institution.image),
-        backgroundColor: Color(account.institution.color),
+        backgroundColor: Color(widget.account.institution.color),
         radius: 18,
         // backgroundImage: AssetImage(account.institution.image),
         child: Image.asset(
-          account.institution.image,
+          widget.account.institution.image,
           width: 24,
         ),
       ),
       title: Text(
-        account.name,
+        widget.account.name,
         style: const TextStyle(
           color: Colors.white,
           fontSize: 16,
@@ -28,9 +43,9 @@ class AccountListItem extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        '\$ ${amountFormat.format(account.balance)}',
+        '\$ ${amountFormat.format(_balance)}',
         style: Theme.of(context).textTheme.subtitle2!.copyWith(
-              color: account.balance >= 0 ? Colors.green : Colors.red,
+              color: _balance >= 0 ? Colors.green : Colors.red,
             ),
       ),
       trailing: const Icon(

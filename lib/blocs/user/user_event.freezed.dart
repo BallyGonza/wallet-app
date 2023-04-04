@@ -19,62 +19,46 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -87,6 +71,8 @@ mixin _$UserEvent {
     required TResult Function(UserRemoveTransactionEvent value)
         removeTransaction,
     required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCategoryEvent value) addCategory,
@@ -101,6 +87,8 @@ mixin _$UserEvent {
     TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
@@ -115,6 +103,8 @@ mixin _$UserEvent {
     TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCategoryEvent value)? addCategory,
@@ -181,24 +171,16 @@ class _$UserInitialEvent implements UserInitialEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
   }) {
     return init();
   }
@@ -207,20 +189,16 @@ class _$UserInitialEvent implements UserInitialEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
   }) {
     return init?.call();
   }
@@ -229,20 +207,16 @@ class _$UserInitialEvent implements UserInitialEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -261,6 +235,8 @@ class _$UserInitialEvent implements UserInitialEvent {
     required TResult Function(UserRemoveTransactionEvent value)
         removeTransaction,
     required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCategoryEvent value) addCategory,
@@ -278,6 +254,8 @@ class _$UserInitialEvent implements UserInitialEvent {
     TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
@@ -295,6 +273,8 @@ class _$UserInitialEvent implements UserInitialEvent {
     TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCategoryEvent value)? addCategory,
@@ -319,7 +299,7 @@ abstract class _$$UserAddTransactionEventCopyWith<$Res> {
           $Res Function(_$UserAddTransactionEvent) then) =
       __$$UserAddTransactionEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserModel user, TransactionModel transaction});
+  $Res call({TransactionModel transaction});
 }
 
 /// @nodoc
@@ -333,14 +313,9 @@ class __$$UserAddTransactionEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
     Object? transaction = null,
   }) {
     return _then(_$UserAddTransactionEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
       null == transaction
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
@@ -352,16 +327,14 @@ class __$$UserAddTransactionEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserAddTransactionEvent implements UserAddTransactionEvent {
-  const _$UserAddTransactionEvent(this.user, this.transaction);
+  const _$UserAddTransactionEvent(this.transaction);
 
-  @override
-  final UserModel user;
   @override
   final TransactionModel transaction;
 
   @override
   String toString() {
-    return 'UserEvent.addTransaction(user: $user, transaction: $transaction)';
+    return 'UserEvent.addTransaction(transaction: $transaction)';
   }
 
   @override
@@ -369,13 +342,12 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserAddTransactionEvent &&
-            (identical(other.user, user) || other.user == user) &&
             (identical(other.transaction, transaction) ||
                 other.transaction == transaction));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, transaction);
+  int get hashCode => Object.hash(runtimeType, transaction);
 
   @JsonKey(ignore: true)
   @override
@@ -388,72 +360,56 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
   }) {
-    return addTransaction(user, transaction);
+    return addTransaction(transaction);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
   }) {
-    return addTransaction?.call(user, transaction);
+    return addTransaction?.call(transaction);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
     required TResult orElse(),
   }) {
     if (addTransaction != null) {
-      return addTransaction(user, transaction);
+      return addTransaction(transaction);
     }
     return orElse();
   }
@@ -468,6 +424,8 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     required TResult Function(UserRemoveTransactionEvent value)
         removeTransaction,
     required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCategoryEvent value) addCategory,
@@ -485,6 +443,8 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
@@ -502,6 +462,8 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCategoryEvent value)? addCategory,
@@ -517,11 +479,9 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
 }
 
 abstract class UserAddTransactionEvent implements UserEvent {
-  const factory UserAddTransactionEvent(
-          final UserModel user, final TransactionModel transaction) =
+  const factory UserAddTransactionEvent(final TransactionModel transaction) =
       _$UserAddTransactionEvent;
 
-  UserModel get user;
   TransactionModel get transaction;
   @JsonKey(ignore: true)
   _$$UserAddTransactionEventCopyWith<_$UserAddTransactionEvent> get copyWith =>
@@ -535,7 +495,7 @@ abstract class _$$UserUpdateTransactionEventCopyWith<$Res> {
           $Res Function(_$UserUpdateTransactionEvent) then) =
       __$$UserUpdateTransactionEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserModel user, TransactionModel transaction, int index});
+  $Res call({TransactionModel transaction});
 }
 
 /// @nodoc
@@ -550,23 +510,13 @@ class __$$UserUpdateTransactionEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
     Object? transaction = null,
-    Object? index = null,
   }) {
     return _then(_$UserUpdateTransactionEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
       null == transaction
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
               as TransactionModel,
-      null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -574,18 +524,14 @@ class __$$UserUpdateTransactionEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
-  const _$UserUpdateTransactionEvent(this.user, this.transaction, this.index);
+  const _$UserUpdateTransactionEvent(this.transaction);
 
   @override
-  final UserModel user;
-  @override
   final TransactionModel transaction;
-  @override
-  final int index;
 
   @override
   String toString() {
-    return 'UserEvent.updateTransaction(user: $user, transaction: $transaction, index: $index)';
+    return 'UserEvent.updateTransaction(transaction: $transaction)';
   }
 
   @override
@@ -593,14 +539,12 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserUpdateTransactionEvent &&
-            (identical(other.user, user) || other.user == user) &&
             (identical(other.transaction, transaction) ||
-                other.transaction == transaction) &&
-            (identical(other.index, index) || other.index == index));
+                other.transaction == transaction));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, transaction, index);
+  int get hashCode => Object.hash(runtimeType, transaction);
 
   @JsonKey(ignore: true)
   @override
@@ -613,72 +557,56 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
   }) {
-    return updateTransaction(user, transaction, index);
+    return updateTransaction(transaction);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
   }) {
-    return updateTransaction?.call(user, transaction, index);
+    return updateTransaction?.call(transaction);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
     required TResult orElse(),
   }) {
     if (updateTransaction != null) {
-      return updateTransaction(user, transaction, index);
+      return updateTransaction(transaction);
     }
     return orElse();
   }
@@ -693,6 +621,8 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     required TResult Function(UserRemoveTransactionEvent value)
         removeTransaction,
     required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCategoryEvent value) addCategory,
@@ -710,6 +640,8 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
@@ -727,6 +659,8 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCategoryEvent value)? addCategory,
@@ -742,14 +676,10 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
 }
 
 abstract class UserUpdateTransactionEvent implements UserEvent {
-  const factory UserUpdateTransactionEvent(
-      final UserModel user,
-      final TransactionModel transaction,
-      final int index) = _$UserUpdateTransactionEvent;
+  const factory UserUpdateTransactionEvent(final TransactionModel transaction) =
+      _$UserUpdateTransactionEvent;
 
-  UserModel get user;
   TransactionModel get transaction;
-  int get index;
   @JsonKey(ignore: true)
   _$$UserUpdateTransactionEventCopyWith<_$UserUpdateTransactionEvent>
       get copyWith => throw _privateConstructorUsedError;
@@ -762,7 +692,7 @@ abstract class _$$UserRemoveTransactionEventCopyWith<$Res> {
           $Res Function(_$UserRemoveTransactionEvent) then) =
       __$$UserRemoveTransactionEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserModel user, TransactionModel transaction});
+  $Res call({TransactionModel transaction});
 }
 
 /// @nodoc
@@ -777,14 +707,9 @@ class __$$UserRemoveTransactionEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
     Object? transaction = null,
   }) {
     return _then(_$UserRemoveTransactionEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
       null == transaction
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
@@ -796,16 +721,14 @@ class __$$UserRemoveTransactionEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
-  const _$UserRemoveTransactionEvent(this.user, this.transaction);
+  const _$UserRemoveTransactionEvent(this.transaction);
 
-  @override
-  final UserModel user;
   @override
   final TransactionModel transaction;
 
   @override
   String toString() {
-    return 'UserEvent.removeTransaction(user: $user, transaction: $transaction)';
+    return 'UserEvent.removeTransaction(transaction: $transaction)';
   }
 
   @override
@@ -813,13 +736,12 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserRemoveTransactionEvent &&
-            (identical(other.user, user) || other.user == user) &&
             (identical(other.transaction, transaction) ||
                 other.transaction == transaction));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, transaction);
+  int get hashCode => Object.hash(runtimeType, transaction);
 
   @JsonKey(ignore: true)
   @override
@@ -832,72 +754,56 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
   }) {
-    return removeTransaction(user, transaction);
+    return removeTransaction(transaction);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
   }) {
-    return removeTransaction?.call(user, transaction);
+    return removeTransaction?.call(transaction);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
     required TResult orElse(),
   }) {
     if (removeTransaction != null) {
-      return removeTransaction(user, transaction);
+      return removeTransaction(transaction);
     }
     return orElse();
   }
@@ -912,6 +818,8 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     required TResult Function(UserRemoveTransactionEvent value)
         removeTransaction,
     required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCategoryEvent value) addCategory,
@@ -929,6 +837,8 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
@@ -946,6 +856,8 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCategoryEvent value)? addCategory,
@@ -961,11 +873,9 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
 }
 
 abstract class UserRemoveTransactionEvent implements UserEvent {
-  const factory UserRemoveTransactionEvent(
-          final UserModel user, final TransactionModel transaction) =
+  const factory UserRemoveTransactionEvent(final TransactionModel transaction) =
       _$UserRemoveTransactionEvent;
 
-  UserModel get user;
   TransactionModel get transaction;
   @JsonKey(ignore: true)
   _$$UserRemoveTransactionEventCopyWith<_$UserRemoveTransactionEvent>
@@ -978,7 +888,7 @@ abstract class _$$UserAddAccountEventCopyWith<$Res> {
           $Res Function(_$UserAddAccountEvent) then) =
       __$$UserAddAccountEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserModel user, AccountModel account});
+  $Res call({AccountModel account});
 }
 
 /// @nodoc
@@ -992,14 +902,9 @@ class __$$UserAddAccountEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
     Object? account = null,
   }) {
     return _then(_$UserAddAccountEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
       null == account
           ? _value.account
           : account // ignore: cast_nullable_to_non_nullable
@@ -1011,16 +916,14 @@ class __$$UserAddAccountEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserAddAccountEvent implements UserAddAccountEvent {
-  const _$UserAddAccountEvent(this.user, this.account);
+  const _$UserAddAccountEvent(this.account);
 
-  @override
-  final UserModel user;
   @override
   final AccountModel account;
 
   @override
   String toString() {
-    return 'UserEvent.addAccount(user: $user, account: $account)';
+    return 'UserEvent.addAccount(account: $account)';
   }
 
   @override
@@ -1028,12 +931,11 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserAddAccountEvent &&
-            (identical(other.user, user) || other.user == user) &&
             (identical(other.account, account) || other.account == account));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, account);
+  int get hashCode => Object.hash(runtimeType, account);
 
   @JsonKey(ignore: true)
   @override
@@ -1046,72 +948,56 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
   }) {
-    return addAccount(user, account);
+    return addAccount(account);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
   }) {
-    return addAccount?.call(user, account);
+    return addAccount?.call(account);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
     required TResult orElse(),
   }) {
     if (addAccount != null) {
-      return addAccount(user, account);
+      return addAccount(account);
     }
     return orElse();
   }
@@ -1126,6 +1012,8 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     required TResult Function(UserRemoveTransactionEvent value)
         removeTransaction,
     required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCategoryEvent value) addCategory,
@@ -1143,6 +1031,8 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
@@ -1160,6 +1050,8 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCategoryEvent value)? addCategory,
@@ -1175,10 +1067,9 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
 }
 
 abstract class UserAddAccountEvent implements UserEvent {
-  const factory UserAddAccountEvent(
-      final UserModel user, final AccountModel account) = _$UserAddAccountEvent;
+  const factory UserAddAccountEvent(final AccountModel account) =
+      _$UserAddAccountEvent;
 
-  UserModel get user;
   AccountModel get account;
   @JsonKey(ignore: true)
   _$$UserAddAccountEventCopyWith<_$UserAddAccountEvent> get copyWith =>
@@ -1186,153 +1077,98 @@ abstract class UserAddAccountEvent implements UserEvent {
 }
 
 /// @nodoc
-abstract class _$$UserUpdateAccountEventCopyWith<$Res> {
-  factory _$$UserUpdateAccountEventCopyWith(_$UserUpdateAccountEvent value,
-          $Res Function(_$UserUpdateAccountEvent) then) =
-      __$$UserUpdateAccountEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserModel user, AccountModel account, int index});
+abstract class _$$UserRemoveAllTransactionsEventCopyWith<$Res> {
+  factory _$$UserRemoveAllTransactionsEventCopyWith(
+          _$UserRemoveAllTransactionsEvent value,
+          $Res Function(_$UserRemoveAllTransactionsEvent) then) =
+      __$$UserRemoveAllTransactionsEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UserUpdateAccountEventCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$UserUpdateAccountEvent>
-    implements _$$UserUpdateAccountEventCopyWith<$Res> {
-  __$$UserUpdateAccountEventCopyWithImpl(_$UserUpdateAccountEvent _value,
-      $Res Function(_$UserUpdateAccountEvent) _then)
+class __$$UserRemoveAllTransactionsEventCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserRemoveAllTransactionsEvent>
+    implements _$$UserRemoveAllTransactionsEventCopyWith<$Res> {
+  __$$UserRemoveAllTransactionsEventCopyWithImpl(
+      _$UserRemoveAllTransactionsEvent _value,
+      $Res Function(_$UserRemoveAllTransactionsEvent) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-    Object? account = null,
-    Object? index = null,
-  }) {
-    return _then(_$UserUpdateAccountEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-      null == account
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as AccountModel,
-      null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
-  const _$UserUpdateAccountEvent(this.user, this.account, this.index);
-
-  @override
-  final UserModel user;
-  @override
-  final AccountModel account;
-  @override
-  final int index;
+class _$UserRemoveAllTransactionsEvent
+    implements UserRemoveAllTransactionsEvent {
+  const _$UserRemoveAllTransactionsEvent();
 
   @override
   String toString() {
-    return 'UserEvent.updateAccount(user: $user, account: $account, index: $index)';
+    return 'UserEvent.removeAllTransactions()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserUpdateAccountEvent &&
-            (identical(other.user, user) || other.user == user) &&
-            (identical(other.account, account) || other.account == account) &&
-            (identical(other.index, index) || other.index == index));
+            other is _$UserRemoveAllTransactionsEvent);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, account, index);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UserUpdateAccountEventCopyWith<_$UserUpdateAccountEvent> get copyWith =>
-      __$$UserUpdateAccountEventCopyWithImpl<_$UserUpdateAccountEvent>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
   }) {
-    return updateAccount(user, account, index);
+    return removeAllTransactions();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
   }) {
-    return updateAccount?.call(user, account, index);
+    return removeAllTransactions?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
     required TResult orElse(),
   }) {
-    if (updateAccount != null) {
-      return updateAccount(user, account, index);
+    if (removeAllTransactions != null) {
+      return removeAllTransactions();
     }
     return orElse();
   }
@@ -1347,6 +1183,197 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     required TResult Function(UserRemoveTransactionEvent value)
         removeTransaction,
     required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
+    required TResult Function(UserUpdateAccountEvent value) updateAccount,
+    required TResult Function(UserRemoveAccountEvent value) removeAccount,
+    required TResult Function(UserAddCategoryEvent value) addCategory,
+    required TResult Function(UserUpdateCategoryEvent value) updateCategory,
+    required TResult Function(UserRemoveCategoryEvent value) removeCategory,
+  }) {
+    return removeAllTransactions(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserInitialEvent value)? init,
+    TResult? Function(UserAddTransactionEvent value)? addTransaction,
+    TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
+    TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
+    TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
+    TResult? Function(UserUpdateAccountEvent value)? updateAccount,
+    TResult? Function(UserRemoveAccountEvent value)? removeAccount,
+    TResult? Function(UserAddCategoryEvent value)? addCategory,
+    TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
+    TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
+  }) {
+    return removeAllTransactions?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserInitialEvent value)? init,
+    TResult Function(UserAddTransactionEvent value)? addTransaction,
+    TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
+    TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
+    TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
+    TResult Function(UserUpdateAccountEvent value)? updateAccount,
+    TResult Function(UserRemoveAccountEvent value)? removeAccount,
+    TResult Function(UserAddCategoryEvent value)? addCategory,
+    TResult Function(UserUpdateCategoryEvent value)? updateCategory,
+    TResult Function(UserRemoveCategoryEvent value)? removeCategory,
+    required TResult orElse(),
+  }) {
+    if (removeAllTransactions != null) {
+      return removeAllTransactions(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserRemoveAllTransactionsEvent implements UserEvent {
+  const factory UserRemoveAllTransactionsEvent() =
+      _$UserRemoveAllTransactionsEvent;
+}
+
+/// @nodoc
+abstract class _$$UserUpdateAccountEventCopyWith<$Res> {
+  factory _$$UserUpdateAccountEventCopyWith(_$UserUpdateAccountEvent value,
+          $Res Function(_$UserUpdateAccountEvent) then) =
+      __$$UserUpdateAccountEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AccountModel account});
+}
+
+/// @nodoc
+class __$$UserUpdateAccountEventCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserUpdateAccountEvent>
+    implements _$$UserUpdateAccountEventCopyWith<$Res> {
+  __$$UserUpdateAccountEventCopyWithImpl(_$UserUpdateAccountEvent _value,
+      $Res Function(_$UserUpdateAccountEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? account = null,
+  }) {
+    return _then(_$UserUpdateAccountEvent(
+      null == account
+          ? _value.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as AccountModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
+  const _$UserUpdateAccountEvent(this.account);
+
+  @override
+  final AccountModel account;
+
+  @override
+  String toString() {
+    return 'UserEvent.updateAccount(account: $account)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserUpdateAccountEvent &&
+            (identical(other.account, account) || other.account == account));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, account);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserUpdateAccountEventCopyWith<_$UserUpdateAccountEvent> get copyWith =>
+      __$$UserUpdateAccountEventCopyWithImpl<_$UserUpdateAccountEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
+  }) {
+    return updateAccount(account);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
+  }) {
+    return updateAccount?.call(account);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
+    required TResult orElse(),
+  }) {
+    if (updateAccount != null) {
+      return updateAccount(account);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserInitialEvent value) init,
+    required TResult Function(UserAddTransactionEvent value) addTransaction,
+    required TResult Function(UserUpdateTransactionEvent value)
+        updateTransaction,
+    required TResult Function(UserRemoveTransactionEvent value)
+        removeTransaction,
+    required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCategoryEvent value) addCategory,
@@ -1364,6 +1391,8 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
@@ -1381,6 +1410,8 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCategoryEvent value)? addCategory,
@@ -1396,13 +1427,10 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
 }
 
 abstract class UserUpdateAccountEvent implements UserEvent {
-  const factory UserUpdateAccountEvent(
-          final UserModel user, final AccountModel account, final int index) =
+  const factory UserUpdateAccountEvent(final AccountModel account) =
       _$UserUpdateAccountEvent;
 
-  UserModel get user;
   AccountModel get account;
-  int get index;
   @JsonKey(ignore: true)
   _$$UserUpdateAccountEventCopyWith<_$UserUpdateAccountEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1414,7 +1442,7 @@ abstract class _$$UserRemoveAccountEventCopyWith<$Res> {
           $Res Function(_$UserRemoveAccountEvent) then) =
       __$$UserRemoveAccountEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserModel user, AccountModel account});
+  $Res call({AccountModel account});
 }
 
 /// @nodoc
@@ -1428,14 +1456,9 @@ class __$$UserRemoveAccountEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
     Object? account = null,
   }) {
     return _then(_$UserRemoveAccountEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
       null == account
           ? _value.account
           : account // ignore: cast_nullable_to_non_nullable
@@ -1447,16 +1470,14 @@ class __$$UserRemoveAccountEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
-  const _$UserRemoveAccountEvent(this.user, this.account);
+  const _$UserRemoveAccountEvent(this.account);
 
-  @override
-  final UserModel user;
   @override
   final AccountModel account;
 
   @override
   String toString() {
-    return 'UserEvent.removeAccount(user: $user, account: $account)';
+    return 'UserEvent.removeAccount(account: $account)';
   }
 
   @override
@@ -1464,12 +1485,11 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserRemoveAccountEvent &&
-            (identical(other.user, user) || other.user == user) &&
             (identical(other.account, account) || other.account == account));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, account);
+  int get hashCode => Object.hash(runtimeType, account);
 
   @JsonKey(ignore: true)
   @override
@@ -1482,72 +1502,56 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
   }) {
-    return removeAccount(user, account);
+    return removeAccount(account);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
   }) {
-    return removeAccount?.call(user, account);
+    return removeAccount?.call(account);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
     required TResult orElse(),
   }) {
     if (removeAccount != null) {
-      return removeAccount(user, account);
+      return removeAccount(account);
     }
     return orElse();
   }
@@ -1562,6 +1566,8 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     required TResult Function(UserRemoveTransactionEvent value)
         removeTransaction,
     required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCategoryEvent value) addCategory,
@@ -1579,6 +1585,8 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
@@ -1596,6 +1604,8 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCategoryEvent value)? addCategory,
@@ -1611,11 +1621,9 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
 }
 
 abstract class UserRemoveAccountEvent implements UserEvent {
-  const factory UserRemoveAccountEvent(
-          final UserModel user, final AccountModel account) =
+  const factory UserRemoveAccountEvent(final AccountModel account) =
       _$UserRemoveAccountEvent;
 
-  UserModel get user;
   AccountModel get account;
   @JsonKey(ignore: true)
   _$$UserRemoveAccountEventCopyWith<_$UserRemoveAccountEvent> get copyWith =>
@@ -1628,7 +1636,7 @@ abstract class _$$UserAddCategoryEventCopyWith<$Res> {
           $Res Function(_$UserAddCategoryEvent) then) =
       __$$UserAddCategoryEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserModel user, CategoryModel category});
+  $Res call({CategoryModel category});
 }
 
 /// @nodoc
@@ -1642,14 +1650,9 @@ class __$$UserAddCategoryEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
     Object? category = null,
   }) {
     return _then(_$UserAddCategoryEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
       null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -1661,16 +1664,14 @@ class __$$UserAddCategoryEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserAddCategoryEvent implements UserAddCategoryEvent {
-  const _$UserAddCategoryEvent(this.user, this.category);
+  const _$UserAddCategoryEvent(this.category);
 
-  @override
-  final UserModel user;
   @override
   final CategoryModel category;
 
   @override
   String toString() {
-    return 'UserEvent.addCategory(user: $user, category: $category)';
+    return 'UserEvent.addCategory(category: $category)';
   }
 
   @override
@@ -1678,13 +1679,12 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserAddCategoryEvent &&
-            (identical(other.user, user) || other.user == user) &&
             (identical(other.category, category) ||
                 other.category == category));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, category);
+  int get hashCode => Object.hash(runtimeType, category);
 
   @JsonKey(ignore: true)
   @override
@@ -1697,72 +1697,56 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
   }) {
-    return addCategory(user, category);
+    return addCategory(category);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
   }) {
-    return addCategory?.call(user, category);
+    return addCategory?.call(category);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
     required TResult orElse(),
   }) {
     if (addCategory != null) {
-      return addCategory(user, category);
+      return addCategory(category);
     }
     return orElse();
   }
@@ -1777,6 +1761,8 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     required TResult Function(UserRemoveTransactionEvent value)
         removeTransaction,
     required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCategoryEvent value) addCategory,
@@ -1794,6 +1780,8 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
@@ -1811,6 +1799,8 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCategoryEvent value)? addCategory,
@@ -1826,11 +1816,9 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
 }
 
 abstract class UserAddCategoryEvent implements UserEvent {
-  const factory UserAddCategoryEvent(
-          final UserModel user, final CategoryModel category) =
+  const factory UserAddCategoryEvent(final CategoryModel category) =
       _$UserAddCategoryEvent;
 
-  UserModel get user;
   CategoryModel get category;
   @JsonKey(ignore: true)
   _$$UserAddCategoryEventCopyWith<_$UserAddCategoryEvent> get copyWith =>
@@ -1843,7 +1831,7 @@ abstract class _$$UserUpdateCategoryEventCopyWith<$Res> {
           $Res Function(_$UserUpdateCategoryEvent) then) =
       __$$UserUpdateCategoryEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserModel user, CategoryModel category, int index});
+  $Res call({CategoryModel category});
 }
 
 /// @nodoc
@@ -1857,23 +1845,13 @@ class __$$UserUpdateCategoryEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
     Object? category = null,
-    Object? index = null,
   }) {
     return _then(_$UserUpdateCategoryEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
       null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as CategoryModel,
-      null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -1881,18 +1859,14 @@ class __$$UserUpdateCategoryEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
-  const _$UserUpdateCategoryEvent(this.user, this.category, this.index);
+  const _$UserUpdateCategoryEvent(this.category);
 
   @override
-  final UserModel user;
-  @override
   final CategoryModel category;
-  @override
-  final int index;
 
   @override
   String toString() {
-    return 'UserEvent.updateCategory(user: $user, category: $category, index: $index)';
+    return 'UserEvent.updateCategory(category: $category)';
   }
 
   @override
@@ -1900,14 +1874,12 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserUpdateCategoryEvent &&
-            (identical(other.user, user) || other.user == user) &&
             (identical(other.category, category) ||
-                other.category == category) &&
-            (identical(other.index, index) || other.index == index));
+                other.category == category));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, category, index);
+  int get hashCode => Object.hash(runtimeType, category);
 
   @JsonKey(ignore: true)
   @override
@@ -1920,72 +1892,56 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
   }) {
-    return updateCategory(user, category, index);
+    return updateCategory(category);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
   }) {
-    return updateCategory?.call(user, category, index);
+    return updateCategory?.call(category);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
     required TResult orElse(),
   }) {
     if (updateCategory != null) {
-      return updateCategory(user, category, index);
+      return updateCategory(category);
     }
     return orElse();
   }
@@ -2000,6 +1956,8 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     required TResult Function(UserRemoveTransactionEvent value)
         removeTransaction,
     required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCategoryEvent value) addCategory,
@@ -2017,6 +1975,8 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
@@ -2034,6 +1994,8 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCategoryEvent value)? addCategory,
@@ -2049,13 +2011,10 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
 }
 
 abstract class UserUpdateCategoryEvent implements UserEvent {
-  const factory UserUpdateCategoryEvent(
-          final UserModel user, final CategoryModel category, final int index) =
+  const factory UserUpdateCategoryEvent(final CategoryModel category) =
       _$UserUpdateCategoryEvent;
 
-  UserModel get user;
   CategoryModel get category;
-  int get index;
   @JsonKey(ignore: true)
   _$$UserUpdateCategoryEventCopyWith<_$UserUpdateCategoryEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2067,7 +2026,7 @@ abstract class _$$UserRemoveCategoryEventCopyWith<$Res> {
           $Res Function(_$UserRemoveCategoryEvent) then) =
       __$$UserRemoveCategoryEventCopyWithImpl<$Res>;
   @useResult
-  $Res call({UserModel user, CategoryModel category});
+  $Res call({CategoryModel category});
 }
 
 /// @nodoc
@@ -2081,14 +2040,9 @@ class __$$UserRemoveCategoryEventCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
     Object? category = null,
   }) {
     return _then(_$UserRemoveCategoryEvent(
-      null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
       null == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -2100,16 +2054,14 @@ class __$$UserRemoveCategoryEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
-  const _$UserRemoveCategoryEvent(this.user, this.category);
+  const _$UserRemoveCategoryEvent(this.category);
 
-  @override
-  final UserModel user;
   @override
   final CategoryModel category;
 
   @override
   String toString() {
-    return 'UserEvent.removeCategory(user: $user, category: $category)';
+    return 'UserEvent.removeCategory(category: $category)';
   }
 
   @override
@@ -2117,13 +2069,12 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserRemoveCategoryEvent &&
-            (identical(other.user, user) || other.user == user) &&
             (identical(other.category, category) ||
                 other.category == category));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, user, category);
+  int get hashCode => Object.hash(runtimeType, category);
 
   @JsonKey(ignore: true)
   @override
@@ -2136,72 +2087,56 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        addTransaction,
-    required TResult Function(
-            UserModel user, TransactionModel transaction, int index)
-        updateTransaction,
-    required TResult Function(UserModel user, TransactionModel transaction)
-        removeTransaction,
-    required TResult Function(UserModel user, AccountModel account) addAccount,
-    required TResult Function(UserModel user, AccountModel account, int index)
-        updateAccount,
-    required TResult Function(UserModel user, AccountModel account)
-        removeAccount,
-    required TResult Function(UserModel user, CategoryModel category)
-        addCategory,
-    required TResult Function(UserModel user, CategoryModel category, int index)
-        updateCategory,
-    required TResult Function(UserModel user, CategoryModel category)
-        removeCategory,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
   }) {
-    return removeCategory(user, category);
+    return removeCategory(category);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult? Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult? Function(UserModel user, AccountModel account)? addAccount,
-    TResult? Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult? Function(UserModel user, AccountModel account)? removeAccount,
-    TResult? Function(UserModel user, CategoryModel category)? addCategory,
-    TResult? Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult? Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
   }) {
-    return removeCategory?.call(user, category);
+    return removeCategory?.call(category);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        addTransaction,
-    TResult Function(UserModel user, TransactionModel transaction, int index)?
-        updateTransaction,
-    TResult Function(UserModel user, TransactionModel transaction)?
-        removeTransaction,
-    TResult Function(UserModel user, AccountModel account)? addAccount,
-    TResult Function(UserModel user, AccountModel account, int index)?
-        updateAccount,
-    TResult Function(UserModel user, AccountModel account)? removeAccount,
-    TResult Function(UserModel user, CategoryModel category)? addCategory,
-    TResult Function(UserModel user, CategoryModel category, int index)?
-        updateCategory,
-    TResult Function(UserModel user, CategoryModel category)? removeCategory,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
     required TResult orElse(),
   }) {
     if (removeCategory != null) {
-      return removeCategory(user, category);
+      return removeCategory(category);
     }
     return orElse();
   }
@@ -2216,6 +2151,8 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     required TResult Function(UserRemoveTransactionEvent value)
         removeTransaction,
     required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
     required TResult Function(UserUpdateAccountEvent value) updateAccount,
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCategoryEvent value) addCategory,
@@ -2233,6 +2170,8 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult? Function(UserUpdateAccountEvent value)? updateAccount,
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
@@ -2250,6 +2189,8 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
     TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
     TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
     TResult Function(UserUpdateAccountEvent value)? updateAccount,
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCategoryEvent value)? addCategory,
@@ -2265,11 +2206,9 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
 }
 
 abstract class UserRemoveCategoryEvent implements UserEvent {
-  const factory UserRemoveCategoryEvent(
-          final UserModel user, final CategoryModel category) =
+  const factory UserRemoveCategoryEvent(final CategoryModel category) =
       _$UserRemoveCategoryEvent;
 
-  UserModel get user;
   CategoryModel get category;
   @JsonKey(ignore: true)
   _$$UserRemoveCategoryEventCopyWith<_$UserRemoveCategoryEvent> get copyWith =>

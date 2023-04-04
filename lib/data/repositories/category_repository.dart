@@ -1,7 +1,7 @@
 import 'package:wallet_app/data/data.dart';
 
 CategoryModel salary = CategoryModel(
-  id: '1',
+  id: 0,
   name: 'Salary',
   image: 'assets/icons/categories/salary.png',
   isIncome: true,

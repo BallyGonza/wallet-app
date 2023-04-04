@@ -13,9 +13,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserUpdateAccountEvent>(_onUpdateAccount);
     on<UserRemoveAccountEvent>(_onRemoveAccount);
 
-    on<UserAddCategoryEvent>(_onAddCategory);
-    on<UserUpdateCategoryEvent>(_onUpdateCategory);
-    on<UserRemoveCategoryEvent>(_onRemoveCategory);
+    on<UserAddTransactionEvent>(_onAddTransaction);
+    on<UserUpdateTransactionEvent>(_onUpdateTransaction);
+    on<UserRemoveTransactionEvent>(_onRemoveTransaction);
+    on<UserRemoveAllTransactionsEvent>(_onRemoveAllTransactions);
+
+    // on<UserAddCategoryEvent>(_onAddCategory);
+    // on<UserUpdateCategoryEvent>(_onUpdateCategory);
+    // on<UserRemoveCategoryEvent>(_onRemoveCategory);
 
     add(const UserEvent.init());
   }
@@ -23,6 +28,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository usersRepository;
   late UserModel defaultUser;
   late UserModel user;
+  List<TransactionModel> transactions = [];
+
   final Box<UserModel> box = Hive.box<UserModel>('users_box');
 
   void _onInit(
@@ -34,7 +41,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       await box.put(defaultUser.id, defaultUser);
     }
     user = box.get(defaultUser.id)!;
-
+    transactions.addAll(user.transactions);
     emit(UserState.updated(user));
   }
 
@@ -45,7 +52,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     Emitter<UserState> emit,
   ) {
     user.accounts.add(event.account);
-    box.put(event.user.id, event.user);
+
     emit(UserState.updated(user));
   }
 
@@ -53,8 +60,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     UserUpdateAccountEvent event,
     Emitter<UserState> emit,
   ) {
-    user.accounts[event.index] = event.account;
-    box.put(event.user.id, event.user);
+    user.accounts[event.account.id] = event.account;
+
     emit(UserState.updated(user));
   }
 
@@ -63,38 +70,52 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     Emitter<UserState> emit,
   ) {
     user.accounts.remove(event.account);
-    box.put(event.user.id, event.user);
+
+    emit(UserState.updated(user));
+  }
+
+  // Transaction
+
+  Future<void> _onAddTransaction(
+    UserAddTransactionEvent event,
+    Emitter<UserState> emit,
+  ) async {
+    transactions.add(event.transaction);
+    user.transactions = transactions;
+    await box.put(user.id, user);
+
+    emit(UserState.updated(user));
+  }
+
+  void _onUpdateTransaction(
+    UserUpdateTransactionEvent event,
+    Emitter<UserState> emit,
+  ) async {
+    transactions[event.transaction.id] = event.transaction;
+    await box.put(user.id, user);
+
+    emit(UserState.updated(user));
+  }
+
+  void _onRemoveTransaction(
+    UserRemoveTransactionEvent event,
+    Emitter<UserState> emit,
+  ) async {
+    transactions.removeAt(event.transaction.id);
+    await box.put(user.id, user);
+    emit(UserState.updated(user));
+  }
+
+  void _onRemoveAllTransactions(
+    UserRemoveAllTransactionsEvent event,
+    Emitter<UserState> emit,
+  ) async {
+    transactions.clear();
+    await box.put(user.id, user);
     emit(UserState.updated(user));
   }
 
   // Category
-
-  void _onAddCategory(
-    UserAddCategoryEvent event,
-    Emitter<UserState> emit,
-  ) {
-    user.categories.add(event.category);
-    box.put(event.user.id, event.user);
-    emit(UserState.updated(user));
-  }
-
-  void _onUpdateCategory(
-    UserUpdateCategoryEvent event,
-    Emitter<UserState> emit,
-  ) {
-    user.categories[event.index] = event.category;
-    box.put(event.user.id, event.user);
-    emit(UserState.updated(user));
-  }
-
-  void _onRemoveCategory(
-    UserRemoveCategoryEvent event,
-    Emitter<UserState> emit,
-  ) {
-    user.categories.remove(event.category);
-    box.put(event.user.id, event.user);
-    emit(UserState.updated(user));
-  }
 
   //  ----------------------------
 

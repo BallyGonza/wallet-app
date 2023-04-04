@@ -19,19 +19,22 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
     return UserModel(
       id: fields[0] as int,
       accounts: (fields[1] as List).cast<AccountModel>(),
-      categories: (fields[2] as List).cast<CategoryModel>(),
+      transactions: (fields[2] as List).cast<TransactionModel>(),
+      categories: (fields[3] as List).cast<CategoryModel>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.accounts)
       ..writeByte(2)
+      ..write(obj.transactions)
+      ..writeByte(3)
       ..write(obj.categories);
   }
 
@@ -55,6 +58,9 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       accounts: (json['accounts'] as List<dynamic>)
           .map((e) => AccountModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      transactions: (json['transactions'] as List<dynamic>)
+          .map((e) => TransactionModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       categories: (json['categories'] as List<dynamic>)
           .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -63,5 +69,6 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'id': instance.id,
       'accounts': instance.accounts,
+      'transactions': instance.transactions,
       'categories': instance.categories,
     };

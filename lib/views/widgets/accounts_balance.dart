@@ -8,10 +8,6 @@ class AccountsBalance extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double totalBalance = 0;
-    for (final account in accounts) {
-      totalBalance += account.balance;
-    }
     return Column(
       children: [
         const Padding(
@@ -30,7 +26,7 @@ class AccountsBalance extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              '\$ ${amountFormat.format(totalBalance)}',
+              '\$ ${amountFormat.format(0)}',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,

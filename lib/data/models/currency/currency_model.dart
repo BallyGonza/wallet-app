@@ -7,7 +7,7 @@ part 'currency_model.g.dart';
 @HiveType(typeId: 4)
 class CurrencyModel extends HiveObject {
   @HiveField(0)
-  String id;
+  int id;
   @HiveField(1)
   String name;
   @HiveField(2)
