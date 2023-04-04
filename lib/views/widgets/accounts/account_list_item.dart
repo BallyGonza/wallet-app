@@ -11,13 +11,10 @@ class AccountListItem extends StatefulWidget {
 }
 
 class _AccountListItemState extends State<AccountListItem> {
-  double _balance = 0;
+  UserRepository userRepository = UserRepository();
 
   @override
   void initState() {
-    // for (final transaction in widget.user.transactions) {
-    //   _balance += transaction.amount;
-    // }
     super.initState();
   }
 
@@ -41,12 +38,6 @@ class _AccountListItemState extends State<AccountListItem> {
           fontSize: 16,
           fontWeight: FontWeight.bold,
         ),
-      ),
-      subtitle: Text(
-        '\$ ${amountFormat.format(_balance)}',
-        style: Theme.of(context).textTheme.subtitle2!.copyWith(
-              color: _balance >= 0 ? Colors.green : Colors.red,
-            ),
       ),
       trailing: const Icon(
         Icons.arrow_forward_ios,

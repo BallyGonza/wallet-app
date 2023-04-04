@@ -16,11 +16,6 @@ class TransactionsList extends StatefulWidget {
 
 class _TransactionsListState extends State<TransactionsList> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocConsumer<UserBloc, UserState>(
       listener: (context, state) {},
@@ -77,19 +72,31 @@ class _TransactionsListState extends State<TransactionsList> {
                       return state.maybeWhen(
                         updated: (user) {
                           return Container(
-                            height: user.transactions.length * 73.0,
-                            decoration: const BoxDecoration(
-                              color: colorCards,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                            ),
-                            child: user.transactions.isEmpty
-                                ? const Center(
-                                    child: Text('No transactions yet'),
-                                  )
-                                : _buildTransactionsList(
-                                    context, user.transactions),
-                          );
+                              height: user.transactions.length * 73.0,
+                              decoration: const BoxDecoration(
+                                color: colorCards,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                              ),
+                              child: user.transactions.isEmpty
+                                  ? const Center(
+                                      child: Text('No transactions yet'),
+                                    )
+                                  : ListView(
+                                      reverse: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      children: List.generate(
+                                        user.transactions.length,
+                                        (index) {
+                                          final transaction =
+                                              user.transactions[index];
+                                          return TransactionListItem(
+                                            transaction: transaction,
+                                          );
+                                        },
+                                      ),
+                                    ));
                         },
                         orElse: () => const Center(
                           child: CircularProgressIndicator(),
@@ -106,23 +113,6 @@ class _TransactionsListState extends State<TransactionsList> {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildTransactionsList(
-      BuildContext context, List<TransactionModel> transactions) {
-    return ListView(
-      reverse: true,
-      physics: const NeverScrollableScrollPhysics(),
-      children: List.generate(
-        transactions.length,
-        (index) {
-          final transaction = transactions[index];
-          return TransactionListItem(
-            transaction: transaction,
-          );
-        },
-      ),
     );
   }
 }
