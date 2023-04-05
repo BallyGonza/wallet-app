@@ -131,96 +131,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  // AccountsList(user: user),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              const Text(
-                                'Accounts',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              const Spacer(),
-                              InkWell(
-                                onTap: () {},
-                                child: const FaIcon(
-                                  FontAwesomeIcons.plus,
-                                  color: Colors.grey,
-                                  size: 15,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          height: user.accounts.length * 73.0,
-                          decoration: const BoxDecoration(
-                            color: colorCards,
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: user.accounts.isEmpty
-                              ? const Center(
-                                  child: Text('No accounts yet'),
-                                )
-                              : ListView(
-                                  reverse: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  children: List.generate(
-                                    user.accounts.length,
-                                    (index) {
-                                      final account = user.accounts[index];
-                                      return ListTile(
-                                        leading: CircleAvatar(
-                                          backgroundColor:
-                                              Color(account.institution.color),
-                                          radius: 18,
-                                          child: Image.asset(
-                                            account.institution.image,
-                                            width: 24,
-                                          ),
-                                        ),
-                                        title: Text(
-                                          account.name,
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        subtitle: Text(
-                                          '\$ ${amountFormat.format(usersRepository.getAccountBalance(account, user.transactions))}',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subtitle2!
-                                              .copyWith(
-                                                color: usersRepository
-                                                            .getAccountBalance(
-                                                                account,
-                                                                user.transactions) >=
-                                                        0
-                                                    ? Colors.green
-                                                    : Colors.red,
-                                              ),
-                                        ),
-                                        trailing: const Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: Colors.white,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                        ),
-                      ],
+                  HomeCard(
+                    title: 'Accounts',
+                    onTap: () {},
+                    widget: AccountsList(
+                      user: user,
+                      usersRepository: usersRepository,
                     ),
                   ),
                 ],
