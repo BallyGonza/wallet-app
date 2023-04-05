@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   UserRepository usersRepository = UserRepository();
   late Box<UserModel> box;
   late UserModel user;
+  DateTime selectedDate = DateTime.now();
   int currentIndex = 0;
 
   @override
@@ -238,38 +239,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
-                            children: [
-                              const Text(
+                            children: const [
+                              Text(
                                 'Transactions',
                                 style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 15,
                                   fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              const Spacer(),
-                              InkWell(
-                                onTap: () {
-                                  // Navigator.of(context).push(
-                                  //   MaterialPageRoute(
-                                  //     builder: (_) => AddTransactionScreen(
-                                  //       onPressed: (transaction) {
-                                  //         setState(() {
-                                  //           context.read<UserBloc>().add(
-                                  //                 UserEvent.addTransaction(
-                                  //                   transaction,
-                                  //                 ),
-                                  //               );
-                                  //         });
-                                  //       },
-                                  //     ),
-                                  //   ),
-                                  // );
-                                },
-                                child: const FaIcon(
-                                  FontAwesomeIcons.plus,
-                                  color: Colors.grey,
-                                  size: 15,
                                 ),
                               ),
                             ],

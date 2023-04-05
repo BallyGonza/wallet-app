@@ -42,6 +42,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
     user = box.get(defaultUser.id)!;
     transactions.addAll(user.transactions);
+    // order transactions by date, soonest first
+    transactions.sort((a, b) => a.date.compareTo(b.date));
     emit(UserState.updated(user));
   }
 
@@ -81,6 +83,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     Emitter<UserState> emit,
   ) async {
     transactions.add(event.transaction);
+    transactions.sort((a, b) => a.date.compareTo(b.date));
+
     user.transactions = transactions;
     await box.put(user.id, user);
 
@@ -108,6 +112,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     Emitter<UserState> emit,
   ) async {
     transactions.removeWhere((element) => element.id == event.transaction.id);
+    transactions.sort((a, b) => a.date.compareTo(b.date));
+
     user.transactions = transactions;
     await box.put(user.id, user);
     emit(UserState.updated(user));
