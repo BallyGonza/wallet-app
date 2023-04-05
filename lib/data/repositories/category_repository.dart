@@ -1,6 +1,7 @@
 import 'package:wallet_app/data/data.dart';
 
-List<CategoryModel> defaultCategories = [salary, food];
+List<CategoryModel> defaultIncomeCategories = [salary];
+List<CategoryModel> defaultExpenseCategories = [food];
 
 CategoryModel salary = CategoryModel(
   id: 0,

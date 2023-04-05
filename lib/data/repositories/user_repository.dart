@@ -47,5 +47,6 @@ UserModel user = UserModel(
   id: 0,
   accounts: [...defaultAccounts],
   transactions: [],
-  categories: [...defaultCategories],
+  incomeCategories: [...defaultIncomeCategories],
+  expenseCategories: [...defaultExpenseCategories],
 );

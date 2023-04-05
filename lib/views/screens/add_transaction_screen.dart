@@ -8,42 +8,29 @@ import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
 class AddTransactionScreen extends StatefulWidget {
-  const AddTransactionScreen(
-      {required this.onPressed, this.transaction, super.key});
+  const AddTransactionScreen({required this.onPressed, super.key});
 
   final Function(TransactionModel) onPressed;
-  final TransactionModel? transaction;
 
   @override
   State<AddTransactionScreen> createState() => _AddTransactionScreenState();
 }
 
 class _AddTransactionScreenState extends State<AddTransactionScreen> {
-  late TextEditingController _amountController;
-  late TextEditingController _noteController;
-  CategoryModel _selectedCategory = user.categories[0];
+  final TextEditingController _amountController = TextEditingController();
+  final TextEditingController _noteController = TextEditingController();
+  late CategoryModel _selectedCategory;
   late AccountModel _selectedAccount;
 
   String _selectedDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
   DateTime _selectedDateTime = DateTime.now();
-  List<CategoryModel> _incomeCategories = [];
-  List<CategoryModel> _expenseCategories = [];
+
   bool _isIncome = true;
 
   @override
   void initState() {
-    _amountController = TextEditingController(
-        text: widget.transaction == null
-            ? ''
-            : widget.transaction!.amount.toString());
-    _noteController = TextEditingController(
-      text: widget.transaction == null ? '' : widget.transaction!.note,
-    );
-
-    _incomeCategories = user.categories.where((e) => e.isIncome).toList();
-    _expenseCategories = user.categories.where((e) => !e.isIncome).toList();
-
-    _selectedCategory = user.categories[0];
+    _selectedCategory =
+        _isIncome ? user.incomeCategories[0] : user.expenseCategories[0];
     _selectedAccount = user.accounts[0];
 
     super.initState();
@@ -56,34 +43,16 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
         elevation: 0,
         title: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            backgroundColor: widget.transaction == null
-                ? _isIncome
-                    ? Colors.green[300]
-                    : Colors.red[300]
-                : widget.transaction!.isIncome
-                    ? Colors.green[300]
-                    : Colors.red[300],
-          ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              backgroundColor: _isIncome ? Colors.green[300] : Colors.red[300]),
           onPressed: () {
-            if (widget.transaction != null) {
-              return;
-            }
-
             setState(() {
               _isIncome = !_isIncome;
             });
           },
-          child: Text(
-              widget.transaction == null
-                  ? _isIncome
-                      ? 'Income'
-                      : 'Expense'
-                  : widget.transaction!.isIncome
-                      ? 'Income'
-                      : 'Expense',
+          child: Text(_isIncome ? 'Income' : 'Expense',
               style: const TextStyle(fontSize: 16)),
         ),
       ),
@@ -98,13 +67,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    widget.transaction == null
-                        ? _isIncome
-                            ? 'Income value'
-                            : 'Expense value'
-                        : widget.transaction!.isIncome
-                            ? 'Income value'
-                            : 'Expense value',
+                    _isIncome ? 'Income value' : 'Expense value',
                     style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.normal,
@@ -118,13 +81,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       '\$',
                       style: TextStyle(
                         fontSize: 20,
-                        color: widget.transaction == null
-                            ? _isIncome
-                                ? Colors.green[300]
-                                : Colors.red[300]
-                            : widget.transaction!.isIncome
-                                ? Colors.green[300]
-                                : Colors.red[300],
+                        color: _isIncome ? Colors.green[300] : Colors.red[300],
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -139,27 +96,18 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           hintStyle: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
-                            color: widget.transaction == null
-                                ? _isIncome
-                                    ? Colors.green[300]
-                                    : Colors.red[300]
-                                : widget.transaction!.isIncome
-                                    ? Colors.green[300]
-                                    : Colors.red[300],
+                            color:
+                                _isIncome ? Colors.green[300] : Colors.red[300],
                           ),
                         ),
                         controller: _amountController,
                         keyboardType: TextInputType.number,
                         style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: widget.transaction == null
-                                ? _isIncome
-                                    ? Colors.green[300]
-                                    : Colors.red[300]
-                                : widget.transaction!.isIncome
-                                    ? Colors.green[300]
-                                    : Colors.red[300]),
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color:
+                              _isIncome ? Colors.green[300] : Colors.red[300],
+                        ),
                       ),
                     )
                   ],
@@ -242,22 +190,25 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                               0.45,
                                       child: ListView.builder(
                                         itemCount: _isIncome
-                                            ? _incomeCategories.length
-                                            : _expenseCategories.length,
+                                            ? user.incomeCategories.length
+                                            : user.expenseCategories.length,
                                         itemBuilder: (context, index) {
                                           return InkWell(
                                             onTap: () {
                                               setState(() {
                                                 _selectedCategory = _isIncome
-                                                    ? _incomeCategories[index]
-                                                    : _expenseCategories[index];
+                                                    ? user
+                                                        .incomeCategories[index]
+                                                    : user.expenseCategories[
+                                                        index];
                                               });
                                               Navigator.pop(context);
                                             },
                                             child: CategoryListItem(
                                               category: _isIncome
-                                                  ? _incomeCategories[index]
-                                                  : _expenseCategories[index],
+                                                  ? user.incomeCategories[index]
+                                                  : user
+                                                      .expenseCategories[index],
                                             ),
                                           );
                                         },
@@ -378,9 +329,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       content: Padding(
                         padding: const EdgeInsets.only(left: 5.0),
                         child: Text(
-                          widget.transaction == null
-                              ? _selectedDate
-                              : dateFormat.format(widget.transaction!.date),
+                          _selectedDate,
                           style: const TextStyle(color: Colors.grey),
                         ),
                       ),
@@ -458,9 +407,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         }
                         setState(() {
                           var transaction = TransactionModel(
-                            id: widget.transaction == null
-                                ? DateTime.now().millisecondsSinceEpoch
-                                : widget.transaction!.id,
+                            id: DateTime.now().millisecondsSinceEpoch,
                             note: _noteController.text,
                             amount: _isIncome
                                 ? double.parse(_amountController.text)

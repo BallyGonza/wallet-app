@@ -14,13 +14,16 @@ class UserModel extends HiveObject {
   @HiveField(2)
   List<TransactionModel> transactions;
   @HiveField(3)
-  List<CategoryModel> categories;
+  List<CategoryModel> incomeCategories;
+  @HiveField(4)
+  List<CategoryModel> expenseCategories;
 
   UserModel({
     required this.id,
     required this.accounts,
     required this.transactions,
-    required this.categories,
+    required this.incomeCategories,
+    required this.expenseCategories,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

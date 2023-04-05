@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:hive_flutter/hive_flutter.dart';
@@ -19,11 +20,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late UserModel user;
-  late Box<UserModel> box;
-  late int _currentIndex;
-  UserRepository usersRepository = UserRepository();
   final PageController _pageController = PageController(initialPage: 0);
+  UserRepository usersRepository = UserRepository();
+  late Box<UserModel> box;
+  late UserModel user;
+  int currentIndex = 0;
 
   @override
   void initState() {
@@ -32,7 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
     box = Hive.box<UserModel>('users_box');
     box.get(widget.user.id) ?? box.put(widget.user.id, widget.user);
     user = box.get(widget.user.id)!;
-    _currentIndex = 0;
   }
 
   @override
@@ -42,12 +42,56 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavBar(
         onTap: (index) {
           setState(() {
-            _currentIndex = index;
+            currentIndex = index;
             _pageController.animateToPage(index,
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut);
           });
         },
+      ),
+      floatingActionButton: SpeedDial(
+        elevation: 0,
+        overlayOpacity: 0,
+        backgroundColor: Colors.indigo[300],
+        activeIcon: Icons.close,
+        spacing: 3,
+        direction: SpeedDialDirection.left,
+        children: [
+          SpeedDialChild(
+            child: const FaIcon(
+              FontAwesomeIcons.plus,
+              color: Colors.white,
+            ),
+            backgroundColor: Colors.green[300],
+            onTap: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const AddTransactionScreen(),
+              //   ),
+              // );
+            },
+          ),
+          SpeedDialChild(
+            child: const FaIcon(
+              FontAwesomeIcons.minus,
+              color: Colors.white,
+            ),
+            backgroundColor: Colors.red[300],
+            onTap: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const AddTransactionScreen(),
+              //   ),
+              // );
+            },
+          ),
+        ],
+        child: const FaIcon(
+          FontAwesomeIcons.plus,
+          color: Colors.white,
+        ),
       ),
       body: PageView(
         controller: _pageController,
