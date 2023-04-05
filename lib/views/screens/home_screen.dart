@@ -64,12 +64,21 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             backgroundColor: Colors.green[300],
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => const AddTransactionScreen(),
-              //   ),
-              // );
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => AddTransactionScreen.income(
+                    onPressed: (transaction) {
+                      setState(() {
+                        context.read<UserBloc>().add(
+                              UserEvent.addTransaction(
+                                transaction,
+                              ),
+                            );
+                      });
+                    },
+                  ),
+                ),
+              );
             },
           ),
           SpeedDialChild(
@@ -79,12 +88,21 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             backgroundColor: Colors.red[300],
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => const AddTransactionScreen(),
-              //   ),
-              // );
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => AddTransactionScreen.expense(
+                    onPressed: (transaction) {
+                      setState(() {
+                        context.read<UserBloc>().add(
+                              UserEvent.addTransaction(
+                                transaction,
+                              ),
+                            );
+                      });
+                    },
+                  ),
+                ),
+              );
             },
           ),
         ],
@@ -232,21 +250,21 @@ class _HomeScreenState extends State<HomeScreen> {
                               const Spacer(),
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (_) => AddTransactionScreen(
-                                        onPressed: (transaction) {
-                                          setState(() {
-                                            context.read<UserBloc>().add(
-                                                  UserEvent.addTransaction(
-                                                    transaction,
-                                                  ),
-                                                );
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  );
+                                  // Navigator.of(context).push(
+                                  //   MaterialPageRoute(
+                                  //     builder: (_) => AddTransactionScreen(
+                                  //       onPressed: (transaction) {
+                                  //         setState(() {
+                                  //           context.read<UserBloc>().add(
+                                  //                 UserEvent.addTransaction(
+                                  //                   transaction,
+                                  //                 ),
+                                  //               );
+                                  //         });
+                                  //       },
+                                  //     ),
+                                  //   ),
+                                  // );
                                 },
                                 child: const FaIcon(
                                   FontAwesomeIcons.plus,
