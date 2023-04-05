@@ -20,26 +20,33 @@ class _AccountListItemState extends State<AccountListItem> {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: Color(widget.account.institution.color),
-        radius: 18,
-        child: Image.asset(
-          widget.account.institution.image,
-          width: 24,
-        ),
+    return Card(
+      color: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
       ),
-      title: Text(
-        widget.account.name,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Color(widget.account.institution.color),
+          radius: 18,
+          child: Image.asset(
+            widget.account.institution.image,
+            width: 24,
+          ),
         ),
-      ),
-      trailing: const Icon(
-        Icons.arrow_forward_ios,
-        color: Colors.white,
+        title: Text(
+          widget.account.name,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+          ),
+        ),
+        // trailing: const Icon(
+        //   Icons.arrow_forward_ios,
+        //   color: Colors.grey,
+        //   size: 16,
+        // ),
       ),
     );
   }

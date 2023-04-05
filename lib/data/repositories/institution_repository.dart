@@ -29,7 +29,7 @@ InstitutionModel hsbcInstitution = InstitutionModel(
   name: 'HSBC',
   image: 'assets/icons/institutions/hsbc.png',
   color: white,
-  secondaryColor: red,
+  secondaryColor: hsbcColor,
   textColor: white,
 );
 
@@ -38,7 +38,7 @@ InstitutionModel bbvaInstitution = InstitutionModel(
   name: 'BBVA',
   image: 'assets/icons/institutions/bbva.png',
   color: white,
-  secondaryColor: blue,
+  secondaryColor: bbvaColor,
   textColor: white,
 );
 
@@ -47,7 +47,7 @@ InstitutionModel mercadoPagoInstitution = InstitutionModel(
   name: 'Mercado Pago',
   image: 'assets/icons/institutions/mercado_pago.png',
   color: white,
-  secondaryColor: lightBlue,
+  secondaryColor: mercadoPagoColor,
   textColor: white,
 );
 

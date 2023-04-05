@@ -12,7 +12,7 @@ class AddTransactionScreen extends StatefulWidget {
     Key? key,
   })  : _title = 'Ingreso',
         _isIncome = true,
-        _color = Colors.green[300]!,
+        _color = incomeColor!,
         _categories = user.incomeCategories,
         super(key: key);
 
@@ -21,7 +21,7 @@ class AddTransactionScreen extends StatefulWidget {
     Key? key,
   })  : _title = 'Egreso',
         _isIncome = false,
-        _color = Colors.red[300]!,
+        _color = expenseColor!,
         _categories = user.expenseCategories,
         super(key: key);
 
@@ -57,17 +57,17 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
+        title: Container(
+            decoration: BoxDecoration(
+              color: widget._color,
               borderRadius: BorderRadius.circular(20),
             ),
-            backgroundColor: widget._color,
-          ),
-          onPressed: () {},
-          child: Text(widget._title, style: const TextStyle(fontSize: 16)),
-        ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Text(widget._title, style: const TextStyle(fontSize: 16)),
+            )),
       ),
+      bottomNavigationBar: _saveButton(context),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -131,8 +131,8 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       leading: CircleAvatar(
                         backgroundColor: Color(_selectedCategory.color),
                         child: Image.asset(_selectedCategory.image,
-                            width: 20,
-                            height: 20,
+                            width: 25,
+                            height: 25,
                             color: Color(_selectedCategory.iconColor)),
                       ),
                       content: const Text(
@@ -171,6 +171,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           context: context,
                           builder: (context) {
                             return Container(
+                              height: widget._categories.length * 160,
                               decoration: const BoxDecoration(
                                 color: colorCards,
                                 borderRadius: BorderRadius.only(
@@ -178,36 +179,39 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                   topRight: Radius.circular(30),
                                 ),
                               ),
-                              height: MediaQuery.of(context).size.height * 20,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   children: [
                                     SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.45,
+                                      height: widget._categories.length * 120,
                                       child: ListView.builder(
                                         itemCount: widget._categories.length,
                                         itemBuilder: (context, index) {
-                                          return InkWell(
-                                            onTap: () {
+                                          return CategoryListItem(
+                                            onCategoryTap: () {
                                               setState(() {
                                                 _selectedCategory =
                                                     widget._categories[index];
                                               });
                                               Navigator.pop(context);
                                             },
-                                            child: CategoryListItem(
-                                              category:
-                                                  widget._categories[index],
-                                            ),
+                                            onSubCategoryTap: (subIndex) {
+                                              setState(() {
+                                                _selectedCategory = widget
+                                                    ._categories[index]
+                                                    .subCategories[subIndex];
+                                              });
+                                              Navigator.pop(context);
+                                            },
+                                            category: widget._categories[index],
                                           );
                                         },
                                       ),
                                     ),
                                     ActionButton(
                                       text: 'Add new category',
+                                      color: primaryColor!,
                                       onPressed: () {},
                                     )
                                   ],
@@ -224,8 +228,8 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             Color(_selectedAccount.institution.color),
                         child: Image.asset(
                           _selectedAccount.institution.image,
-                          width: 20,
-                          height: 20,
+                          width: 25,
+                          height: 25,
                         ),
                       ),
                       content: const Text(
@@ -264,6 +268,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           context: context,
                           builder: (context) {
                             return Container(
+                              height: user.accounts.length * 90,
                               decoration: const BoxDecoration(
                                 color: colorCards,
                                 borderRadius: BorderRadius.only(
@@ -271,15 +276,12 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                   topRight: Radius.circular(30),
                                 ),
                               ),
-                              height: MediaQuery.of(context).size.height * 20,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   children: [
                                     SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.45,
+                                      height: user.accounts.length * 70,
                                       child: ListView.builder(
                                         itemCount: user.accounts.length,
                                         itemBuilder: (context, index) {
@@ -300,6 +302,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                     ),
                                     ActionButton(
                                       text: 'Add new account',
+                                      color: primaryColor!,
                                       onPressed: () {},
                                     )
                                   ],
@@ -384,38 +387,53 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         keyboardType: TextInputType.multiline,
                       ),
                     ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        backgroundColor: widget._color,
-                      ),
-                      onPressed: () {
-                        if (_amountController.text == '') {
-                          return;
-                        }
-                        setState(() {
-                          var transaction = TransactionModel(
-                            id: DateTime.now().millisecondsSinceEpoch,
-                            note: _noteController.text,
-                            amount: widget._isIncome
-                                ? double.parse(_amountController.text)
-                                : -double.parse(_amountController.text),
-                            category: _selectedCategory,
-                            account: _selectedAccount,
-                            date: _selectedDateTime,
-                            isIncome: widget._isIncome,
-                          );
-                          widget.onPressed(transaction);
-                        });
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Save', style: TextStyle(fontSize: 16)),
-                    ),
                   ],
                 ),
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  BottomAppBar _saveButton(BuildContext context) {
+    return BottomAppBar(
+      elevation: 0,
+      color: colorCards,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width - 32,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                backgroundColor: widget._color,
+              ),
+              onPressed: () {
+                if (_amountController.text == '') {
+                  return;
+                }
+                setState(() {
+                  var transaction = TransactionModel(
+                    id: DateTime.now().millisecondsSinceEpoch,
+                    note: _noteController.text,
+                    amount: widget._isIncome
+                        ? double.parse(_amountController.text)
+                        : -double.parse(_amountController.text),
+                    category: _selectedCategory,
+                    account: _selectedAccount,
+                    date: _selectedDateTime,
+                    isIncome: widget._isIncome,
+                  );
+                  widget.onPressed(transaction);
+                });
+                Navigator.pop(context);
+              },
+              child: const Text('Save', style: TextStyle(fontSize: 16)),
             ),
           ),
         ],

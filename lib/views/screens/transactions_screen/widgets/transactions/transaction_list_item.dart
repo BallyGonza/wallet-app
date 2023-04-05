@@ -62,8 +62,8 @@ class TransactionListItem extends StatelessWidget {
                               transaction.amount,
                             )}',
                             descriptionColor: transaction.isIncome
-                                ? Colors.green[300]
-                                : Colors.red[300],
+                                ? incomeColor
+                                : expenseColor,
                             transaction: transaction,
                           ),
                           DescriptionItem(
@@ -92,7 +92,7 @@ class TransactionListItem extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          backgroundColor: Colors.red[300],
+                          backgroundColor: expenseColor,
                         ),
                         onPressed: onPressDelete,
                         child: const FaIcon(

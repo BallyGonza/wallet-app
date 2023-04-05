@@ -31,7 +31,6 @@ class AccountsList extends StatelessWidget {
               ),
             )
           : ListView(
-              reverse: true,
               physics: const NeverScrollableScrollPhysics(),
               children: List.generate(
                 user.accounts.length,

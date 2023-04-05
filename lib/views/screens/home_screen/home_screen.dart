@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return SpeedDial(
       elevation: 0,
       overlayOpacity: 0,
-      backgroundColor: Colors.indigo[300],
+      backgroundColor: primaryColor,
       activeIcon: Icons.close,
       spacing: 3,
       direction: SpeedDialDirection.left,
@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             FontAwesomeIcons.plus,
             color: Colors.white,
           ),
-          backgroundColor: Colors.green[300],
+          backgroundColor: incomeColor,
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -107,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
             FontAwesomeIcons.minus,
             color: Colors.white,
           ),
-          backgroundColor: Colors.red[300],
+          backgroundColor: expenseColor,
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(

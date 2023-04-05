@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
 class ActionButton extends StatelessWidget {
-  const ActionButton({required this.text, required this.onPressed, super.key});
+  const ActionButton(
+      {required this.text,
+      required this.onPressed,
+      required this.color,
+      super.key});
 
   final String text;
   final VoidCallback onPressed;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +20,7 @@ class ActionButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          backgroundColor: Colors.green[300],
+          backgroundColor: color,
         ),
         onPressed: onPressed,
         child: Text(
