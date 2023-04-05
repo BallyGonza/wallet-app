@@ -206,9 +206,7 @@ class DescriptionItem extends StatelessWidget {
               Text(
                 description,
                 style: TextStyle(
-                  color: descriptionColor != null
-                      ? descriptionColor
-                      : Colors.white,
+                  color: descriptionColor ?? Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.normal,
                 ),

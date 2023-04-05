@@ -16,14 +16,21 @@ class AccountsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: user.accounts.length * 73.0,
+      height: user.accounts.isEmpty ? 100 : user.accounts.length * 73.0,
       decoration: const BoxDecoration(
         color: colorCards,
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       child: user.accounts.isEmpty
           ? const Center(
-              child: Text('No accounts yet'),
+              child: Text(
+                'No accounts yet',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
             )
           : ListView(
               reverse: true,

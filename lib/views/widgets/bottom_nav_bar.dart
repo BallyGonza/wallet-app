@@ -35,12 +35,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ),
         BottomNavigationBarItem(
           icon: FaIcon(FontAwesomeIcons.list),
-          label: 'Summary',
+          label: 'Transactions',
         ),
-        // BottomNavigationBarItem(
-        //   icon: FaIcon(FontAwesomeIcons.gear),
-        //   label: 'Settings',
-        // ),
       ],
     );
   }
