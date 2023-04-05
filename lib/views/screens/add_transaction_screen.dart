@@ -40,11 +40,11 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
       text: widget.transaction == null ? '' : widget.transaction!.note,
     );
 
-    _selectedCategory = user.categories[0];
-    _selectedAccount = user.accounts[0];
-
     _incomeCategories = user.categories.where((e) => e.isIncome).toList();
     _expenseCategories = user.categories.where((e) => !e.isIncome).toList();
+
+    _selectedCategory = user.categories[0];
+    _selectedAccount = user.accounts[0];
 
     super.initState();
   }
@@ -181,16 +181,42 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 child: ListView(
                   children: [
                     WalletListTile(
-                      icon: Icons.category,
-                      content: Text(
-                        widget.transaction == null
-                            ? _selectedCategory.name
-                            : widget.transaction!.category.name,
-                        style: const TextStyle(color: Colors.grey),
+                      leading: CircleAvatar(
+                        backgroundColor: Color(_selectedCategory.color),
+                        child: Image.asset(_selectedCategory.image,
+                            width: 20,
+                            height: 20,
+                            color: Color(_selectedCategory.iconColor)),
                       ),
-                      trailing: const FaIcon(
-                        FontAwesomeIcons.chevronRight,
-                        color: Colors.grey,
+                      content: const Text(
+                        'Category',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      trailing: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              _selectedCategory.name,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            const FaIcon(
+                              FontAwesomeIcons.chevronRight,
+                              color: Colors.grey,
+                              size: 12,
+                            ),
+                          ],
+                        ),
                       ),
                       onTap: () {
                         showModalBottomSheet(
@@ -250,16 +276,44 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       },
                     ),
                     WalletListTile(
-                      icon: FontAwesomeIcons.wallet,
-                      content: Text(
-                        widget.transaction == null
-                            ? _selectedAccount.name
-                            : widget.transaction!.account.name,
-                        style: const TextStyle(color: Colors.grey),
+                      leading: CircleAvatar(
+                        backgroundColor:
+                            Color(_selectedAccount.institution.color),
+                        child: Image.asset(
+                          _selectedAccount.institution.image,
+                          width: 20,
+                          height: 20,
+                        ),
                       ),
-                      trailing: const FaIcon(
-                        FontAwesomeIcons.chevronRight,
-                        color: Colors.grey,
+                      content: const Text(
+                        'Account',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      trailing: SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              _selectedAccount.name,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.grey,
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            const FaIcon(
+                              FontAwesomeIcons.chevronRight,
+                              color: Colors.grey,
+                              size: 12,
+                            ),
+                          ],
+                        ),
                       ),
                       onTap: () {
                         showModalBottomSheet(
@@ -314,16 +368,26 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       },
                     ),
                     WalletListTile(
-                      icon: FontAwesomeIcons.calendarDay,
-                      content: Text(
-                        widget.transaction == null
-                            ? _selectedDate
-                            : dateFormat.format(widget.transaction!.date),
-                        style: const TextStyle(color: Colors.grey),
+                      leading: const Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.calendar,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      content: Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: Text(
+                          widget.transaction == null
+                              ? _selectedDate
+                              : dateFormat.format(widget.transaction!.date),
+                          style: const TextStyle(color: Colors.grey),
+                        ),
                       ),
                       trailing: const FaIcon(
                         FontAwesomeIcons.chevronRight,
                         color: Colors.grey,
+                        size: 12,
                       ),
                       onTap: () {
                         // cupertinoDatePicker
@@ -360,7 +424,13 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       },
                     ),
                     WalletListTile(
-                      icon: FontAwesomeIcons.solidNoteSticky,
+                      leading: const Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.fileSignature,
+                          color: Colors.grey,
+                        ),
+                      ),
                       content: TextFormField(
                         controller: _noteController,
                         cursorColor: Colors.grey,

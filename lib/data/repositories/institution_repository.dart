@@ -20,6 +20,8 @@ InstitutionModel wallet = InstitutionModel(
   name: 'Efectivo',
   image: 'assets/icons/institutions/money.png',
   color: green,
+  secondaryColor: green,
+  textColor: white,
 );
 
 InstitutionModel hsbcInstitution = InstitutionModel(
@@ -27,6 +29,8 @@ InstitutionModel hsbcInstitution = InstitutionModel(
   name: 'HSBC',
   image: 'assets/icons/institutions/hsbc.png',
   color: white,
+  secondaryColor: red,
+  textColor: white,
 );
 
 InstitutionModel bbvaInstitution = InstitutionModel(
@@ -34,6 +38,8 @@ InstitutionModel bbvaInstitution = InstitutionModel(
   name: 'BBVA',
   image: 'assets/icons/institutions/bbva.png',
   color: white,
+  secondaryColor: blue,
+  textColor: white,
 );
 
 InstitutionModel mercadoPagoInstitution = InstitutionModel(
@@ -41,6 +47,8 @@ InstitutionModel mercadoPagoInstitution = InstitutionModel(
   name: 'Mercado Pago',
   image: 'assets/icons/institutions/mercado_pago.png',
   color: white,
+  secondaryColor: lightBlue,
+  textColor: white,
 );
 
 InstitutionModel savingsInstitution = InstitutionModel(
@@ -48,4 +56,6 @@ InstitutionModel savingsInstitution = InstitutionModel(
   name: 'Ahorros',
   image: 'assets/icons/institutions/savings.png',
   color: green,
+  secondaryColor: green,
+  textColor: white,
 );

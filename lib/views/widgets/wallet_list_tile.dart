@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class WalletListTile extends StatelessWidget {
   const WalletListTile({
-    required this.icon,
     required this.content,
+    this.leading,
     this.trailing,
     this.onTap,
     super.key,
   });
 
-  final IconData icon;
   final Widget content;
+  final Widget? leading;
   final Widget? trailing;
   final VoidCallback? onTap;
 
@@ -21,10 +20,18 @@ class WalletListTile extends StatelessWidget {
       children: [
         InkWell(
           onTap: onTap ?? () {},
-          child: ListTile(
-            leading: FaIcon(icon, color: Colors.grey),
-            title: content,
-            trailing: trailing ?? const SizedBox.shrink(),
+          child: SizedBox(
+            height: 50,
+            width: double.infinity,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (leading != null) leading!,
+                SizedBox(width: 10),
+                Expanded(child: content),
+                if (trailing != null) trailing!,
+              ],
+            ),
           ),
         ),
         const Divider(color: Colors.black)
