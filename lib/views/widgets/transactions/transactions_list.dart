@@ -9,17 +9,16 @@ class TransactionsList extends StatefulWidget {
   const TransactionsList({
     Key? key,
     required this.user,
-    required this.usersRepository,
   }) : super(key: key);
 
   final UserModel user;
-  final UserRepository usersRepository;
 
   @override
   State<TransactionsList> createState() => _TransactionsListState();
 }
 
 class _TransactionsListState extends State<TransactionsList> {
+  final UserRepository usersRepository = UserRepository();
   @override
   Widget build(BuildContext context) {
     return Container(

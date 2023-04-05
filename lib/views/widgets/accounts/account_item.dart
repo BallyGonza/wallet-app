@@ -5,16 +5,16 @@ class AccountItem extends StatelessWidget {
   const AccountItem({
     Key? key,
     required this.account,
-    required this.usersRepository,
     required this.user,
   }) : super(key: key);
 
   final AccountModel account;
-  final UserRepository usersRepository;
   final UserModel user;
 
   @override
   Widget build(BuildContext context) {
+    final UserRepository usersRepository = UserRepository();
+
     return ListTile(
       leading: CircleAvatar(
         backgroundColor: Color(account.institution.color),

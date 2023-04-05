@@ -6,11 +6,9 @@ class AccountsScreen extends StatelessWidget {
   const AccountsScreen({
     Key? key,
     required this.user,
-    required this.usersRepository,
   }) : super(key: key);
 
   final UserModel user;
-  final UserRepository usersRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -25,22 +23,15 @@ class AccountsScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SummaryCard.income(
-                  amount: usersRepository.getIncome(user),
-                ),
-                SummaryCard.expense(
-                  amount: usersRepository.getExpense(user),
-                ),
+                SummaryCard.income(user: user),
+                SummaryCard.expense(user: user),
               ],
             ),
             const SizedBox(height: 16),
             HomeCard(
               title: 'Accounts',
+              widget: AccountsList(user: user),
               onTap: () {},
-              widget: AccountsList(
-                user: user,
-                usersRepository: usersRepository,
-              ),
             ),
           ],
         ),

@@ -6,11 +6,9 @@ class TransactionsScreen extends StatelessWidget {
   const TransactionsScreen({
     Key? key,
     required this.user,
-    required this.usersRepository,
   }) : super(key: key);
 
   final UserModel user;
-  final UserRepository usersRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +18,8 @@ class TransactionsScreen extends StatelessWidget {
           children: [
             HomeCard(
               title: 'Transactions',
+              widget: TransactionsList(user: user),
               onTap: () {},
-              widget: TransactionsList(
-                user: user,
-                usersRepository: usersRepository,
-              ),
             ),
           ],
         ),

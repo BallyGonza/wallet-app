@@ -3,25 +3,28 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wallet_app/data/data.dart';
 
 class SummaryCard extends StatelessWidget {
-  const SummaryCard.income({
-    required this.amount,
+  SummaryCard.income({
+    required this.user,
     Key? key,
   })  : title = 'Income',
         color = Colors.green,
         icon = FontAwesomeIcons.arrowUp,
+        amount = UserRepository().getIncome(user),
         super(key: key);
 
-  const SummaryCard.expense({
-    required this.amount,
+  SummaryCard.expense({
+    required this.user,
     Key? key,
   })  : title = 'Expense',
         color = Colors.red,
         icon = FontAwesomeIcons.arrowDown,
+        amount = UserRepository().getExpense(user),
         super(key: key);
 
   final String title;
   final Color color;
   final IconData icon;
+  final UserModel user;
   final double amount;
 
   @override

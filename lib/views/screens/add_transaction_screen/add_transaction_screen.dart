@@ -352,8 +352,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                   initialDateTime: DateTime.now(),
                                   onDateTimeChanged: (value) {
                                     setState(() {
-                                      _selectedDate = DateFormat('dd.MM.yyyy')
-                                          .format(value);
+                                      _selectedDate = dateFormat.format(value);
                                       _selectedDateTime = value;
                                     });
                                   },

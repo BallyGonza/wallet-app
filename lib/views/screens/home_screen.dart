@@ -45,8 +45,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: PageView(
         controller: _pageController,
         children: [
-          AccountsScreen(user: user, usersRepository: usersRepository),
-          TransactionsScreen(user: user, usersRepository: usersRepository),
+          AccountsScreen(user: user),
+          TransactionsScreen(user: user),
         ],
       ),
     );

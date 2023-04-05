@@ -7,11 +7,9 @@ class AccountsList extends StatelessWidget {
   const AccountsList({
     Key? key,
     required this.user,
-    required this.usersRepository,
   }) : super(key: key);
 
   final UserModel user;
-  final UserRepository usersRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +39,6 @@ class AccountsList extends StatelessWidget {
                   final account = user.accounts[index];
                   return AccountItem(
                     account: account,
-                    usersRepository: usersRepository,
                     user: user,
                   );
                 },
