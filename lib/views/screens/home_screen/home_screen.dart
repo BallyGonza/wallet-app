@@ -10,6 +10,8 @@ import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/theme.dart';
 import 'package:wallet_app/views/views.dart';
 
+import 'widgets/widgets.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({required this.user, super.key});
 
