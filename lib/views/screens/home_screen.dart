@@ -21,7 +21,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late UserModel user;
   late Box<UserModel> box;
+  late int _currentIndex;
   UserRepository usersRepository = UserRepository();
+  final PageController _pageController = PageController(initialPage: 0);
 
   @override
   void initState() {
@@ -30,206 +32,232 @@ class _HomeScreenState extends State<HomeScreen> {
     box = Hive.box<UserModel>('users_box');
     box.get(widget.user.id) ?? box.put(widget.user.id, widget.user);
     user = box.get(widget.user.id)!;
+    _currentIndex = 0;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: walletAppTheme.scaffoldBackgroundColor,
-        bottomNavigationBar: const BottomNavBar(),
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                AccountsBalance(transactions: user.transactions),
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SummaryCard.income(amount: usersRepository.getIncome(user)),
-                    SummaryCard.expense(
-                        amount: usersRepository.getExpense(user)),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                // AccountsList(user: user),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: walletAppTheme.scaffoldBackgroundColor,
+      bottomNavigationBar: BottomNavBar(
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+            _pageController.animateToPage(index,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut);
+          });
+        },
+      ),
+      body: PageView(
+        controller: _pageController,
+        children: [
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  AccountsBalance(transactions: user.transactions),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            const Text(
-                              'Accounts',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 15,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                            const Spacer(),
-                            InkWell(
-                              onTap: () {},
-                              child: const FaIcon(
-                                FontAwesomeIcons.plus,
-                                color: Colors.grey,
-                                size: 15,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: user.accounts.length * 73.0,
-                        decoration: const BoxDecoration(
-                          color: colorCards,
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                        ),
-                        child: user.accounts.isEmpty
-                            ? const Center(
-                                child: Text('No accounts yet'),
-                              )
-                            : ListView(
-                                reverse: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                children: List.generate(
-                                  user.accounts.length,
-                                  (index) {
-                                    final account = user.accounts[index];
-                                    return ListTile(
-                                      leading: CircleAvatar(
-                                        backgroundColor:
-                                            Color(account.institution.color),
-                                        radius: 18,
-                                        child: Image.asset(
-                                          account.institution.image,
-                                          width: 24,
-                                        ),
-                                      ),
-                                      title: Text(
-                                        account.name,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      subtitle: Text(
-                                        '\$ ${amountFormat.format(usersRepository.getAccountBalance(account, user.transactions))}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle2!
-                                            .copyWith(
-                                              color: usersRepository
-                                                          .getAccountBalance(
-                                                              account,
-                                                              user.transactions) >=
-                                                      0
-                                                  ? Colors.green
-                                                  : Colors.red,
-                                            ),
-                                      ),
-                                      trailing: const Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Colors.white,
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                      ),
+                      SummaryCard.income(
+                          amount: usersRepository.getIncome(user)),
+                      SummaryCard.expense(
+                          amount: usersRepository.getExpense(user)),
                     ],
                   ),
-                ),
-                // TransactionsList(user: user),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            const Text(
-                              'Transactions',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 15,
-                                fontWeight: FontWeight.normal,
+                  const SizedBox(height: 16),
+                  // AccountsList(user: user),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              const Text(
+                                'Accounts',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ),
-                            ),
-                            const Spacer(),
-                            InkWell(
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (_) => AddTransactionScreen(
-                                      onPressed: (transaction) {
-                                        setState(() {
-                                          context.read<UserBloc>().add(
-                                                UserEvent.addTransaction(
-                                                  transaction,
-                                                ),
-                                              );
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                              child: const FaIcon(
-                                FontAwesomeIcons.plus,
-                                color: Colors.grey,
-                                size: 15,
+                              const Spacer(),
+                              InkWell(
+                                onTap: () {},
+                                child: const FaIcon(
+                                  FontAwesomeIcons.plus,
+                                  color: Colors.grey,
+                                  size: 15,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                          height: user.transactions.length * 73.0,
+                        Container(
+                          height: user.accounts.length * 73.0,
                           decoration: const BoxDecoration(
                             color: colorCards,
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
-                          child: user.transactions.isEmpty
+                          child: user.accounts.isEmpty
                               ? const Center(
-                                  child: Text('No transactions yet'),
+                                  child: Text('No accounts yet'),
                                 )
                               : ListView(
                                   reverse: true,
                                   physics: const NeverScrollableScrollPhysics(),
                                   children: List.generate(
-                                    user.transactions.length,
+                                    user.accounts.length,
                                     (index) {
-                                      final transaction =
-                                          user.transactions[index];
-                                      return TransactionListItem(
-                                        onPressDelete: () {
+                                      final account = user.accounts[index];
+                                      return ListTile(
+                                        leading: CircleAvatar(
+                                          backgroundColor:
+                                              Color(account.institution.color),
+                                          radius: 18,
+                                          child: Image.asset(
+                                            account.institution.image,
+                                            width: 24,
+                                          ),
+                                        ),
+                                        title: Text(
+                                          account.name,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        subtitle: Text(
+                                          '\$ ${amountFormat.format(usersRepository.getAccountBalance(account, user.transactions))}',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subtitle2!
+                                              .copyWith(
+                                                color: usersRepository
+                                                            .getAccountBalance(
+                                                                account,
+                                                                user.transactions) >=
+                                                        0
+                                                    ? Colors.green
+                                                    : Colors.red,
+                                              ),
+                                        ),
+                                        trailing: const Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Colors.white,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              const Text(
+                                'Transactions',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ),
+                              const Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) => AddTransactionScreen(
+                                        onPressed: (transaction) {
                                           setState(() {
                                             context.read<UserBloc>().add(
-                                                  UserEvent.removeTransaction(
+                                                  UserEvent.addTransaction(
                                                     transaction,
                                                   ),
                                                 );
                                           });
-                                          Navigator.of(context).pop();
                                         },
-                                        transaction: transaction,
-                                      );
-                                    },
-                                  ),
-                                )),
-                    ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: const FaIcon(
+                                  FontAwesomeIcons.plus,
+                                  color: Colors.grey,
+                                  size: 15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                            height: user.transactions.length * 73.0,
+                            decoration: const BoxDecoration(
+                              color: colorCards,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: user.transactions.isEmpty
+                                ? const Center(
+                                    child: Text('No transactions yet'),
+                                  )
+                                : ListView(
+                                    reverse: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    children: List.generate(
+                                      user.transactions.length,
+                                      (index) {
+                                        final transaction =
+                                            user.transactions[index];
+                                        return TransactionListItem(
+                                          onPressDelete: () {
+                                            setState(() {
+                                              context.read<UserBloc>().add(
+                                                    UserEvent.removeTransaction(
+                                                      transaction,
+                                                    ),
+                                                  );
+                                            });
+                                            Navigator.of(context).pop();
+                                          },
+                                          transaction: transaction,
+                                        );
+                                      },
+                                    ),
+                                  )),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ));
+        ],
+      ),
+    );
   }
 }
