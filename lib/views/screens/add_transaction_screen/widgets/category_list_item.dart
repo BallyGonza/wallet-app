@@ -60,7 +60,9 @@ class _CategoryListItemState extends State<CategoryListItem>
                           backgroundColor: Color(widget.category.color),
                           child: Image.asset(
                             widget.category.image,
-                            color: Color(widget.category.iconColor),
+                            color: widget.category.iconColor == null
+                                ? null
+                                : Color(widget.category.iconColor!),
                             width: 24,
                           ),
                         ),
@@ -132,7 +134,9 @@ class _CategoryListItemState extends State<CategoryListItem>
                                 backgroundColor: Color(subCategory.color),
                                 child: Image.asset(
                                   subCategory.image,
-                                  color: Color(subCategory.iconColor),
+                                  color: subCategory.iconColor == null
+                                      ? null
+                                      : Color(subCategory.iconColor!),
                                   width: 24,
                                 ),
                               ),

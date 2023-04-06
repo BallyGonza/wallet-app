@@ -9,6 +9,8 @@ final red = const Color(0xFFFF0500).value;
 final white = const Color(0xFFFFFFFF).value;
 final black = const Color(0xFF000000).value;
 final yellow = const Color(0xFFFFD700).value;
+final blue = const Color(0xFF0000FF).value;
+final transparent = const Color(0x00000000).value;
 
 // institutions colors
 final hsbcColor = const Color(0xFFD90009).value;

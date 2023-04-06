@@ -115,7 +115,9 @@ class TransactionListItem extends StatelessWidget {
           child: Image.asset(
             transaction.category.image,
             width: 24,
-            color: Color(transaction.category.iconColor),
+            color: transaction.category.iconColor == null
+                ? null
+                : Color(transaction.category.iconColor!),
           ),
         ),
         title: Text(

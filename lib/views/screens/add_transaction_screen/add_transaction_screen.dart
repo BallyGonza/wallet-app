@@ -130,10 +130,14 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                     WalletListTile(
                       leading: CircleAvatar(
                         backgroundColor: Color(_selectedCategory.color),
-                        child: Image.asset(_selectedCategory.image,
-                            width: 25,
-                            height: 25,
-                            color: Color(_selectedCategory.iconColor)),
+                        child: Image.asset(
+                          _selectedCategory.image,
+                          width: 25,
+                          height: 25,
+                          color: _selectedCategory.iconColor == null
+                              ? null
+                              : Color(_selectedCategory.iconColor!),
+                        ),
                       ),
                       content: const Text(
                         'Category',
