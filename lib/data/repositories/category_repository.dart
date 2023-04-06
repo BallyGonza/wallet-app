@@ -5,7 +5,18 @@ List<CategoryModel> defaultIncomeCategories = [
   savingsCategory,
   replenishment
 ];
-List<CategoryModel> defaultExpenseCategories = [food, car];
+List<CategoryModel> defaultExpenseCategories = [
+  food,
+  car,
+  entertainment,
+  health,
+  home,
+  services,
+  creditCard,
+  gifts,
+  savings,
+  others,
+];
 
 CategoryModel income = CategoryModel(
   id: DateTime.now().millisecondsSinceEpoch,
@@ -18,7 +29,7 @@ CategoryModel income = CategoryModel(
 );
 
 CategoryModel salary = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 1,
+  id: 1,
   name: 'Sueldo',
   image: 'assets/icons/categories/salary.png',
   isIncome: true,
@@ -28,7 +39,7 @@ CategoryModel salary = CategoryModel(
 );
 
 CategoryModel replenishment = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 2,
+  id: 2,
   name: 'Reintegro',
   image: 'assets/icons/categories/replenishment.png',
   isIncome: true,
@@ -38,7 +49,7 @@ CategoryModel replenishment = CategoryModel(
 );
 
 CategoryModel afip = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 3,
+  id: 3,
   name: 'AFIP',
   image: 'assets/icons/categories/afip.png',
   isIncome: true,
@@ -48,7 +59,7 @@ CategoryModel afip = CategoryModel(
 );
 
 CategoryModel savingsCategory = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 4,
+  id: 4,
   name: 'Ahorros',
   image: 'assets/icons/categories/savings.png',
   isIncome: true,
@@ -58,17 +69,17 @@ CategoryModel savingsCategory = CategoryModel(
 );
 
 CategoryModel food = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 5,
+  id: 5,
   name: 'Comida',
   image: 'assets/icons/categories/food.png',
   isIncome: false,
   color: red,
-  subCategories: [market, fastFood],
+  subCategories: [market, fastFood, mcDonalds, burgerKing, subway, kfc],
   iconColor: white,
 );
 
 CategoryModel market = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 6,
+  id: 6,
   name: 'Mercado',
   image: 'assets/icons/categories/groceries.png',
   isIncome: false,
@@ -78,17 +89,17 @@ CategoryModel market = CategoryModel(
 );
 
 CategoryModel fastFood = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 7,
+  id: 7,
   name: 'Fast Food',
   image: 'assets/icons/categories/fastfood.png',
   isIncome: false,
   color: red,
   iconColor: white,
-  subCategories: [mcDonalds, burgerKing, subway, kfc],
+  subCategories: [],
 );
 
 CategoryModel mcDonalds = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 7,
+  id: 7,
   name: 'McDonalds',
   image: 'assets/icons/categories/mcdonalds.png',
   isIncome: false,
@@ -98,7 +109,7 @@ CategoryModel mcDonalds = CategoryModel(
 );
 
 CategoryModel burgerKing = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 8,
+  id: 8,
   name: 'Burger King',
   image: 'assets/icons/categories/burgerking.png',
   isIncome: false,
@@ -107,7 +118,7 @@ CategoryModel burgerKing = CategoryModel(
 );
 
 CategoryModel subway = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 9,
+  id: 9,
   name: 'Subway',
   image: 'assets/icons/categories/subway.png',
   isIncome: false,
@@ -116,7 +127,7 @@ CategoryModel subway = CategoryModel(
 );
 
 CategoryModel kfc = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 10,
+  id: 10,
   name: 'KFC',
   image: 'assets/icons/categories/kfc.png',
   isIncome: false,
@@ -125,27 +136,27 @@ CategoryModel kfc = CategoryModel(
 );
 
 CategoryModel car = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 11,
+  id: 11,
   name: 'Auto',
   image: 'assets/icons/categories/car.png',
   isIncome: false,
   color: black,
   iconColor: white,
-  subCategories: [fuel],
+  subCategories: [fuel, ypf, shell],
 );
 
 CategoryModel fuel = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 12,
+  id: 12,
   name: 'Combustible',
   image: 'assets/icons/categories/fuel.png',
   isIncome: false,
   color: black,
   iconColor: white,
-  subCategories: [ypf, shell],
+  subCategories: [],
 );
 
 CategoryModel ypf = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 12,
+  id: 12,
   name: 'YPF',
   image: 'assets/icons/categories/ypf.png',
   isIncome: false,
@@ -155,7 +166,7 @@ CategoryModel ypf = CategoryModel(
 );
 
 CategoryModel shell = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 13,
+  id: 13,
   name: 'Shell',
   image: 'assets/icons/categories/shell.png',
   isIncome: false,
@@ -163,20 +174,18 @@ CategoryModel shell = CategoryModel(
   subCategories: [],
 );
 
-//TODO: Agregar Salud -> Dentista / Farmacia
-
 CategoryModel health = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 14,
+  id: 14,
   name: 'Salud',
   image: 'assets/icons/categories/health.png',
   isIncome: false,
   color: white,
   iconColor: red,
-  subCategories: [dentist, pharmacy],
+  subCategories: [dentist, pharmacy, haircut],
 );
 
 CategoryModel dentist = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 15,
+  id: 15,
   name: 'Dentista',
   image: 'assets/icons/categories/dentist.png',
   isIncome: false,
@@ -186,7 +195,7 @@ CategoryModel dentist = CategoryModel(
 );
 
 CategoryModel pharmacy = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 16,
+  id: 16,
   name: 'Farmacia',
   image: 'assets/icons/categories/pharmacy.png',
   isIncome: false,
@@ -195,144 +204,137 @@ CategoryModel pharmacy = CategoryModel(
   subCategories: [],
 );
 
-//TODO: Agregar Salidas -> Cine
-
 CategoryModel entertainment = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 17,
+  id: 17,
   name: 'Entretenimiento',
   image: 'assets/icons/categories/entertainment.png',
   isIncome: false,
-  color: yellow,
-  iconColor: black,
+  color: purple,
+  iconColor: white,
   subCategories: [cinema],
 );
 
 CategoryModel cinema = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 18,
+  id: 18,
   name: 'Cine',
   image: 'assets/icons/categories/cinema.png',
   isIncome: false,
-  color: yellow,
-  iconColor: black,
-  subCategories: [hoyts, showcase],
-);
-
-CategoryModel hoyts = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 40,
-  name: 'Hoyts',
-  image: 'assets/icons/categories/hoyts.png',
-  isIncome: false,
-  color: yellow,
+  color: white,
   iconColor: black,
   subCategories: [],
 );
-
-CategoryModel showcase = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 50,
-  name: 'Showcase',
-  image: 'assets/icons/categories/showcase.png',
-  isIncome: false,
-  color: yellow,
-  iconColor: black,
-  subCategories: [],
-);
-
-//TODO: Agregar Casa
 
 CategoryModel home = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 19,
+  id: 19,
   name: 'Casa',
   image: 'assets/icons/categories/home.png',
   isIncome: false,
-  color: blue,
-  iconColor: white,
+  color: orange,
+  iconColor: black,
   subCategories: [],
 );
 
-//TODO: Agregar Servicios -> Movistar / Personal
-
 CategoryModel services = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 20,
+  id: 20,
   name: 'Servicios',
   image: 'assets/icons/categories/services.png',
   isIncome: false,
-  color: blue,
-  iconColor: white,
-  subCategories: [movistar, personal],
+  color: white,
+  iconColor: black,
+  subCategories: [movistar, personal, netflix],
 );
 
 CategoryModel movistar = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 21,
+  id: 21,
   name: 'Movistar',
   image: 'assets/icons/categories/movistar.png',
   isIncome: false,
-  color: blue,
-  iconColor: white,
+  color: white,
   subCategories: [],
 );
 
 CategoryModel personal = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 22,
+  id: 22,
   name: 'Personal',
   image: 'assets/icons/categories/personal.png',
   isIncome: false,
-  color: blue,
-  iconColor: white,
+  color: white,
   subCategories: [],
 );
 
-//TODO: Agregar Tarjeta de Credito -> VISA / Mastercard
-
 CategoryModel creditCard = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 23,
+  id: 23,
   name: 'Tarjeta de Credito',
   image: 'assets/icons/categories/creditcard.png',
   isIncome: false,
-  color: blue,
+  color: violet,
   iconColor: white,
   subCategories: [visa, mastercard],
 );
 
 CategoryModel visa = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 24,
+  id: 24,
   name: 'VISA',
   image: 'assets/icons/categories/visa.png',
   isIncome: false,
-  color: blue,
-  iconColor: white,
+  color: white,
   subCategories: [],
 );
 
 CategoryModel mastercard = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 25,
+  id: 25,
   name: 'Mastercard',
   image: 'assets/icons/categories/mastercard.png',
   isIncome: false,
-  color: blue,
-  iconColor: white,
+  color: white,
   subCategories: [],
 );
 
-//TODO: Agregar Ahorros
-
 CategoryModel savings = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 26,
+  id: 26,
   name: 'Ahorros',
   image: 'assets/icons/categories/savings.png',
   isIncome: false,
-  color: blue,
-  iconColor: white,
+  color: lightGreen,
+  iconColor: black,
   subCategories: [],
 );
 
-//TODO: Agregar Regalos
-
 CategoryModel gifts = CategoryModel(
-  id: DateTime.now().millisecondsSinceEpoch + 27,
+  id: 27,
   name: 'Regalos',
   image: 'assets/icons/categories/gift.png',
   isIncome: false,
-  color: blue,
+  color: lightYellow,
+  iconColor: black,
+  subCategories: [],
+);
+
+CategoryModel netflix = CategoryModel(
+  id: 28,
+  name: 'Netflix',
+  image: 'assets/icons/categories/netflix.png',
+  isIncome: false,
+  color: black,
+  subCategories: [],
+);
+
+CategoryModel haircut = CategoryModel(
+  id: 29,
+  name: 'Peluqueria',
+  image: 'assets/icons/categories/peluqueria.png',
+  isIncome: false,
+  color: white,
+  iconColor: green,
+  subCategories: [],
+);
+
+CategoryModel others = CategoryModel(
+  id: 30,
+  name: 'Otros',
+  image: 'assets/icons/categories/others.png',
+  isIncome: false,
+  color: grey,
   iconColor: white,
   subCategories: [],
 );

@@ -93,10 +93,12 @@ class _CategoryListItemState extends State<CategoryListItem>
                                   : _controller.reverse();
                             });
                           },
-                          child: const Padding(
-                            padding: EdgeInsets.all(8.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
                             child: FaIcon(
-                              FontAwesomeIcons.chevronRight,
+                              isExpanded
+                                  ? FontAwesomeIcons.angleDown
+                                  : FontAwesomeIcons.angleRight,
                               color: Colors.grey,
                               size: 16,
                             ),

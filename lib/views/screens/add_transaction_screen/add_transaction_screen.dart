@@ -175,7 +175,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           context: context,
                           builder: (context) {
                             return Container(
-                              height: widget._categories.length * 160,
+                              height: 800,
                               decoration: const BoxDecoration(
                                 color: colorCards,
                                 borderRadius: BorderRadius.only(
@@ -187,8 +187,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
-                                      height: widget._categories.length * 120,
+                                    Expanded(
                                       child: ListView.builder(
                                         itemCount: widget._categories.length,
                                         itemBuilder: (context, index) {
@@ -217,7 +216,10 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                       text: 'Add new category',
                                       color: primaryColor!,
                                       onPressed: () {},
-                                    )
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
                                   ],
                                 ),
                               ),
@@ -284,8 +286,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   children: [
-                                    SizedBox(
-                                      height: user.accounts.length * 70,
+                                    Expanded(
                                       child: ListView.builder(
                                         itemCount: user.accounts.length,
                                         itemBuilder: (context, index) {
@@ -308,7 +309,10 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                       text: 'Add new account',
                                       color: primaryColor!,
                                       onPressed: () {},
-                                    )
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
                                   ],
                                 ),
                               ),
