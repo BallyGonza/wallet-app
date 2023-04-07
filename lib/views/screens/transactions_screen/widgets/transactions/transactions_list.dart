@@ -25,7 +25,12 @@ class _TransactionsListState extends State<TransactionsList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.user.transactions.isEmpty
+      height: widget.user.transactions
+              .where((transaction) =>
+                  transaction.date.month == widget.date.month &&
+                  transaction.date.year == widget.date.year)
+              .toList()
+              .isEmpty
           ? 100
           : widget.user.transactions
                   .where((transaction) =>
