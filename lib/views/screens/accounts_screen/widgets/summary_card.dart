@@ -5,20 +5,22 @@ import 'package:wallet_app/data/data.dart';
 class SummaryCard extends StatelessWidget {
   SummaryCard.income({
     required this.user,
+    required this.date,
     Key? key,
   })  : title = 'Income',
         color = Colors.green,
         icon = FontAwesomeIcons.arrowUp,
-        amount = UserRepository().getIncome(user),
+        amount = UserRepository().getIncome(user, date),
         super(key: key);
 
   SummaryCard.expense({
     required this.user,
+    required this.date,
     Key? key,
   })  : title = 'Expense',
         color = Colors.red,
         icon = FontAwesomeIcons.arrowDown,
-        amount = UserRepository().getExpense(user),
+        amount = UserRepository().getExpense(user, date),
         super(key: key);
 
   final String title;
@@ -26,6 +28,7 @@ class SummaryCard extends StatelessWidget {
   final IconData icon;
   final UserModel user;
   final double amount;
+  final DateTime date;
 
   @override
   Widget build(BuildContext context) {

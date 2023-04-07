@@ -9,27 +9,39 @@ class TransactionsList extends StatefulWidget {
   const TransactionsList({
     Key? key,
     required this.user,
+    required this.date,
   }) : super(key: key);
 
   final UserModel user;
+  final DateTime date;
 
   @override
   State<TransactionsList> createState() => _TransactionsListState();
 }
 
 class _TransactionsListState extends State<TransactionsList> {
+  late List<TransactionModel> _transactions;
+
+  @override
+  void initState() {
+    super.initState();
+    _transactions = widget.user.transactions
+        .where((transaction) =>
+            transaction.date.month == widget.date.month &&
+            transaction.date.year == widget.date.year)
+        .toList();
+  }
+
   final UserRepository usersRepository = UserRepository();
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.user.transactions.isEmpty
-          ? 100
-          : widget.user.transactions.length * 73.0,
+      height: _transactions.isEmpty ? 100 : _transactions.length * 73.0,
       decoration: const BoxDecoration(
         color: colorCards,
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
-      child: widget.user.transactions.isEmpty
+      child: _transactions.isEmpty
           ? const Center(
               child: Text(
                 'No transactions yet',
@@ -44,9 +56,9 @@ class _TransactionsListState extends State<TransactionsList> {
               reverse: true,
               physics: const NeverScrollableScrollPhysics(),
               children: List.generate(
-                widget.user.transactions.length,
+                _transactions.length,
                 (index) {
-                  final transaction = widget.user.transactions[index];
+                  final transaction = _transactions[index];
                   return TransactionListItem(
                     transaction: transaction,
                     onPressDelete: () {

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
 
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
@@ -48,8 +49,60 @@ class _HomeScreenState extends State<HomeScreen> {
       body: PageView(
         controller: _pageController,
         children: [
-          AccountsScreen(user: user),
-          TransactionsScreen(user: user),
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedDate = selectedDate.subtract(
+                                const Duration(days: 30),
+                              );
+                            });
+                          },
+                          child: const Icon(
+                            FontAwesomeIcons.chevronLeft,
+                            size: 12,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Text(
+                          DateFormat('MM/yy').format(selectedDate),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              selectedDate = selectedDate.add(
+                                const Duration(days: 30),
+                              );
+                            });
+                          },
+                          child: const Icon(
+                            FontAwesomeIcons.chevronRight,
+                            size: 12,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  AccountsScreen(user: user, date: selectedDate),
+                ],
+              ),
+            ),
+          ),
+          TransactionsScreen(user: user, date: selectedDate),
         ],
       ),
     );

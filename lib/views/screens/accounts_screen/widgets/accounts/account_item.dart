@@ -6,10 +6,12 @@ class AccountItem extends StatelessWidget {
     Key? key,
     required this.account,
     required this.user,
+    required this.date,
   }) : super(key: key);
 
   final AccountModel account;
   final UserModel user;
+  final DateTime date;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +35,11 @@ class AccountItem extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        amountFormat.format(
-            usersRepository.getAccountBalance(account, user.transactions)),
+        amountFormat.format(usersRepository.getAccountBalance(
+            account, user.transactions, date)),
         style: Theme.of(context).textTheme.subtitle2!.copyWith(
               color: usersRepository.getAccountBalance(
-                          account, user.transactions) >=
+                          account, user.transactions, date) >=
                       0
                   ? Colors.green
                   : Colors.red,
