@@ -7,7 +7,7 @@ class SummaryCard extends StatelessWidget {
     required this.user,
     required this.date,
     Key? key,
-  })  : title = 'Income',
+  })  : title = 'Incomes',
         color = Colors.green,
         icon = FontAwesomeIcons.arrowUp,
         amount = UserRepository().getIncome(user, date),
@@ -17,7 +17,7 @@ class SummaryCard extends StatelessWidget {
     required this.user,
     required this.date,
     Key? key,
-  })  : title = 'Expense',
+  })  : title = 'Expenses',
         color = Colors.red,
         icon = FontAwesomeIcons.arrowDown,
         amount = UserRepository().getExpense(user, date),
@@ -39,16 +39,15 @@ class SummaryCard extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundColor: color,
-            radius: 15,
             child: FaIcon(
               icon,
-              size: 15,
+              size: 24,
               color: Colors.white,
             ),
           ),
           const SizedBox(width: 8),
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
@@ -57,10 +56,13 @@ class SummaryCard extends StatelessWidget {
                   color: Colors.grey,
                 ),
               ),
+              const SizedBox(
+                height: 1,
+              ),
               Text(
                 amountFormat.format(amount),
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 18,
                   color: color,
                 ),
               ),

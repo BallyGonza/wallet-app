@@ -19,7 +19,7 @@ class AccountsBalance extends StatelessWidget {
           child: Text(
             'Accounts balance',
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.grey,
               fontSize: 10,
               fontWeight: FontWeight.normal,
             ),
@@ -28,12 +28,12 @@ class AccountsBalance extends StatelessWidget {
         const SizedBox(height: 4),
         SizedBox(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
             child: Text(
               amountFormat.format(userRepository.getTotal(transactions, date)),
               style: const TextStyle(
                 color: Colors.white,
-                fontSize: 24,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
               ),
             ),

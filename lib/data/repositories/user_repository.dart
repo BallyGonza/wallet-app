@@ -11,8 +11,8 @@ class UserRepository {
   double getTotal(List<TransactionModel> transactions, DateTime date) {
     double total = 0;
     for (var transaction in transactions) {
-      if (transaction.date.month == date.month &&
-          transaction.date.year == date.year) {
+      if (transaction.date.month <= date.month &&
+          transaction.date.year <= date.year) {
         total += transaction.amount;
       }
     }
@@ -25,8 +25,8 @@ class UserRepository {
     double balance = 0;
     for (var transaction in transactions) {
       if (transaction.account.name == account.name &&
-          transaction.date.month == date.month &&
-          transaction.date.year == date.year) {
+          transaction.date.month <= date.month &&
+          transaction.date.year <= date.year) {
         balance += transaction.amount;
       }
     }
