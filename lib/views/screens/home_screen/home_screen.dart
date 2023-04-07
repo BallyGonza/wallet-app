@@ -46,62 +46,58 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: _bottomNavBar(),
       floatingActionButton: _dialButton(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      appBar: AppBar(
+        backgroundColor: walletAppTheme.scaffoldBackgroundColor,
+        elevation: 0,
+        title: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    selectedDate = selectedDate.subtract(
+                      const Duration(days: 30),
+                    );
+                  });
+                },
+                child: const Icon(
+                  FontAwesomeIcons.chevronLeft,
+                  size: 12,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                DateFormat('MM/yy').format(selectedDate),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  setState(() {
+                    selectedDate = selectedDate.add(
+                      const Duration(days: 30),
+                    );
+                  });
+                },
+                child: const Icon(
+                  FontAwesomeIcons.chevronRight,
+                  size: 12,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: PageView(
         controller: _pageController,
         children: [
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              selectedDate = selectedDate.subtract(
-                                const Duration(days: 30),
-                              );
-                            });
-                          },
-                          child: const Icon(
-                            FontAwesomeIcons.chevronLeft,
-                            size: 12,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          DateFormat('MM/yy').format(selectedDate),
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              selectedDate = selectedDate.add(
-                                const Duration(days: 30),
-                              );
-                            });
-                          },
-                          child: const Icon(
-                            FontAwesomeIcons.chevronRight,
-                            size: 12,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  AccountsScreen(user: user, date: selectedDate),
-                ],
-              ),
-            ),
-          ),
+          AccountsScreen(user: user, date: selectedDate),
           TransactionsScreen(user: user, date: selectedDate),
         ],
       ),

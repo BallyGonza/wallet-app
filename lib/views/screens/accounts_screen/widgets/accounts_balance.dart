@@ -14,15 +14,12 @@ class AccountsBalance extends StatelessWidget {
     UserRepository userRepository = UserRepository();
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 16.0),
-          child: Text(
-            'Accounts balance',
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 10,
-              fontWeight: FontWeight.normal,
-            ),
+        const Text(
+          'Accounts balance',
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 10,
+            fontWeight: FontWeight.normal,
           ),
         ),
         const SizedBox(height: 4),
