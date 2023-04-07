@@ -26,19 +26,33 @@ class _AccountsScreenState extends State<AccountsScreen> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            AccountsBalance(
-              transactions: widget.user.transactions,
-              date: widget.date,
+            Container(
+              decoration: const BoxDecoration(
+                color: colorCards,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                ),
+              ),
+              child: Column(
+                children: [
+                  AccountsBalance(
+                    transactions: widget.user.transactions,
+                    date: widget.date,
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SummaryCard.income(user: widget.user, date: widget.date),
+                      SummaryCard.expense(user: widget.user, date: widget.date),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                ],
+              ),
             ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SummaryCard.income(user: widget.user, date: widget.date),
-                SummaryCard.expense(user: widget.user, date: widget.date),
-              ],
-            ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
             HomeCard(
               title: 'Accounts',
               widget: AccountsList(user: widget.user, date: widget.date),

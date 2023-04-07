@@ -47,55 +47,59 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: _dialButton(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: AppBar(
-        backgroundColor: walletAppTheme.scaffoldBackgroundColor,
+        backgroundColor: currentIndex == 0
+            ? colorCards
+            : walletAppTheme.scaffoldBackgroundColor,
         elevation: 0,
-        title: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    selectedDate = selectedDate.subtract(
-                      const Duration(days: 30),
-                    );
-                  });
-                },
-                child: const Icon(
-                  FontAwesomeIcons.chevronLeft,
-                  size: 12,
-                  color: Colors.white,
-                ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            InkWell(
+              onTap: () {
+                setState(() {
+                  selectedDate = selectedDate.subtract(
+                    const Duration(days: 30),
+                  );
+                });
+              },
+              child: const Icon(
+                FontAwesomeIcons.chevronLeft,
+                size: 12,
+                color: Colors.white,
               ),
-              Text(
-                DateFormat('MM/yy').format(selectedDate),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),
+            ),
+            Text(
+              DateFormat('MM/yy').format(selectedDate),
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
               ),
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    selectedDate = selectedDate.add(
-                      const Duration(days: 30),
-                    );
-                  });
-                },
-                child: const Icon(
-                  FontAwesomeIcons.chevronRight,
-                  size: 12,
-                  color: Colors.white,
-                ),
+            ),
+            InkWell(
+              onTap: () {
+                setState(() {
+                  selectedDate = selectedDate.add(
+                    const Duration(days: 30),
+                  );
+                });
+              },
+              child: const Icon(
+                FontAwesomeIcons.chevronRight,
+                size: 12,
+                color: Colors.white,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
       body: PageView(
         controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
         children: [
           AccountsScreen(user: user, date: selectedDate),
           TransactionsScreen(user: user, date: selectedDate),
