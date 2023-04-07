@@ -33,7 +33,8 @@ class AccountItem extends StatelessWidget {
         ),
       ),
       subtitle: Text(
-        '\$ ${amountFormat.format(usersRepository.getAccountBalance(account, user.transactions))}',
+        amountFormat.format(
+            usersRepository.getAccountBalance(account, user.transactions)),
         style: Theme.of(context).textTheme.subtitle2!.copyWith(
               color: usersRepository.getAccountBalance(
                           account, user.transactions) >=

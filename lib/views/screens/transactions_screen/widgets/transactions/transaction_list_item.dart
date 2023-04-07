@@ -58,9 +58,9 @@ class TransactionListItem extends StatelessWidget {
                             title: 'Amount',
                             icon: 'assets/icons/coin.png',
                             color: 0xFFFFD700,
-                            description: '\$ ${amountFormat.format(
+                            description: amountFormat.format(
                               transaction.amount,
-                            )}',
+                            ),
                             descriptionColor: transaction.isIncome
                                 ? incomeColor
                                 : expenseColor,
@@ -69,14 +69,14 @@ class TransactionListItem extends StatelessWidget {
                           DescriptionItem(
                             title: 'Date',
                             icon: 'assets/icons/calendar.png',
-                            color: 0xFF00BFFF,
+                            color: indigo,
                             description: dateFormat.format(transaction.date),
                             transaction: transaction,
                           ),
                           DescriptionItem(
                             title: 'Note',
                             icon: 'assets/icons/pencil.png',
-                            color: 0xFF00BFFF,
+                            color: indigo,
                             description: transaction.note.isEmpty
                                 ? 'None'
                                 : transaction.note,
@@ -95,10 +95,9 @@ class TransactionListItem extends StatelessWidget {
                           backgroundColor: expenseColor,
                         ),
                         onPressed: onPressDelete,
-                        child: const FaIcon(
-                          FontAwesomeIcons.trash,
-                          color: Colors.white,
-                          size: 16,
+                        child: const Text(
+                          'Delete',
+                          style: TextStyle(fontSize: 16),
                         ),
                       ),
                     )
@@ -120,31 +119,41 @@ class TransactionListItem extends StatelessWidget {
                 : Color(transaction.category.iconColor!),
           ),
         ),
-        title: Text(
-          transaction.category.name,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+        title: Text.rich(
+          overflow: TextOverflow.ellipsis,
+          TextSpan(
+            text: transaction.category.name,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
+            children: [
+              transaction.note.isEmpty
+                  ? const TextSpan(text: '')
+                  : TextSpan(
+                      text: ' - ${transaction.note}',
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+            ],
           ),
         ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              transaction.account.name,
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 12,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-          ],
+        subtitle: Text(
+          transaction.account.name,
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 12,
+            fontWeight: FontWeight.normal,
+          ),
         ),
         trailing: Text(
-          '\$ ${amountFormat.format(
+          amountFormat.format(
             transaction.amount,
-          )}',
+          ),
           style: TextStyle(
             color: transaction.isIncome ? Colors.green : Colors.red,
             fontSize: 12,

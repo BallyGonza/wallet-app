@@ -27,14 +27,14 @@ class AccountsBalance extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              '\$ ${amountFormat.format(
+              amountFormat.format(
                 double.parse(transactions.isEmpty
                     ? '0'
                     : transactions
                         .map((e) => e.amount)
                         .reduce((value, element) => value + element)
                         .toStringAsFixed(2)),
-              )}',
+              ),
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,

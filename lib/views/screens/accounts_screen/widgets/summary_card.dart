@@ -55,7 +55,7 @@ class SummaryCard extends StatelessWidget {
                 ),
               ),
               Text(
-                '\$ ${amountFormat.format(amount)}',
+                amountFormat.format(amount),
                 style: TextStyle(
                   fontSize: 15,
                   color: color,

@@ -21,7 +21,7 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
       name: fields[1] as String,
       image: fields[2] as String,
       color: fields[3] as int,
-      iconColor: fields[4] as int,
+      iconColor: fields[4] as int?,
       subCategories: (fields[5] as List).cast<CategoryModel>(),
       isIncome: fields[6] as bool,
     );
@@ -68,7 +68,7 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       image: json['image'] as String,
       color: json['color'] as int,
-      iconColor: json['iconColor'] as int,
+      iconColor: json['iconColor'] as int?,
       subCategories: (json['subCategories'] as List<dynamic>)
           .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
