@@ -20,28 +20,30 @@ class TransactionsList extends StatefulWidget {
 }
 
 class _TransactionsListState extends State<TransactionsList> {
-  late List<TransactionModel> _transactions;
-
-  @override
-  void initState() {
-    super.initState();
-    _transactions = widget.user.transactions
-        .where((transaction) =>
-            transaction.date.month == widget.date.month &&
-            transaction.date.year == widget.date.year)
-        .toList();
-  }
-
   final UserRepository usersRepository = UserRepository();
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: _transactions.isEmpty ? 100 : _transactions.length * 73.0,
+      height: widget.user.transactions.isEmpty
+          ? 100
+          : widget.user.transactions
+                  .where((transaction) =>
+                      transaction.date.month == widget.date.month &&
+                      transaction.date.year == widget.date.year)
+                  .toList()
+                  .length *
+              73.0,
       decoration: const BoxDecoration(
         color: colorCards,
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
-      child: _transactions.isEmpty
+      child: widget.user.transactions
+              .where((transaction) =>
+                  transaction.date.month == widget.date.month &&
+                  transaction.date.year == widget.date.year)
+              .toList()
+              .isEmpty
           ? const Center(
               child: Text(
                 'No transactions yet',
@@ -56,9 +58,18 @@ class _TransactionsListState extends State<TransactionsList> {
               reverse: true,
               physics: const NeverScrollableScrollPhysics(),
               children: List.generate(
-                _transactions.length,
+                widget.user.transactions
+                    .where((transaction) =>
+                        transaction.date.month == widget.date.month &&
+                        transaction.date.year == widget.date.year)
+                    .toList()
+                    .length,
                 (index) {
-                  final transaction = _transactions[index];
+                  final transaction = widget.user.transactions
+                      .where((transaction) =>
+                          transaction.date.month == widget.date.month &&
+                          transaction.date.year == widget.date.year)
+                      .toList()[index];
                   return TransactionListItem(
                     transaction: transaction,
                     onPressDelete: () {
