@@ -56,7 +56,7 @@ class TransactionListItem extends StatelessWidget {
                           DescriptionItem(
                             title: 'Amount',
                             icon: 'assets/icons/coin.png',
-                            color: 0xFFFFD700,
+                            color: yellow,
                             description: amountFormat.format(
                               transaction.amount,
                             ),

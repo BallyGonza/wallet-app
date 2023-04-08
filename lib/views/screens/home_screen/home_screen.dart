@@ -65,13 +65,15 @@ class _HomeScreenState extends State<HomeScreen> {
               child: const Icon(
                 FontAwesomeIcons.chevronLeft,
                 size: 12,
-                color: Colors.white,
+                color: Colors.grey,
               ),
             ),
             Text(
-              DateFormat('MM/yy').format(selectedDate),
+              selectedDate.year == DateTime.now().year
+                  ? DateFormat('MMMM').format(selectedDate)
+                  : DateFormat('MMMM yyyy').format(selectedDate),
               style: const TextStyle(
-                color: Colors.white,
+                color: Colors.grey,
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
@@ -87,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: const Icon(
                 FontAwesomeIcons.chevronRight,
                 size: 12,
-                color: Colors.white,
+                color: Colors.grey,
               ),
             ),
           ],
@@ -110,6 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   BottomNavBar _bottomNavBar() {
     return BottomNavBar(
+      currentIndex: currentIndex,
       onTap: (index) {
         setState(() {
           currentIndex = index;
@@ -178,6 +181,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             );
+          },
+        ),
+        SpeedDialChild(
+          child: const FaIcon(
+            FontAwesomeIcons.arrowRightArrowLeft,
+            color: Colors.white,
+          ),
+          backgroundColor: transferColor,
+          onTap: () {
+            // TODO: Agregar pagina de transferencia
+            // Navigator.of(context).push(
+            //   MaterialPageRoute(
+            //     builder: (_) => AddTransactionScreen.income(
+            //       onPressed: (transaction) {
+            //         setState(() {
+            //           context.read<UserBloc>().add(
+            //                 UserEvent.addTransaction(
+            //                   transaction,
+            //                 ),
+            //               );
+            //         });
+            //       },
+            //     ),
+            //   ),
+            // );
           },
         ),
       ],

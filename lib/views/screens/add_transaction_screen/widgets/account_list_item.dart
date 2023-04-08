@@ -42,11 +42,6 @@ class _AccountListItemState extends State<AccountListItem> {
             fontWeight: FontWeight.normal,
           ),
         ),
-        // trailing: const Icon(
-        //   Icons.arrow_forward_ios,
-        //   color: Colors.grey,
-        //   size: 16,
-        // ),
       ),
     );
   }

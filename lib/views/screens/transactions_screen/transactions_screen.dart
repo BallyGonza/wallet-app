@@ -13,23 +13,45 @@ class TransactionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final transactions = user.transactions
+        .where((transaction) =>
+            transaction.date.month == date.month &&
+            transaction.date.year == date.year)
+        .toList();
     return SafeArea(
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            HomeCard(
-              title: 'Transactions',
-              widget: Column(
-                children: [
-                  TransactionsList(
-                    user: user,
-                    date: date,
-                  ),
-                ],
-              ),
-              onTap: () {},
+        child: HomeCard(
+          title: 'Transactions',
+          widget: Container(
+            decoration: const BoxDecoration(
+              color: colorCards,
+              borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
-          ],
+            height: transactions.isEmpty ? 100 : transactions.length * 115,
+            child: transactions.isEmpty
+                ? const Center(
+                    child: Text(
+                      'No transactions yet',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 12,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  )
+                : ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 31,
+                    itemBuilder: (context, index) {
+                      return TransactionsList(
+                        user: user,
+                        date: date,
+                        day: 31 - index,
+                      );
+                    },
+                  ),
+          ),
+          onTap: () {},
         ),
       ),
     );

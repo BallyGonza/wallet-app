@@ -38,5 +38,8 @@ final incomeColor = Colors.green[300];
 // expense color
 final expenseColor = Colors.red[300];
 
+// transfer color
+final transferColor = Colors.blue[300];
+
 // theme colors
 final primaryColor = Colors.indigo[300];
