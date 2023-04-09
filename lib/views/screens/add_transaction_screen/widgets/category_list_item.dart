@@ -57,9 +57,10 @@ class _CategoryListItemState extends State<CategoryListItem>
                       children: [
                         CircleAvatar(
                           radius: 20,
-                          backgroundColor: Color(widget.category.color),
+                          backgroundColor:
+                              Color(widget.category.backgroundColor),
                           child: Image.asset(
-                            widget.category.image,
+                            widget.category.icon,
                             color: widget.category.iconColor == null
                                 ? null
                                 : Color(widget.category.iconColor!),
@@ -133,9 +134,10 @@ class _CategoryListItemState extends State<CategoryListItem>
                             child: ListTile(
                               leading: CircleAvatar(
                                 radius: 20,
-                                backgroundColor: Color(subCategory.color),
+                                backgroundColor:
+                                    Color(subCategory.backgroundColor),
                                 child: Image.asset(
-                                  subCategory.image,
+                                  subCategory.icon,
                                   color: subCategory.iconColor == null
                                       ? null
                                       : Color(subCategory.iconColor!),

@@ -8,7 +8,7 @@ part of 'credit_card_model.dart';
 
 class CreditCardModelAdapter extends TypeAdapter<CreditCardModel> {
   @override
-  final int typeId = 9;
+  final int typeId = 2;
 
   @override
   CreditCardModel read(BinaryReader reader) {

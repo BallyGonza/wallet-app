@@ -5,7 +5,7 @@ import 'package:wallet_app/data/data.dart';
 part 'transaction_model.g.dart';
 
 @JsonSerializable()
-@HiveType(typeId: 7)
+@HiveType(typeId: 5)
 class TransactionModel extends HiveObject {
   @HiveField(0)
   int id;
@@ -16,10 +16,8 @@ class TransactionModel extends HiveObject {
   @HiveField(3)
   DateTime date;
   @HiveField(4)
-  bool isIncome;
-  @HiveField(6)
   CategoryModel category;
-  @HiveField(7)
+  @HiveField(5)
   AccountModel account;
 
   TransactionModel({
@@ -27,7 +25,6 @@ class TransactionModel extends HiveObject {
     required this.note,
     required this.amount,
     required this.date,
-    required this.isIncome,
     required this.category,
     required this.account,
   });

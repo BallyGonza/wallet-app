@@ -38,7 +38,7 @@ class UserRepository {
   double getIncome(UserModel user, DateTime date) {
     double income = 0;
     for (var transaction in user.transactions) {
-      if (transaction.isIncome &&
+      if (transaction.category.isIncome &&
           transaction.date.month == date.month &&
           transaction.date.year == date.year &&
           transaction.category.name != 'Transfer in') {
@@ -52,7 +52,7 @@ class UserRepository {
   double getExpense(UserModel user, DateTime date) {
     double expense = 0;
     for (var transaction in user.transactions) {
-      if (!transaction.isIncome &&
+      if (!transaction.category.isIncome &&
           transaction.date.month == date.month &&
           transaction.date.year == date.year &&
           transaction.category.name != 'Transfer out') {

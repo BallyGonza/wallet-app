@@ -10,9 +10,9 @@ class CreditCardRepository {
 
 List<CreditCardModel> defaultCreditCards = [
   visa0,
-  // visa1,
+  visa1,
   mastercard0,
-  // mastercard1,
+  mastercard1,
 ];
 
 CreditCardModel visa0 = CreditCardModel(
@@ -45,5 +45,27 @@ CreditCardModel mastercard0 = CreditCardModel(
   cardType: mastercardInstitution,
   limit: 10000,
   dueDate: DateTime(2022, 12, 12),
+  transactions: [],
+);
+
+CreditCardModel visa1 = CreditCardModel(
+  id: 2,
+  name: 'M. Florencia Iglesias',
+  number: '**** **** **** 1234',
+  institution: hsbcInstitution,
+  cardType: visaInstitution,
+  limit: 10000,
+  dueDate: DateTime(2021, 10, 10),
+  transactions: [],
+);
+
+CreditCardModel mastercard1 = CreditCardModel(
+  id: 3,
+  name: 'M. Florencia Iglesias',
+  number: '**** **** **** 1234',
+  institution: hsbcInstitution,
+  cardType: mastercardInstitution,
+  limit: 10000,
+  dueDate: DateTime(2021, 10, 10),
   transactions: [],
 );

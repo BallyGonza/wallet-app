@@ -23,62 +23,62 @@ List<InstitutionModel> defaultCardTypes = [
 InstitutionModel wallet = InstitutionModel(
   id: 0,
   name: 'Efectivo',
-  image: 'assets/icons/institutions/money.png',
-  color: green,
-  secondaryColor: green,
+  logo: 'assets/icons/institutions/money.png',
+  backgroundColor: green,
+  logoColor: green,
   textColor: white,
 );
 
 InstitutionModel hsbcInstitution = InstitutionModel(
   id: 1,
   name: 'HSBC',
-  image: 'assets/icons/institutions/hsbc.png',
-  color: white,
-  secondaryColor: hsbcColor,
+  logo: 'assets/icons/institutions/hsbc.png',
+  backgroundColor: white,
+  logoColor: hsbcColor,
   textColor: white,
+  visaCardColor: silver,
+  masterCardColor: deepPurple,
 );
 
 InstitutionModel bbvaInstitution = InstitutionModel(
   id: 2,
   name: 'BBVA',
-  image: 'assets/icons/institutions/bbva.png',
-  color: white,
-  secondaryColor: bbvaColor,
+  logo: 'assets/icons/institutions/bbva.png',
+  backgroundColor: white,
+  logoColor: bbvaColor,
   textColor: white,
+  visaCardColor: bbvaColor,
+  masterCardColor: bbvaColor,
 );
 
 InstitutionModel mercadoPagoInstitution = InstitutionModel(
   id: 3,
   name: 'Mercado Pago',
-  image: 'assets/icons/institutions/mercado_pago.png',
-  color: white,
-  secondaryColor: mercadoPagoColor,
+  logo: 'assets/icons/institutions/mercado_pago.png',
+  backgroundColor: white,
+  logoColor: mercadoPagoColor,
   textColor: white,
 );
 
 InstitutionModel savingsInstitution = InstitutionModel(
   id: 4,
   name: 'Ahorros',
-  image: 'assets/icons/institutions/savings.png',
-  color: green,
-  secondaryColor: green,
+  logo: 'assets/icons/institutions/savings.png',
+  backgroundColor: green,
+  logoColor: green,
   textColor: white,
 );
 
 InstitutionModel visaInstitution = InstitutionModel(
   id: 5,
   name: 'Visa',
-  image: 'assets/icons/institutions/visa.png',
-  color: white,
-  secondaryColor: white,
-  textColor: white,
+  logo: 'assets/icons/institutions/visa.png',
+  backgroundColor: white,
 );
 
 InstitutionModel mastercardInstitution = InstitutionModel(
   id: 6,
   name: 'Mastercard',
-  image: 'assets/icons/institutions/mastercard.png',
-  color: white,
-  secondaryColor: white,
-  textColor: white,
+  logo: 'assets/icons/institutions/mastercard.png',
+  backgroundColor: white,
 );

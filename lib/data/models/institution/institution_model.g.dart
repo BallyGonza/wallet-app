@@ -8,7 +8,7 @@ part of 'institution_model.dart';
 
 class InstitutionModelAdapter extends TypeAdapter<InstitutionModel> {
   @override
-  final int typeId = 5;
+  final int typeId = 4;
 
   @override
   InstitutionModel read(BinaryReader reader) {
@@ -19,29 +19,35 @@ class InstitutionModelAdapter extends TypeAdapter<InstitutionModel> {
     return InstitutionModel(
       id: fields[0] as int,
       name: fields[1] as String,
-      image: fields[2] as String,
-      color: fields[3] as int,
-      secondaryColor: fields[4] as int,
-      textColor: fields[5] as int,
+      logo: fields[2] as String,
+      backgroundColor: fields[3] as int,
+      logoColor: fields[4] as int?,
+      textColor: fields[5] as int?,
+      visaCardColor: fields[6] as int?,
+      masterCardColor: fields[7] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, InstitutionModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.image)
+      ..write(obj.logo)
       ..writeByte(3)
-      ..write(obj.color)
+      ..write(obj.backgroundColor)
       ..writeByte(4)
-      ..write(obj.secondaryColor)
+      ..write(obj.logoColor)
       ..writeByte(5)
-      ..write(obj.textColor);
+      ..write(obj.textColor)
+      ..writeByte(6)
+      ..write(obj.visaCardColor)
+      ..writeByte(7)
+      ..write(obj.masterCardColor);
   }
 
   @override
@@ -63,18 +69,22 @@ InstitutionModel _$InstitutionModelFromJson(Map<String, dynamic> json) =>
     InstitutionModel(
       id: json['id'] as int,
       name: json['name'] as String,
-      image: json['image'] as String,
-      color: json['color'] as int,
-      secondaryColor: json['secondaryColor'] as int,
-      textColor: json['textColor'] as int,
+      logo: json['logo'] as String,
+      backgroundColor: json['backgroundColor'] as int,
+      logoColor: json['logoColor'] as int?,
+      textColor: json['textColor'] as int?,
+      visaCardColor: json['visaCardColor'] as int?,
+      masterCardColor: json['masterCardColor'] as int?,
     );
 
 Map<String, dynamic> _$InstitutionModelToJson(InstitutionModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'image': instance.image,
-      'color': instance.color,
-      'secondaryColor': instance.secondaryColor,
+      'logo': instance.logo,
+      'backgroundColor': instance.backgroundColor,
+      'logoColor': instance.logoColor,
       'textColor': instance.textColor,
+      'visaCardColor': instance.visaCardColor,
+      'masterCardColor': instance.masterCardColor,
     };

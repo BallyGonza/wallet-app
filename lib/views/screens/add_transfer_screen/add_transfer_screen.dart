@@ -113,10 +113,10 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                   children: [
                     WalletListTile(
                       leading: CircleAvatar(
-                        backgroundColor:
-                            Color(_fromSelectedAccount.institution.color),
+                        backgroundColor: Color(
+                            _fromSelectedAccount.institution.backgroundColor),
                         child: Image.asset(
-                          _fromSelectedAccount.institution.image,
+                          _fromSelectedAccount.institution.logo,
                           width: 25,
                           height: 25,
                         ),
@@ -206,10 +206,10 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                     ),
                     WalletListTile(
                       leading: CircleAvatar(
-                        backgroundColor:
-                            Color(_toSelectedAccount.institution.color),
+                        backgroundColor: Color(
+                            _toSelectedAccount.institution.backgroundColor),
                         child: Image.asset(
-                          _toSelectedAccount.institution.image,
+                          _toSelectedAccount.institution.logo,
                           width: 25,
                           height: 25,
                         ),
@@ -408,7 +408,6 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                     category: transferOut,
                     account: _fromSelectedAccount,
                     date: _selectedDateTime,
-                    isIncome: false,
                   );
                   var toAccount = TransactionModel(
                     id: DateTime.now().millisecondsSinceEpoch,
@@ -417,7 +416,6 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                     category: transferIn,
                     account: _toSelectedAccount,
                     date: _selectedDateTime,
-                    isIncome: true,
                   );
                   widget.onPressed(fromAccount, toAccount);
                 });

@@ -40,16 +40,17 @@ class TransactionListItem extends StatelessWidget {
                         children: [
                           DescriptionItem(
                             title: 'Category',
-                            icon: transaction.category.image,
+                            icon: transaction.category.icon,
                             iconColor: transaction.category.iconColor,
-                            color: transaction.category.color,
+                            color: transaction.category.backgroundColor,
                             description: transaction.category.name,
                             transaction: transaction,
                           ),
                           DescriptionItem(
                             title: 'Account',
-                            icon: transaction.account.institution.image,
-                            color: transaction.account.institution.color,
+                            icon: transaction.account.institution.logo,
+                            color:
+                                transaction.account.institution.backgroundColor,
                             description: transaction.account.name,
                             transaction: transaction,
                           ),
@@ -60,7 +61,7 @@ class TransactionListItem extends StatelessWidget {
                             description: amountFormat.format(
                               transaction.amount,
                             ),
-                            descriptionColor: transaction.isIncome
+                            descriptionColor: transaction.category.isIncome
                                 ? incomeColor
                                 : expenseColor,
                             transaction: transaction,
@@ -109,9 +110,9 @@ class TransactionListItem extends StatelessWidget {
       },
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: Color(transaction.category.color),
+          backgroundColor: Color(transaction.category.backgroundColor),
           child: Image.asset(
-            transaction.category.image,
+            transaction.category.icon,
             width: 24,
             color: transaction.category.iconColor == null
                 ? null
@@ -154,7 +155,7 @@ class TransactionListItem extends StatelessWidget {
             transaction.amount,
           ),
           style: TextStyle(
-            color: transaction.isIncome ? Colors.green : Colors.red,
+            color: transaction.category.isIncome ? Colors.green : Colors.red,
             fontSize: 12,
             fontWeight: FontWeight.normal,
           ),

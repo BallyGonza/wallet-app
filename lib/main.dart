@@ -11,10 +11,8 @@ Future<void> main() async {
   Hive.registerAdapter(UserModelAdapter());
   Hive.registerAdapter(InstitutionModelAdapter());
   Hive.registerAdapter(AccountModelAdapter());
-  Hive.registerAdapter(AccountTypeModelAdapter());
   Hive.registerAdapter(TransactionModelAdapter());
   Hive.registerAdapter(CategoryModelAdapter());
-  Hive.registerAdapter(CurrencyModelAdapter());
   Hive.registerAdapter(CreditCardModelAdapter());
   Hive.registerAdapter(CreditCardTransactionModelAdapter());
 

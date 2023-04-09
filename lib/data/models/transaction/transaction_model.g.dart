@@ -8,7 +8,7 @@ part of 'transaction_model.dart';
 
 class TransactionModelAdapter extends TypeAdapter<TransactionModel> {
   @override
-  final int typeId = 7;
+  final int typeId = 5;
 
   @override
   TransactionModel read(BinaryReader reader) {
@@ -21,16 +21,15 @@ class TransactionModelAdapter extends TypeAdapter<TransactionModel> {
       note: fields[1] as String,
       amount: fields[2] as double,
       date: fields[3] as DateTime,
-      isIncome: fields[4] as bool,
-      category: fields[6] as CategoryModel,
-      account: fields[7] as AccountModel,
+      category: fields[4] as CategoryModel,
+      account: fields[5] as AccountModel,
     );
   }
 
   @override
   void write(BinaryWriter writer, TransactionModel obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -40,10 +39,8 @@ class TransactionModelAdapter extends TypeAdapter<TransactionModel> {
       ..writeByte(3)
       ..write(obj.date)
       ..writeByte(4)
-      ..write(obj.isIncome)
-      ..writeByte(6)
       ..write(obj.category)
-      ..writeByte(7)
+      ..writeByte(5)
       ..write(obj.account);
   }
 
@@ -68,7 +65,6 @@ TransactionModel _$TransactionModelFromJson(Map<String, dynamic> json) =>
       note: json['note'] as String,
       amount: (json['amount'] as num).toDouble(),
       date: DateTime.parse(json['date'] as String),
-      isIncome: json['isIncome'] as bool,
       category:
           CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
       account: AccountModel.fromJson(json['account'] as Map<String, dynamic>),
@@ -80,7 +76,6 @@ Map<String, dynamic> _$TransactionModelToJson(TransactionModel instance) =>
       'note': instance.note,
       'amount': instance.amount,
       'date': instance.date.toIso8601String(),
-      'isIncome': instance.isIncome,
       'category': instance.category,
       'account': instance.account,
     };

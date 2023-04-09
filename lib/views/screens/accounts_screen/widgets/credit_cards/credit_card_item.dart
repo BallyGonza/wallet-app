@@ -20,7 +20,9 @@ class CreditCardItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       decoration: BoxDecoration(
-        color: Color(creditCard.institution.secondaryColor),
+        color: creditCard.cardType.name == 'Visa'
+            ? Color(creditCard.institution.visaCardColor!)
+            : Color(creditCard.institution.masterCardColor!),
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
@@ -30,10 +32,11 @@ class CreditCardItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
-                creditCard.institution.image,
+                creditCard.institution.logo,
                 width: 50,
                 height: 50,
-                color: Colors.white,
+                color:
+                    creditCard.institution.name == 'BBVA' ? Colors.white : null,
               ),
               Text(
                 amountFormat.format(
@@ -69,7 +72,7 @@ class CreditCardItem extends StatelessWidget {
                 ),
               ),
               Image.asset(
-                creditCard.cardType.image,
+                creditCard.cardType.logo,
                 width: 50,
                 height: 50,
               ),

@@ -5,7 +5,7 @@ import 'package:wallet_app/data/data.dart';
 part 'user_model.g.dart';
 
 @JsonSerializable()
-@HiveType(typeId: 8)
+@HiveType(typeId: 6)
 class UserModel extends HiveObject {
   @HiveField(0)
   int id;

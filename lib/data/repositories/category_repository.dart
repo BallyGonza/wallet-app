@@ -21,9 +21,9 @@ List<CategoryModel> defaultExpenseCategories = [
 CategoryModel income = CategoryModel(
   id: 0,
   name: 'Ingreso',
-  image: 'assets/icons/categories/income.png',
+  icon: 'assets/icons/categories/income.png',
   isIncome: true,
-  color: green,
+  backgroundColor: green,
   iconColor: black,
   subCategories: [salary],
 );
@@ -31,9 +31,9 @@ CategoryModel income = CategoryModel(
 CategoryModel salary = CategoryModel(
   id: 1,
   name: 'Sueldo',
-  image: 'assets/icons/categories/salary.png',
+  icon: 'assets/icons/categories/salary.png',
   isIncome: true,
-  color: green,
+  backgroundColor: green,
   iconColor: black,
   subCategories: [],
 );
@@ -41,19 +41,19 @@ CategoryModel salary = CategoryModel(
 CategoryModel replenishment = CategoryModel(
   id: 2,
   name: 'Reintegro',
-  image: 'assets/icons/categories/replenishment.png',
+  icon: 'assets/icons/categories/replenishment.png',
   isIncome: true,
   subCategories: [afip],
-  color: green,
+  backgroundColor: green,
   iconColor: black,
 );
 
 CategoryModel afip = CategoryModel(
   id: 3,
   name: 'AFIP',
-  image: 'assets/icons/categories/afip.png',
+  icon: 'assets/icons/categories/afip.png',
   isIncome: true,
-  color: white,
+  backgroundColor: white,
   iconColor: mercadoPagoColor,
   subCategories: [],
 );
@@ -61,9 +61,9 @@ CategoryModel afip = CategoryModel(
 CategoryModel savingsCategory = CategoryModel(
   id: 4,
   name: 'Ahorros',
-  image: 'assets/icons/categories/savings.png',
+  icon: 'assets/icons/categories/savings.png',
   isIncome: true,
-  color: green,
+  backgroundColor: green,
   iconColor: black,
   subCategories: [],
 );
@@ -71,9 +71,9 @@ CategoryModel savingsCategory = CategoryModel(
 CategoryModel food = CategoryModel(
   id: 5,
   name: 'Comida',
-  image: 'assets/icons/categories/food.png',
+  icon: 'assets/icons/categories/food.png',
   isIncome: false,
-  color: red,
+  backgroundColor: red,
   subCategories: [market, fastFood, mcDonalds, burgerKing, subway, kfc],
   iconColor: white,
 );
@@ -81,9 +81,9 @@ CategoryModel food = CategoryModel(
 CategoryModel market = CategoryModel(
   id: 6,
   name: 'Mercado',
-  image: 'assets/icons/categories/groceries.png',
+  icon: 'assets/icons/categories/groceries.png',
   isIncome: false,
-  color: red,
+  backgroundColor: red,
   iconColor: white,
   subCategories: [],
 );
@@ -91,9 +91,9 @@ CategoryModel market = CategoryModel(
 CategoryModel fastFood = CategoryModel(
   id: 7,
   name: 'Fast Food',
-  image: 'assets/icons/categories/fastfood.png',
+  icon: 'assets/icons/categories/fastfood.png',
   isIncome: false,
-  color: red,
+  backgroundColor: red,
   iconColor: white,
   subCategories: [],
 );
@@ -101,9 +101,9 @@ CategoryModel fastFood = CategoryModel(
 CategoryModel mcDonalds = CategoryModel(
   id: 7,
   name: 'McDonalds',
-  image: 'assets/icons/categories/mcdonalds.png',
+  icon: 'assets/icons/categories/mcdonalds.png',
   isIncome: false,
-  color: red,
+  backgroundColor: red,
   iconColor: yellow,
   subCategories: [],
 );
@@ -111,36 +111,36 @@ CategoryModel mcDonalds = CategoryModel(
 CategoryModel burgerKing = CategoryModel(
   id: 8,
   name: 'Burger King',
-  image: 'assets/icons/categories/burgerking.png',
+  icon: 'assets/icons/categories/burgerking.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   subCategories: [],
 );
 
 CategoryModel subway = CategoryModel(
   id: 9,
   name: 'Subway',
-  image: 'assets/icons/categories/subway.png',
+  icon: 'assets/icons/categories/subway.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   subCategories: [],
 );
 
 CategoryModel kfc = CategoryModel(
   id: 10,
   name: 'KFC',
-  image: 'assets/icons/categories/kfc.png',
+  icon: 'assets/icons/categories/kfc.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   subCategories: [],
 );
 
 CategoryModel car = CategoryModel(
   id: 11,
   name: 'Auto',
-  image: 'assets/icons/categories/car.png',
+  icon: 'assets/icons/categories/car.png',
   isIncome: false,
-  color: black,
+  backgroundColor: black,
   iconColor: white,
   subCategories: [toll, parking, service, wheel, secure, ypf, shell, axion],
 );
@@ -148,9 +148,9 @@ CategoryModel car = CategoryModel(
 CategoryModel service = CategoryModel(
   id: 12,
   name: 'Servicio',
-  image: 'assets/icons/categories/service.png',
+  icon: 'assets/icons/categories/service.png',
   isIncome: false,
-  color: black,
+  backgroundColor: black,
   iconColor: white,
   subCategories: [],
 );
@@ -158,9 +158,9 @@ CategoryModel service = CategoryModel(
 CategoryModel ypf = CategoryModel(
   id: 13,
   name: 'YPF',
-  image: 'assets/icons/categories/ypf.png',
+  icon: 'assets/icons/categories/ypf.png',
   isIncome: false,
-  color: blue,
+  backgroundColor: blue,
   iconColor: white,
   subCategories: [],
 );
@@ -168,18 +168,18 @@ CategoryModel ypf = CategoryModel(
 CategoryModel shell = CategoryModel(
   id: 14,
   name: 'Shell',
-  image: 'assets/icons/categories/shell.png',
+  icon: 'assets/icons/categories/shell.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   subCategories: [],
 );
 
 CategoryModel health = CategoryModel(
   id: 15,
   name: 'Salud',
-  image: 'assets/icons/categories/health.png',
+  icon: 'assets/icons/categories/health.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   iconColor: red,
   subCategories: [dentist, pharmacy, haircut],
 );
@@ -187,9 +187,9 @@ CategoryModel health = CategoryModel(
 CategoryModel dentist = CategoryModel(
   id: 16,
   name: 'Dentista',
-  image: 'assets/icons/categories/dentist.png',
+  icon: 'assets/icons/categories/dentist.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   iconColor: blue,
   subCategories: [],
 );
@@ -197,9 +197,9 @@ CategoryModel dentist = CategoryModel(
 CategoryModel pharmacy = CategoryModel(
   id: 17,
   name: 'Farmacia',
-  image: 'assets/icons/categories/pharmacy.png',
+  icon: 'assets/icons/categories/pharmacy.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   iconColor: green,
   subCategories: [],
 );
@@ -207,9 +207,9 @@ CategoryModel pharmacy = CategoryModel(
 CategoryModel hangouts = CategoryModel(
   id: 18,
   name: 'Salidas',
-  image: 'assets/icons/categories/entertainment.png',
+  icon: 'assets/icons/categories/entertainment.png',
   isIncome: false,
-  color: purple,
+  backgroundColor: purple,
   iconColor: white,
   subCategories: [cinema],
 );
@@ -217,9 +217,9 @@ CategoryModel hangouts = CategoryModel(
 CategoryModel cinema = CategoryModel(
   id: 19,
   name: 'Cine',
-  image: 'assets/icons/categories/cinema.png',
+  icon: 'assets/icons/categories/cinema.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   iconColor: black,
   subCategories: [],
 );
@@ -227,9 +227,9 @@ CategoryModel cinema = CategoryModel(
 CategoryModel home = CategoryModel(
   id: 20,
   name: 'Casa',
-  image: 'assets/icons/categories/home.png',
+  icon: 'assets/icons/categories/home.png',
   isIncome: false,
-  color: green,
+  backgroundColor: green,
   iconColor: white,
   subCategories: [],
 );
@@ -237,9 +237,9 @@ CategoryModel home = CategoryModel(
 CategoryModel services = CategoryModel(
   id: 21,
   name: 'Servicios',
-  image: 'assets/icons/categories/tax.png',
+  icon: 'assets/icons/categories/tax.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   iconColor: black,
   subCategories: [movistar, personal, netflix, disneyplus, spotify],
 );
@@ -247,27 +247,27 @@ CategoryModel services = CategoryModel(
 CategoryModel movistar = CategoryModel(
   id: 22,
   name: 'Movistar',
-  image: 'assets/icons/categories/movistar.png',
+  icon: 'assets/icons/categories/movistar.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   subCategories: [],
 );
 
 CategoryModel personal = CategoryModel(
   id: 23,
   name: 'Personal',
-  image: 'assets/icons/categories/personal.png',
+  icon: 'assets/icons/categories/personal.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   subCategories: [],
 );
 
 CategoryModel creditCard = CategoryModel(
   id: 24,
   name: 'Tarjeta de Credito',
-  image: 'assets/icons/categories/creditcard.png',
+  icon: 'assets/icons/categories/creditcard.png',
   isIncome: false,
-  color: violet,
+  backgroundColor: purple,
   iconColor: white,
   subCategories: [visa, mastercard],
 );
@@ -275,27 +275,27 @@ CategoryModel creditCard = CategoryModel(
 CategoryModel visa = CategoryModel(
   id: 25,
   name: 'VISA',
-  image: 'assets/icons/categories/visa.png',
+  icon: 'assets/icons/categories/visa.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   subCategories: [],
 );
 
 CategoryModel mastercard = CategoryModel(
   id: 26,
   name: 'Mastercard',
-  image: 'assets/icons/categories/mastercard.png',
+  icon: 'assets/icons/categories/mastercard.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   subCategories: [],
 );
 
 CategoryModel savings = CategoryModel(
   id: 27,
   name: 'Ahorros',
-  image: 'assets/icons/categories/savings.png',
+  icon: 'assets/icons/categories/savings.png',
   isIncome: false,
-  color: lightGreen,
+  backgroundColor: lightGreen,
   iconColor: black,
   subCategories: [],
 );
@@ -303,9 +303,9 @@ CategoryModel savings = CategoryModel(
 CategoryModel gifts = CategoryModel(
   id: 28,
   name: 'Regalos',
-  image: 'assets/icons/categories/gift.png',
+  icon: 'assets/icons/categories/gift.png',
   isIncome: false,
-  color: lightYellow,
+  backgroundColor: lightYellow,
   iconColor: black,
   subCategories: [],
 );
@@ -313,18 +313,18 @@ CategoryModel gifts = CategoryModel(
 CategoryModel netflix = CategoryModel(
   id: 29,
   name: 'Netflix',
-  image: 'assets/icons/categories/netflix.png',
+  icon: 'assets/icons/categories/netflix.png',
   isIncome: false,
-  color: black,
+  backgroundColor: black,
   subCategories: [],
 );
 
 CategoryModel haircut = CategoryModel(
   id: 30,
   name: 'Peluqueria',
-  image: 'assets/icons/categories/peluqueria.png',
+  icon: 'assets/icons/categories/peluqueria.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   iconColor: orange,
   subCategories: [],
 );
@@ -332,9 +332,9 @@ CategoryModel haircut = CategoryModel(
 CategoryModel others = CategoryModel(
   id: 31,
   name: 'Otros',
-  image: 'assets/icons/categories/others.png',
+  icon: 'assets/icons/categories/others.png',
   isIncome: false,
-  color: grey,
+  backgroundColor: grey,
   iconColor: white,
   subCategories: [],
 );
@@ -342,9 +342,9 @@ CategoryModel others = CategoryModel(
 CategoryModel wheel = CategoryModel(
   id: 32,
   name: 'Rueda',
-  image: 'assets/icons/categories/wheel.png',
+  icon: 'assets/icons/categories/wheel.png',
   isIncome: false,
-  color: black,
+  backgroundColor: black,
   iconColor: white,
   subCategories: [],
 );
@@ -352,9 +352,9 @@ CategoryModel wheel = CategoryModel(
 CategoryModel parking = CategoryModel(
   id: 33,
   name: 'Estacionamiento',
-  image: 'assets/icons/categories/parking.png',
+  icon: 'assets/icons/categories/parking.png',
   isIncome: false,
-  color: black,
+  backgroundColor: black,
   iconColor: white,
   subCategories: [],
 );
@@ -362,9 +362,9 @@ CategoryModel parking = CategoryModel(
 CategoryModel toll = CategoryModel(
   id: 34,
   name: 'Peaje',
-  image: 'assets/icons/categories/toll.png',
+  icon: 'assets/icons/categories/toll.png',
   isIncome: false,
-  color: black,
+  backgroundColor: black,
   iconColor: white,
   subCategories: [],
 );
@@ -372,18 +372,18 @@ CategoryModel toll = CategoryModel(
 CategoryModel axion = CategoryModel(
   id: 35,
   name: 'Axion',
-  image: 'assets/icons/categories/axion.png',
+  icon: 'assets/icons/categories/axion.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   subCategories: [],
 );
 
 CategoryModel shopping = CategoryModel(
   id: 36,
   name: 'Compras',
-  image: 'assets/icons/categories/shopping.png',
+  icon: 'assets/icons/categories/shopping.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   iconColor: black,
   subCategories: [clothes, home],
 );
@@ -391,9 +391,9 @@ CategoryModel shopping = CategoryModel(
 CategoryModel clothes = CategoryModel(
   id: 37,
   name: 'Ropa',
-  image: 'assets/icons/categories/clothes.png',
+  icon: 'assets/icons/categories/clothes.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   iconColor: black,
   subCategories: [],
 );
@@ -401,18 +401,18 @@ CategoryModel clothes = CategoryModel(
 CategoryModel spotify = CategoryModel(
   id: 38,
   name: 'Spotify',
-  image: 'assets/icons/categories/spotify.png',
+  icon: 'assets/icons/categories/spotify.png',
   isIncome: false,
-  color: black,
+  backgroundColor: black,
   subCategories: [],
 );
 
 CategoryModel secure = CategoryModel(
   id: 39,
   name: 'Seguro',
-  image: 'assets/icons/categories/secure.png',
+  icon: 'assets/icons/categories/secure.png',
   isIncome: false,
-  color: black,
+  backgroundColor: black,
   iconColor: white,
   subCategories: [],
 );
@@ -420,9 +420,9 @@ CategoryModel secure = CategoryModel(
 CategoryModel disneyplus = CategoryModel(
   id: 40,
   name: 'Disney+',
-  image: 'assets/icons/categories/disneyplus.png',
+  icon: 'assets/icons/categories/disneyplus.png',
   isIncome: false,
-  color: white,
+  backgroundColor: white,
   iconColor: blue,
   subCategories: [],
 );
@@ -430,9 +430,9 @@ CategoryModel disneyplus = CategoryModel(
 CategoryModel transferIn = CategoryModel(
   id: 41,
   name: 'Transfer in',
-  image: 'assets/icons/categories/transfer.png',
+  icon: 'assets/icons/categories/transfer.png',
   isIncome: true,
-  color: green,
+  backgroundColor: green,
   iconColor: white,
   subCategories: [],
 );
@@ -440,9 +440,9 @@ CategoryModel transferIn = CategoryModel(
 CategoryModel transferOut = CategoryModel(
   id: 42,
   name: 'Transfer out',
-  image: 'assets/icons/categories/transfer.png',
+  icon: 'assets/icons/categories/transfer.png',
   isIncome: false,
-  color: red,
+  backgroundColor: red,
   iconColor: white,
   subCategories: [],
 );

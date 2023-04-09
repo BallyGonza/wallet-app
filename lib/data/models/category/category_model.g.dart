@@ -8,7 +8,7 @@ part of 'category_model.dart';
 
 class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
   @override
-  final int typeId = 2;
+  final int typeId = 1;
 
   @override
   CategoryModel read(BinaryReader reader) {
@@ -19,8 +19,8 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
     return CategoryModel(
       id: fields[0] as int,
       name: fields[1] as String,
-      image: fields[2] as String,
-      color: fields[3] as int,
+      icon: fields[2] as String,
+      backgroundColor: fields[3] as int,
       iconColor: fields[4] as int?,
       subCategories: (fields[5] as List).cast<CategoryModel>(),
       isIncome: fields[6] as bool,
@@ -36,9 +36,9 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.image)
+      ..write(obj.icon)
       ..writeByte(3)
-      ..write(obj.color)
+      ..write(obj.backgroundColor)
       ..writeByte(4)
       ..write(obj.iconColor)
       ..writeByte(5)
@@ -66,8 +66,8 @@ CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
     CategoryModel(
       id: json['id'] as int,
       name: json['name'] as String,
-      image: json['image'] as String,
-      color: json['color'] as int,
+      icon: json['icon'] as String,
+      backgroundColor: json['backgroundColor'] as int,
       iconColor: json['iconColor'] as int?,
       subCategories: (json['subCategories'] as List<dynamic>)
           .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
@@ -79,8 +79,8 @@ Map<String, dynamic> _$CategoryModelToJson(CategoryModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'image': instance.image,
-      'color': instance.color,
+      'icon': instance.icon,
+      'backgroundColor': instance.backgroundColor,
       'iconColor': instance.iconColor,
       'subCategories': instance.subCategories,
       'isIncome': instance.isIncome,

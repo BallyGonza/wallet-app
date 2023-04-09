@@ -19,10 +19,10 @@ class AccountItem extends StatelessWidget {
 
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: Color(account.institution.color),
+        backgroundColor: Color(account.institution.backgroundColor),
         radius: 18,
         child: Image.asset(
-          account.institution.image,
+          account.institution.logo,
           width: 24,
         ),
       ),

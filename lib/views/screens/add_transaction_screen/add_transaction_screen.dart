@@ -129,9 +129,10 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   children: [
                     WalletListTile(
                       leading: CircleAvatar(
-                        backgroundColor: Color(_selectedCategory.color),
+                        backgroundColor:
+                            Color(_selectedCategory.backgroundColor),
                         child: Image.asset(
-                          _selectedCategory.image,
+                          _selectedCategory.icon,
                           width: 25,
                           height: 25,
                           color: _selectedCategory.iconColor == null
@@ -231,9 +232,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                     WalletListTile(
                       leading: CircleAvatar(
                         backgroundColor:
-                            Color(_selectedAccount.institution.color),
+                            Color(_selectedAccount.institution.backgroundColor),
                         child: Image.asset(
-                          _selectedAccount.institution.image,
+                          _selectedAccount.institution.logo,
                           width: 25,
                           height: 25,
                         ),
@@ -435,7 +436,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                     category: _selectedCategory,
                     account: _selectedAccount,
                     date: _selectedDateTime,
-                    isIncome: widget._isIncome,
                   );
                   widget.onPressed(transaction);
                 });

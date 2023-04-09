@@ -5,7 +5,7 @@ import 'package:wallet_app/data/data.dart';
 part 'credit_card_transaction_model.g.dart';
 
 @JsonSerializable()
-@HiveType(typeId: 10)
+@HiveType(typeId: 3)
 class CreditCardTransactionModel extends HiveObject {
   @HiveField(0)
   int id;

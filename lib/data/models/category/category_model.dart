@@ -4,16 +4,16 @@ import 'package:hive/hive.dart';
 part 'category_model.g.dart';
 
 @JsonSerializable()
-@HiveType(typeId: 2)
+@HiveType(typeId: 1)
 class CategoryModel extends HiveObject {
   @HiveField(0)
   int id;
   @HiveField(1)
   String name;
   @HiveField(2)
-  String image;
+  String icon;
   @HiveField(3)
-  int color;
+  int backgroundColor;
   @HiveField(4)
   int? iconColor;
   @HiveField(5)
@@ -24,8 +24,8 @@ class CategoryModel extends HiveObject {
   CategoryModel({
     required this.id,
     required this.name,
-    required this.image,
-    required this.color,
+    required this.icon,
+    required this.backgroundColor,
     this.iconColor,
     required this.subCategories,
     required this.isIncome,

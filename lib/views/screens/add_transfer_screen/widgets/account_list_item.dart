@@ -27,10 +27,10 @@ class _AccountListItemState extends State<AccountListItem> {
       ),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: Color(widget.account.institution.color),
+          backgroundColor: Color(widget.account.institution.backgroundColor),
           radius: 18,
           child: Image.asset(
-            widget.account.institution.image,
+            widget.account.institution.logo,
             width: 24,
           ),
         ),
