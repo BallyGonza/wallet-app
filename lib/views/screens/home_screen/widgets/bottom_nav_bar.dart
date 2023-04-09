@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wallet_app/data/constants/colors.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar(
@@ -16,25 +17,26 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      elevation: 1,
       currentIndex: widget.currentIndex,
       onTap: (index) {
         setState(() {
           widget.onTap(index);
         });
       },
-      backgroundColor: const Color(0xff1E1E1E),
+      backgroundColor: colorCards,
       selectedItemColor: Colors.white,
       unselectedItemColor: Colors.grey,
       items: const [
         BottomNavigationBarItem(
-          backgroundColor: Color(0xff1E1E1E),
           icon: FaIcon(
             FontAwesomeIcons.wallet,
+            size: 20,
           ),
           label: 'Wallet',
         ),
         BottomNavigationBarItem(
-          icon: FaIcon(FontAwesomeIcons.list),
+          icon: FaIcon(FontAwesomeIcons.list, size: 20),
           label: 'Transactions',
         ),
       ],

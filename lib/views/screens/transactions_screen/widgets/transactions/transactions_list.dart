@@ -47,8 +47,10 @@ class _TransactionsListState extends State<TransactionsList> {
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(height: 10),
                       Padding(
-                        padding: const EdgeInsets.only(left: 15, top: 15),
+                        padding:
+                            const EdgeInsets.only(left: 15, top: 5, bottom: 5),
                         child: Text(
                           widget.date.day == widget.day &&
                                   widget.date.month == DateTime.now().month &&
