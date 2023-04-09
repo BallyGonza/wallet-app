@@ -22,7 +22,7 @@ class CreditCardModelAdapter extends TypeAdapter<CreditCardModel> {
       institution: fields[2] as InstitutionModel,
       cardType: fields[3] as InstitutionModel,
       limit: fields[4] as double,
-      transactions: (fields[5] as List).cast<TransactionModel>(),
+      transactions: (fields[5] as List).cast<CreditCardTransactionModel>(),
       dueDate: fields[6] as DateTime,
       number: fields[7] as String,
     );
@@ -75,7 +75,8 @@ CreditCardModel _$CreditCardModelFromJson(Map<String, dynamic> json) =>
           InstitutionModel.fromJson(json['cardType'] as Map<String, dynamic>),
       limit: (json['limit'] as num).toDouble(),
       transactions: (json['transactions'] as List<dynamic>)
-          .map((e) => TransactionModel.fromJson(e as Map<String, dynamic>))
+          .map((e) =>
+              CreditCardTransactionModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       dueDate: DateTime.parse(json['dueDate'] as String),
       number: json['number'] as String,

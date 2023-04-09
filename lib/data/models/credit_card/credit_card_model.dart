@@ -18,7 +18,7 @@ class CreditCardModel extends HiveObject {
   @HiveField(4)
   double limit;
   @HiveField(5)
-  List<TransactionModel> transactions = [];
+  List<CreditCardTransactionModel> transactions = [];
   @HiveField(6)
   DateTime dueDate;
   @HiveField(7)

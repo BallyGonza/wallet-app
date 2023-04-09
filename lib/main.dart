@@ -16,6 +16,7 @@ Future<void> main() async {
   Hive.registerAdapter(CategoryModelAdapter());
   Hive.registerAdapter(CurrencyModelAdapter());
   Hive.registerAdapter(CreditCardModelAdapter());
+  Hive.registerAdapter(CreditCardTransactionModelAdapter());
 
   WidgetsFlutterBinding.ensureInitialized();
 

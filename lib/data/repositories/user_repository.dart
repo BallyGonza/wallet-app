@@ -40,7 +40,8 @@ class UserRepository {
     for (var transaction in user.transactions) {
       if (transaction.isIncome &&
           transaction.date.month == date.month &&
-          transaction.date.year == date.year) {
+          transaction.date.year == date.year &&
+          transaction.category.name != 'Transfer in') {
         income += transaction.amount;
       }
     }
@@ -53,22 +54,29 @@ class UserRepository {
     for (var transaction in user.transactions) {
       if (!transaction.isIncome &&
           transaction.date.month == date.month &&
-          transaction.date.year == date.year) {
+          transaction.date.year == date.year &&
+          transaction.category.name != 'Transfer out') {
         expense += transaction.amount;
       }
     }
     return expense;
   }
 
+// calcula el total de tarjeta de acuerdo al mes y año
   double getTotalOfCreditCard(CreditCardModel creditCard, DateTime date) {
     double total = 0;
     for (var transaction in creditCard.transactions) {
-      if (transaction.date.month <= date.month &&
-          transaction.date.year <= date.year) {
-        total += transaction.amount;
+      if (transaction.date.month == date.month &&
+          transaction.date.year == date.year) {
+        total += getValueCuota(transaction);
       }
     }
     return total;
+  }
+
+// calcula el valor de la cuota de una transaccion
+  double getValueCuota(CreditCardTransactionModel transaction) {
+    return transaction.amount / transaction.cuotas;
   }
 }
 

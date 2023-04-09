@@ -21,8 +21,9 @@ class CreditCardList extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: user.creditCards.length,
             itemBuilder: (context, index) {
+              final creditCard = user.creditCards[index];
               return CreditCardItem(
-                creditCard: user.creditCards[index],
+                creditCard: creditCard,
                 user: user,
                 date: date,
               );

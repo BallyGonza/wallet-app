@@ -23,7 +23,18 @@ CreditCardModel visa0 = CreditCardModel(
   cardType: visaInstitution,
   limit: 10000,
   dueDate: DateTime(2021, 10, 10),
-  transactions: [],
+  transactions: [
+    CreditCardTransactionModel(
+      id: 0,
+      note: 'Compra en supermercado',
+      amount: 15000,
+      date: DateTime(2023, 04, 01),
+      category: shopping,
+      account: bbva,
+      isReccurent: false,
+      cuotas: 3,
+    ),
+  ],
 );
 
 CreditCardModel mastercard0 = CreditCardModel(
