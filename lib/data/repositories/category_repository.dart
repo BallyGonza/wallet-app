@@ -426,3 +426,23 @@ CategoryModel disneyplus = CategoryModel(
   iconColor: blue,
   subCategories: [],
 );
+
+CategoryModel transferIn = CategoryModel(
+  id: 41,
+  name: 'Transfer in',
+  image: 'assets/icons/categories/transfer.png',
+  isIncome: true,
+  color: green,
+  iconColor: white,
+  subCategories: [],
+);
+
+CategoryModel transferOut = CategoryModel(
+  id: 42,
+  name: 'Transfer out',
+  image: 'assets/icons/categories/transfer.png',
+  isIncome: false,
+  color: red,
+  iconColor: white,
+  subCategories: [],
+);

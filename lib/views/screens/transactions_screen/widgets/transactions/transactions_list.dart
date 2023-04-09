@@ -36,65 +36,54 @@ class _TransactionsListState extends State<TransactionsList> {
 
     return transactions.isEmpty
         ? const SizedBox.shrink()
-        : Container(
-            height: transactions.length * 70.0 + 50,
-            decoration: const BoxDecoration(
-              color: colorCards,
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
-            child: transactions.isEmpty
-                ? const SizedBox.shrink()
-                : Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 10),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(left: 15, top: 5, bottom: 5),
-                        child: Text(
-                          widget.date.day == widget.day &&
-                                  widget.date.month == DateTime.now().month &&
-                                  widget.date.year == DateTime.now().year
-                              ? 'Hoy'
-                              : DateFormat('EEEE dd')
-                                  .format(DateTime(widget.date.year,
-                                      widget.date.month, widget.day))
-                                  .toString(),
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      SizedBox(
-                        height: transactions.length * 70.0,
-                        child: ListView(
-                          reverse: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: List.generate(
-                            transactions.length,
-                            (index) {
-                              final transaction = transactions[index];
-                              return TransactionListItem(
-                                transaction: transaction,
-                                onPressDelete: () {
-                                  setState(() {
-                                    context.read<UserBloc>().add(
-                                          UserEvent.removeTransaction(
-                                            transaction,
-                                          ),
-                                        );
-                                  });
-                                  Navigator.of(context).pop();
-                                },
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.only(left: 15, top: 5, bottom: 5),
+                child: Text(
+                  widget.date.day == widget.day &&
+                          widget.date.month == DateTime.now().month &&
+                          widget.date.year == DateTime.now().year
+                      ? 'Hoy'
+                      : DateFormat('EEEE dd')
+                          .format(DateTime(
+                              widget.date.year, widget.date.month, widget.day))
+                          .toString(),
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(
+                height: transactions.length * 71.0,
+                child: ListView(
+                  reverse: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: List.generate(
+                    transactions.length,
+                    (index) {
+                      final transaction = transactions[index];
+                      return TransactionListItem(
+                        transaction: transaction,
+                        onPressDelete: () {
+                          setState(() {
+                            context.read<UserBloc>().add(
+                                  UserEvent.removeTransaction(
+                                    transaction,
+                                  ),
+                                );
+                          });
+                          Navigator.of(context).pop();
+                        },
+                      );
+                    },
                   ),
+                ),
+              ),
+            ],
           );
   }
 }

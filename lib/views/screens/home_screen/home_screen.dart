@@ -190,22 +190,26 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           backgroundColor: transferColor,
           onTap: () {
-            // TODO: Agregar pagina de transferencia
-            // Navigator.of(context).push(
-            //   MaterialPageRoute(
-            //     builder: (_) => AddTransactionScreen.income(
-            //       onPressed: (transaction) {
-            //         setState(() {
-            //           context.read<UserBloc>().add(
-            //                 UserEvent.addTransaction(
-            //                   transaction,
-            //                 ),
-            //               );
-            //         });
-            //       },
-            //     ),
-            //   ),
-            // );
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => AddTransferScreen(
+                  onPressed: (toAccount, fromAccount) {
+                    setState(() {
+                      context.read<UserBloc>().add(
+                            UserEvent.addTransaction(
+                              toAccount,
+                            ),
+                          );
+                      context.read<UserBloc>().add(
+                            UserEvent.addTransaction(
+                              fromAccount,
+                            ),
+                          );
+                    });
+                  },
+                ),
+              ),
+            );
           },
         ),
       ],
