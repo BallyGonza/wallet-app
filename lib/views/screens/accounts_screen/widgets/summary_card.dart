@@ -38,6 +38,7 @@ class SummaryCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           CircleAvatar(
+            radius: 20,
             backgroundColor: color,
             child: FaIcon(
               icon,
@@ -45,7 +46,7 @@ class SummaryCard extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          const SizedBox(width: 8),
+          const SizedBox(width: 10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

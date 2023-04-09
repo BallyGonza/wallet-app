@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/data/data.dart';
-import 'package:wallet_app/views/views.dart';
 
 import 'widgets/widgets.dart';
 

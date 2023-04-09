@@ -18,11 +18,10 @@ class AccountsBalance extends StatelessWidget {
           'Accounts balance',
           style: TextStyle(
             color: Colors.grey,
-            fontSize: 10,
+            fontSize: 12,
             fontWeight: FontWeight.normal,
           ),
         ),
-        const SizedBox(height: 4),
         SizedBox(
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 4.0),
