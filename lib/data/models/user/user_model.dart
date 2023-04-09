@@ -17,6 +17,8 @@ class UserModel extends HiveObject {
   List<CategoryModel> incomeCategories;
   @HiveField(4)
   List<CategoryModel> expenseCategories;
+  @HiveField(5)
+  List<CreditCardModel> creditCards;
 
   UserModel({
     required this.id,
@@ -24,6 +26,7 @@ class UserModel extends HiveObject {
     required this.transactions,
     required this.incomeCategories,
     required this.expenseCategories,
+    required this.creditCards,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

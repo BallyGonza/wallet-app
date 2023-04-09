@@ -15,6 +15,11 @@ List<InstitutionModel> defaultInstitutions = [
   mercadoPagoInstitution
 ];
 
+List<InstitutionModel> defaultCardTypes = [
+  visaInstitution,
+  mastercardInstitution,
+];
+
 InstitutionModel wallet = InstitutionModel(
   id: 0,
   name: 'Efectivo',
@@ -52,10 +57,28 @@ InstitutionModel mercadoPagoInstitution = InstitutionModel(
 );
 
 InstitutionModel savingsInstitution = InstitutionModel(
-  id: 0,
+  id: 4,
   name: 'Ahorros',
   image: 'assets/icons/institutions/savings.png',
   color: green,
   secondaryColor: green,
+  textColor: white,
+);
+
+InstitutionModel visaInstitution = InstitutionModel(
+  id: 5,
+  name: 'Visa',
+  image: 'assets/icons/institutions/visa.png',
+  color: white,
+  secondaryColor: white,
+  textColor: white,
+);
+
+InstitutionModel mastercardInstitution = InstitutionModel(
+  id: 6,
+  name: 'Mastercard',
+  image: 'assets/icons/institutions/mastercard.png',
+  color: white,
+  secondaryColor: white,
   textColor: white,
 );

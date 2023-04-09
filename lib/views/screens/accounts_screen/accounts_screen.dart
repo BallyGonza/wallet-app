@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:wallet_app/data/data.dart';
+
 import 'package:wallet_app/views/views.dart';
 
 import 'widgets/widgets.dart';
@@ -58,6 +59,13 @@ class _AccountsScreenState extends State<AccountsScreen> {
               widget: AccountsList(user: widget.user, date: widget.date),
               onTap: () {},
             ),
+            const SizedBox(height: 8),
+            HomeCard(
+              title: 'Credit Cards',
+              widget: CreditCardList(user: widget.user, date: widget.date),
+              onTap: () {},
+            ),
+            const SizedBox(height: 35),
           ],
         ),
       ),

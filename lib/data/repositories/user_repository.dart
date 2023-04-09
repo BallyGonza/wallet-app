@@ -59,6 +59,17 @@ class UserRepository {
     }
     return expense;
   }
+
+  double getTotalOfCreditCard(CreditCardModel creditCard, DateTime date) {
+    double total = 0;
+    for (var transaction in creditCard.transactions) {
+      if (transaction.date.month <= date.month &&
+          transaction.date.year <= date.year) {
+        total += transaction.amount;
+      }
+    }
+    return total;
+  }
 }
 
 UserModel user = UserModel(
@@ -67,4 +78,5 @@ UserModel user = UserModel(
   transactions: [],
   incomeCategories: [...defaultIncomeCategories],
   expenseCategories: [...defaultExpenseCategories],
+  creditCards: [...defaultCreditCards],
 );
