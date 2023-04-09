@@ -47,9 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: _dialButton(context),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: AppBar(
-        backgroundColor: currentIndex == 0
-            ? colorCards
-            : walletAppTheme.scaffoldBackgroundColor,
+        backgroundColor: walletAppTheme.scaffoldBackgroundColor,
         elevation: 0,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

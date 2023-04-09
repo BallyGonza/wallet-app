@@ -42,14 +42,15 @@ class TransactionListItem extends StatelessWidget {
                             title: 'Category',
                             icon: transaction.category.icon,
                             iconColor: transaction.category.iconColor,
-                            color: transaction.category.backgroundColor,
+                            backgroundColor:
+                                transaction.category.backgroundColor,
                             description: transaction.category.name,
                             transaction: transaction,
                           ),
                           DescriptionItem(
                             title: 'Account',
                             icon: transaction.account.institution.logo,
-                            color:
+                            backgroundColor:
                                 transaction.account.institution.backgroundColor,
                             description: transaction.account.name,
                             transaction: transaction,
@@ -57,7 +58,7 @@ class TransactionListItem extends StatelessWidget {
                           DescriptionItem(
                             title: 'Amount',
                             icon: 'assets/icons/coin.png',
-                            color: yellow,
+                            backgroundColor: yellow,
                             description: amountFormat.format(
                               transaction.amount,
                             ),
@@ -69,14 +70,14 @@ class TransactionListItem extends StatelessWidget {
                           DescriptionItem(
                             title: 'Date',
                             icon: 'assets/icons/calendar.png',
-                            color: indigo,
+                            backgroundColor: indigo,
                             description: dateFormat.format(transaction.date),
                             transaction: transaction,
                           ),
                           DescriptionItem(
                             title: 'Note',
                             icon: 'assets/icons/pencil.png',
-                            color: indigo,
+                            backgroundColor: indigo,
                             description: transaction.note.isEmpty
                                 ? 'None'
                                 : transaction.note,
@@ -171,7 +172,7 @@ class DescriptionItem extends StatelessWidget {
     required this.title,
     required this.icon,
     this.iconColor,
-    required this.color,
+    required this.backgroundColor,
     required this.description,
     this.descriptionColor,
     required this.transaction,
@@ -180,7 +181,7 @@ class DescriptionItem extends StatelessWidget {
   final String title;
   final String icon;
   final int? iconColor;
-  final int color;
+  final int backgroundColor;
   final String description;
   final Color? descriptionColor;
   final TransactionModel transaction;
@@ -192,7 +193,7 @@ class DescriptionItem extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
-            backgroundColor: Color(color),
+            backgroundColor: Color(backgroundColor),
             child: Image.asset(
               icon,
               width: 24,

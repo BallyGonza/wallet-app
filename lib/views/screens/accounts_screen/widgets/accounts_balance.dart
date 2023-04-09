@@ -12,30 +12,34 @@ class AccountsBalance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserRepository userRepository = UserRepository();
-    return Column(
-      children: [
-        const Text(
-          'Accounts balance',
-          style: TextStyle(
-            color: Colors.grey,
-            fontSize: 12,
-            fontWeight: FontWeight.normal,
+    return Padding(
+      padding: const EdgeInsets.only(top: 16.0),
+      child: Column(
+        children: [
+          const Text(
+            'Accounts balance',
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 12,
+              fontWeight: FontWeight.normal,
+            ),
           ),
-        ),
-        SizedBox(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4.0),
-            child: Text(
-              amountFormat.format(userRepository.getTotal(transactions, date)),
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
+          SizedBox(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              child: Text(
+                amountFormat
+                    .format(userRepository.getTotal(transactions, date)),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
