@@ -15,6 +15,8 @@ class CreditCardExpenseListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int currentCuota = 1 +
+        (transaction.date.difference(DateTime.now()).inDays / 30).round().abs();
     return InkWell(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -88,7 +90,7 @@ class CreditCardExpenseListItem extends StatelessWidget {
                 const SizedBox(height: 2),
                 transaction.cuotas > 1
                     ? Text(
-                        '${transaction.cuotas} cuotas',
+                        '$currentCuota/${transaction.cuotas} cuotas',
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
@@ -131,14 +133,19 @@ class CreditCardExpenseListItem extends StatelessWidget {
                         icon: transaction.creditCard.institution.logo,
                         backgroundColor:
                             transaction.creditCard.institution.backgroundColor,
-                        description: transaction.creditCard.name,
+                        description: transaction.creditCard.institution.name,
                         transaction: transaction,
                       ),
                       DescriptionItem(
-                        title: 'Tarjeta',
+                        title: 'Numero de tarjeta',
                         icon: transaction.creditCard.cardType.logo,
                         backgroundColor: white,
-                        description: transaction.creditCard.cardType.name,
+                        description: transaction.creditCard.number
+                            .replaceAllMapped(
+                              RegExp(r'.{4}'),
+                              (Match m) => '${m[0]} ',
+                            )
+                            .trim(),
                         transaction: transaction,
                       ),
                       DescriptionItem(
