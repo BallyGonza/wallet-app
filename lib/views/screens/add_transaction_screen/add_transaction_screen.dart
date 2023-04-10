@@ -8,6 +8,7 @@ import 'package:wallet_app/views/views.dart';
 
 class AddTransactionScreen extends StatefulWidget {
   AddTransactionScreen.income({
+    required this.user,
     required this.onPressed,
     Key? key,
   })  : _title = 'Ingreso',
@@ -17,6 +18,7 @@ class AddTransactionScreen extends StatefulWidget {
         super(key: key);
 
   AddTransactionScreen.expense({
+    required this.user,
     required this.onPressed,
     Key? key,
   })  : _title = 'Egreso',
@@ -25,6 +27,7 @@ class AddTransactionScreen extends StatefulWidget {
         _categories = user.expenseCategories,
         super(key: key);
 
+  final UserModel user;
   final Function(TransactionModel) onPressed;
   final bool _isIncome;
   final Color _color;
@@ -47,7 +50,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   @override
   void initState() {
     _selectedCategory = widget._categories[0];
-    _selectedAccount = user.accounts[0];
+    _selectedAccount = widget.user.accounts[0];
 
     super.initState();
   }
@@ -172,56 +175,41 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       ),
                       onTap: () {
                         showModalBottomSheet(
-                          backgroundColor: Colors.transparent,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                            ),
+                          ),
+                          backgroundColor: colorCards,
                           context: context,
                           builder: (context) {
-                            return Container(
-                              height: 800,
-                              decoration: const BoxDecoration(
-                                color: colorCards,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30),
-                                  topRight: Radius.circular(30),
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: ListView.builder(
-                                        itemCount: widget._categories.length,
-                                        itemBuilder: (context, index) {
-                                          return CategoryListItem(
-                                            onCategoryTap: () {
-                                              setState(() {
-                                                _selectedCategory =
-                                                    widget._categories[index];
-                                              });
-                                              Navigator.pop(context);
-                                            },
-                                            onSubCategoryTap: (subIndex) {
-                                              setState(() {
-                                                _selectedCategory = widget
-                                                    ._categories[index]
-                                                    .subCategories[subIndex];
-                                              });
-                                              Navigator.pop(context);
-                                            },
-                                            category: widget._categories[index],
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                    ActionButton(
-                                      text: 'Add new category',
-                                      color: primaryColor!,
-                                      onPressed: () {},
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                  ],
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: widget._categories.length * 60.0,
+                                child: ListView.builder(
+                                  itemCount: widget._categories.length,
+                                  itemBuilder: (context, index) {
+                                    return CategoryListItem(
+                                      onCategoryTap: () {
+                                        setState(() {
+                                          _selectedCategory =
+                                              widget._categories[index];
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                      onSubCategoryTap: (subIndex) {
+                                        setState(() {
+                                          _selectedCategory = widget
+                                              ._categories[index]
+                                              .subCategories[subIndex];
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                      category: widget._categories[index],
+                                    );
+                                  },
                                 ),
                               ),
                             );
@@ -271,50 +259,35 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       ),
                       onTap: () {
                         showModalBottomSheet(
-                          backgroundColor: Colors.transparent,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                            ),
+                          ),
+                          backgroundColor: colorCards,
                           context: context,
                           builder: (context) {
-                            return Container(
-                              height: user.accounts.length * 90,
-                              decoration: const BoxDecoration(
-                                color: colorCards,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30),
-                                  topRight: Radius.circular(30),
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: ListView.builder(
-                                        itemCount: user.accounts.length,
-                                        itemBuilder: (context, index) {
-                                          return InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                _selectedAccount =
-                                                    user.accounts[index];
-                                              });
-                                              Navigator.pop(context);
-                                            },
-                                            child: AccountListItem(
-                                              account: user.accounts[index],
-                                            ),
-                                          );
-                                        },
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: widget.user.accounts.length * 80.0,
+                                child: ListView.builder(
+                                  itemCount: widget.user.accounts.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          _selectedAccount =
+                                              widget.user.accounts[index];
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                      child: AccountListItem(
+                                        account: widget.user.accounts[index],
                                       ),
-                                    ),
-                                    // ActionButton(
-                                    //   text: 'Add new account',
-                                    //   color: primaryColor!,
-                                    //   onPressed: () {},
-                                    // ),
-                                    // const SizedBox(
-                                    //   height: 20,
-                                    // ),
-                                  ],
+                                    );
+                                  },
                                 ),
                               ),
                             );

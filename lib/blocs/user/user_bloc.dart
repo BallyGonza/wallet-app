@@ -4,9 +4,7 @@ import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
-  UserBloc(
-    this.usersRepository,
-  ) : super(const UserState.initial()) {
+  UserBloc() : super(const UserState.initial()) {
     on<UserInitialEvent>(_onInit);
 
     on<UserAddAccountEvent>(_onAddAccount);
@@ -21,6 +19,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserRemoveTransactionEvent>(_onRemoveTransaction);
     on<UserRemoveAllTransactionsEvent>(_onRemoveAllTransactions);
 
+    on<UserAddCreditCardExpenseEvent>(_onAddCreditCardExpense);
+    on<UserRemoveCreditCardExpenseEvent>(_onRemoveCreditCardExpense);
+
     // on<UserAddCategoryEvent>(_onAddCategory);
     // on<UserUpdateCategoryEvent>(_onUpdateCategory);
     // on<UserRemoveCategoryEvent>(_onRemoveCategory);
@@ -28,10 +29,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     add(const UserEvent.init());
   }
 
-  final UserRepository usersRepository;
   late UserModel defaultUser;
+
   late UserModel user;
   List<TransactionModel> transactions = [];
+  List<CreditCardTransactionModel> creditCardExpenses = [];
   List<AccountModel> accounts = [];
   List<CreditCardModel> creditCards = [];
 
@@ -41,7 +43,15 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     UserInitialEvent event,
     Emitter<UserState> emit,
   ) async {
-    defaultUser = await usersRepository.getUser();
+    defaultUser = UserModel(
+      id: 0,
+      incomeCategories: [...defaultIncomeCategories],
+      expenseCategories: [...defaultExpenseCategories],
+      accounts: [],
+      transactions: [],
+      creditCards: [],
+      creditCardExpenses: [],
+    );
     if (!box.containsKey(defaultUser.id)) {
       await box.put(defaultUser.id, defaultUser);
     }
@@ -49,8 +59,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     transactions.addAll(user.transactions);
     accounts.addAll(user.accounts);
     creditCards.addAll(user.creditCards);
+    creditCardExpenses.addAll(user.creditCardExpenses);
     // order transactions by date, soonest first
     transactions.sort((a, b) => a.date.compareTo(b.date));
+    await box.put(user.id, user);
     emit(UserState.updated(user));
   }
 
@@ -154,6 +166,31 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     Emitter<UserState> emit,
   ) async {
     transactions.clear();
+    await box.put(user.id, user);
+    emit(UserState.updated(user));
+  }
+
+  // Credit Card Expense
+
+  void _onAddCreditCardExpense(
+    UserAddCreditCardExpenseEvent event,
+    Emitter<UserState> emit,
+  ) async {
+    creditCardExpenses.add(event.creditCardExpense);
+    creditCardExpenses.sort((a, b) => a.date.compareTo(b.date));
+    user.creditCardExpenses = creditCardExpenses;
+    await box.put(user.id, user);
+    emit(UserState.updated(user));
+  }
+
+  void _onRemoveCreditCardExpense(
+    UserRemoveCreditCardExpenseEvent event,
+    Emitter<UserState> emit,
+  ) async {
+    creditCardExpenses
+        .removeWhere((element) => element.id == event.creditCardExpense.id);
+    creditCardExpenses.sort((a, b) => a.date.compareTo(b.date));
+    user.creditCardExpenses = creditCardExpenses;
     await box.put(user.id, user);
     emit(UserState.updated(user));
   }

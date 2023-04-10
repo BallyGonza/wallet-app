@@ -35,9 +35,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: walletAppTheme,
       home: BlocProvider(
-        create: (context) => UserBloc(
-          UserRepository(),
-        ),
+        create: (context) => UserBloc(),
         child: BlocConsumer<UserBloc, UserState>(
           listener: (context, state) {},
           builder: (context, state) {

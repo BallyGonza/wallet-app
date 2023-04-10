@@ -23,13 +23,15 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       incomeCategories: (fields[3] as List).cast<CategoryModel>(),
       expenseCategories: (fields[4] as List).cast<CategoryModel>(),
       creditCards: (fields[5] as List).cast<CreditCardModel>(),
+      creditCardExpenses:
+          (fields[6] as List).cast<CreditCardTransactionModel>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,7 +43,9 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..writeByte(4)
       ..write(obj.expenseCategories)
       ..writeByte(5)
-      ..write(obj.creditCards);
+      ..write(obj.creditCards)
+      ..writeByte(6)
+      ..write(obj.creditCardExpenses);
   }
 
   @override
@@ -76,6 +80,10 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       creditCards: (json['creditCards'] as List<dynamic>)
           .map((e) => CreditCardModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      creditCardExpenses: (json['creditCardExpenses'] as List<dynamic>)
+          .map((e) =>
+              CreditCardTransactionModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -85,4 +93,5 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'incomeCategories': instance.incomeCategories,
       'expenseCategories': instance.expenseCategories,
       'creditCards': instance.creditCards,
+      'creditCardExpenses': instance.creditCardExpenses,
     };

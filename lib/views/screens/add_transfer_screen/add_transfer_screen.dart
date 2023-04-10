@@ -8,11 +8,13 @@ import 'package:wallet_app/views/views.dart';
 
 class AddTransferScreen extends StatefulWidget {
   const AddTransferScreen({
+    required this.user,
     required this.onPressed,
     Key? key,
   }) : super(key: key);
 
   final Function(TransactionModel, TransactionModel) onPressed;
+  final UserModel user;
 
   @override
   State<AddTransferScreen> createState() => _AddTransferScreenState();
@@ -30,8 +32,8 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
 
   @override
   void initState() {
-    _fromSelectedAccount = user.accounts[0];
-    _toSelectedAccount = user.accounts[1];
+    _fromSelectedAccount = widget.user.accounts[0];
+    _toSelectedAccount = widget.user.accounts[1];
 
     super.initState();
   }
@@ -153,50 +155,35 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                       ),
                       onTap: () {
                         showModalBottomSheet(
-                          backgroundColor: Colors.transparent,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                            ),
+                          ),
+                          backgroundColor: colorCards,
                           context: context,
                           builder: (context) {
-                            return Container(
-                              height: user.accounts.length * 90,
-                              decoration: const BoxDecoration(
-                                color: colorCards,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30),
-                                  topRight: Radius.circular(30),
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: ListView.builder(
-                                        itemCount: user.accounts.length,
-                                        itemBuilder: (context, index) {
-                                          return InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                _fromSelectedAccount =
-                                                    user.accounts[index];
-                                              });
-                                              Navigator.pop(context);
-                                            },
-                                            child: AccountListItem(
-                                              account: user.accounts[index],
-                                            ),
-                                          );
-                                        },
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: widget.user.accounts.length * 80.0,
+                                child: ListView.builder(
+                                  itemCount: widget.user.accounts.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          _fromSelectedAccount =
+                                              widget.user.accounts[index];
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                      child: AccountListItem(
+                                        account: widget.user.accounts[index],
                                       ),
-                                    ),
-                                    ActionButton(
-                                      text: 'Add new account',
-                                      color: primaryColor!,
-                                      onPressed: () {},
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                  ],
+                                    );
+                                  },
                                 ),
                               ),
                             );
@@ -246,50 +233,35 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                       ),
                       onTap: () {
                         showModalBottomSheet(
-                          backgroundColor: Colors.transparent,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                            ),
+                          ),
+                          backgroundColor: colorCards,
                           context: context,
                           builder: (context) {
-                            return Container(
-                              height: user.accounts.length * 90,
-                              decoration: const BoxDecoration(
-                                color: colorCards,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30),
-                                  topRight: Radius.circular(30),
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: ListView.builder(
-                                        itemCount: user.accounts.length,
-                                        itemBuilder: (context, index) {
-                                          return InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                _toSelectedAccount =
-                                                    user.accounts[index];
-                                              });
-                                              Navigator.pop(context);
-                                            },
-                                            child: AccountListItem(
-                                              account: user.accounts[index],
-                                            ),
-                                          );
-                                        },
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: widget.user.accounts.length * 80.0,
+                                child: ListView.builder(
+                                  itemCount: widget.user.accounts.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          _toSelectedAccount =
+                                              widget.user.accounts[index];
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                      child: AccountListItem(
+                                        account: widget.user.accounts[index],
                                       ),
-                                    ),
-                                    ActionButton(
-                                      text: 'Add new account',
-                                      color: primaryColor!,
-                                      onPressed: () {},
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                  ],
+                                    );
+                                  },
                                 ),
                               ),
                             );

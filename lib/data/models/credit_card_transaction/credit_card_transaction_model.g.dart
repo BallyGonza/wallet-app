@@ -23,7 +23,7 @@ class CreditCardTransactionModelAdapter
       amount: fields[2] as double,
       date: fields[3] as DateTime,
       category: fields[4] as CategoryModel,
-      account: fields[5] as AccountModel,
+      creditCard: fields[5] as CreditCardModel,
       isReccurent: fields[6] as bool,
       cuotas: fields[7] as int,
     );
@@ -44,7 +44,7 @@ class CreditCardTransactionModelAdapter
       ..writeByte(4)
       ..write(obj.category)
       ..writeByte(5)
-      ..write(obj.account)
+      ..write(obj.creditCard)
       ..writeByte(6)
       ..write(obj.isReccurent)
       ..writeByte(7)
@@ -75,7 +75,8 @@ CreditCardTransactionModel _$CreditCardTransactionModelFromJson(
       date: DateTime.parse(json['date'] as String),
       category:
           CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
-      account: AccountModel.fromJson(json['account'] as Map<String, dynamic>),
+      creditCard:
+          CreditCardModel.fromJson(json['creditCard'] as Map<String, dynamic>),
       isReccurent: json['isReccurent'] as bool,
       cuotas: json['cuotas'] as int,
     );
@@ -88,7 +89,7 @@ Map<String, dynamic> _$CreditCardTransactionModelToJson(
       'amount': instance.amount,
       'date': instance.date.toIso8601String(),
       'category': instance.category,
-      'account': instance.account,
+      'creditCard': instance.creditCard,
       'isReccurent': instance.isReccurent,
       'cuotas': instance.cuotas,
     };

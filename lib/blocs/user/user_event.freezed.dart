@@ -28,6 +28,10 @@ mixin _$UserEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -45,6 +49,10 @@ mixin _$UserEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -62,6 +70,10 @@ mixin _$UserEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -83,6 +95,10 @@ mixin _$UserEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -101,6 +117,10 @@ mixin _$UserEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -119,6 +139,9 @@ mixin _$UserEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -192,6 +215,10 @@ class _$UserInitialEvent implements UserInitialEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -212,6 +239,10 @@ class _$UserInitialEvent implements UserInitialEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -232,6 +263,10 @@ class _$UserInitialEvent implements UserInitialEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -259,6 +294,10 @@ class _$UserInitialEvent implements UserInitialEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -280,6 +319,10 @@ class _$UserInitialEvent implements UserInitialEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -301,6 +344,9 @@ class _$UserInitialEvent implements UserInitialEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -393,6 +439,10 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -413,6 +463,10 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -433,6 +487,10 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -460,6 +518,10 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -481,6 +543,10 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -502,6 +568,9 @@ class _$UserAddTransactionEvent implements UserAddTransactionEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -602,6 +671,10 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -622,6 +695,10 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -642,6 +719,10 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -669,6 +750,10 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -690,6 +775,10 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -711,6 +800,9 @@ class _$UserUpdateTransactionEvent implements UserUpdateTransactionEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -811,6 +903,10 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -831,6 +927,10 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -851,6 +951,10 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -878,6 +982,10 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -899,6 +1007,10 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -920,6 +1032,9 @@ class _$UserRemoveTransactionEvent implements UserRemoveTransactionEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -1017,6 +1132,10 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -1037,6 +1156,10 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -1057,6 +1180,10 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -1084,6 +1211,10 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -1105,6 +1236,10 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -1126,6 +1261,9 @@ class _$UserAddAccountEvent implements UserAddAccountEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -1200,6 +1338,10 @@ class _$UserRemoveAllTransactionsEvent
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -1220,6 +1362,10 @@ class _$UserRemoveAllTransactionsEvent
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -1240,6 +1386,10 @@ class _$UserRemoveAllTransactionsEvent
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -1267,6 +1417,10 @@ class _$UserRemoveAllTransactionsEvent
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -1288,6 +1442,10 @@ class _$UserRemoveAllTransactionsEvent
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -1309,6 +1467,9 @@ class _$UserRemoveAllTransactionsEvent
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -1401,6 +1562,10 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -1421,6 +1586,10 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -1441,6 +1610,10 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -1468,6 +1641,10 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -1489,6 +1666,10 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -1510,6 +1691,9 @@ class _$UserUpdateAccountEvent implements UserUpdateAccountEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -1607,6 +1791,10 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -1627,6 +1815,10 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -1647,6 +1839,10 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -1674,6 +1870,10 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -1695,6 +1895,10 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -1716,6 +1920,9 @@ class _$UserRemoveAccountEvent implements UserRemoveAccountEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -1814,6 +2021,10 @@ class _$UserAddCreditCardEvent implements UserAddCreditCardEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -1834,6 +2045,10 @@ class _$UserAddCreditCardEvent implements UserAddCreditCardEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -1854,6 +2069,10 @@ class _$UserAddCreditCardEvent implements UserAddCreditCardEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -1881,6 +2100,10 @@ class _$UserAddCreditCardEvent implements UserAddCreditCardEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -1902,6 +2125,10 @@ class _$UserAddCreditCardEvent implements UserAddCreditCardEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -1923,6 +2150,9 @@ class _$UserAddCreditCardEvent implements UserAddCreditCardEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -2022,6 +2252,10 @@ class _$UserRemoveCreditCardEvent implements UserRemoveCreditCardEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -2042,6 +2276,10 @@ class _$UserRemoveCreditCardEvent implements UserRemoveCreditCardEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -2062,6 +2300,10 @@ class _$UserRemoveCreditCardEvent implements UserRemoveCreditCardEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -2089,6 +2331,10 @@ class _$UserRemoveCreditCardEvent implements UserRemoveCreditCardEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -2110,6 +2356,10 @@ class _$UserRemoveCreditCardEvent implements UserRemoveCreditCardEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -2131,6 +2381,9 @@ class _$UserRemoveCreditCardEvent implements UserRemoveCreditCardEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -2150,6 +2403,475 @@ abstract class UserRemoveCreditCardEvent implements UserEvent {
   CreditCardModel get creditCard;
   @JsonKey(ignore: true)
   _$$UserRemoveCreditCardEventCopyWith<_$UserRemoveCreditCardEvent>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserAddCreditCardExpenseEventCopyWith<$Res> {
+  factory _$$UserAddCreditCardExpenseEventCopyWith(
+          _$UserAddCreditCardExpenseEvent value,
+          $Res Function(_$UserAddCreditCardExpenseEvent) then) =
+      __$$UserAddCreditCardExpenseEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CreditCardTransactionModel creditCardExpense});
+}
+
+/// @nodoc
+class __$$UserAddCreditCardExpenseEventCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserAddCreditCardExpenseEvent>
+    implements _$$UserAddCreditCardExpenseEventCopyWith<$Res> {
+  __$$UserAddCreditCardExpenseEventCopyWithImpl(
+      _$UserAddCreditCardExpenseEvent _value,
+      $Res Function(_$UserAddCreditCardExpenseEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? creditCardExpense = null,
+  }) {
+    return _then(_$UserAddCreditCardExpenseEvent(
+      null == creditCardExpense
+          ? _value.creditCardExpense
+          : creditCardExpense // ignore: cast_nullable_to_non_nullable
+              as CreditCardTransactionModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserAddCreditCardExpenseEvent implements UserAddCreditCardExpenseEvent {
+  const _$UserAddCreditCardExpenseEvent(this.creditCardExpense);
+
+  @override
+  final CreditCardTransactionModel creditCardExpense;
+
+  @override
+  String toString() {
+    return 'UserEvent.addCreditCardExpense(creditCardExpense: $creditCardExpense)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserAddCreditCardExpenseEvent &&
+            (identical(other.creditCardExpense, creditCardExpense) ||
+                other.creditCardExpense == creditCardExpense));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, creditCardExpense);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserAddCreditCardExpenseEventCopyWith<_$UserAddCreditCardExpenseEvent>
+      get copyWith => __$$UserAddCreditCardExpenseEventCopyWithImpl<
+          _$UserAddCreditCardExpenseEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CreditCardModel creditCard) addCreditCard,
+    required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
+  }) {
+    return addCreditCardExpense(creditCardExpense);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CreditCardModel creditCard)? addCreditCard,
+    TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
+  }) {
+    return addCreditCardExpense?.call(creditCardExpense);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CreditCardModel creditCard)? addCreditCard,
+    TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
+    required TResult orElse(),
+  }) {
+    if (addCreditCardExpense != null) {
+      return addCreditCardExpense(creditCardExpense);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserInitialEvent value) init,
+    required TResult Function(UserAddTransactionEvent value) addTransaction,
+    required TResult Function(UserUpdateTransactionEvent value)
+        updateTransaction,
+    required TResult Function(UserRemoveTransactionEvent value)
+        removeTransaction,
+    required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
+    required TResult Function(UserUpdateAccountEvent value) updateAccount,
+    required TResult Function(UserRemoveAccountEvent value) removeAccount,
+    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
+    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
+    required TResult Function(UserAddCategoryEvent value) addCategory,
+    required TResult Function(UserUpdateCategoryEvent value) updateCategory,
+    required TResult Function(UserRemoveCategoryEvent value) removeCategory,
+  }) {
+    return addCreditCardExpense(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserInitialEvent value)? init,
+    TResult? Function(UserAddTransactionEvent value)? addTransaction,
+    TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
+    TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
+    TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
+    TResult? Function(UserUpdateAccountEvent value)? updateAccount,
+    TResult? Function(UserRemoveAccountEvent value)? removeAccount,
+    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
+    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
+    TResult? Function(UserAddCategoryEvent value)? addCategory,
+    TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
+    TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
+  }) {
+    return addCreditCardExpense?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserInitialEvent value)? init,
+    TResult Function(UserAddTransactionEvent value)? addTransaction,
+    TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
+    TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
+    TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
+    TResult Function(UserUpdateAccountEvent value)? updateAccount,
+    TResult Function(UserRemoveAccountEvent value)? removeAccount,
+    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
+    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
+    TResult Function(UserAddCategoryEvent value)? addCategory,
+    TResult Function(UserUpdateCategoryEvent value)? updateCategory,
+    TResult Function(UserRemoveCategoryEvent value)? removeCategory,
+    required TResult orElse(),
+  }) {
+    if (addCreditCardExpense != null) {
+      return addCreditCardExpense(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserAddCreditCardExpenseEvent implements UserEvent {
+  const factory UserAddCreditCardExpenseEvent(
+          final CreditCardTransactionModel creditCardExpense) =
+      _$UserAddCreditCardExpenseEvent;
+
+  CreditCardTransactionModel get creditCardExpense;
+  @JsonKey(ignore: true)
+  _$$UserAddCreditCardExpenseEventCopyWith<_$UserAddCreditCardExpenseEvent>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UserRemoveCreditCardExpenseEventCopyWith<$Res> {
+  factory _$$UserRemoveCreditCardExpenseEventCopyWith(
+          _$UserRemoveCreditCardExpenseEvent value,
+          $Res Function(_$UserRemoveCreditCardExpenseEvent) then) =
+      __$$UserRemoveCreditCardExpenseEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CreditCardTransactionModel creditCardExpense});
+}
+
+/// @nodoc
+class __$$UserRemoveCreditCardExpenseEventCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserRemoveCreditCardExpenseEvent>
+    implements _$$UserRemoveCreditCardExpenseEventCopyWith<$Res> {
+  __$$UserRemoveCreditCardExpenseEventCopyWithImpl(
+      _$UserRemoveCreditCardExpenseEvent _value,
+      $Res Function(_$UserRemoveCreditCardExpenseEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? creditCardExpense = null,
+  }) {
+    return _then(_$UserRemoveCreditCardExpenseEvent(
+      null == creditCardExpense
+          ? _value.creditCardExpense
+          : creditCardExpense // ignore: cast_nullable_to_non_nullable
+              as CreditCardTransactionModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UserRemoveCreditCardExpenseEvent
+    implements UserRemoveCreditCardExpenseEvent {
+  const _$UserRemoveCreditCardExpenseEvent(this.creditCardExpense);
+
+  @override
+  final CreditCardTransactionModel creditCardExpense;
+
+  @override
+  String toString() {
+    return 'UserEvent.removeCreditCardExpense(creditCardExpense: $creditCardExpense)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserRemoveCreditCardExpenseEvent &&
+            (identical(other.creditCardExpense, creditCardExpense) ||
+                other.creditCardExpense == creditCardExpense));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, creditCardExpense);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UserRemoveCreditCardExpenseEventCopyWith<
+          _$UserRemoveCreditCardExpenseEvent>
+      get copyWith => __$$UserRemoveCreditCardExpenseEventCopyWithImpl<
+          _$UserRemoveCreditCardExpenseEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(TransactionModel transaction) addTransaction,
+    required TResult Function(TransactionModel transaction) updateTransaction,
+    required TResult Function(TransactionModel transaction) removeTransaction,
+    required TResult Function(AccountModel account) addAccount,
+    required TResult Function() removeAllTransactions,
+    required TResult Function(AccountModel account) updateAccount,
+    required TResult Function(AccountModel account) removeAccount,
+    required TResult Function(CreditCardModel creditCard) addCreditCard,
+    required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
+    required TResult Function(CategoryModel category) addCategory,
+    required TResult Function(CategoryModel category) updateCategory,
+    required TResult Function(CategoryModel category) removeCategory,
+  }) {
+    return removeCreditCardExpense(creditCardExpense);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(TransactionModel transaction)? addTransaction,
+    TResult? Function(TransactionModel transaction)? updateTransaction,
+    TResult? Function(TransactionModel transaction)? removeTransaction,
+    TResult? Function(AccountModel account)? addAccount,
+    TResult? Function()? removeAllTransactions,
+    TResult? Function(AccountModel account)? updateAccount,
+    TResult? Function(AccountModel account)? removeAccount,
+    TResult? Function(CreditCardModel creditCard)? addCreditCard,
+    TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
+    TResult? Function(CategoryModel category)? addCategory,
+    TResult? Function(CategoryModel category)? updateCategory,
+    TResult? Function(CategoryModel category)? removeCategory,
+  }) {
+    return removeCreditCardExpense?.call(creditCardExpense);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(TransactionModel transaction)? addTransaction,
+    TResult Function(TransactionModel transaction)? updateTransaction,
+    TResult Function(TransactionModel transaction)? removeTransaction,
+    TResult Function(AccountModel account)? addAccount,
+    TResult Function()? removeAllTransactions,
+    TResult Function(AccountModel account)? updateAccount,
+    TResult Function(AccountModel account)? removeAccount,
+    TResult Function(CreditCardModel creditCard)? addCreditCard,
+    TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
+    TResult Function(CategoryModel category)? addCategory,
+    TResult Function(CategoryModel category)? updateCategory,
+    TResult Function(CategoryModel category)? removeCategory,
+    required TResult orElse(),
+  }) {
+    if (removeCreditCardExpense != null) {
+      return removeCreditCardExpense(creditCardExpense);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserInitialEvent value) init,
+    required TResult Function(UserAddTransactionEvent value) addTransaction,
+    required TResult Function(UserUpdateTransactionEvent value)
+        updateTransaction,
+    required TResult Function(UserRemoveTransactionEvent value)
+        removeTransaction,
+    required TResult Function(UserAddAccountEvent value) addAccount,
+    required TResult Function(UserRemoveAllTransactionsEvent value)
+        removeAllTransactions,
+    required TResult Function(UserUpdateAccountEvent value) updateAccount,
+    required TResult Function(UserRemoveAccountEvent value) removeAccount,
+    required TResult Function(UserAddCreditCardEvent value) addCreditCard,
+    required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
+    required TResult Function(UserAddCategoryEvent value) addCategory,
+    required TResult Function(UserUpdateCategoryEvent value) updateCategory,
+    required TResult Function(UserRemoveCategoryEvent value) removeCategory,
+  }) {
+    return removeCreditCardExpense(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserInitialEvent value)? init,
+    TResult? Function(UserAddTransactionEvent value)? addTransaction,
+    TResult? Function(UserUpdateTransactionEvent value)? updateTransaction,
+    TResult? Function(UserRemoveTransactionEvent value)? removeTransaction,
+    TResult? Function(UserAddAccountEvent value)? addAccount,
+    TResult? Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
+    TResult? Function(UserUpdateAccountEvent value)? updateAccount,
+    TResult? Function(UserRemoveAccountEvent value)? removeAccount,
+    TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
+    TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
+    TResult? Function(UserAddCategoryEvent value)? addCategory,
+    TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
+    TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
+  }) {
+    return removeCreditCardExpense?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserInitialEvent value)? init,
+    TResult Function(UserAddTransactionEvent value)? addTransaction,
+    TResult Function(UserUpdateTransactionEvent value)? updateTransaction,
+    TResult Function(UserRemoveTransactionEvent value)? removeTransaction,
+    TResult Function(UserAddAccountEvent value)? addAccount,
+    TResult Function(UserRemoveAllTransactionsEvent value)?
+        removeAllTransactions,
+    TResult Function(UserUpdateAccountEvent value)? updateAccount,
+    TResult Function(UserRemoveAccountEvent value)? removeAccount,
+    TResult Function(UserAddCreditCardEvent value)? addCreditCard,
+    TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
+    TResult Function(UserAddCategoryEvent value)? addCategory,
+    TResult Function(UserUpdateCategoryEvent value)? updateCategory,
+    TResult Function(UserRemoveCategoryEvent value)? removeCategory,
+    required TResult orElse(),
+  }) {
+    if (removeCreditCardExpense != null) {
+      return removeCreditCardExpense(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserRemoveCreditCardExpenseEvent implements UserEvent {
+  const factory UserRemoveCreditCardExpenseEvent(
+          final CreditCardTransactionModel creditCardExpense) =
+      _$UserRemoveCreditCardExpenseEvent;
+
+  CreditCardTransactionModel get creditCardExpense;
+  @JsonKey(ignore: true)
+  _$$UserRemoveCreditCardExpenseEventCopyWith<
+          _$UserRemoveCreditCardExpenseEvent>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -2229,6 +2951,10 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -2249,6 +2975,10 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -2269,6 +2999,10 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -2296,6 +3030,10 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -2317,6 +3055,10 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -2338,6 +3080,9 @@ class _$UserAddCategoryEvent implements UserAddCategoryEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -2436,6 +3181,10 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -2456,6 +3205,10 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -2476,6 +3229,10 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -2503,6 +3260,10 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -2524,6 +3285,10 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -2545,6 +3310,9 @@ class _$UserUpdateCategoryEvent implements UserUpdateCategoryEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -2643,6 +3411,10 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     required TResult Function(AccountModel account) removeAccount,
     required TResult Function(CreditCardModel creditCard) addCreditCard,
     required TResult Function(CreditCardModel creditCard) removeCreditCard,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        addCreditCardExpense,
+    required TResult Function(CreditCardTransactionModel creditCardExpense)
+        removeCreditCardExpense,
     required TResult Function(CategoryModel category) addCategory,
     required TResult Function(CategoryModel category) updateCategory,
     required TResult Function(CategoryModel category) removeCategory,
@@ -2663,6 +3435,10 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     TResult? Function(AccountModel account)? removeAccount,
     TResult? Function(CreditCardModel creditCard)? addCreditCard,
     TResult? Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult? Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult? Function(CategoryModel category)? addCategory,
     TResult? Function(CategoryModel category)? updateCategory,
     TResult? Function(CategoryModel category)? removeCategory,
@@ -2683,6 +3459,10 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     TResult Function(AccountModel account)? removeAccount,
     TResult Function(CreditCardModel creditCard)? addCreditCard,
     TResult Function(CreditCardModel creditCard)? removeCreditCard,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        addCreditCardExpense,
+    TResult Function(CreditCardTransactionModel creditCardExpense)?
+        removeCreditCardExpense,
     TResult Function(CategoryModel category)? addCategory,
     TResult Function(CategoryModel category)? updateCategory,
     TResult Function(CategoryModel category)? removeCategory,
@@ -2710,6 +3490,10 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     required TResult Function(UserRemoveAccountEvent value) removeAccount,
     required TResult Function(UserAddCreditCardEvent value) addCreditCard,
     required TResult Function(UserRemoveCreditCardEvent value) removeCreditCard,
+    required TResult Function(UserAddCreditCardExpenseEvent value)
+        addCreditCardExpense,
+    required TResult Function(UserRemoveCreditCardExpenseEvent value)
+        removeCreditCardExpense,
     required TResult Function(UserAddCategoryEvent value) addCategory,
     required TResult Function(UserUpdateCategoryEvent value) updateCategory,
     required TResult Function(UserRemoveCategoryEvent value) removeCategory,
@@ -2731,6 +3515,10 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     TResult? Function(UserRemoveAccountEvent value)? removeAccount,
     TResult? Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult? Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult? Function(UserAddCreditCardExpenseEvent value)?
+        addCreditCardExpense,
+    TResult? Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult? Function(UserAddCategoryEvent value)? addCategory,
     TResult? Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult? Function(UserRemoveCategoryEvent value)? removeCategory,
@@ -2752,6 +3540,9 @@ class _$UserRemoveCategoryEvent implements UserRemoveCategoryEvent {
     TResult Function(UserRemoveAccountEvent value)? removeAccount,
     TResult Function(UserAddCreditCardEvent value)? addCreditCard,
     TResult Function(UserRemoveCreditCardEvent value)? removeCreditCard,
+    TResult Function(UserAddCreditCardExpenseEvent value)? addCreditCardExpense,
+    TResult Function(UserRemoveCreditCardExpenseEvent value)?
+        removeCreditCardExpense,
     TResult Function(UserAddCategoryEvent value)? addCategory,
     TResult Function(UserUpdateCategoryEvent value)? updateCategory,
     TResult Function(UserRemoveCategoryEvent value)? removeCategory,

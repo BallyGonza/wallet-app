@@ -156,20 +156,20 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                       ),
                       onTap: () {
                         showModalBottomSheet(
-                          backgroundColor: Colors.transparent,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                            ),
+                          ),
+                          backgroundColor: colorCards,
                           context: context,
                           builder: (context) {
-                            return Container(
-                              height: defaultInstitutions.length * 90,
-                              decoration: const BoxDecoration(
-                                color: colorCards,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30),
-                                  topRight: Radius.circular(30),
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.45,
                                 child: Column(
                                   children: [
                                     Expanded(
@@ -191,9 +191,6 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                                           );
                                         },
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
                                     ),
                                   ],
                                 ),
@@ -227,7 +224,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                backgroundColor: user.accounts.any((element) =>
+                backgroundColor: widget.user.accounts.any((element) =>
                         element.institution == _selectedInstitution)
                     ? Colors.grey
                     : primaryColor,
@@ -236,7 +233,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                 // if (_amountController.text == '') {
                 //   return;
                 // }
-                if (user.accounts.any(
+                if (widget.user.accounts.any(
                     (element) => element.institution == _selectedInstitution)) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(

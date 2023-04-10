@@ -23,8 +23,6 @@ class TransactionsList extends StatefulWidget {
 }
 
 class _TransactionsListState extends State<TransactionsList> {
-  final UserRepository usersRepository = UserRepository();
-
   @override
   Widget build(BuildContext context) {
     var transactions = widget.user.transactions

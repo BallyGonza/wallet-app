@@ -18,7 +18,7 @@ class CreditCardTransactionModel extends HiveObject {
   @HiveField(4)
   CategoryModel category;
   @HiveField(5)
-  AccountModel account;
+  CreditCardModel creditCard;
   @HiveField(6)
   bool isReccurent;
   @HiveField(7)
@@ -30,7 +30,7 @@ class CreditCardTransactionModel extends HiveObject {
     required this.amount,
     required this.date,
     required this.category,
-    required this.account,
+    required this.creditCard,
     required this.isReccurent,
     required this.cuotas,
   });

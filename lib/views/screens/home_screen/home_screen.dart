@@ -160,6 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => AddTransactionScreen.income(
+                  user: user,
                   onPressed: (transaction) {
                     setState(() {
                       context.read<UserBloc>().add(
@@ -184,6 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => AddTransactionScreen.expense(
+                  user: user,
                   onPressed: (transaction) {
                     setState(() {
                       context.read<UserBloc>().add(
@@ -208,6 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => AddTransferScreen(
+                  user: user,
                   onPressed: (toAccount, fromAccount) {
                     setState(() {
                       context.read<UserBloc>().add(
@@ -218,6 +221,31 @@ class _HomeScreenState extends State<HomeScreen> {
                       context.read<UserBloc>().add(
                             UserEvent.addTransaction(
                               fromAccount,
+                            ),
+                          );
+                    });
+                  },
+                ),
+              ),
+            );
+          },
+        ),
+        SpeedDialChild(
+          child: const FaIcon(
+            FontAwesomeIcons.creditCard,
+            color: Colors.white,
+          ),
+          backgroundColor: expenseColor,
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => AddCreditCardExpenseScreen(
+                  user: user,
+                  onPressed: (creditCardExpense) {
+                    setState(() {
+                      context.read<UserBloc>().add(
+                            UserEvent.addCreditCardExpense(
+                              creditCardExpense,
                             ),
                           );
                     });

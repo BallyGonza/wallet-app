@@ -4,7 +4,7 @@ class UserRepository {
   UserRepository();
 
   Future<UserModel> getUser() async {
-    return user;
+    return defaultUser;
   }
 
   // calculate total of transactions
@@ -63,12 +63,18 @@ class UserRepository {
   }
 
 // calcula el total de tarjeta de acuerdo al mes y año
-  double getTotalOfCreditCard(CreditCardModel creditCard, DateTime date) {
+  double getTotalOfCreditCard(
+    CreditCardModel creditCard,
+    DateTime date,
+    List<CreditCardTransactionModel> creditCardExpenses,
+  ) {
     double total = 0;
-    for (var transaction in creditCard.transactions) {
-      if (transaction.date.month == date.month &&
-          transaction.date.year == date.year) {
-        total += getValueCuota(transaction);
+    for (var transaction in creditCardExpenses) {
+      if (transaction.creditCard.institution.name ==
+              creditCard.institution.name &&
+          transaction.date.month <= date.month &&
+          transaction.date.year <= date.year) {
+        total += transaction.amount / transaction.cuotas;
       }
     }
     return total;
@@ -80,10 +86,11 @@ class UserRepository {
   }
 }
 
-UserModel user = UserModel(
+UserModel defaultUser = UserModel(
   id: 0,
   accounts: [...defaultAccounts],
   transactions: [],
+  creditCardExpenses: [],
   incomeCategories: [...defaultIncomeCategories],
   expenseCategories: [...defaultExpenseCategories],
   creditCards: [...defaultCreditCards],

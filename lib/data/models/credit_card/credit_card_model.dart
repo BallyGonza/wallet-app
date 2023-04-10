@@ -16,12 +16,6 @@ class CreditCardModel extends HiveObject {
   @HiveField(3)
   InstitutionModel cardType;
   @HiveField(4)
-  double limit;
-  @HiveField(5)
-  List<CreditCardTransactionModel> transactions = [];
-  @HiveField(6)
-  DateTime dueDate;
-  @HiveField(7)
   String number;
 
   CreditCardModel({
@@ -29,9 +23,6 @@ class CreditCardModel extends HiveObject {
     required this.name,
     required this.institution,
     required this.cardType,
-    required this.limit,
-    required this.transactions,
-    required this.dueDate,
     required this.number,
   });
 

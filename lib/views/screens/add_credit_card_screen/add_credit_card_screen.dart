@@ -108,20 +108,19 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                       ),
                       onTap: () {
                         showModalBottomSheet(
-                          backgroundColor: Colors.transparent,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                            ),
+                          ),
+                          backgroundColor: colorCards,
                           context: context,
                           builder: (context) {
-                            return Container(
-                              height: defaultBankInstitutions.length * 90,
-                              decoration: const BoxDecoration(
-                                color: colorCards,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30),
-                                  topRight: Radius.circular(30),
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: defaultBankInstitutions.length * 90,
                                 child: Column(
                                   children: [
                                     Expanded(
@@ -200,20 +199,19 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                       ),
                       onTap: () {
                         showModalBottomSheet(
-                          backgroundColor: Colors.transparent,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(30),
+                              topRight: Radius.circular(30),
+                            ),
+                          ),
+                          backgroundColor: colorCards,
                           context: context,
                           builder: (context) {
-                            return Container(
-                              height: defaultCardTypes.length * 90,
-                              decoration: const BoxDecoration(
-                                color: colorCards,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30),
-                                  topRight: Radius.circular(30),
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: defaultCardTypes.length * 90,
                                 child: Column(
                                   children: [
                                     Expanded(
@@ -330,11 +328,8 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                     id: DateTime.now().millisecondsSinceEpoch,
                     institution: _selectedInstitution,
                     name: _noteController.text,
-                    limit: 0,
-                    dueDate: DateTime.now(),
                     cardType: _selectedCardType,
                     number: _numberController.text,
-                    transactions: [],
                   );
                   widget.onPressed(creditCard);
                 });
