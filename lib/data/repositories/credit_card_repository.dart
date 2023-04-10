@@ -8,12 +8,7 @@ class CreditCardRepository {
   }
 }
 
-List<CreditCardModel> defaultCreditCards = [
-  visa0,
-  visa1,
-  mastercard0,
-  mastercard1,
-];
+List<CreditCardModel> defaultCreditCards = [];
 
 CreditCardModel visa0 = CreditCardModel(
   id: 0,

@@ -52,7 +52,12 @@ class CreditCardItem extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              creditCard.number.toString(),
+              creditCard.number
+                  .replaceAllMapped(
+                    RegExp(r'.{4}'),
+                    (Match m) => '${m[0]} ',
+                  )
+                  .trim(),
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.normal,
@@ -75,6 +80,7 @@ class CreditCardItem extends StatelessWidget {
                 creditCard.cardType.logo,
                 width: 50,
                 height: 50,
+                color: creditCard.cardType.name == 'Visa' ? Colors.white : null,
               ),
             ],
           ),

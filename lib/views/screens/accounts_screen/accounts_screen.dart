@@ -11,12 +11,14 @@ class AccountsScreen extends StatefulWidget {
     Key? key,
     required this.user,
     required this.date,
-    required this.onPressed,
+    required this.onPressedAddAccount,
+    required this.onPressedAddCreditCard,
   }) : super(key: key);
 
   final UserModel user;
   final DateTime date;
-  final Function onPressed;
+  final Function onPressedAddAccount;
+  final Function onPressedAddCreditCard;
 
   @override
   State<AccountsScreen> createState() => _AccountsScreenState();
@@ -71,7 +73,7 @@ class _AccountsScreenState extends State<AccountsScreen> {
                       user: widget.user,
                       onPressed: (account) {
                         setState(() {
-                          widget.onPressed(account);
+                          widget.onPressedAddAccount(account);
                         });
                       },
                     ),
@@ -83,7 +85,21 @@ class _AccountsScreenState extends State<AccountsScreen> {
             TitleListCard(
               title: 'Credit Cards',
               widget: CreditCardList(user: widget.user, date: widget.date),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddCreditCardScreen(
+                      user: widget.user,
+                      onPressed: (creditCard) {
+                        setState(() {
+                          widget.onPressedAddCreditCard(creditCard);
+                        });
+                      },
+                    ),
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 35),
           ],

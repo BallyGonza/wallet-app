@@ -13,6 +13,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserUpdateAccountEvent>(_onUpdateAccount);
     on<UserRemoveAccountEvent>(_onRemoveAccount);
 
+    on<UserAddCreditCardEvent>(_onAddCreditCard);
+    on<UserRemoveCreditCardEvent>(_onRemoveCreditCard);
+
     on<UserAddTransactionEvent>(_onAddTransaction);
     on<UserUpdateTransactionEvent>(_onUpdateTransaction);
     on<UserRemoveTransactionEvent>(_onRemoveTransaction);
@@ -30,6 +33,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   late UserModel user;
   List<TransactionModel> transactions = [];
   List<AccountModel> accounts = [];
+  List<CreditCardModel> creditCards = [];
 
   final Box<UserModel> box = Hive.box<UserModel>('users_box');
 
@@ -44,6 +48,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     user = box.get(defaultUser.id)!;
     transactions.addAll(user.transactions);
     accounts.addAll(user.accounts);
+    creditCards.addAll(user.creditCards);
     // order transactions by date, soonest first
     transactions.sort((a, b) => a.date.compareTo(b.date));
     emit(UserState.updated(user));
@@ -75,6 +80,28 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   ) async {
     accounts.removeWhere((element) => element.id == event.account.id);
     user.accounts = accounts;
+    await box.put(user.id, user);
+    emit(UserState.updated(user));
+  }
+
+  // Credit Card
+
+  void _onAddCreditCard(
+    UserAddCreditCardEvent event,
+    Emitter<UserState> emit,
+  ) async {
+    creditCards.add(event.creditCard);
+    user.creditCards = creditCards;
+    await box.put(user.id, user);
+    emit(UserState.updated(user));
+  }
+
+  void _onRemoveCreditCard(
+    UserRemoveCreditCardEvent event,
+    Emitter<UserState> emit,
+  ) async {
+    creditCards.removeWhere((element) => element.id == event.creditCard.id);
+    user.creditCards = creditCards;
     await box.put(user.id, user);
     emit(UserState.updated(user));
   }

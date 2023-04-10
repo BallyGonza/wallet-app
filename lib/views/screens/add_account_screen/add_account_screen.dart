@@ -3,8 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
-
-import 'widgets/widgets.dart';
+import 'package:wallet_app/views/views.dart';
 
 class AddAccountScreen extends StatefulWidget {
   const AddAccountScreen({
@@ -126,7 +125,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                         ),
                       ),
                       content: const Text(
-                        'Instution',
+                        'Cuenta',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.normal,
@@ -231,7 +230,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                 backgroundColor: user.accounts.any((element) =>
                         element.institution == _selectedInstitution)
                     ? Colors.grey
-                    : transferColor,
+                    : primaryColor,
               ),
               onPressed: () {
                 // if (_amountController.text == '') {

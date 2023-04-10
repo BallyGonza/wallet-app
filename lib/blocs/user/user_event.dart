@@ -27,6 +27,13 @@ class UserEvent with _$UserEvent {
     AccountModel account,
   ) = UserRemoveAccountEvent;
 
+  const factory UserEvent.addCreditCard(
+    CreditCardModel creditCard,
+  ) = UserAddCreditCardEvent;
+  const factory UserEvent.removeCreditCard(
+    CreditCardModel creditCard,
+  ) = UserRemoveCreditCardEvent;
+
   const factory UserEvent.addCategory(
     CategoryModel category,
   ) = UserAddCategoryEvent;

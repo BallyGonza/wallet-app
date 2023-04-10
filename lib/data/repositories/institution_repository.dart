@@ -16,6 +16,11 @@ List<InstitutionModel> defaultInstitutions = [
   savingsInstitution,
 ];
 
+List<InstitutionModel> defaultBankInstitutions = [
+  bbvaInstitution,
+  hsbcInstitution,
+];
+
 List<InstitutionModel> defaultCardTypes = [
   visaInstitution,
   mastercardInstitution,
