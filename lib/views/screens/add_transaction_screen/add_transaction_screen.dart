@@ -306,14 +306,14 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                         },
                                       ),
                                     ),
-                                    ActionButton(
-                                      text: 'Add new account',
-                                      color: primaryColor!,
-                                      onPressed: () {},
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
+                                    // ActionButton(
+                                    //   text: 'Add new account',
+                                    //   color: primaryColor!,
+                                    //   onPressed: () {},
+                                    // ),
+                                    // const SizedBox(
+                                    //   height: 20,
+                                    // ),
                                   ],
                                 ),
                               ),

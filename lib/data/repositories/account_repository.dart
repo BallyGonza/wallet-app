@@ -8,13 +8,7 @@ class AccountRepository {
   }
 }
 
-List<AccountModel> defaultAccounts = [
-  mercadoPago,
-  bbva,
-  hsbc,
-  cash,
-  savingsAccount
-];
+List<AccountModel> defaultAccounts = [];
 
 AccountModel cash = AccountModel(
   id: 0,

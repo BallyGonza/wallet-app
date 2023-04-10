@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class HomeCard extends StatelessWidget {
-  const HomeCard(
+class TitleListCard extends StatelessWidget {
+  const TitleListCard(
       {required this.title,
       required this.widget,
       required this.onTap,

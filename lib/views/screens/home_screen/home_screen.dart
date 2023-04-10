@@ -101,7 +101,16 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         children: [
-          AccountsScreen(user: user, date: selectedDate),
+          AccountsScreen(
+              user: user,
+              date: selectedDate,
+              onPressed: (account) {
+                setState(() {
+                  context.read<UserBloc>().add(
+                        UserAddAccountEvent(account),
+                      );
+                });
+              }),
           TransactionsScreen(user: user, date: selectedDate),
         ],
       ),

@@ -29,6 +29,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   late UserModel defaultUser;
   late UserModel user;
   List<TransactionModel> transactions = [];
+  List<AccountModel> accounts = [];
 
   final Box<UserModel> box = Hive.box<UserModel>('users_box');
 
@@ -42,6 +43,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
     user = box.get(defaultUser.id)!;
     transactions.addAll(user.transactions);
+    accounts.addAll(user.accounts);
     // order transactions by date, soonest first
     transactions.sort((a, b) => a.date.compareTo(b.date));
     emit(UserState.updated(user));
@@ -52,9 +54,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   void _onAddAccount(
     UserAddAccountEvent event,
     Emitter<UserState> emit,
-  ) {
-    user.accounts.add(event.account);
-
+  ) async {
+    accounts.add(event.account);
+    user.accounts = accounts;
+    await box.put(user.id, user);
     emit(UserState.updated(user));
   }
 
@@ -63,16 +66,16 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     Emitter<UserState> emit,
   ) {
     user.accounts[event.account.id] = event.account;
-
     emit(UserState.updated(user));
   }
 
   void _onRemoveAccount(
     UserRemoveAccountEvent event,
     Emitter<UserState> emit,
-  ) {
-    user.accounts.remove(event.account);
-
+  ) async {
+    accounts.removeWhere((element) => element.id == event.account.id);
+    user.accounts = accounts;
+    await box.put(user.id, user);
     emit(UserState.updated(user));
   }
 

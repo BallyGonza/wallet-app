@@ -10,9 +10,10 @@ class InstitutionRepository {
 
 List<InstitutionModel> defaultInstitutions = [
   wallet,
-  hsbcInstitution,
+  mercadoPagoInstitution,
   bbvaInstitution,
-  mercadoPagoInstitution
+  hsbcInstitution,
+  savingsInstitution,
 ];
 
 List<InstitutionModel> defaultCardTypes = [
