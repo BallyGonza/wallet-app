@@ -76,7 +76,11 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                             ),
                           ),
                           controller: _amountController,
-                          keyboardType: TextInputType.number,
+                          keyboardAppearance: Brightness.dark,
+                          keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true,
+                            signed: false,
+                          ),
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
@@ -106,10 +110,12 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                         leading: CircleAvatar(
                           backgroundColor: Color(
                               _fromSelectedAccount.institution.backgroundColor),
-                          child: Image.asset(
-                            _fromSelectedAccount.institution.logo,
-                            width: 25,
+                          child: Image(
+                            image: AssetImage(
+                              _fromSelectedAccount.institution.logo,
+                            ),
                             height: 25,
+                            width: 25,
                           ),
                         ),
                         content: const Text(
@@ -185,10 +191,12 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                         leading: CircleAvatar(
                           backgroundColor: Color(
                               _toSelectedAccount.institution.backgroundColor),
-                          child: Image.asset(
-                            _toSelectedAccount.institution.logo,
-                            width: 25,
+                          child: Image(
+                            image: AssetImage(
+                              _toSelectedAccount.institution.logo,
+                            ),
                             height: 25,
+                            width: 25,
                           ),
                         ),
                         content: const Text(
@@ -298,7 +306,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                                   child: CupertinoDatePicker(
                                     dateOrder: DatePickerDateOrder.dmy,
                                     backgroundColor: colorCards,
-                                    mode: CupertinoDatePickerMode.date,
+                                    mode: CupertinoDatePickerMode.dateAndTime,
                                     initialDateTime: DateTime.now(),
                                     onDateTimeChanged: (value) {
                                       setState(() {
@@ -332,6 +340,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
                           maxLines: 1,
+                          keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.multiline,
                         ),
                       ),

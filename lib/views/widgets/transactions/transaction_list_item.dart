@@ -116,9 +116,10 @@ class TransactionListItem extends StatelessWidget {
       child: ListTile(
         leading: CircleAvatar(
           backgroundColor: Color(transaction.category.backgroundColor),
-          child: Image.asset(
-            transaction.category.icon,
-            width: 24,
+          child: Image(
+            image: AssetImage(transaction.category.icon),
+            height: 25,
+            width: 25,
             color: transaction.category.iconColor == null
                 ? null
                 : Color(transaction.category.iconColor!),
@@ -202,9 +203,10 @@ class DescriptionItem extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundColor: Color(backgroundColor),
-            child: Image.asset(
-              icon,
-              width: 24,
+            child: Image(
+              image: AssetImage(icon),
+              height: 25,
+              width: 25,
               color: iconColor != null ? Color(iconColor!) : null,
             ),
           ),

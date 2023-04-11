@@ -65,10 +65,10 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                       leading: CircleAvatar(
                         backgroundColor:
                             Color(_selectedInstitution.backgroundColor),
-                        child: Image.asset(
-                          _selectedInstitution.logo,
-                          width: 25,
+                        child: Image(
+                          image: AssetImage(_selectedInstitution.logo),
                           height: 25,
+                          width: 25,
                         ),
                       ),
                       content: const Text(

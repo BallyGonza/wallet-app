@@ -126,7 +126,7 @@ class _AccountScreenState extends State<AccountScreen> {
 
   Widget _resumeItem(String title, double amount, int color) {
     return SizedBox(
-      height: 30,
+      height: 25,
       child: ListTile(
         title: Text(
           title,

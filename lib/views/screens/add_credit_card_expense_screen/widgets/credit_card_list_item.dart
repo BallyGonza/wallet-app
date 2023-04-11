@@ -18,9 +18,10 @@ class CreditCardListItem extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: Color(creditCard.institution.backgroundColor),
           radius: 18,
-          child: Image.asset(
-            creditCard.cardType.logo,
-            width: 24,
+          child: Image(
+            image: AssetImage(creditCard.cardType.logo),
+            height: 25,
+            width: 25,
           ),
         ),
         title: Text(

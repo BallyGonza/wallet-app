@@ -104,7 +104,11 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             ),
                           ),
                           controller: _amountController,
-                          keyboardType: TextInputType.number,
+                          keyboardAppearance: Brightness.dark,
+                          keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true,
+                            signed: false,
+                          ),
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
@@ -134,10 +138,12 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         leading: CircleAvatar(
                           backgroundColor:
                               Color(_selectedCategory.backgroundColor),
-                          child: Image.asset(
-                            _selectedCategory.icon,
-                            width: 25,
+                          child: Image(
+                            image: AssetImage(
+                              _selectedCategory.icon,
+                            ),
                             height: 25,
+                            width: 25,
                             color: _selectedCategory.iconColor == null
                                 ? null
                                 : Color(_selectedCategory.iconColor!),
@@ -222,10 +228,12 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         leading: CircleAvatar(
                           backgroundColor: Color(
                               _selectedAccount.institution.backgroundColor),
-                          child: Image.asset(
-                            _selectedAccount.institution.logo,
-                            width: 25,
+                          child: Image(
+                            image: AssetImage(
+                              _selectedAccount.institution.logo,
+                            ),
                             height: 25,
+                            width: 25,
                           ),
                         ),
                         content: const Text(
@@ -336,7 +344,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                   child: CupertinoDatePicker(
                                     dateOrder: DatePickerDateOrder.dmy,
                                     backgroundColor: colorCards,
-                                    mode: CupertinoDatePickerMode.date,
+                                    mode: CupertinoDatePickerMode.dateAndTime,
                                     initialDateTime: DateTime.now(),
                                     onDateTimeChanged: (value) {
                                       setState(() {
@@ -370,6 +378,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
                           maxLines: 1,
+                          keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.multiline,
                         ),
                       ),

@@ -29,9 +29,12 @@ class _AccountListItemState extends State<AccountListItem> {
         leading: CircleAvatar(
           backgroundColor: Color(widget.account.institution.backgroundColor),
           radius: 18,
-          child: Image.asset(
-            widget.account.institution.logo,
-            width: 24,
+          child: Image(
+            image: AssetImage(
+              widget.account.institution.logo,
+            ),
+            height: 25,
+            width: 25,
           ),
         ),
         title: Text(

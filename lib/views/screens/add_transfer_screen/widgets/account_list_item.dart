@@ -17,9 +17,12 @@ class AccountListItem extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: Color(account.institution.backgroundColor),
           radius: 18,
-          child: Image.asset(
-            account.institution.logo,
-            width: 24,
+          child: Image(
+            image: AssetImage(
+              account.institution.logo,
+            ),
+            height: 25,
+            width: 25,
           ),
         ),
         title: Text(

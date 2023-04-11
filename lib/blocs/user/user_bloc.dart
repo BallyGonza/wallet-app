@@ -201,7 +201,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     Emitter<UserState> emit,
   ) async {
     for (var transaction in event.creditCardExpenses) {
-      int currentCuota = 1 +
+      int currentCuota =
           (transaction.date.difference(event.date).inDays / 30).round().abs();
       if (currentCuota == transaction.cuotas) {
         creditCardExpenses

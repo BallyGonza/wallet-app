@@ -72,10 +72,12 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                         leading: CircleAvatar(
                           backgroundColor:
                               Color(_selectedInstitution.backgroundColor),
-                          child: Image.asset(
-                            _selectedInstitution.logo,
-                            width: 25,
+                          child: Image(
+                            image: AssetImage(
+                              _selectedInstitution.logo,
+                            ),
                             height: 25,
+                            width: 25,
                           ),
                         ),
                         content: const Text(
@@ -164,10 +166,12 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                         leading: CircleAvatar(
                           backgroundColor:
                               Color(_selectedCardType.backgroundColor),
-                          child: Image.asset(
-                            _selectedCardType.logo,
-                            width: 25,
+                          child: Image(
+                            image: AssetImage(
+                              _selectedCardType.logo,
+                            ),
                             height: 25,
+                            width: 25,
                           ),
                         ),
                         content: const Text(
@@ -267,6 +271,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
                           maxLines: 1,
+                          keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.multiline,
                         ),
                       ),
@@ -287,7 +292,12 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                             hintText: 'Numero de Tarjeta',
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
-                          keyboardType: TextInputType.number,
+                          maxLines: 1,
+                          keyboardAppearance: Brightness.dark,
+                          keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true,
+                            signed: false,
+                          ),
                         ),
                       ),
                     ],

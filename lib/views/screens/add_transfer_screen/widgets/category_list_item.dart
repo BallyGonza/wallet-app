@@ -59,12 +59,15 @@ class _CategoryListItemState extends State<CategoryListItem>
                           radius: 20,
                           backgroundColor:
                               Color(widget.category.backgroundColor),
-                          child: Image.asset(
-                            widget.category.icon,
+                          child: Image(
+                            image: AssetImage(
+                              widget.category.icon,
+                            ),
+                            height: 25,
+                            width: 25,
                             color: widget.category.iconColor == null
                                 ? null
                                 : Color(widget.category.iconColor!),
-                            width: 24,
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -136,12 +139,15 @@ class _CategoryListItemState extends State<CategoryListItem>
                                 radius: 20,
                                 backgroundColor:
                                     Color(subCategory.backgroundColor),
-                                child: Image.asset(
-                                  subCategory.icon,
+                                child: Image(
+                                  image: AssetImage(
+                                    subCategory.icon,
+                                  ),
+                                  height: 25,
+                                  width: 25,
                                   color: subCategory.iconColor == null
                                       ? null
                                       : Color(subCategory.iconColor!),
-                                  width: 24,
                                 ),
                               ),
                               title: Text(

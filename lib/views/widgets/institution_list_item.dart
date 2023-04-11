@@ -30,9 +30,10 @@ class _InstitutionListItemState extends State<InstitutionListItem> {
         leading: CircleAvatar(
           backgroundColor: Color(widget.institution.backgroundColor),
           radius: 18,
-          child: Image.asset(
-            widget.institution.logo,
-            width: 24,
+          child: Image(
+            image: AssetImage(widget.institution.logo),
+            height: 25,
+            width: 25,
           ),
         ),
         title: Text(

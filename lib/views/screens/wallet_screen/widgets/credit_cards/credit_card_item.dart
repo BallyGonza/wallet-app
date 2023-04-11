@@ -50,10 +50,10 @@ class CreditCardItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset(
-                  creditCard.institution.logo,
-                  width: 50,
+                Image(
+                  image: AssetImage(creditCard.institution.logo),
                   height: 50,
+                  width: 50,
                   color: creditCard.institution.name == 'BBVA'
                       ? Colors.white
                       : null,
@@ -96,10 +96,10 @@ class CreditCardItem extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                Image.asset(
-                  creditCard.cardType.logo,
-                  width: 50,
+                Image(
+                  image: AssetImage(creditCard.cardType.logo),
                   height: 50,
+                  width: 50,
                   color:
                       creditCard.cardType.name == 'Visa' ? Colors.white : null,
                 ),

@@ -17,7 +17,7 @@ class CreditCardExpenseListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int currentCuota =
-        1 + (transaction.date.difference(date).inDays / 30).round().abs();
+        (transaction.date.difference(date).inDays / 30).round().abs();
     return InkWell(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -26,9 +26,12 @@ class CreditCardExpenseListItem extends StatelessWidget {
           children: [
             CircleAvatar(
               backgroundColor: Color(transaction.category.backgroundColor),
-              child: Image.asset(
-                transaction.category.icon,
-                width: 24,
+              child: Image(
+                image: AssetImage(
+                  transaction.category.icon,
+                ),
+                height: 25,
+                width: 25,
                 color: transaction.category.iconColor == null
                     ? null
                     : Color(transaction.category.iconColor!),
@@ -232,9 +235,10 @@ class DescriptionItem extends StatelessWidget {
         children: [
           CircleAvatar(
             backgroundColor: Color(backgroundColor),
-            child: Image.asset(
-              icon,
-              width: 24,
+            child: Image(
+              image: AssetImage(icon),
+              height: 25,
+              width: 25,
               color: iconColor != null ? Color(iconColor!) : null,
             ),
           ),

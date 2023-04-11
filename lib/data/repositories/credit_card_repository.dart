@@ -15,9 +15,10 @@ class CreditCardRepository {
     double total = 0;
     for (var transaction in creditCardExpenses) {
       int currentCuota =
-          1 + (transaction.date.difference(date).inDays / 30).round().abs();
+          (transaction.date.difference(date).inDays / 30).round().abs();
       if (transaction.creditCard.institution.name ==
-          creditCard.institution.name) {
+              creditCard.institution.name &&
+          transaction.creditCard.cardType.name == creditCard.cardType.name) {
         if (transaction.date.month <= date.month &&
             transaction.date.year <= date.year) {
           if (currentCuota <= transaction.cuotas) {

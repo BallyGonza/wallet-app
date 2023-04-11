@@ -32,27 +32,22 @@ class TitleListCard extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                InkWell(
-                  onTap: () {
-                    onTap();
-                  },
-                  child: Container(
-                    width: 40,
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
+                SizedBox(
+                  height: 10,
+                  width: 30,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      alignment: Alignment.centerLeft,
+                      backgroundColor: Colors.transparent,
+                      elevation: 0,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: const [
-                        FaIcon(
-                          FontAwesomeIcons.plus,
-                          color: Colors.grey,
-                          size: 15,
-                        ),
-                      ],
+                    onPressed: (() {
+                      onTap();
+                    }),
+                    child: const FaIcon(
+                      FontAwesomeIcons.plus,
+                      color: Colors.grey,
+                      size: 15,
                     ),
                   ),
                 ),

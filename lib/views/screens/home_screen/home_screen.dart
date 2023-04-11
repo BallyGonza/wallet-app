@@ -90,8 +90,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        InkWell(
-          onTap: () {
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: walletAppTheme.scaffoldBackgroundColor,
+            elevation: 0,
+            shape: const CircleBorder(),
+          ),
+          onPressed: () {
             setState(() {
               selectedDate = selectedDate.subtract(
                 const Duration(days: 30),
@@ -114,8 +119,13 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        InkWell(
-          onTap: () {
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: walletAppTheme.scaffoldBackgroundColor,
+            elevation: 0,
+            shape: const CircleBorder(),
+          ),
+          onPressed: () {
             setState(() {
               selectedDate = selectedDate.add(
                 const Duration(days: 30),
