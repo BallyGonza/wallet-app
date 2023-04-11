@@ -21,6 +21,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
     on<UserAddCreditCardExpenseEvent>(_onAddCreditCardExpense);
     on<UserRemoveCreditCardExpenseEvent>(_onRemoveCreditCardExpense);
+    on<UserPayCreditCardEvent>(_onPayCreditCard);
 
     // on<UserAddCategoryEvent>(_onAddCategory);
     // on<UserUpdateCategoryEvent>(_onUpdateCategory);
@@ -192,6 +193,25 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     creditCardExpenses.sort((a, b) => a.date.compareTo(b.date));
     user.creditCardExpenses = creditCardExpenses;
     await box.put(user.id, user);
+    emit(UserState.updated(user));
+  }
+
+  void _onPayCreditCard(
+    UserPayCreditCardEvent event,
+    Emitter<UserState> emit,
+  ) async {
+    for (var transaction in event.creditCardExpenses) {
+      int currentCuota = 1 +
+          (transaction.date.difference(event.date).inDays / 30).round().abs();
+      if (currentCuota == transaction.cuotas) {
+        creditCardExpenses
+            .removeWhere((element) => element.id == transaction.id);
+        // creditCardExpenses.sort((a, b) => a.date.compareTo(b.date));
+        user.creditCardExpenses = creditCardExpenses;
+      }
+    }
+    await box.put(user.id, user);
+
     emit(UserState.updated(user));
   }
 

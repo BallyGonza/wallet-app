@@ -4,19 +4,20 @@ import 'package:wallet_app/data/data.dart';
 
 class CreditCardExpenseListItem extends StatelessWidget {
   const CreditCardExpenseListItem({
+    required this.date,
     required this.transaction,
     required this.onPressDelete,
     super.key,
   });
 
   final CreditCardTransactionModel transaction;
-
+  final DateTime date;
   final VoidCallback onPressDelete;
 
   @override
   Widget build(BuildContext context) {
-    int currentCuota = 1 +
-        (transaction.date.difference(DateTime.now()).inDays / 30).round().abs();
+    int currentCuota =
+        1 + (transaction.date.difference(date).inDays / 30).round().abs();
     return InkWell(
       child: Padding(
         padding: const EdgeInsets.all(16.0),

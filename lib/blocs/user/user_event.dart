@@ -40,6 +40,10 @@ class UserEvent with _$UserEvent {
   const factory UserEvent.removeCreditCardExpense(
     CreditCardTransactionModel creditCardExpense,
   ) = UserRemoveCreditCardExpenseEvent;
+  const factory UserEvent.payCreditCard(
+    List<CreditCardTransactionModel> creditCardExpenses,
+    DateTime date,
+  ) = UserPayCreditCardEvent;
 
   const factory UserEvent.addCategory(
     CategoryModel category,

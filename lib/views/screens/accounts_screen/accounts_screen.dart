@@ -64,7 +64,10 @@ class _AccountsScreenState extends State<AccountsScreen> {
             const SizedBox(height: 8),
             TitleListCard(
               title: 'Accounts',
-              widget: AccountsList(user: widget.user, date: widget.date),
+              widget: AccountsList(
+                user: widget.user,
+                date: widget.date,
+              ),
               onTap: () {
                 Navigator.push(
                   context,

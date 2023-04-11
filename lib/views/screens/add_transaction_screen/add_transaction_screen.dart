@@ -187,7 +187,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
-                                height: widget._categories.length * 60.0,
+                                height: widget._categories.length * 85.0,
                                 child: ListView.builder(
                                   itemCount: widget._categories.length,
                                   itemBuilder: (context, index) {

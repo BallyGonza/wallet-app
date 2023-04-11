@@ -63,7 +63,7 @@ class SummaryCard extends StatelessWidget {
               Text(
                 amountFormat.format(amount),
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   color: color,
                 ),
               ),

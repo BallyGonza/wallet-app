@@ -48,6 +48,36 @@ class UserRepository {
     return income;
   }
 
+  double getIncomeByAccount(AccountModel account,
+      List<TransactionModel> transactions, DateTime date) {
+    double income = 0;
+    for (var transaction in transactions) {
+      if (transaction.account.name == account.name &&
+          transaction.category.isIncome &&
+          transaction.date.month <= date.month &&
+          transaction.date.year <= date.year &&
+          transaction.category.name != 'Transfer in') {
+        income += transaction.amount;
+      }
+    }
+    return income;
+  }
+
+  double getExpenseByAccount(AccountModel account,
+      List<TransactionModel> transactions, DateTime date) {
+    double expense = 0;
+    for (var transaction in transactions) {
+      if (transaction.account.name == account.name &&
+          !transaction.category.isIncome &&
+          transaction.date.month <= date.month &&
+          transaction.date.year <= date.year &&
+          transaction.category.name != 'Transfer out') {
+        expense += transaction.amount;
+      }
+    }
+    return expense;
+  }
+
   // calculate all expense of all transactions
   double getExpense(UserModel user, DateTime date) {
     double expense = 0;
@@ -69,12 +99,18 @@ class UserRepository {
     List<CreditCardTransactionModel> creditCardExpenses,
   ) {
     double total = 0;
+
     for (var transaction in creditCardExpenses) {
+      int currentCuota =
+          1 + (transaction.date.difference(date).inDays / 30).round().abs();
       if (transaction.creditCard.institution.name ==
-              creditCard.institution.name &&
-          transaction.date.month <= date.month &&
-          transaction.date.year <= date.year) {
-        total += transaction.amount / transaction.cuotas;
+          creditCard.institution.name) {
+        if (transaction.date.month <= date.month &&
+            transaction.date.year <= date.year) {
+          if (currentCuota <= transaction.cuotas) {
+            total += transaction.amount / transaction.cuotas;
+          }
+        }
       }
     }
     return total;
@@ -83,6 +119,19 @@ class UserRepository {
 // calcula el valor de la cuota de una transaccion
   double getValueCuota(CreditCardTransactionModel transaction) {
     return transaction.amount / transaction.cuotas;
+  }
+
+  getTransactionsByAccount(AccountModel account,
+      List<TransactionModel> transactions, DateTime date) {
+    List<TransactionModel> transactionsByAccount = [];
+    for (var transaction in transactions) {
+      if (transaction.account.name == account.name &&
+          transaction.date.month <= date.month &&
+          transaction.date.year <= date.year) {
+        transactionsByAccount.add(transaction);
+      }
+    }
+    return transactionsByAccount;
   }
 }
 
