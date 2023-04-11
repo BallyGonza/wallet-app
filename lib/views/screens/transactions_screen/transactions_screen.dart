@@ -11,11 +11,9 @@ class TransactionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final transactions = user.transactions
-        .where((transaction) =>
-            transaction.date.month == date.month &&
-            transaction.date.year == date.year)
-        .toList();
+    final UserRepository userRepository = UserRepository();
+    final transactions = userRepository.getTransactionsByDate(user, date);
+
     return SafeArea(
       child: Container(
         decoration: const BoxDecoration(
@@ -25,22 +23,28 @@ class TransactionsScreen extends StatelessWidget {
             topRight: Radius.circular(20),
           ),
         ),
-        child: transactions.isEmpty
-            ? const Center(
-                child: Text('No transactions yet',
-                    style: TextStyle(fontSize: 12, color: Colors.grey)),
-              )
-            : ListView.builder(
-                itemCount: 31,
-                itemBuilder: (context, index) {
-                  return TransactionsList(
-                    user: user,
-                    date: date,
-                    day: 31 - index,
-                  );
-                },
-              ),
+        child: transactions.isEmpty ? _emptyTransactions() : _transactions(),
       ),
+    );
+  }
+
+  ListView _transactions() {
+    return ListView.builder(
+      itemCount: 31,
+      itemBuilder: (context, index) {
+        return TransactionsList(
+          user: user,
+          date: date,
+          day: 31 - index,
+        );
+      },
+    );
+  }
+
+  Center _emptyTransactions() {
+    return const Center(
+      child: Text('No transactions yet',
+          style: TextStyle(fontSize: 12, color: Colors.grey)),
     );
   }
 }

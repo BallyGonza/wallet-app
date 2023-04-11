@@ -20,8 +20,6 @@ class AddAccountScreen extends StatefulWidget {
 }
 
 class _AddAccountScreenState extends State<AddAccountScreen> {
-  // final TextEditingController _amountController = TextEditingController();
-
   late InstitutionModel _selectedInstitution;
 
   @override
@@ -50,57 +48,6 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          //   child: Column(
-          //     mainAxisAlignment: MainAxisAlignment.start,
-          //     children: [
-          //       const Text(
-          //         'Initial Balance',
-          //         style: TextStyle(
-          //           fontSize: 16,
-          //           fontWeight: FontWeight.normal,
-          //           color: Colors.grey,
-          //         ),
-          //       ),
-          //       Row(
-          //         children: [
-          //           Text(
-          //             '\$',
-          //             style: TextStyle(
-          //               fontSize: 20,
-          //               color: transferColor,
-          //             ),
-          //           ),
-          //           const SizedBox(width: 16),
-          //           SizedBox(
-          //             width: MediaQuery.of(context).size.width - 100,
-          //             child: TextFormField(
-          //               autofocus: true,
-          //               showCursor: false,
-          //               decoration: InputDecoration(
-          //                 border: InputBorder.none,
-          //                 hintText: '0,00',
-          //                 hintStyle: TextStyle(
-          //                   fontSize: 32,
-          //                   fontWeight: FontWeight.bold,
-          //                   color: transferColor,
-          //                 ),
-          //               ),
-          //               controller: _amountController,
-          //               keyboardType: TextInputType.number,
-          //               style: TextStyle(
-          //                 fontSize: 32,
-          //                 fontWeight: FontWeight.bold,
-          //                 color: transferColor,
-          //               ),
-          //             ),
-          //           )
-          //         ],
-          //       ),
-          //     ],
-          //   ),
-          // ),
           Expanded(
             child: Container(
               decoration: const BoxDecoration(
@@ -230,9 +177,6 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                     : primaryColor,
               ),
               onPressed: () {
-                // if (_amountController.text == '') {
-                //   return;
-                // }
                 if (widget.user.accounts.any(
                     (element) => element.institution == _selectedInstitution)) {
                   ScaffoldMessenger.of(context).showSnackBar(

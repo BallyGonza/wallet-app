@@ -1,5 +1,5 @@
 export 'home_screen/home_screen.dart';
-export 'accounts_screen/accounts_screen.dart';
+export 'wallet_screen/wallet_screen.dart';
 export 'account_screen/account_screen.dart';
 export 'transactions_screen/transactions_screen.dart';
 export 'add_transaction_screen/add_transaction_screen.dart';

@@ -45,53 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: walletAppTheme.scaffoldBackgroundColor,
       bottomNavigationBar: _bottomNavBar(),
       floatingActionButton: _dialButton(context),
-      appBar: AppBar(
-        backgroundColor: walletAppTheme.scaffoldBackgroundColor,
-        elevation: 0,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            InkWell(
-              onTap: () {
-                setState(() {
-                  selectedDate = selectedDate.subtract(
-                    const Duration(days: 30),
-                  );
-                });
-              },
-              child: const Icon(
-                FontAwesomeIcons.chevronLeft,
-                size: 12,
-                color: Colors.grey,
-              ),
-            ),
-            Text(
-              selectedDate.year == DateTime.now().year
-                  ? DateFormat('MMMM').format(selectedDate)
-                  : DateFormat('MMMM yyyy').format(selectedDate),
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            InkWell(
-              onTap: () {
-                setState(() {
-                  selectedDate = selectedDate.add(
-                    const Duration(days: 30),
-                  );
-                });
-              },
-              child: const Icon(
-                FontAwesomeIcons.chevronRight,
-                size: 12,
-                color: Colors.grey,
-              ),
-            ),
-          ],
-        ),
-      ),
+      appBar: _appBar(),
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
@@ -100,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
           });
         },
         children: [
-          AccountsScreen(
+          WalletScreen(
             user: user,
             date: selectedDate,
             onPressedAddAccount: (account) {
@@ -121,6 +75,60 @@ class _HomeScreenState extends State<HomeScreen> {
           TransactionsScreen(user: user, date: selectedDate),
         ],
       ),
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      backgroundColor: walletAppTheme.scaffoldBackgroundColor,
+      elevation: 0,
+      title: _datePicker(),
+    );
+  }
+
+  Row _datePicker() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        InkWell(
+          onTap: () {
+            setState(() {
+              selectedDate = selectedDate.subtract(
+                const Duration(days: 30),
+              );
+            });
+          },
+          child: const Icon(
+            FontAwesomeIcons.chevronLeft,
+            size: 12,
+            color: Colors.grey,
+          ),
+        ),
+        Text(
+          selectedDate.year == DateTime.now().year
+              ? DateFormat('MMMM').format(selectedDate)
+              : DateFormat('MMMM yyyy').format(selectedDate),
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        InkWell(
+          onTap: () {
+            setState(() {
+              selectedDate = selectedDate.add(
+                const Duration(days: 30),
+              );
+            });
+          },
+          child: const Icon(
+            FontAwesomeIcons.chevronRight,
+            size: 12,
+            color: Colors.grey,
+          ),
+        ),
+      ],
     );
   }
 

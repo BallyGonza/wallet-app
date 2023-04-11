@@ -28,6 +28,21 @@ class CreditCardRepository {
     }
     return total;
   }
+
+  List<CreditCardTransactionModel> getTransactionsByCreditCard(
+      CreditCardModel creditCard,
+      List<CreditCardTransactionModel> transactions,
+      DateTime date) {
+    var creditCardExpenses = transactions
+        .where((element) => element.creditCard.id == creditCard.id)
+        .toList();
+
+    return creditCardExpenses = creditCardExpenses
+        .where((element) =>
+            element.cuotas >=
+            1 + (element.date.difference(date).inDays / 30).round().abs())
+        .toList();
+  }
 }
 
 List<CreditCardModel> defaultCreditCards = [];

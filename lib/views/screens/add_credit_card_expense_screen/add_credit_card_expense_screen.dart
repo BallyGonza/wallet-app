@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
-import 'package:wallet_app/views/views.dart';
 
 import 'widgets/credit_card_list_item.dart';
 

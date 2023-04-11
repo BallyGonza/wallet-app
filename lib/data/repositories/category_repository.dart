@@ -90,7 +90,7 @@ CategoryModel market = CategoryModel(
 
 CategoryModel fastFood = CategoryModel(
   id: 7,
-  name: 'Fast Food',
+  name: 'Comida Rapida',
   icon: 'assets/icons/categories/fastfood.png',
   isIncome: false,
   backgroundColor: red,

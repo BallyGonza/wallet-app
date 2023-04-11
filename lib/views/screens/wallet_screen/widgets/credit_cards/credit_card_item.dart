@@ -4,7 +4,7 @@ import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
-class CreditCardItem extends StatefulWidget {
+class CreditCardItem extends StatelessWidget {
   const CreditCardItem({
     required this.creditCard,
     required this.user,
@@ -17,11 +17,6 @@ class CreditCardItem extends StatefulWidget {
   final DateTime date;
 
   @override
-  State<CreditCardItem> createState() => _CreditCardItemState();
-}
-
-class _CreditCardItemState extends State<CreditCardItem> {
-  @override
   Widget build(BuildContext context) {
     CreditCardRepository creditCardRepository = CreditCardRepository();
     return InkWell(
@@ -31,9 +26,9 @@ class _CreditCardItemState extends State<CreditCardItem> {
             builder: (_) => BlocProvider.value(
               value: BlocProvider.of<UserBloc>(context),
               child: CreditCardScreen(
-                user: widget.user,
-                creditCard: widget.creditCard,
-                date: widget.date,
+                user: user,
+                creditCard: creditCard,
+                date: date,
               ),
             ),
           ),
@@ -44,9 +39,9 @@ class _CreditCardItemState extends State<CreditCardItem> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-          color: widget.creditCard.cardType.name == 'Visa'
-              ? Color(widget.creditCard.institution.visaCardColor!)
-              : Color(widget.creditCard.institution.masterCardColor!),
+          color: creditCard.cardType.name == 'Visa'
+              ? Color(creditCard.institution.visaCardColor!)
+              : Color(creditCard.institution.masterCardColor!),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
@@ -56,18 +51,16 @@ class _CreditCardItemState extends State<CreditCardItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image.asset(
-                  widget.creditCard.institution.logo,
+                  creditCard.institution.logo,
                   width: 50,
                   height: 50,
-                  color: widget.creditCard.institution.name == 'BBVA'
+                  color: creditCard.institution.name == 'BBVA'
                       ? Colors.white
                       : null,
                 ),
                 Text(
                   amountFormat.format(creditCardRepository.getTotalOfCreditCard(
-                      widget.creditCard,
-                      widget.date,
-                      widget.user.creditCardExpenses)),
+                      creditCard, date, user.creditCardExpenses)),
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
@@ -79,7 +72,7 @@ class _CreditCardItemState extends State<CreditCardItem> {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                widget.creditCard.number
+                creditCard.number
                     .replaceAllMapped(
                       RegExp(r'.{4}'),
                       (Match m) => '${m[0]} ',
@@ -96,7 +89,7 @@ class _CreditCardItemState extends State<CreditCardItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  widget.creditCard.name,
+                  creditCard.name,
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
@@ -104,12 +97,11 @@ class _CreditCardItemState extends State<CreditCardItem> {
                   ),
                 ),
                 Image.asset(
-                  widget.creditCard.cardType.logo,
+                  creditCard.cardType.logo,
                   width: 50,
                   height: 50,
-                  color: widget.creditCard.cardType.name == 'Visa'
-                      ? Colors.white
-                      : null,
+                  color:
+                      creditCard.cardType.name == 'Visa' ? Colors.white : null,
                 ),
               ],
             ),

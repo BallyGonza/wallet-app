@@ -27,7 +27,7 @@ class WalletListTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 if (leading != null) leading!,
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(child: content),
                 if (trailing != null) trailing!,
               ],

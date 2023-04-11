@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/data/data.dart';
 
-class AccountListItem extends StatefulWidget {
+class AccountListItem extends StatelessWidget {
   const AccountListItem({required this.account, Key? key}) : super(key: key);
 
   final AccountModel account;
-
-  @override
-  State<AccountListItem> createState() => _AccountListItemState();
-}
-
-class _AccountListItemState extends State<AccountListItem> {
-  UserRepository userRepository = UserRepository();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +15,15 @@ class _AccountListItemState extends State<AccountListItem> {
       ),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: Color(widget.account.institution.backgroundColor),
+          backgroundColor: Color(account.institution.backgroundColor),
           radius: 18,
           child: Image.asset(
-            widget.account.institution.logo,
+            account.institution.logo,
             width: 24,
           ),
         ),
         title: Text(
-          widget.account.name,
+          account.name,
           style: const TextStyle(
             color: Colors.white,
             fontSize: 16,

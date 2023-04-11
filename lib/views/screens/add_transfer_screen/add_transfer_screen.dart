@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
-import 'package:wallet_app/views/views.dart';
 
 class AddTransferScreen extends StatefulWidget {
   const AddTransferScreen({
@@ -41,18 +40,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Container(
-            decoration: BoxDecoration(
-              color: transferColor,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text('Transfer', style: TextStyle(fontSize: 16)),
-            )),
-      ),
+      appBar: _appBar(),
       bottomNavigationBar: _saveButton(context),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -349,6 +337,21 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  AppBar _appBar() {
+    return AppBar(
+      elevation: 0,
+      title: Container(
+          decoration: BoxDecoration(
+            color: transferColor,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text('Transfer', style: TextStyle(fontSize: 16)),
+          )),
     );
   }
 

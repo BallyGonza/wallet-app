@@ -43,6 +43,14 @@ class UserRepository {
     }
     return expense;
   }
+
+  getTransactionsByDate(UserModel user, DateTime date) {
+    return user.transactions
+        .where((transaction) =>
+            transaction.date.month == date.month &&
+            transaction.date.year == date.year)
+        .toList();
+  }
 }
 
 UserModel defaultUser = UserModel(
