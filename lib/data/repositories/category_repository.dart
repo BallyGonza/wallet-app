@@ -25,7 +25,7 @@ CategoryModel income = CategoryModel(
   isIncome: true,
   backgroundColor: green,
   iconColor: black,
-  subCategories: [salary],
+  subCategories: [salary, honorarios],
 );
 
 CategoryModel salary = CategoryModel(
@@ -142,7 +142,7 @@ CategoryModel car = CategoryModel(
   isIncome: false,
   backgroundColor: black,
   iconColor: white,
-  subCategories: [toll, parking, service, wheel, secure, ypf, shell, axion],
+  subCategories: [fuel, toll, parking, service, secure, ypf, shell, axion],
 );
 
 CategoryModel service = CategoryModel(
@@ -226,7 +226,7 @@ CategoryModel cinema = CategoryModel(
 
 CategoryModel home = CategoryModel(
   id: 20,
-  name: 'Casa',
+  name: 'Hogar',
   icon: 'assets/icons/categories/home.png',
   isIncome: false,
   backgroundColor: green,
@@ -339,10 +339,10 @@ CategoryModel others = CategoryModel(
   subCategories: [],
 );
 
-CategoryModel wheel = CategoryModel(
+CategoryModel fuel = CategoryModel(
   id: 32,
-  name: 'Rueda',
-  icon: 'assets/icons/categories/wheel.png',
+  name: 'Nafta',
+  icon: 'assets/icons/categories/fuel.png',
   isIncome: false,
   backgroundColor: black,
   iconColor: white,
@@ -443,6 +443,16 @@ CategoryModel transferOut = CategoryModel(
   icon: 'assets/icons/categories/transfer.png',
   isIncome: false,
   backgroundColor: red,
+  iconColor: white,
+  subCategories: [],
+);
+
+CategoryModel honorarios = CategoryModel(
+  id: 43,
+  name: 'Honorarios',
+  icon: 'assets/icons/categories/honorarios.png',
+  isIncome: true,
+  backgroundColor: green,
   iconColor: white,
   subCategories: [],
 );
