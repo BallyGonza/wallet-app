@@ -411,15 +411,21 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
               ),
               onPressed: () {
                 if (_amountController.text == '') {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Please enter an amount'),
+                    ),
+                  );
                   return;
                 }
                 setState(() {
+                  var amount = double.parse(
+                      _amountController.text.replaceAll(RegExp(r'[,]'), '.'));
+                  amountFormat.format(amount);
                   var transaction = TransactionModel(
                     id: DateTime.now().millisecondsSinceEpoch,
                     note: _noteController.text,
-                    amount: widget._isIncome
-                        ? double.parse(_amountController.text)
-                        : -double.parse(_amountController.text),
+                    amount: widget._isIncome ? amount : -amount,
                     category: _selectedCategory,
                     account: _selectedAccount,
                     date: _selectedDateTime,

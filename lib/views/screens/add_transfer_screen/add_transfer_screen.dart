@@ -388,13 +388,20 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
               ),
               onPressed: () {
                 if (_amountController.text == '') {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Please enter an amount'),
+                    ),
+                  );
                   return;
                 }
                 setState(() {
+                  var amount = double.parse(
+                      _amountController.text.replaceAll(RegExp(r'[,]'), '.'));
                   var fromAccount = TransactionModel(
                     id: DateTime.now().millisecondsSinceEpoch,
                     note: _noteController.text,
-                    amount: -double.parse(_amountController.text),
+                    amount: -amount,
                     category: transferOut,
                     account: _fromSelectedAccount,
                     date: _selectedDateTime,
@@ -402,7 +409,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                   var toAccount = TransactionModel(
                     id: DateTime.now().millisecondsSinceEpoch,
                     note: _noteController.text,
-                    amount: double.parse(_amountController.text),
+                    amount: amount,
                     category: transferIn,
                     account: _toSelectedAccount,
                     date: _selectedDateTime,

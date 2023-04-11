@@ -494,13 +494,20 @@ class _AddCreditCardExpenseScreenState
               ),
               onPressed: () {
                 if (_amountController.text == '') {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Please enter an amount'),
+                    ),
+                  );
                   return;
                 }
                 setState(() {
+                  var amount = double.parse(
+                      _amountController.text.replaceAll(RegExp(r'[,]'), '.'));
                   var creditCardExpense = CreditCardTransactionModel(
                     id: DateTime.now().millisecondsSinceEpoch,
                     note: _noteController.text,
-                    amount: double.parse(_amountController.text),
+                    amount: amount,
                     category: _selectedCategory,
                     creditCard: _selectedCreditCard,
                     date: _selectedDateTime,
