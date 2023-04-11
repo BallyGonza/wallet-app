@@ -22,12 +22,18 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+  final AccountRepository accountRepository = AccountRepository();
+  List<TransactionModel> transactions = [];
+
+  @override
+  void initState() {
+    super.initState();
+    transactions = accountRepository.getTransactionsByAccount(
+        widget.account, widget.user.transactions, widget.date);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final UserRepository userRepository = UserRepository();
-    var transactions = userRepository.getTransactionsByAccount(
-        widget.account, widget.user.transactions, widget.date);
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -91,7 +97,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
                 child: transactions.isEmpty
                     ? const Center(
-                        child: Text('No expenses yet',
+                        child: Text('No transactions yet',
                             style: TextStyle(fontSize: 12, color: Colors.grey)),
                       )
                     : ListView(
@@ -138,7 +144,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         ),
                         Text(
                           amountFormat.format(
-                            userRepository.getIncomeByAccount(widget.account,
+                            accountRepository.getTotalIncomes(widget.account,
                                 widget.user.transactions, widget.date),
                           ),
                           style: TextStyle(fontSize: 16, color: incomeColor),
@@ -157,7 +163,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         ),
                         Text(
                           amountFormat.format(
-                            userRepository.getExpenseByAccount(widget.account,
+                            accountRepository.getTotalExpenses(widget.account,
                                 widget.user.transactions, widget.date),
                           ),
                           style: TextStyle(fontSize: 16, color: expenseColor),
@@ -176,12 +182,12 @@ class _AccountScreenState extends State<AccountScreen> {
                         ),
                         Text(
                           amountFormat.format(
-                            userRepository.getAccountBalance(
+                            accountRepository.getBalance(
                                 widget.account, transactions, widget.date),
                           ),
                           style: TextStyle(
                               fontSize: 16,
-                              color: userRepository.getAccountBalance(
+                              color: accountRepository.getBalance(
                                           widget.account,
                                           transactions,
                                           widget.date) >=

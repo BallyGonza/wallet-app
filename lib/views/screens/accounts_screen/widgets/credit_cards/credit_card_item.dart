@@ -23,7 +23,7 @@ class CreditCardItem extends StatefulWidget {
 class _CreditCardItemState extends State<CreditCardItem> {
   @override
   Widget build(BuildContext context) {
-    UserRepository userRepository = UserRepository();
+    CreditCardRepository creditCardRepository = CreditCardRepository();
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
@@ -64,7 +64,7 @@ class _CreditCardItemState extends State<CreditCardItem> {
                       : null,
                 ),
                 Text(
-                  amountFormat.format(userRepository.getTotalOfCreditCard(
+                  amountFormat.format(creditCardRepository.getTotalOfCreditCard(
                       widget.creditCard,
                       widget.date,
                       widget.user.creditCardExpenses)),

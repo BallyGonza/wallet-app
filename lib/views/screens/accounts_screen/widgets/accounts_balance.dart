@@ -29,7 +29,7 @@ class AccountsBalance extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 4.0),
               child: Text(
                 amountFormat
-                    .format(userRepository.getTotal(transactions, date)),
+                    .format(userRepository.getBalance(transactions, date)),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 30,

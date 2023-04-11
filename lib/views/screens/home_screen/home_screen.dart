@@ -45,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: walletAppTheme.scaffoldBackgroundColor,
       bottomNavigationBar: _bottomNavBar(),
       floatingActionButton: _dialButton(context),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       appBar: AppBar(
         backgroundColor: walletAppTheme.scaffoldBackgroundColor,
         elevation: 0,
@@ -148,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: primaryColor,
       activeIcon: Icons.close,
       spacing: 3,
-      direction: SpeedDialDirection.up,
+      direction: SpeedDialDirection.left,
       children: [
         SpeedDialChild(
           child: const FaIcon(

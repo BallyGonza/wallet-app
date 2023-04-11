@@ -23,7 +23,7 @@ class AccountItem extends StatefulWidget {
 class _AccountItemState extends State<AccountItem> {
   @override
   Widget build(BuildContext context) {
-    final UserRepository usersRepository = UserRepository();
+    final AccountRepository accountRepository = AccountRepository();
 
     return InkWell(
       onTap: () {
@@ -59,12 +59,12 @@ class _AccountItemState extends State<AccountItem> {
         ),
         subtitle: Text(
           widget.account.name == 'Ahorros'
-              ? dolarAmountFormat.format(usersRepository.getAccountBalance(
+              ? dolarAmountFormat.format(accountRepository.getBalance(
                   widget.account, widget.user.transactions, widget.date))
-              : amountFormat.format(usersRepository.getAccountBalance(
+              : amountFormat.format(accountRepository.getBalance(
                   widget.account, widget.user.transactions, widget.date)),
           style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                color: usersRepository.getAccountBalance(widget.account,
+                color: accountRepository.getBalance(widget.account,
                             widget.user.transactions, widget.date) >=
                         0
                     ? Colors.green

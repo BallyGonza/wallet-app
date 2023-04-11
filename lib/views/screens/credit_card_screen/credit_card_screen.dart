@@ -25,7 +25,7 @@ class CreditCardScreen extends StatefulWidget {
 class _CreditCardScreenState extends State<CreditCardScreen> {
   @override
   Widget build(BuildContext context) {
-    final UserRepository userRepository = UserRepository();
+    final CreditCardRepository creditCardRepository = CreditCardRepository();
     var creditCardExpenses = widget.user.creditCardExpenses
         .where((element) => element.creditCard.id == widget.creditCard.id)
         .toList();
@@ -59,7 +59,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                       TransactionModel(
                         id: DateTime.now().microsecondsSinceEpoch,
                         date: widget.date,
-                        amount: userRepository.getTotalOfCreditCard(
+                        amount: creditCardRepository.getTotalOfCreditCard(
                                 widget.creditCard,
                                 widget.date,
                                 creditCardExpenses) *
@@ -152,8 +152,11 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   Text(
-                    amountFormat.format(userRepository.getTotalOfCreditCard(
-                        widget.creditCard, widget.date, creditCardExpenses)),
+                    amountFormat.format(
+                        creditCardRepository.getTotalOfCreditCard(
+                            widget.creditCard,
+                            widget.date,
+                            creditCardExpenses)),
                     style: const TextStyle(fontSize: 12, color: Colors.white),
                   ),
                 ],

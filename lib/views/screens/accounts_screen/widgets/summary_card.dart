@@ -10,7 +10,7 @@ class SummaryCard extends StatelessWidget {
   })  : title = 'Incomes',
         color = Colors.green,
         icon = FontAwesomeIcons.arrowUp,
-        amount = UserRepository().getIncome(user, date),
+        amount = UserRepository().getTotalIncome(user, date),
         super(key: key);
 
   SummaryCard.expense({
@@ -20,7 +20,7 @@ class SummaryCard extends StatelessWidget {
   })  : title = 'Expenses',
         color = Colors.red,
         icon = FontAwesomeIcons.arrowDown,
-        amount = UserRepository().getExpense(user, date),
+        amount = UserRepository().getTotalExpense(user, date),
         super(key: key);
 
   final String title;
