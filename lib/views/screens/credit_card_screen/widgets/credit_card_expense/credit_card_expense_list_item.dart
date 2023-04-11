@@ -105,6 +105,7 @@ class CreditCardExpenseListItem extends StatelessWidget {
         ),
       ),
       onTap: () {
+        FocusScope.of(context).unfocus();
         showModalBottomSheet(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(

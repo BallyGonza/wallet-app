@@ -69,7 +69,7 @@ class _CategoryListItemState extends State<CategoryListItem>
                         ),
                         const SizedBox(width: 10),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.6,
+                          width: MediaQuery.of(context).size.width * 0.45,
                           child: Text(
                             widget.category.name,
                             style: const TextStyle(
@@ -82,7 +82,6 @@ class _CategoryListItemState extends State<CategoryListItem>
                       ],
                     ),
                   ),
-                  const Spacer(),
                   widget.category.subCategories.isEmpty
                       ? const SizedBox()
                       : GestureDetector(
@@ -94,14 +93,27 @@ class _CategoryListItemState extends State<CategoryListItem>
                                   : _controller.reverse();
                             });
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: FaIcon(
-                              isExpanded
-                                  ? FontAwesomeIcons.angleDown
-                                  : FontAwesomeIcons.angleRight,
-                              color: Colors.grey,
-                              size: 16,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            width: 100,
+                            height: 40,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                SizedBox(
+                                  width: 10,
+                                  child: FaIcon(
+                                    isExpanded
+                                        ? FontAwesomeIcons.angleDown
+                                        : FontAwesomeIcons.angleRight,
+                                    color: Colors.grey,
+                                    size: 16,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),

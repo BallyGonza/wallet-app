@@ -10,13 +10,13 @@ class TransactionListItem extends StatelessWidget {
   });
 
   final TransactionModel transaction;
-
   final VoidCallback onPressDelete;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        FocusScope.of(context).unfocus();
         showModalBottomSheet(
           backgroundColor: Colors.transparent,
           context: context,
@@ -59,9 +59,13 @@ class TransactionListItem extends StatelessWidget {
                             title: 'Amount',
                             icon: 'assets/icons/coin.png',
                             backgroundColor: yellow,
-                            description: amountFormat.format(
-                              transaction.amount,
-                            ),
+                            description: transaction.account.name == 'Ahorros'
+                                ? dolarAmountFormat.format(
+                                    transaction.amount,
+                                  )
+                                : amountFormat.format(
+                                    transaction.amount,
+                                  ),
                             descriptionColor: transaction.category.isIncome
                                 ? incomeColor
                                 : expenseColor,
@@ -152,9 +156,13 @@ class TransactionListItem extends StatelessWidget {
           ),
         ),
         trailing: Text(
-          amountFormat.format(
-            transaction.amount,
-          ),
+          transaction.account.name == 'Ahorros'
+              ? dolarAmountFormat.format(
+                  transaction.amount,
+                )
+              : amountFormat.format(
+                  transaction.amount,
+                ),
           style: TextStyle(
             color: transaction.category.isIncome ? Colors.green : Colors.red,
             fontSize: 12,

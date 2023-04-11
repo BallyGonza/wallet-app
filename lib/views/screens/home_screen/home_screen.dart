@@ -164,22 +164,34 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           backgroundColor: incomeColor,
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => AddTransactionScreen.income(
-                  user: user,
-                  onPressed: (transaction) {
-                    setState(() {
-                      context.read<UserBloc>().add(
-                            UserEvent.addTransaction(
-                              transaction,
-                            ),
-                          );
-                    });
-                  },
-                ),
-              ),
-            );
+            user.accounts.isEmpty
+                ? ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Please add an account first',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      backgroundColor: Colors.red,
+                    ),
+                  )
+                : Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => AddTransactionScreen.income(
+                        user: user,
+                        onPressed: (transaction) {
+                          setState(() {
+                            context.read<UserBloc>().add(
+                                  UserEvent.addTransaction(
+                                    transaction,
+                                  ),
+                                );
+                          });
+                        },
+                      ),
+                    ),
+                  );
           },
         ),
         SpeedDialChild(
@@ -189,22 +201,34 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           backgroundColor: expenseColor,
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => AddTransactionScreen.expense(
-                  user: user,
-                  onPressed: (transaction) {
-                    setState(() {
-                      context.read<UserBloc>().add(
-                            UserEvent.addTransaction(
-                              transaction,
-                            ),
-                          );
-                    });
-                  },
-                ),
-              ),
-            );
+            user.accounts.isEmpty
+                ? ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Please add an account first',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      backgroundColor: Colors.red,
+                    ),
+                  )
+                : Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => AddTransactionScreen.expense(
+                        user: user,
+                        onPressed: (transaction) {
+                          setState(() {
+                            context.read<UserBloc>().add(
+                                  UserEvent.addTransaction(
+                                    transaction,
+                                  ),
+                                );
+                          });
+                        },
+                      ),
+                    ),
+                  );
           },
         ),
         SpeedDialChild(
@@ -214,27 +238,39 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           backgroundColor: transferColor,
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => AddTransferScreen(
-                  user: user,
-                  onPressed: (toAccount, fromAccount) {
-                    setState(() {
-                      context.read<UserBloc>().add(
-                            UserEvent.addTransaction(
-                              toAccount,
-                            ),
-                          );
-                      context.read<UserBloc>().add(
-                            UserEvent.addTransaction(
-                              fromAccount,
-                            ),
-                          );
-                    });
-                  },
-                ),
-              ),
-            );
+            user.accounts.length <= 1
+                ? ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Debes tener 2 cuentas como mínimo para realizar una transferencia',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      backgroundColor: Colors.red,
+                    ),
+                  )
+                : Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => AddTransferScreen(
+                        user: user,
+                        onPressed: (toAccount, fromAccount) {
+                          setState(() {
+                            context.read<UserBloc>().add(
+                                  UserEvent.addTransaction(
+                                    toAccount,
+                                  ),
+                                );
+                            context.read<UserBloc>().add(
+                                  UserEvent.addTransaction(
+                                    fromAccount,
+                                  ),
+                                );
+                          });
+                        },
+                      ),
+                    ),
+                  );
           },
         ),
         SpeedDialChild(
@@ -244,22 +280,34 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           backgroundColor: expenseColor,
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => AddCreditCardExpenseScreen(
-                  user: user,
-                  onPressed: (creditCardExpense) {
-                    setState(() {
-                      context.read<UserBloc>().add(
-                            UserEvent.addCreditCardExpense(
-                              creditCardExpense,
-                            ),
-                          );
-                    });
-                  },
-                ),
-              ),
-            );
+            user.creditCards.isEmpty
+                ? ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Please add a credit card first',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      backgroundColor: Colors.red,
+                    ),
+                  )
+                : Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => AddCreditCardExpenseScreen(
+                        user: user,
+                        onPressed: (creditCardExpense) {
+                          setState(() {
+                            context.read<UserBloc>().add(
+                                  UserEvent.addCreditCardExpense(
+                                    creditCardExpense,
+                                  ),
+                                );
+                          });
+                        },
+                      ),
+                    ),
+                  );
           },
         ),
       ],

@@ -11,7 +11,8 @@ class UserRepository {
     double total = 0;
     for (var transaction in transactions) {
       if (transaction.date.month <= date.month &&
-          transaction.date.year <= date.year) {
+          transaction.date.year <= date.year &&
+          transaction.account.name != 'Ahorros') {
         total += transaction.amount;
       }
     }
@@ -24,7 +25,8 @@ class UserRepository {
       if (transaction.category.isIncome &&
           transaction.date.month == date.month &&
           transaction.date.year == date.year &&
-          transaction.category.name != 'Transfer in') {
+          transaction.category.name != 'Transfer in' &&
+          transaction.account.name != 'Ahorros') {
         income += transaction.amount;
       }
     }

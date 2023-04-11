@@ -50,248 +50,253 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
             )),
       ),
       bottomNavigationBar: _saveButton(context),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                color: colorCards,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: colorCards,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
                 ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ListView(
-                  children: [
-                    WalletListTile(
-                      leading: CircleAvatar(
-                        backgroundColor:
-                            Color(_selectedInstitution.backgroundColor),
-                        child: Image.asset(
-                          _selectedInstitution.logo,
-                          width: 25,
-                          height: 25,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: ListView(
+                    children: [
+                      WalletListTile(
+                        leading: CircleAvatar(
+                          backgroundColor:
+                              Color(_selectedInstitution.backgroundColor),
+                          child: Image.asset(
+                            _selectedInstitution.logo,
+                            width: 25,
+                            height: 25,
+                          ),
                         ),
-                      ),
-                      content: const Text(
-                        'Banco',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.grey,
+                        content: const Text(
+                          'Banco',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey,
+                          ),
                         ),
-                      ),
-                      trailing: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              _selectedInstitution.name,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.normal,
+                        trailing: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                _selectedInstitution.name,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              const SizedBox(width: 10),
+                              const FaIcon(
+                                FontAwesomeIcons.chevronRight,
                                 color: Colors.grey,
+                                size: 12,
+                              ),
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          FocusScope.of(context).unfocus();
+                          showModalBottomSheet(
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
                               ),
                             ),
-                            const SizedBox(width: 10),
-                            const FaIcon(
-                              FontAwesomeIcons.chevronRight,
-                              color: Colors.grey,
-                              size: 12,
-                            ),
-                          ],
-                        ),
-                      ),
-                      onTap: () {
-                        showModalBottomSheet(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
-                            ),
-                          ),
-                          backgroundColor: colorCards,
-                          context: context,
-                          builder: (context) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: SizedBox(
-                                height: defaultBankInstitutions.length * 90,
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: ListView.builder(
-                                        itemCount:
-                                            defaultBankInstitutions.length,
-                                        itemBuilder: (context, index) {
-                                          return InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                _selectedInstitution =
+                            backgroundColor: colorCards,
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  height: defaultBankInstitutions.length * 90,
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: ListView.builder(
+                                          itemCount:
+                                              defaultBankInstitutions.length,
+                                          itemBuilder: (context, index) {
+                                            return InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  _selectedInstitution =
+                                                      defaultBankInstitutions[
+                                                          index];
+                                                });
+                                                Navigator.pop(context);
+                                              },
+                                              child: InstitutionListItem(
+                                                institution:
                                                     defaultBankInstitutions[
-                                                        index];
-                                              });
-                                              Navigator.pop(context);
-                                            },
-                                            child: InstitutionListItem(
-                                              institution:
-                                                  defaultBankInstitutions[
-                                                      index],
-                                            ),
-                                          );
-                                        },
+                                                        index],
+                                              ),
+                                            );
+                                          },
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                  ],
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                    WalletListTile(
-                      leading: CircleAvatar(
-                        backgroundColor:
-                            Color(_selectedCardType.backgroundColor),
-                        child: Image.asset(
-                          _selectedCardType.logo,
-                          width: 25,
-                          height: 25,
-                        ),
+                              );
+                            },
+                          );
+                        },
                       ),
-                      content: const Text(
-                        'Tarjeta',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      trailing: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              _selectedCardType.name,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            const FaIcon(
-                              FontAwesomeIcons.chevronRight,
-                              color: Colors.grey,
-                              size: 12,
-                            ),
-                          ],
-                        ),
-                      ),
-                      onTap: () {
-                        showModalBottomSheet(
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
-                            ),
+                      WalletListTile(
+                        leading: CircleAvatar(
+                          backgroundColor:
+                              Color(_selectedCardType.backgroundColor),
+                          child: Image.asset(
+                            _selectedCardType.logo,
+                            width: 25,
+                            height: 25,
                           ),
-                          backgroundColor: colorCards,
-                          context: context,
-                          builder: (context) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: SizedBox(
-                                height: defaultCardTypes.length * 90,
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: ListView.builder(
-                                        itemCount: defaultCardTypes.length,
-                                        itemBuilder: (context, index) {
-                                          return InkWell(
-                                            onTap: () {
-                                              setState(() {
-                                                _selectedCardType =
-                                                    defaultCardTypes[index];
-                                              });
-                                              Navigator.pop(context);
-                                            },
-                                            child: InstitutionListItem(
-                                              institution:
-                                                  defaultCardTypes[index],
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 20,
-                                    ),
-                                  ],
+                        ),
+                        content: const Text(
+                          'Tarjeta',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        trailing: SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                _selectedCardType.name,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.grey,
                                 ),
                               ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                    WalletListTile(
-                      leading: const Padding(
-                        padding: EdgeInsets.only(left: 10.0),
-                        child: FaIcon(
-                          FontAwesomeIcons.fileSignature,
-                          color: Colors.grey,
+                              const SizedBox(width: 10),
+                              const FaIcon(
+                                FontAwesomeIcons.chevronRight,
+                                color: Colors.grey,
+                                size: 12,
+                              ),
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          FocusScope.of(context).unfocus();
+                          showModalBottomSheet(
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
+                              ),
+                            ),
+                            backgroundColor: colorCards,
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: SizedBox(
+                                  height: defaultCardTypes.length * 90,
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: ListView.builder(
+                                          itemCount: defaultCardTypes.length,
+                                          itemBuilder: (context, index) {
+                                            return InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  _selectedCardType =
+                                                      defaultCardTypes[index];
+                                                });
+                                                Navigator.pop(context);
+                                              },
+                                              child: InstitutionListItem(
+                                                institution:
+                                                    defaultCardTypes[index],
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                      WalletListTile(
+                        leading: const Padding(
+                          padding: EdgeInsets.only(left: 10.0),
+                          child: FaIcon(
+                            FontAwesomeIcons.fileSignature,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        content: TextFormField(
+                          controller: _noteController,
+                          cursorColor: Colors.grey,
+                          style: const TextStyle(color: Colors.grey),
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Propietario',
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          maxLines: 1,
+                          keyboardType: TextInputType.multiline,
                         ),
                       ),
-                      content: TextFormField(
-                        controller: _noteController,
-                        cursorColor: Colors.grey,
-                        style: const TextStyle(color: Colors.grey),
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Propietario',
-                          hintStyle: TextStyle(color: Colors.grey),
+                      WalletListTile(
+                        leading: const Padding(
+                          padding: EdgeInsets.only(left: 10.0),
+                          child: FaIcon(
+                            FontAwesomeIcons.fileSignature,
+                            color: Colors.grey,
+                          ),
                         ),
-                        maxLines: 1,
-                        keyboardType: TextInputType.multiline,
-                      ),
-                    ),
-                    WalletListTile(
-                      leading: const Padding(
-                        padding: EdgeInsets.only(left: 10.0),
-                        child: FaIcon(
-                          FontAwesomeIcons.fileSignature,
-                          color: Colors.grey,
+                        content: TextFormField(
+                          controller: _numberController,
+                          cursorColor: Colors.grey,
+                          style: const TextStyle(color: Colors.grey),
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Numero de Tarjeta',
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                          keyboardType: TextInputType.number,
                         ),
                       ),
-                      content: TextFormField(
-                        controller: _numberController,
-                        cursorColor: Colors.grey,
-                        style: const TextStyle(color: Colors.grey),
-                        decoration: const InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Numero de Tarjeta',
-                          hintStyle: TextStyle(color: Colors.grey),
-                        ),
-                        keyboardType: TextInputType.number,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

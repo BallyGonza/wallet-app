@@ -102,6 +102,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                         ),
                       ),
                       onTap: () {
+                        FocusScope.of(context).unfocus();
                         showModalBottomSheet(
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(

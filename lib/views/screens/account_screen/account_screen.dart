@@ -133,7 +133,9 @@ class _AccountScreenState extends State<AccountScreen> {
           style: const TextStyle(fontSize: 16, color: Colors.grey),
         ),
         trailing: Text(
-          amountFormat.format(amount),
+          widget.account.name == 'Ahorros'
+              ? dolarAmountFormat.format(amount)
+              : amountFormat.format(amount),
           style: TextStyle(fontSize: 16, color: Color(color)),
         ),
       ),
@@ -159,7 +161,7 @@ class _AccountScreenState extends State<AccountScreen> {
             showDialog(
               context: context,
               builder: (_) => AlertDialog(
-                title: const Text('Eliminar tarjeta'),
+                title: const Text('Eliminar cuenta'),
                 content: const Text(
                     '¿Estás seguro que deseas eliminar esta cuenta?'),
                 actions: [

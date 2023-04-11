@@ -36,10 +36,24 @@ class TitleListCard extends StatelessWidget {
                   onTap: () {
                     onTap();
                   },
-                  child: const FaIcon(
-                    FontAwesomeIcons.plus,
-                    color: Colors.grey,
-                    size: 15,
+                  child: Container(
+                    width: 40,
+                    decoration: const BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: const [
+                        FaIcon(
+                          FontAwesomeIcons.plus,
+                          color: Colors.grey,
+                          size: 15,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
