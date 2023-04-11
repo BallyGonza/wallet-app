@@ -6,16 +6,16 @@ List<CategoryModel> defaultIncomeCategories = [
   replenishment
 ];
 List<CategoryModel> defaultExpenseCategories = [
+  others,
   food,
   car,
   hangouts,
   health,
   shopping,
   services,
-  creditCard,
-  gifts,
+  education,
   savings,
-  others,
+  creditCard,
 ];
 
 CategoryModel income = CategoryModel(
@@ -25,7 +25,7 @@ CategoryModel income = CategoryModel(
   isIncome: true,
   backgroundColor: green,
   iconColor: black,
-  subCategories: [salary, honorarios],
+  subCategories: [salary, honorarios, cashGift, sell],
 );
 
 CategoryModel salary = CategoryModel(
@@ -74,7 +74,7 @@ CategoryModel food = CategoryModel(
   icon: 'assets/icons/categories/food.png',
   isIncome: false,
   backgroundColor: red,
-  subCategories: [market, fastFood, mcDonalds, burgerKing, subway, kfc],
+  subCategories: [market, delivery, mcDonalds, burgerKing, subway, kfc],
   iconColor: white,
 );
 
@@ -88,10 +88,10 @@ CategoryModel market = CategoryModel(
   subCategories: [],
 );
 
-CategoryModel fastFood = CategoryModel(
+CategoryModel delivery = CategoryModel(
   id: 7,
-  name: 'Comida Rapida',
-  icon: 'assets/icons/categories/fastfood.png',
+  name: 'Delivery',
+  icon: 'assets/icons/categories/delivery.png',
   isIncome: false,
   backgroundColor: red,
   iconColor: white,
@@ -209,7 +209,7 @@ CategoryModel hangouts = CategoryModel(
   name: 'Salidas',
   icon: 'assets/icons/categories/entertainment.png',
   isIncome: false,
-  backgroundColor: purple,
+  backgroundColor: green,
   iconColor: white,
   subCategories: [cinema],
 );
@@ -229,8 +229,8 @@ CategoryModel home = CategoryModel(
   name: 'Hogar',
   icon: 'assets/icons/categories/home.png',
   isIncome: false,
-  backgroundColor: green,
-  iconColor: white,
+  backgroundColor: yellow,
+  iconColor: black,
   subCategories: [],
 );
 
@@ -239,8 +239,8 @@ CategoryModel services = CategoryModel(
   name: 'Servicios',
   icon: 'assets/icons/categories/tax.png',
   isIncome: false,
-  backgroundColor: white,
-  iconColor: black,
+  backgroundColor: blue,
+  iconColor: white,
   subCategories: [movistar, personal, netflix, disneyplus, spotify],
 );
 
@@ -305,7 +305,7 @@ CategoryModel gifts = CategoryModel(
   name: 'Regalos',
   icon: 'assets/icons/categories/gift.png',
   isIncome: false,
-  backgroundColor: lightYellow,
+  backgroundColor: yellow,
   iconColor: black,
   subCategories: [],
 );
@@ -383,9 +383,9 @@ CategoryModel shopping = CategoryModel(
   name: 'Compras',
   icon: 'assets/icons/categories/shopping.png',
   isIncome: false,
-  backgroundColor: white,
+  backgroundColor: yellow,
   iconColor: black,
-  subCategories: [clothes, home],
+  subCategories: [clothes, electro, home, gifts, pets],
 );
 
 CategoryModel clothes = CategoryModel(
@@ -393,7 +393,7 @@ CategoryModel clothes = CategoryModel(
   name: 'Ropa',
   icon: 'assets/icons/categories/clothes.png',
   isIncome: false,
-  backgroundColor: white,
+  backgroundColor: yellow,
   iconColor: black,
   subCategories: [],
 );
@@ -453,6 +453,56 @@ CategoryModel honorarios = CategoryModel(
   icon: 'assets/icons/categories/honorarios.png',
   isIncome: true,
   backgroundColor: green,
-  iconColor: white,
+  iconColor: black,
+  subCategories: [],
+);
+
+CategoryModel electro = CategoryModel(
+  id: 44,
+  name: 'Electrodomesticos',
+  icon: 'assets/icons/categories/electro.png',
+  isIncome: false,
+  backgroundColor: yellow,
+  iconColor: black,
+  subCategories: [],
+);
+
+CategoryModel pets = CategoryModel(
+  id: 45,
+  name: 'Mascotas',
+  icon: 'assets/icons/categories/pet.png',
+  isIncome: false,
+  backgroundColor: yellow,
+  iconColor: black,
+  subCategories: [],
+);
+
+CategoryModel cashGift = CategoryModel(
+  id: 46,
+  name: 'Regalo en Efectivo',
+  icon: 'assets/icons/categories/gift.png',
+  isIncome: false,
+  backgroundColor: green,
+  iconColor: black,
+  subCategories: [],
+);
+
+CategoryModel sell = CategoryModel(
+  id: 47,
+  name: 'Venta',
+  icon: 'assets/icons/categories/sell.png',
+  isIncome: true,
+  backgroundColor: green,
+  iconColor: black,
+  subCategories: [],
+);
+
+CategoryModel education = CategoryModel(
+  id: 48,
+  name: 'Educacion',
+  icon: 'assets/icons/categories/education.png',
+  isIncome: false,
+  backgroundColor: lightOrange,
+  iconColor: black,
   subCategories: [],
 );
