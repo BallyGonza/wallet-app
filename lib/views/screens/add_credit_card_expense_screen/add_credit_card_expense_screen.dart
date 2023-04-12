@@ -370,49 +370,6 @@ class _AddCreditCardExpenseScreenState
                         },
                       ),
                       WalletListTile(
-                        leading: const Padding(
-                          padding: EdgeInsets.only(left: 10.0),
-                          child: FaIcon(
-                            FontAwesomeIcons.fileSignature,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        content: DropdownButtonFormField(
-                          decoration: const InputDecoration(
-                            border: InputBorder.none,
-                            hintStyle: TextStyle(color: Colors.grey),
-                          ),
-                          value: _cuotas,
-                          items: const [
-                            DropdownMenuItem(
-                              value: 1,
-                              child: Text('1 Cuota',
-                                  style: TextStyle(color: Colors.grey)),
-                            ),
-                            DropdownMenuItem(
-                              value: 3,
-                              child: Text('3 Cuotas',
-                                  style: TextStyle(color: Colors.grey)),
-                            ),
-                            DropdownMenuItem(
-                              value: 6,
-                              child: Text('6 Cuotas',
-                                  style: TextStyle(color: Colors.grey)),
-                            ),
-                            DropdownMenuItem(
-                              value: 12,
-                              child: Text('12 Cuotas',
-                                  style: TextStyle(color: Colors.grey)),
-                            ),
-                          ],
-                          onChanged: (value) {
-                            setState(() {
-                              _cuotas = value!;
-                            });
-                          },
-                        ),
-                      ),
-                      WalletListTile(
                         leading: Row(
                           children: const [
                             Padding(
@@ -443,6 +400,91 @@ class _AddCreditCardExpenseScreenState
                           },
                         ),
                       ),
+                      _isRecurrent == false
+                          ? WalletListTile(
+                              leading: const Padding(
+                                padding: EdgeInsets.only(left: 10.0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.fileSignature,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              content: DropdownButtonFormField(
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                ),
+                                value: _cuotas,
+                                items: const [
+                                  DropdownMenuItem(
+                                    value: 1,
+                                    child: Text('1 Cuota',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 2,
+                                    child: Text('2 Cuotas',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 3,
+                                    child: Text('3 Cuotas',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 4,
+                                    child: Text('4 Cuotas',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 5,
+                                    child: Text('5 Cuotas',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 6,
+                                    child: Text('6 Cuotas',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 7,
+                                    child: Text('7 Cuotas',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 8,
+                                    child: Text('8 Cuotas',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 9,
+                                    child: Text('9 Cuotas',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 10,
+                                    child: Text('10 Cuotas',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 11,
+                                    child: Text('11 Cuotas',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ),
+                                  DropdownMenuItem(
+                                    value: 12,
+                                    child: Text('12 Cuotas',
+                                        style: TextStyle(color: Colors.grey)),
+                                  ),
+                                ],
+                                onChanged: (value) {
+                                  setState(() {
+                                    _cuotas = value!;
+                                  });
+                                },
+                              ),
+                            )
+                          : const SizedBox.shrink(),
                       WalletListTile(
                         leading: const Padding(
                           padding: EdgeInsets.only(left: 10.0),
@@ -452,6 +494,7 @@ class _AddCreditCardExpenseScreenState
                           ),
                         ),
                         content: TextFormField(
+                          textCapitalization: TextCapitalization.sentences,
                           controller: _noteController,
                           cursorColor: Colors.grey,
                           style: const TextStyle(color: Colors.grey),

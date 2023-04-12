@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wallet_app/blocs/blocs.dart';
 
 import 'package:wallet_app/data/data.dart';
 
-class CreditCardExpenseListItem extends StatelessWidget {
+class CreditCardExpenseListItem extends StatefulWidget {
   const CreditCardExpenseListItem({
     required this.date,
     required this.transaction,
@@ -15,9 +17,18 @@ class CreditCardExpenseListItem extends StatelessWidget {
   final VoidCallback onPressDelete;
 
   @override
+  State<CreditCardExpenseListItem> createState() =>
+      _CreditCardExpenseListItemState();
+}
+
+class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
+  @override
   Widget build(BuildContext context) {
+    TextEditingController amountController = TextEditingController();
     int currentCuota =
-        (transaction.date.difference(date).inDays / 30).round().abs();
+        (widget.transaction.date.difference(widget.date).inDays / 30)
+            .round()
+            .abs();
     return InkWell(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -25,16 +36,17 @@ class CreditCardExpenseListItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CircleAvatar(
-              backgroundColor: Color(transaction.category.backgroundColor),
+              backgroundColor:
+                  Color(widget.transaction.category.backgroundColor),
               child: Image(
                 image: AssetImage(
-                  transaction.category.icon,
+                  widget.transaction.category.icon,
                 ),
                 height: 25,
                 width: 25,
-                color: transaction.category.iconColor == null
+                color: widget.transaction.category.iconColor == null
                     ? null
-                    : Color(transaction.category.iconColor!),
+                    : Color(widget.transaction.category.iconColor!),
               ),
             ),
             const SizedBox(width: 10),
@@ -44,17 +56,17 @@ class CreditCardExpenseListItem extends StatelessWidget {
                 Text.rich(
                   overflow: TextOverflow.ellipsis,
                   TextSpan(
-                    text: transaction.category.name,
+                    text: widget.transaction.category.name,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                     children: [
-                      transaction.note.isEmpty
+                      widget.transaction.note.isEmpty
                           ? const TextSpan(text: '')
                           : TextSpan(
-                              text: ' - ${transaction.note}',
+                              text: ' - ${widget.transaction.note}',
                               style: const TextStyle(
                                 color: Colors.grey,
                                 fontSize: 15,
@@ -68,7 +80,7 @@ class CreditCardExpenseListItem extends StatelessWidget {
                   height: 2,
                 ),
                 Text(
-                  transaction.creditCard.institution.name,
+                  widget.transaction.creditCard.institution.name,
                   style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 12,
@@ -83,7 +95,7 @@ class CreditCardExpenseListItem extends StatelessWidget {
               children: [
                 Text(
                   amountFormat.format(
-                    transaction.amount / transaction.cuotas,
+                    widget.transaction.amount / widget.transaction.cuotas,
                   ),
                   style: const TextStyle(
                     color: Colors.red,
@@ -92,9 +104,9 @@ class CreditCardExpenseListItem extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 2),
-                transaction.cuotas > 1
+                widget.transaction.isReccurent == false
                     ? Text(
-                        '$currentCuota/${transaction.cuotas} cuotas',
+                        '$currentCuota/${widget.transaction.cuotas} cuotas',
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
@@ -127,59 +139,115 @@ class CreditCardExpenseListItem extends StatelessWidget {
                     children: [
                       DescriptionItem(
                         title: 'Categoria',
-                        icon: transaction.category.icon,
-                        iconColor: transaction.category.iconColor,
-                        backgroundColor: transaction.category.backgroundColor,
-                        description: transaction.category.name,
-                        transaction: transaction,
+                        icon: widget.transaction.category.icon,
+                        iconColor: widget.transaction.category.iconColor,
+                        backgroundColor:
+                            widget.transaction.category.backgroundColor,
+                        description: widget.transaction.category.name,
+                        transaction: widget.transaction,
+                        onTap: () {},
                       ),
                       DescriptionItem(
                         title: 'Banco',
-                        icon: transaction.creditCard.institution.logo,
-                        backgroundColor:
-                            transaction.creditCard.institution.backgroundColor,
-                        description: transaction.creditCard.institution.name,
-                        transaction: transaction,
+                        icon: widget.transaction.creditCard.institution.logo,
+                        backgroundColor: widget
+                            .transaction.creditCard.institution.backgroundColor,
+                        description:
+                            widget.transaction.creditCard.institution.name,
+                        transaction: widget.transaction,
+                        onTap: () {},
                       ),
                       DescriptionItem(
                         title: 'Numero de tarjeta',
-                        icon: transaction.creditCard.cardType.logo,
+                        icon: widget.transaction.creditCard.cardType.logo,
                         backgroundColor: white,
-                        description: transaction.creditCard.number
+                        description: widget.transaction.creditCard.number
                             .replaceAllMapped(
                               RegExp(r'.{4}'),
                               (Match m) => '${m[0]} ',
                             )
                             .trim(),
-                        transaction: transaction,
+                        transaction: widget.transaction,
+                        onTap: () {},
                       ),
                       DescriptionItem(
                         title: 'Monto',
                         icon: 'assets/icons/coin.png',
                         backgroundColor: yellow,
-                        description: amountFormat.format(transaction.amount),
-                        descriptionColor: transaction.category.isIncome
+                        description:
+                            amountFormat.format(widget.transaction.amount),
+                        descriptionColor: widget.transaction.category.isIncome
                             ? incomeColor
                             : expenseColor,
-                        transaction: transaction,
+                        transaction: widget.transaction,
+                        onTap: () {
+                          // showDialog(
+                          //   context: context,
+                          //   builder: (context) {
+                          //     return AlertDialog(
+                          //       title: const Text('Editar monto'),
+                          //       content: TextField(
+                          //         controller: amountController,
+                          //         keyboardType: TextInputType.number,
+                          //         decoration: const InputDecoration(
+                          //           hintText: 'Monto',
+                          //         ),
+                          //       ),
+                          //       actions: [
+                          //         TextButton(
+                          //           onPressed: () {
+                          //             Navigator.of(context).pop();
+                          //           },
+                          //           child: const Text('Cancelar'),
+                          //         ),
+                          //         TextButton(
+                          //           onPressed: () {
+                          //             var amount = double.parse(amountController
+                          //                 .text
+                          //                 .replaceAll(RegExp(r'[,]'), '.'));
+                          //             setState(() {
+                          //               widget.transaction.amount = amount;
+                          //             });
+                          //             //TODO: update transaction
+                          //             BlocProvider.of<UserBloc>(context).add(
+                          //               UserEvent.updateCreditCardExpense(
+                          //                 widget.transaction.copyWith(
+                          //                   amount: amount,
+                          //                 ),
+                          //               ),
+                          //             );
+                          //             Navigator.of(context).pop();
+                          //           },
+                          //           child: const Text('Guardar'),
+                          //         ),
+                          //       ],
+                          //     );
+                          //   },
+                          // );
+                        },
                       ),
                       DescriptionItem(
                         title: 'Fecha',
                         icon: 'assets/icons/calendar.png',
                         backgroundColor: indigo,
-                        description: dateFormat.format(transaction.date),
-                        transaction: transaction,
+                        description: dateFormat.format(widget.transaction.date),
+                        transaction: widget.transaction,
+                        onTap: () {},
                       ),
                       DescriptionItem(
                         title: 'Note',
                         icon: 'assets/icons/pencil.png',
                         backgroundColor: indigo,
-                        description: transaction.note.isEmpty
+                        description: widget.transaction.note.isEmpty
                             ? 'None'
-                            : transaction.note,
-                        transaction: transaction,
+                            : widget.transaction.note,
+                        transaction: widget.transaction,
+                        onTap: () {},
                       ),
                     ],
+                  ),
+                  const SizedBox(
+                    height: 10,
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
@@ -190,7 +258,7 @@ class CreditCardExpenseListItem extends StatelessWidget {
                         ),
                         backgroundColor: expenseColor,
                       ),
-                      onPressed: onPressDelete,
+                      onPressed: widget.onPressDelete,
                       child: const Text(
                         'Delete',
                         style: TextStyle(fontSize: 16),
@@ -217,6 +285,7 @@ class DescriptionItem extends StatelessWidget {
     required this.description,
     this.descriptionColor,
     required this.transaction,
+    required this.onTap,
   }) : super(key: key);
 
   final String title;
@@ -226,48 +295,39 @@ class DescriptionItem extends StatelessWidget {
   final String description;
   final Color? descriptionColor;
   final CreditCardTransactionModel transaction;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Row(
-        children: [
-          CircleAvatar(
-            backgroundColor: Color(backgroundColor),
-            child: Image(
-              image: AssetImage(icon),
-              height: 25,
-              width: 25,
-              color: iconColor != null ? Color(iconColor!) : null,
-            ),
+    return SizedBox(
+      height: 60,
+      child: ListTile(
+        onTap: onTap,
+        leading: CircleAvatar(
+          backgroundColor: Color(backgroundColor),
+          child: Image(
+            image: AssetImage(icon),
+            height: 25,
+            width: 25,
+            color: iconColor != null ? Color(iconColor!) : null,
           ),
-          const SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              const SizedBox(
-                height: 2,
-              ),
-              Text(
-                description,
-                style: TextStyle(
-                  color: descriptionColor ?? Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ],
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 12,
+            fontWeight: FontWeight.normal,
           ),
-        ],
+        ),
+        subtitle: Text(
+          description,
+          style: TextStyle(
+            color: descriptionColor ?? Colors.white,
+            fontSize: 15,
+            fontWeight: FontWeight.normal,
+          ),
+        ),
       ),
     );
   }

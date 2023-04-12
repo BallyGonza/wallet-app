@@ -39,4 +39,17 @@ class CreditCardTransactionModel extends HiveObject {
       _$CreditCardTransactionModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$CreditCardTransactionModelToJson(this);
+
+  CreditCardTransactionModel copyWith({required double amount}) {
+    return CreditCardTransactionModel(
+      id: id,
+      note: note,
+      amount: amount,
+      date: date,
+      category: category,
+      creditCard: creditCard,
+      isReccurent: isReccurent,
+      cuotas: cuotas,
+    );
+  }
 }

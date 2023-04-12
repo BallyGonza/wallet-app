@@ -481,7 +481,7 @@ CategoryModel cashGift = CategoryModel(
   id: 46,
   name: 'Regalo en Efectivo',
   icon: 'assets/icons/categories/gift.png',
-  isIncome: false,
+  isIncome: true,
   backgroundColor: green,
   iconColor: black,
   subCategories: [],
