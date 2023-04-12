@@ -99,7 +99,7 @@ CategoryModel delivery = CategoryModel(
 );
 
 CategoryModel mcDonalds = CategoryModel(
-  id: 7,
+  id: 199,
   name: 'McDonalds',
   icon: 'assets/icons/categories/mcdonalds.png',
   isIncome: false,

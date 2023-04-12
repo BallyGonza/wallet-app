@@ -26,14 +26,9 @@ class _AccountScreenState extends State<AccountScreen> {
   List<TransactionModel> transactions = [];
 
   @override
-  void initState() {
-    super.initState();
+  Widget build(BuildContext context) {
     transactions = accountRepository.getTransactionsByAccount(
         widget.account, widget.user.transactions, widget.date);
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: _AppBar(context),
       body: SafeArea(

@@ -27,18 +27,20 @@ class _AccountItemState extends State<AccountItem> {
 
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => BlocProvider.value(
-              value: BlocProvider.of<UserBloc>(context),
-              child: AccountScreen(
-                user: widget.user,
-                account: widget.account,
-                date: widget.date,
+        setState(() {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => BlocProvider.value(
+                value: BlocProvider.of<UserBloc>(context),
+                child: AccountScreen(
+                  user: widget.user,
+                  account: widget.account,
+                  date: widget.date,
+                ),
               ),
             ),
-          ),
-        );
+          );
+        });
       },
       child: ListTile(
         leading: CircleAvatar(

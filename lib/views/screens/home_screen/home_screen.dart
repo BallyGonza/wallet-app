@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   late Box<UserModel> box;
   late UserModel user;
   DateTime selectedDate = DateTime.now();
+  bool _yearMode = false;
   int currentIndex = 0;
 
   @override
@@ -73,6 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           TransactionsScreen(user: user, date: selectedDate),
+          StatisticsScreen(user: user, date: selectedDate, yearMode: _yearMode),
         ],
       ),
     );
@@ -98,9 +100,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           onPressed: () {
             setState(() {
-              selectedDate = selectedDate.subtract(
-                const Duration(days: 30),
-              );
+              _yearMode
+                  ? selectedDate = selectedDate.subtract(
+                      const Duration(days: 365),
+                    )
+                  : selectedDate = selectedDate.subtract(
+                      const Duration(days: 30),
+                    );
             });
           },
           child: const Icon(
@@ -109,15 +115,31 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Colors.grey,
           ),
         ),
-        Text(
-          selectedDate.year == DateTime.now().year
-              ? DateFormat('MMMM').format(selectedDate)
-              : DateFormat('MMMM yyyy').format(selectedDate),
-          style: const TextStyle(
-            color: Colors.grey,
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-          ),
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              _yearMode = !_yearMode;
+            });
+          },
+          child: _yearMode
+              ? Text(
+                  selectedDate.year.toString(),
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              : Text(
+                  selectedDate.year == DateTime.now().year
+                      ? DateFormat('MMMM').format(selectedDate)
+                      : DateFormat('MMMM yyyy').format(selectedDate),
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -127,9 +149,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           onPressed: () {
             setState(() {
-              selectedDate = selectedDate.add(
-                const Duration(days: 30),
-              );
+              _yearMode
+                  ? selectedDate = selectedDate.add(
+                      const Duration(days: 365),
+                    )
+                  : selectedDate = selectedDate.add(
+                      const Duration(days: 30),
+                    );
             });
           },
           child: const Icon(
