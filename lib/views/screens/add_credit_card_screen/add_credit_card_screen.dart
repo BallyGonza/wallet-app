@@ -262,6 +262,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                           ),
                         ),
                         content: TextFormField(
+                          textCapitalization: TextCapitalization.sentences,
                           controller: _noteController,
                           cursorColor: Colors.grey,
                           style: const TextStyle(color: Colors.grey),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:wallet_app/data/data.dart';
 
@@ -113,62 +114,110 @@ class TransactionListItem extends StatelessWidget {
           },
         );
       },
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Color(transaction.category.backgroundColor),
-          child: Image(
-            image: AssetImage(transaction.category.icon),
-            height: 25,
-            width: 25,
-            color: transaction.category.iconColor == null
-                ? null
-                : Color(transaction.category.iconColor!),
-          ),
-        ),
-        title: Text.rich(
-          overflow: TextOverflow.ellipsis,
-          TextSpan(
-            text: transaction.category.name,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: Color(transaction.category.backgroundColor),
+              child: Image(
+                image: AssetImage(transaction.category.icon),
+                height: 25,
+                width: 25,
+                color: transaction.category.iconColor == null
+                    ? null
+                    : Color(transaction.category.iconColor!),
+              ),
             ),
-            children: [
-              transaction.note.isEmpty
-                  ? const TextSpan(text: '')
-                  : TextSpan(
-                      text: ' - ${transaction.note}',
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                      ),
+            const SizedBox(width: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text.rich(
+                  TextSpan(
+                    text: transaction.category.name,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
                     ),
-            ],
-          ),
-        ),
-        subtitle: Text(
-          transaction.account.name,
-          style: const TextStyle(
-            color: Colors.grey,
-            fontSize: 12,
-            fontWeight: FontWeight.normal,
-          ),
-        ),
-        trailing: Text(
-          transaction.account.name == 'Ahorros'
-              ? dolarAmountFormat.format(
-                  transaction.amount,
-                )
-              : amountFormat.format(
-                  transaction.amount,
+                    children: [
+                      const WidgetSpan(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 3.2),
+                          child: FaIcon(
+                            FontAwesomeIcons.arrowRight,
+                            size: 10,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                      TextSpan(
+                        text: transaction.account.name,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-          style: TextStyle(
-            color: transaction.category.isIncome ? Colors.green : Colors.red,
-            fontSize: 12,
-            fontWeight: FontWeight.normal,
-          ),
+                transaction.note == ''
+                    ? const SizedBox.shrink()
+                    : Column(
+                        children: [
+                          const SizedBox(height: 1),
+                          Text(
+                            transaction.note,
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                          const SizedBox(height: 1),
+                        ],
+                      ),
+              ],
+            ),
+            const Spacer(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  transaction.account.name == 'Ahorros'
+                      ? dolarAmountFormat.format(
+                          transaction.amount,
+                        )
+                      : amountFormat.format(
+                          transaction.amount,
+                        ),
+                  style: TextStyle(
+                    color: transaction.category.isIncome
+                        ? Colors.green
+                        : Colors.red,
+                    fontSize: 12,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+                const SizedBox(
+                  height: 3,
+                ),
+                Text(
+                  dateFormat.format(transaction.date),
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 10,
+                    fontWeight: FontWeight.normal,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

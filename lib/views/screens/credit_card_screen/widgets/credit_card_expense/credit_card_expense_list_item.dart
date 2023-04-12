@@ -53,37 +53,34 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text.rich(
-                  overflow: TextOverflow.ellipsis,
-                  TextSpan(
-                    text: widget.transaction.category.name,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    children: [
-                      widget.transaction.note.isEmpty
-                          ? const TextSpan(text: '')
-                          : TextSpan(
-                              text: ' - ${widget.transaction.note}',
-                              style: const TextStyle(
-                                color: Colors.grey,
-                                fontSize: 15,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                    ],
+                Text(
+                  widget.transaction.category.name,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(
-                  height: 2,
-                ),
+                const SizedBox(height: 2),
+                widget.transaction.note != ''
+                    ? Text(
+                        widget.transaction.note,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      )
+                    : const SizedBox.shrink(),
+                widget.transaction.note != ''
+                    ? const SizedBox(height: 2)
+                    : const SizedBox.shrink(),
                 Text(
-                  widget.transaction.creditCard.institution.name,
+                  '${widget.transaction.date.day}/${widget.transaction.date.month}/${widget.transaction.date.year}',
                   style: const TextStyle(
                     color: Colors.grey,
-                    fontSize: 12,
+                    fontSize: 10,
                     fontWeight: FontWeight.normal,
                   ),
                 ),

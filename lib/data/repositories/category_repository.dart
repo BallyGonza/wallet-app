@@ -241,7 +241,7 @@ CategoryModel services = CategoryModel(
   isIncome: false,
   backgroundColor: blue,
   iconColor: white,
-  subCategories: [movistar, personal, netflix, disneyplus, spotify],
+  subCategories: [movistar, personal, prime, netflix, disneyplus, spotify],
 );
 
 CategoryModel movistar = CategoryModel(
@@ -504,5 +504,15 @@ CategoryModel education = CategoryModel(
   isIncome: false,
   backgroundColor: lightOrange,
   iconColor: black,
+  subCategories: [],
+);
+
+CategoryModel prime = CategoryModel(
+  id: 49,
+  name: 'Amazon Prime Video',
+  icon: 'assets/icons/categories/prime.png',
+  isIncome: false,
+  backgroundColor: white,
+  iconColor: blue,
   subCategories: [],
 );

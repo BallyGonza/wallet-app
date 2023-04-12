@@ -369,6 +369,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           ),
                         ),
                         content: TextFormField(
+                          textCapitalization: TextCapitalization.sentences,
                           controller: _noteController,
                           cursorColor: Colors.grey,
                           style: const TextStyle(color: Colors.grey),
