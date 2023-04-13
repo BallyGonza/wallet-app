@@ -61,9 +61,9 @@ class _TransactionsListState extends State<TransactionsList> {
                     // text of total incomes
                     Text(
                       amountFormat.format(userRepository.getTotalIncomeByDay(
-                          widget.user, widget.date)),
+                          widget.user, widget.date, widget.day)),
                       style: TextStyle(
-                        color: incomeColor,
+                        color: Colors.green,
                         fontSize: 12,
                       ),
                     ),
@@ -71,9 +71,9 @@ class _TransactionsListState extends State<TransactionsList> {
                     // text of total expenses
                     Text(
                       amountFormat.format(userRepository.getTotalExpenseByDay(
-                          widget.user, widget.date)),
+                          widget.user, widget.date, widget.day)),
                       style: TextStyle(
-                        color: expenseColor,
+                        color: Colors.red,
                         fontSize: 12,
                       ),
                     ),

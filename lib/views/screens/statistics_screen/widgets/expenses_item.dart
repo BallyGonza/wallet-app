@@ -76,7 +76,7 @@ class _ExpenseItemState extends State<ExpenseItem>
                 color: Colors.transparent,
                 borderRadius: BorderRadius.circular(20),
               ),
-              width: 100,
+              width: 120,
               height: 40,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,

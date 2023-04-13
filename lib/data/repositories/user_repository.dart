@@ -101,11 +101,11 @@ class UserRepository {
     return income;
   }
 
-  getTotalIncomeByDay(UserModel user, DateTime date) {
+  getTotalIncomeByDay(UserModel user, DateTime date, int day) {
     double income = 0;
     for (var transaction in user.transactions) {
       if (transaction.category.isIncome &&
-          transaction.date.day == date.day &&
+          transaction.date.day == day &&
           transaction.date.month == date.month &&
           transaction.date.year == date.year &&
           transaction.category.name != 'Transfer in' &&
@@ -128,11 +128,11 @@ class UserRepository {
     return expense;
   }
 
-  getTotalExpenseByDay(UserModel user, DateTime date) {
+  getTotalExpenseByDay(UserModel user, DateTime date, int day) {
     double expense = 0;
     for (var transaction in user.transactions) {
       if (!transaction.category.isIncome &&
-          transaction.date.day == date.day &&
+          transaction.date.day == day &&
           transaction.date.month == date.month &&
           transaction.date.year == date.year &&
           transaction.category.name != 'Transfer out') {
