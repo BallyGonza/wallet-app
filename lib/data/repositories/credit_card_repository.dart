@@ -38,6 +38,9 @@ class CreditCardRepository {
         .where((element) => element.creditCard.id == creditCard.id)
         .toList();
 
+    // sort transactions by date
+    creditCardExpenses.sort((a, b) => b.date.compareTo(a.date));
+
     return creditCardExpenses = creditCardExpenses
         .where((element) =>
             element.cuotas >=
