@@ -12,12 +12,15 @@ class AccountRepository {
     List<TransactionModel> transactions,
     DateTime date,
   ) {
-    return transactions
+    final List<TransactionModel> accountTransactions = transactions
         .where((transaction) =>
             transaction.account.id == account.id &&
             transaction.date.month == date.month &&
             transaction.date.year == date.year)
         .toList();
+    // sort transactions by date
+    accountTransactions.sort((a, b) => b.date.compareTo(a.date));
+    return accountTransactions;
   }
 
   List<TransactionModel> getTransactionsByDate(
