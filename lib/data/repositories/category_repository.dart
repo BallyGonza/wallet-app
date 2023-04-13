@@ -54,7 +54,7 @@ CategoryModel afip = CategoryModel(
   icon: 'assets/icons/categories/afip.png',
   isIncome: true,
   backgroundColor: white,
-  iconColor: mercadoPagoColor,
+  iconColor: black,
   subCategories: [],
 );
 

@@ -101,10 +101,39 @@ class UserRepository {
     return income;
   }
 
+  getTotalIncomeByDay(UserModel user, DateTime date) {
+    double income = 0;
+    for (var transaction in user.transactions) {
+      if (transaction.category.isIncome &&
+          transaction.date.day == date.day &&
+          transaction.date.month == date.month &&
+          transaction.date.year == date.year &&
+          transaction.category.name != 'Transfer in' &&
+          transaction.account.name != 'Ahorros') {
+        income += transaction.amount;
+      }
+    }
+    return income;
+  }
+
   getTotalExpenseByYear(UserModel user, DateTime date) {
     double expense = 0;
     for (var transaction in user.transactions) {
       if (!transaction.category.isIncome &&
+          transaction.date.year == date.year &&
+          transaction.category.name != 'Transfer out') {
+        expense += transaction.amount;
+      }
+    }
+    return expense;
+  }
+
+  getTotalExpenseByDay(UserModel user, DateTime date) {
+    double expense = 0;
+    for (var transaction in user.transactions) {
+      if (!transaction.category.isIncome &&
+          transaction.date.day == date.day &&
+          transaction.date.month == date.month &&
           transaction.date.year == date.year &&
           transaction.category.name != 'Transfer out') {
         expense += transaction.amount;

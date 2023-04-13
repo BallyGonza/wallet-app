@@ -191,8 +191,10 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                               creditCardExpenses) *
                           -1,
                       note: widget.creditCard.institution.name,
-                      account: widget.user.accounts.firstWhere((element) =>
-                          element.name == widget.creditCard.institution.name),
+                      account: widget.user.accounts.firstWhere(
+                        (element) =>
+                            element.name == widget.creditCard.institution.name,
+                      ),
                       category: widget.creditCard.cardType.name == 'Visa'
                           ? widget.user.expenseCategories
                               .firstWhere((element) =>

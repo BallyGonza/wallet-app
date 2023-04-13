@@ -197,8 +197,8 @@ class TransactionListItem extends StatelessWidget {
                         ),
                   style: TextStyle(
                     color: transaction.category.isIncome
-                        ? Colors.green
-                        : Colors.red,
+                        ? incomeColor
+                        : expenseColor,
                     fontSize: 12,
                     fontWeight: FontWeight.normal,
                   ),
@@ -210,9 +210,8 @@ class TransactionListItem extends StatelessWidget {
                   dateFormat.format(transaction.date),
                   style: const TextStyle(
                     color: Colors.grey,
-                    fontSize: 10,
+                    fontSize: 9,
                     fontWeight: FontWeight.normal,
-                    fontStyle: FontStyle.italic,
                   ),
                 ),
               ],

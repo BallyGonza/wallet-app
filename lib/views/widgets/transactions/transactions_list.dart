@@ -23,6 +23,7 @@ class TransactionsList extends StatefulWidget {
 }
 
 class _TransactionsListState extends State<TransactionsList> {
+  final UserRepository userRepository = UserRepository();
   @override
   Widget build(BuildContext context) {
     var transactions = widget.user.transactions
@@ -40,19 +41,44 @@ class _TransactionsListState extends State<TransactionsList> {
               const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(left: 15, top: 5, bottom: 5),
-                child: Text(
-                  widget.date.day == widget.day &&
-                          widget.date.month == DateTime.now().month &&
-                          widget.date.year == DateTime.now().year
-                      ? 'Hoy'
-                      : DateFormat('EEEE dd')
-                          .format(DateTime(
-                              widget.date.year, widget.date.month, widget.day))
-                          .toString(),
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold),
+                child: Row(
+                  children: [
+                    Text(
+                      widget.date.day == widget.day &&
+                              widget.date.month == DateTime.now().month &&
+                              widget.date.year == DateTime.now().year
+                          ? 'Hoy'
+                          : DateFormat('EEEE dd')
+                              .format(DateTime(widget.date.year,
+                                  widget.date.month, widget.day))
+                              .toString(),
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const Spacer(),
+                    // text of total incomes
+                    Text(
+                      amountFormat.format(userRepository.getTotalIncomeByDay(
+                          widget.user, widget.date)),
+                      style: TextStyle(
+                        color: incomeColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    // text of total expenses
+                    Text(
+                      amountFormat.format(userRepository.getTotalExpenseByDay(
+                          widget.user, widget.date)),
+                      style: TextStyle(
+                        color: expenseColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                    const SizedBox(width: 15),
+                  ],
                 ),
               ),
               SizedBox(

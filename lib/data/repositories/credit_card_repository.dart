@@ -41,7 +41,7 @@ class CreditCardRepository {
     return creditCardExpenses = creditCardExpenses
         .where((element) =>
             element.cuotas >=
-            1 + (element.date.difference(date).inDays / 30).round().abs())
+            (element.date.difference(date).inDays / 30).round().abs())
         .toList();
   }
 }
