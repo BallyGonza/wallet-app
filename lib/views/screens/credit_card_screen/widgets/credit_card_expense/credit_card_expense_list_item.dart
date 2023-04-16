@@ -205,8 +205,8 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
                           //             setState(() {
                           //               widget.transaction.amount = amount;
                           //             });
-                          //             //TODO: update transaction
-                          //             BlocProvider.of<UserBloc>(context).add(
+
+                          //              context
                           //               UserEvent.updateCreditCardExpense(
                           //                 widget.transaction.copyWith(
                           //                   amount: amount,

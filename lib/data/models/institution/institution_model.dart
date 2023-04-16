@@ -1,9 +1,7 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
 part 'institution_model.g.dart';
 
-@JsonSerializable()
 @HiveType(typeId: 4)
 class InstitutionModel extends HiveObject {
   @HiveField(0)
@@ -33,9 +31,4 @@ class InstitutionModel extends HiveObject {
     this.visaCardColor,
     this.masterCardColor,
   });
-
-  factory InstitutionModel.fromJson(Map<String, dynamic> json) =>
-      _$InstitutionModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$InstitutionModelToJson(this);
 }

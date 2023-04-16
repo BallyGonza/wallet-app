@@ -1,10 +1,8 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:wallet_app/data/data.dart';
 
 part 'transaction_model.g.dart';
 
-@JsonSerializable()
 @HiveType(typeId: 5)
 class TransactionModel extends HiveObject {
   @HiveField(0)
@@ -28,9 +26,4 @@ class TransactionModel extends HiveObject {
     required this.category,
     required this.account,
   });
-
-  factory TransactionModel.fromJson(Map<String, dynamic> json) =>
-      _$TransactionModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$TransactionModelToJson(this);
 }

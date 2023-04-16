@@ -1,10 +1,30 @@
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wallet_app/data/data.dart';
 
 class UserRepository {
   UserRepository();
 
-  Future<UserModel> getUser() async {
+  final Box<UserModel> box = Hive.box<UserModel>('users_box');
+
+  Future<UserModel> getDefaultUser() async {
     return defaultUser;
+  }
+
+  // save user to hive
+  Future<void> saveUser(UserModel user) async {
+    await box.put(user.id, user);
+  }
+
+  // save user if it doesn't exist
+  Future<void> saveUserIfNotExists(UserModel user) async {
+    if (!box.containsKey(user.id)) {
+      await saveUser(user);
+    }
+  }
+
+  // get user from hive
+  Future<UserModel> getUser(int id) async {
+    return box.get(id)!;
   }
 
   double getBalance(List<TransactionModel> transactions, DateTime date) {
@@ -182,10 +202,10 @@ class UserRepository {
 
 UserModel defaultUser = UserModel(
   id: 0,
-  accounts: [...defaultAccounts],
+  accounts: [],
   transactions: [],
   creditCardExpenses: [],
   incomeCategories: [...defaultIncomeCategories],
   expenseCategories: [...defaultExpenseCategories],
-  creditCards: [...defaultCreditCards],
+  creditCards: [],
 );

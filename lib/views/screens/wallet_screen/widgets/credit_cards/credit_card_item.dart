@@ -23,13 +23,10 @@ class CreditCardItem extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => BlocProvider.value(
-              value: BlocProvider.of<UserBloc>(context),
-              child: CreditCardScreen(
-                user: user,
-                creditCard: creditCard,
-                date: date,
-              ),
+            builder: (_) => CreditCardScreen(
+              user: user,
+              creditCard: creditCard,
+              date: date,
             ),
           ),
         );

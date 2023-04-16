@@ -51,27 +51,3 @@ class CreditCardModelAdapter extends TypeAdapter<CreditCardModel> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
-
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CreditCardModel _$CreditCardModelFromJson(Map<String, dynamic> json) =>
-    CreditCardModel(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      institution: InstitutionModel.fromJson(
-          json['institution'] as Map<String, dynamic>),
-      cardType:
-          InstitutionModel.fromJson(json['cardType'] as Map<String, dynamic>),
-      number: json['number'] as String,
-    );
-
-Map<String, dynamic> _$CreditCardModelToJson(CreditCardModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'institution': instance.institution,
-      'cardType': instance.cardType,
-      'number': instance.number,
-    };

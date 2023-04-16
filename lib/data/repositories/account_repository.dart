@@ -1,10 +1,16 @@
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wallet_app/data/data.dart';
 
 class AccountRepository {
   AccountRepository();
 
-  Future<List<AccountModel>> getAccounts() async {
-    return defaultAccounts;
+  final Box<UserModel> box = Hive.box<UserModel>('users_box');
+
+  // update accounts of the user
+  Future<void> updateAccounts(
+      UserModel user, List<AccountModel> accounts) async {
+    user.accounts = accounts;
+    await box.put(user.id, user);
   }
 
   List<TransactionModel> getTransactionsByAccount(

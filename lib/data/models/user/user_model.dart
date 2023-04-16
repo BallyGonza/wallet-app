@@ -1,10 +1,8 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:wallet_app/data/data.dart';
 
 part 'user_model.g.dart';
 
-@JsonSerializable()
 @HiveType(typeId: 6)
 class UserModel extends HiveObject {
   @HiveField(0)
@@ -31,9 +29,4 @@ class UserModel extends HiveObject {
     required this.creditCards,
     required this.creditCardExpenses,
   });
-
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      _$UserModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }

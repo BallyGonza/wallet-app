@@ -14,60 +14,46 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-UserState _$UserStateFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType']) {
-    case 'initial':
-      return UserInitial.fromJson(json);
-    case 'updated':
-      return UserUpdated.fromJson(json);
-
-    default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'UserState',
-          'Invalid union type "${json['runtimeType']}"!');
-  }
-}
-
 /// @nodoc
 mixin _$UserState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(UserModel user) updated,
+    required TResult Function(UserModel user) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(UserModel user)? updated,
+    TResult? Function(UserModel user)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UserModel user)? updated,
+    TResult Function(UserModel user)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitial value) initial,
-    required TResult Function(UserUpdated value) updated,
+    required TResult Function(UserUpdated value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitial value)? initial,
-    TResult? Function(UserUpdated value)? updated,
+    TResult? Function(UserUpdated value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitial value)? initial,
-    TResult Function(UserUpdated value)? updated,
+    TResult Function(UserUpdated value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -104,15 +90,9 @@ class __$$UserInitialCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$UserInitial implements UserInitial {
-  const _$UserInitial({final String? $type}) : $type = $type ?? 'initial';
-
-  factory _$UserInitial.fromJson(Map<String, dynamic> json) =>
-      _$$UserInitialFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+  const _$UserInitial();
 
   @override
   String toString() {
@@ -125,7 +105,6 @@ class _$UserInitial implements UserInitial {
         (other.runtimeType == runtimeType && other is _$UserInitial);
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -133,7 +112,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(UserModel user) updated,
+    required TResult Function(UserModel user) loaded,
   }) {
     return initial();
   }
@@ -142,7 +121,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(UserModel user)? updated,
+    TResult? Function(UserModel user)? loaded,
   }) {
     return initial?.call();
   }
@@ -151,7 +130,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UserModel user)? updated,
+    TResult Function(UserModel user)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -164,7 +143,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitial value) initial,
-    required TResult Function(UserUpdated value) updated,
+    required TResult Function(UserUpdated value) loaded,
   }) {
     return initial(this);
   }
@@ -173,7 +152,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitial value)? initial,
-    TResult? Function(UserUpdated value)? updated,
+    TResult? Function(UserUpdated value)? loaded,
   }) {
     return initial?.call(this);
   }
@@ -182,7 +161,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitial value)? initial,
-    TResult Function(UserUpdated value)? updated,
+    TResult Function(UserUpdated value)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -190,20 +169,10 @@ class _$UserInitial implements UserInitial {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserInitialToJson(
-      this,
-    );
-  }
 }
 
 abstract class UserInitial implements UserState {
   const factory UserInitial() = _$UserInitial;
-
-  factory UserInitial.fromJson(Map<String, dynamic> json) =
-      _$UserInitial.fromJson;
 }
 
 /// @nodoc
@@ -238,23 +207,16 @@ class __$$UserUpdatedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$UserUpdated implements UserUpdated {
-  const _$UserUpdated(this.user, {final String? $type})
-      : $type = $type ?? 'updated';
 
-  factory _$UserUpdated.fromJson(Map<String, dynamic> json) =>
-      _$$UserUpdatedFromJson(json);
+class _$UserUpdated implements UserUpdated {
+  const _$UserUpdated(this.user);
 
   @override
   final UserModel user;
 
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
   @override
   String toString() {
-    return 'UserState.updated(user: $user)';
+    return 'UserState.loaded(user: $user)';
   }
 
   @override
@@ -265,7 +227,6 @@ class _$UserUpdated implements UserUpdated {
             (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, user);
 
@@ -279,29 +240,29 @@ class _$UserUpdated implements UserUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(UserModel user) updated,
+    required TResult Function(UserModel user) loaded,
   }) {
-    return updated(user);
+    return loaded(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(UserModel user)? updated,
+    TResult? Function(UserModel user)? loaded,
   }) {
-    return updated?.call(user);
+    return loaded?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(UserModel user)? updated,
+    TResult Function(UserModel user)? loaded,
     required TResult orElse(),
   }) {
-    if (updated != null) {
-      return updated(user);
+    if (loaded != null) {
+      return loaded(user);
     }
     return orElse();
   }
@@ -310,46 +271,36 @@ class _$UserUpdated implements UserUpdated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitial value) initial,
-    required TResult Function(UserUpdated value) updated,
+    required TResult Function(UserUpdated value) loaded,
   }) {
-    return updated(this);
+    return loaded(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitial value)? initial,
-    TResult? Function(UserUpdated value)? updated,
+    TResult? Function(UserUpdated value)? loaded,
   }) {
-    return updated?.call(this);
+    return loaded?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitial value)? initial,
-    TResult Function(UserUpdated value)? updated,
+    TResult Function(UserUpdated value)? loaded,
     required TResult orElse(),
   }) {
-    if (updated != null) {
-      return updated(this);
+    if (loaded != null) {
+      return loaded(this);
     }
     return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$UserUpdatedToJson(
-      this,
-    );
   }
 }
 
 abstract class UserUpdated implements UserState {
   const factory UserUpdated(final UserModel user) = _$UserUpdated;
-
-  factory UserUpdated.fromJson(Map<String, dynamic> json) =
-      _$UserUpdated.fromJson;
 
   UserModel get user;
   @JsonKey(ignore: true)

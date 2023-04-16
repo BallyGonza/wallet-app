@@ -61,35 +61,3 @@ class CreditCardTransactionModelAdapter
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
-
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CreditCardTransactionModel _$CreditCardTransactionModelFromJson(
-        Map<String, dynamic> json) =>
-    CreditCardTransactionModel(
-      id: json['id'] as int,
-      note: json['note'] as String,
-      amount: (json['amount'] as num).toDouble(),
-      date: DateTime.parse(json['date'] as String),
-      category:
-          CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
-      creditCard:
-          CreditCardModel.fromJson(json['creditCard'] as Map<String, dynamic>),
-      isReccurent: json['isReccurent'] as bool,
-      cuotas: json['cuotas'] as int,
-    );
-
-Map<String, dynamic> _$CreditCardTransactionModelToJson(
-        CreditCardTransactionModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'note': instance.note,
-      'amount': instance.amount,
-      'date': instance.date.toIso8601String(),
-      'category': instance.category,
-      'creditCard': instance.creditCard,
-      'isReccurent': instance.isReccurent,
-      'cuotas': instance.cuotas,
-    };

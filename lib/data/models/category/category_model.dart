@@ -1,9 +1,7 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 
 part 'category_model.g.dart';
 
-@JsonSerializable()
 @HiveType(typeId: 1)
 class CategoryModel extends HiveObject {
   @HiveField(0)
@@ -30,9 +28,4 @@ class CategoryModel extends HiveObject {
     required this.subCategories,
     required this.isIncome,
   });
-
-  factory CategoryModel.fromJson(Map<String, dynamic> json) =>
-      _$CategoryModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CategoryModelToJson(this);
 }

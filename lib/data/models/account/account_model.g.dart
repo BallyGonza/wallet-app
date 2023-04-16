@@ -45,21 +45,3 @@ class AccountModelAdapter extends TypeAdapter<AccountModel> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
-
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-AccountModel _$AccountModelFromJson(Map<String, dynamic> json) => AccountModel(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      institution: InstitutionModel.fromJson(
-          json['institution'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$AccountModelToJson(AccountModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'institution': instance.institution,
-    };

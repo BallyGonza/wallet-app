@@ -1,10 +1,8 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:wallet_app/data/data.dart';
 
 part 'credit_card_transaction_model.g.dart';
 
-@JsonSerializable()
 @HiveType(typeId: 3)
 class CreditCardTransactionModel extends HiveObject {
   @HiveField(0)
@@ -34,11 +32,6 @@ class CreditCardTransactionModel extends HiveObject {
     required this.isReccurent,
     required this.cuotas,
   });
-
-  factory CreditCardTransactionModel.fromJson(Map<String, dynamic> json) =>
-      _$CreditCardTransactionModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CreditCardTransactionModelToJson(this);
 
   CreditCardTransactionModel copyWith({required double amount}) {
     return CreditCardTransactionModel(

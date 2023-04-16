@@ -60,31 +60,3 @@ class InstitutionModelAdapter extends TypeAdapter<InstitutionModel> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
-
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-InstitutionModel _$InstitutionModelFromJson(Map<String, dynamic> json) =>
-    InstitutionModel(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      logo: json['logo'] as String,
-      backgroundColor: json['backgroundColor'] as int,
-      logoColor: json['logoColor'] as int?,
-      textColor: json['textColor'] as int?,
-      visaCardColor: json['visaCardColor'] as int?,
-      masterCardColor: json['masterCardColor'] as int?,
-    );
-
-Map<String, dynamic> _$InstitutionModelToJson(InstitutionModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'logo': instance.logo,
-      'backgroundColor': instance.backgroundColor,
-      'logoColor': instance.logoColor,
-      'textColor': instance.textColor,
-      'visaCardColor': instance.visaCardColor,
-      'masterCardColor': instance.masterCardColor,
-    };

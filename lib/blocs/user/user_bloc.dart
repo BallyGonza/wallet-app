@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 
@@ -8,7 +7,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserInitialEvent>(_onInit);
 
     on<UserAddAccountEvent>(_onAddAccount);
-    on<UserUpdateAccountEvent>(_onUpdateAccount);
     on<UserRemoveAccountEvent>(_onRemoveAccount);
 
     on<UserAddCreditCardEvent>(_onAddCreditCard);
@@ -17,20 +15,18 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserAddTransactionEvent>(_onAddTransaction);
     on<UserUpdateTransactionEvent>(_onUpdateTransaction);
     on<UserRemoveTransactionEvent>(_onRemoveTransaction);
-    on<UserRemoveAllTransactionsEvent>(_onRemoveAllTransactions);
 
     on<UserAddCreditCardExpenseEvent>(_onAddCreditCardExpense);
     on<UserRemoveCreditCardExpenseEvent>(_onRemoveCreditCardExpense);
     on<UserPayCreditCardEvent>(_onPayCreditCard);
 
-    // on<UserAddCategoryEvent>(_onAddCategory);
-    // on<UserUpdateCategoryEvent>(_onUpdateCategory);
-    // on<UserRemoveCategoryEvent>(_onRemoveCategory);
-
     add(const UserEvent.init());
   }
 
-  late UserModel defaultUser;
+  final UserRepository userRepository = UserRepository();
+  final AccountRepository accountRepository = AccountRepository();
+  final CreditCardRepository creditCardRepository = CreditCardRepository();
+  final TransactionRepository transactionRepository = TransactionRepository();
 
   late UserModel user;
   List<TransactionModel> transactions = [];
@@ -38,103 +34,73 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   List<AccountModel> accounts = [];
   List<CreditCardModel> creditCards = [];
 
-  final Box<UserModel> box = Hive.box<UserModel>('users_box');
-
-  void _onInit(
+  Future<void> _onInit(
     UserInitialEvent event,
     Emitter<UserState> emit,
   ) async {
-    defaultUser = UserModel(
-      id: 0,
-      incomeCategories: [...defaultIncomeCategories],
-      expenseCategories: [...defaultExpenseCategories],
-      accounts: [],
-      transactions: [],
-      creditCards: [],
-      creditCardExpenses: [],
-    );
-    if (!box.containsKey(defaultUser.id)) {
-      await box.put(defaultUser.id, defaultUser);
-    }
-    user = box.get(defaultUser.id)!;
+    defaultUser = await userRepository.getDefaultUser();
+    await userRepository.saveUserIfNotExists(defaultUser);
+    user = await userRepository.getUser(defaultUser.id);
     transactions.addAll(user.transactions);
     accounts.addAll(user.accounts);
     creditCards.addAll(user.creditCards);
     creditCardExpenses.addAll(user.creditCardExpenses);
-    // order transactions by date, soonest first
     transactions.sort((a, b) => a.date.compareTo(b.date));
-    await box.put(user.id, user);
-    emit(UserState.updated(user));
+    emit(UserState.loaded(user));
   }
 
   // Account
 
-  void _onAddAccount(
+  Future<void> _onAddAccount(
     UserAddAccountEvent event,
     Emitter<UserState> emit,
   ) async {
     accounts.add(event.account);
-    user.accounts = accounts;
-    await box.put(user.id, user);
-    emit(UserState.updated(user));
+    await accountRepository.updateAccounts(user, accounts);
+    emit(UserState.loaded(user));
   }
 
-  void _onUpdateAccount(
-    UserUpdateAccountEvent event,
-    Emitter<UserState> emit,
-  ) {
-    user.accounts[event.account.id] = event.account;
-    emit(UserState.updated(user));
-  }
-
-  void _onRemoveAccount(
+  Future<void> _onRemoveAccount(
     UserRemoveAccountEvent event,
     Emitter<UserState> emit,
   ) async {
     accounts.removeWhere((element) => element.id == event.account.id);
-    user.accounts = accounts;
-    await box.put(user.id, user);
-    emit(UserState.updated(user));
+    await accountRepository.updateAccounts(user, accounts);
+    emit(UserState.loaded(user));
   }
 
   // Credit Card
 
-  void _onAddCreditCard(
+  Future<void> _onAddCreditCard(
     UserAddCreditCardEvent event,
     Emitter<UserState> emit,
   ) async {
     creditCards.add(event.creditCard);
-    user.creditCards = creditCards;
-    await box.put(user.id, user);
-    emit(UserState.updated(user));
+    await creditCardRepository.updateCreditCards(user, creditCards);
+    emit(UserState.loaded(user));
   }
 
-  void _onRemoveCreditCard(
+  Future<void> _onRemoveCreditCard(
     UserRemoveCreditCardEvent event,
     Emitter<UserState> emit,
   ) async {
     creditCards.removeWhere((element) => element.id == event.creditCard.id);
-    user.creditCards = creditCards;
-    await box.put(user.id, user);
-    emit(UserState.updated(user));
+    await creditCardRepository.updateCreditCards(user, creditCards);
+    emit(UserState.loaded(user));
   }
 
   // Transaction
-
   Future<void> _onAddTransaction(
     UserAddTransactionEvent event,
     Emitter<UserState> emit,
   ) async {
     transactions.add(event.transaction);
     transactions.sort((a, b) => a.date.compareTo(b.date));
-
-    user.transactions = transactions;
-    await box.put(user.id, user);
-
-    emit(UserState.updated(user));
+    transactionRepository.updateTransactions(user, transactions);
+    emit(UserState.loaded(user));
   }
 
-  void _onUpdateTransaction(
+  Future<void> _onUpdateTransaction(
     UserUpdateTransactionEvent event,
     Emitter<UserState> emit,
   ) async {
@@ -144,59 +110,42 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       ..note = event.transaction.note
       ..account = event.transaction.account
       ..category = event.transaction.category;
-
-    user.transactions = transactions;
-    await box.put(user.id, user);
-    emit(UserState.updated(user));
+    transactionRepository.updateTransactions(user, transactions);
+    emit(UserState.loaded(user));
   }
 
-  void _onRemoveTransaction(
+  Future<void> _onRemoveTransaction(
     UserRemoveTransactionEvent event,
     Emitter<UserState> emit,
   ) async {
     transactions.removeWhere((element) => element.id == event.transaction.id);
-    transactions.sort((a, b) => a.date.compareTo(b.date));
-
-    user.transactions = transactions;
-    await box.put(user.id, user);
-    emit(UserState.updated(user));
-  }
-
-  void _onRemoveAllTransactions(
-    UserRemoveAllTransactionsEvent event,
-    Emitter<UserState> emit,
-  ) async {
-    transactions.clear();
-    await box.put(user.id, user);
-    emit(UserState.updated(user));
+    await transactionRepository.updateTransactions(user, transactions);
+    emit(UserState.loaded(user));
   }
 
   // Credit Card Expense
-
-  void _onAddCreditCardExpense(
+  Future<void> _onAddCreditCardExpense(
     UserAddCreditCardExpenseEvent event,
     Emitter<UserState> emit,
   ) async {
     creditCardExpenses.add(event.creditCardExpense);
-    creditCardExpenses.sort((a, b) => a.date.compareTo(b.date));
-    user.creditCardExpenses = creditCardExpenses;
-    await box.put(user.id, user);
-    emit(UserState.updated(user));
+    await transactionRepository.updateCreditCardExpenses(
+        user, creditCardExpenses);
+    emit(UserState.loaded(user));
   }
 
-  void _onRemoveCreditCardExpense(
+  Future<void> _onRemoveCreditCardExpense(
     UserRemoveCreditCardExpenseEvent event,
     Emitter<UserState> emit,
   ) async {
     creditCardExpenses
         .removeWhere((element) => element.id == event.creditCardExpense.id);
-    creditCardExpenses.sort((a, b) => a.date.compareTo(b.date));
-    user.creditCardExpenses = creditCardExpenses;
-    await box.put(user.id, user);
-    emit(UserState.updated(user));
+    await transactionRepository.updateCreditCardExpenses(
+        user, creditCardExpenses);
+    emit(UserState.loaded(user));
   }
 
-  void _onPayCreditCard(
+  Future<void> _onPayCreditCard(
     UserPayCreditCardEvent event,
     Emitter<UserState> emit,
   ) async {
@@ -210,20 +159,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         user.creditCardExpenses = creditCardExpenses;
       }
     }
-    await box.put(user.id, user);
-
-    emit(UserState.updated(user));
-  }
-
-  // Category
-
-  //  ----------------------------
-
-  UserState? fromJson(Map<String, dynamic> json) {
-    return UserState.fromJson(json);
-  }
-
-  Map<String, dynamic>? toJson(UserState state) {
-    return state.toJson();
+    await userRepository.saveUser(user);
+    emit(UserState.loaded(user));
   }
 }

@@ -54,28 +54,3 @@ class TransactionModelAdapter extends TypeAdapter<TransactionModel> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
-
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-TransactionModel _$TransactionModelFromJson(Map<String, dynamic> json) =>
-    TransactionModel(
-      id: json['id'] as int,
-      note: json['note'] as String,
-      amount: (json['amount'] as num).toDouble(),
-      date: DateTime.parse(json['date'] as String),
-      category:
-          CategoryModel.fromJson(json['category'] as Map<String, dynamic>),
-      account: AccountModel.fromJson(json['account'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$TransactionModelToJson(TransactionModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'note': instance.note,
-      'amount': instance.amount,
-      'date': instance.date.toIso8601String(),
-      'category': instance.category,
-      'account': instance.account,
-    };

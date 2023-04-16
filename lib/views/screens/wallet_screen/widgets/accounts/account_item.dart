@@ -30,13 +30,10 @@ class _AccountItemState extends State<AccountItem> {
         setState(() {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (_) => BlocProvider.value(
-                value: BlocProvider.of<UserBloc>(context),
-                child: AccountScreen(
-                  user: widget.user,
-                  account: widget.account,
-                  date: widget.date,
-                ),
+              builder: (_) => AccountScreen(
+                user: widget.user,
+                account: widget.account,
+                date: widget.date,
               ),
             ),
           );

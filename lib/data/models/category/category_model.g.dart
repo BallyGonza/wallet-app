@@ -57,31 +57,3 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
-
-// **************************************************************************
-// JsonSerializableGenerator
-// **************************************************************************
-
-CategoryModel _$CategoryModelFromJson(Map<String, dynamic> json) =>
-    CategoryModel(
-      id: json['id'] as int,
-      name: json['name'] as String,
-      icon: json['icon'] as String,
-      backgroundColor: json['backgroundColor'] as int,
-      iconColor: json['iconColor'] as int?,
-      subCategories: (json['subCategories'] as List<dynamic>)
-          .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      isIncome: json['isIncome'] as bool,
-    );
-
-Map<String, dynamic> _$CategoryModelToJson(CategoryModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'name': instance.name,
-      'icon': instance.icon,
-      'backgroundColor': instance.backgroundColor,
-      'iconColor': instance.iconColor,
-      'subCategories': instance.subCategories,
-      'isIncome': instance.isIncome,
-    };
