@@ -12,4 +12,12 @@ class AccountEvent with _$AccountEvent {
   const factory AccountEvent.remove(
     AccountModel account,
   ) = AccountRemoveEvent;
+  const factory AccountEvent.addTransaction(
+    AccountModel account,
+    TransactionModel transaction,
+  ) = AccountAddTransactionEvent;
+  const factory AccountEvent.removeTransaction(
+    AccountModel account,
+    TransactionModel transaction,
+  ) = AccountRemoveTransactionEvent;
 }

@@ -23,16 +23,16 @@ class TransactionsList extends StatefulWidget {
 }
 
 class _TransactionsListState extends State<TransactionsList> {
-  final UserRepository userRepository = UserRepository();
+  final AccountRepository accountRepository = AccountRepository();
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TransactionBloc, TransactionState>(
+    return BlocBuilder<AccountBloc, AccountState>(
       builder: (context, state) {
         return state.maybeWhen(
           orElse: () => const SizedBox.shrink(),
-          loaded: (transactions) {
-            final filteredTransactions = userRepository.filterTransactionsByDay(
-                transactions, widget.date, widget.day);
+          loaded: (accounts) {
+            final transactions = accountRepository.getTransactionsByDay(
+                accounts, widget.date, widget.day);
             return transactions.isEmpty
                 ? const SizedBox.shrink()
                 : Column(
@@ -62,8 +62,8 @@ class _TransactionsListState extends State<TransactionsList> {
                             const Spacer(),
                             Text(
                               amountFormat.format(
-                                userRepository.getTotalIncomeByDay(
-                                    widget.user, widget.date, widget.day),
+                                accountRepository.getTotalIncomeByDay(
+                                    transactions, widget.date, widget.day),
                               ),
                               style: const TextStyle(
                                 color: Colors.green,
@@ -73,8 +73,8 @@ class _TransactionsListState extends State<TransactionsList> {
                             const SizedBox(width: 10),
                             Text(
                               amountFormat.format(
-                                userRepository.getTotalExpenseByDay(
-                                    widget.user, widget.date, widget.day),
+                                accountRepository.getTotalExpensesByDay(
+                                    transactions, widget.date, widget.day),
                               ),
                               style: const TextStyle(
                                 color: Colors.red,
@@ -86,14 +86,14 @@ class _TransactionsListState extends State<TransactionsList> {
                         ),
                       ),
                       SizedBox(
-                        height: filteredTransactions.length * 71.0,
+                        height: transactions.length * 71.0,
                         child: ListView(
                           reverse: true,
                           physics: const NeverScrollableScrollPhysics(),
                           children: List.generate(
-                            filteredTransactions.length,
+                            transactions.length,
                             (index) {
-                              final transaction = filteredTransactions[index];
+                              final transaction = transactions[index];
                               return TransactionListItem(
                                 user: widget.user,
                                 transaction: transaction,

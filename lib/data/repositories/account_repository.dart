@@ -1,10 +1,134 @@
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wallet_app/data/data.dart';
 
 class AccountRepository {
   AccountRepository();
 
-  final Box<UserModel> box = Hive.box<UserModel>('users_box');
+  final UserRepository _userRepository = UserRepository();
+
+  Future<List<AccountModel>> getAccounts() async {
+    final UserModel user = await _userRepository.getUser();
+    return user.accounts;
+  }
+
+  Future<void> addAccount(AccountModel account) async {
+    final UserModel user = await _userRepository.getUser();
+    user.accounts.add(account);
+    await _userRepository.saveUser(user);
+  }
+
+  Future<void> removeAccount(AccountModel account) async {
+    final UserModel user = await _userRepository.getUser();
+    user.accounts.remove(account);
+    await _userRepository.saveUser(user);
+  }
+
+  Future<void> addTransaction(
+    AccountModel account,
+    TransactionModel transaction,
+  ) async {
+    final UserModel user = await _userRepository.getUser();
+    for (final AccountModel accountToUpdate in user.accounts) {
+      if (accountToUpdate.id == account.id) {
+        accountToUpdate.transactions.add(transaction);
+      }
+    }
+    await _userRepository.saveUser(user);
+  }
+
+  Future<void> removeTransaction(
+    AccountModel account,
+    TransactionModel transaction,
+  ) async {
+    final UserModel user = await _userRepository.getUser();
+    for (final AccountModel accountToUpdate in user.accounts) {
+      if (accountToUpdate.id == account.id) {
+        accountToUpdate.transactions.remove(transaction);
+      }
+    }
+    await _userRepository.saveUser(user);
+  }
+
+  List<TransactionModel> getAllTransactions(
+    List<AccountModel> accounts,
+    DateTime date,
+  ) {
+    final List<TransactionModel> transactions = [];
+    for (var account in accounts) {
+      transactions.addAll(account.transactions);
+    }
+    return transactions
+        .where((transaction) =>
+            transaction.date.month == date.month &&
+            transaction.date.year == date.year)
+        .toList();
+  }
+
+  List<TransactionModel> getTransactionsByDay(
+    List<AccountModel> accounts,
+    DateTime date,
+    int day,
+  ) {
+    final List<TransactionModel> transactions = [];
+    for (var account in accounts) {
+      transactions.addAll(account.transactions);
+    }
+    return transactions
+        .where((transaction) =>
+            transaction.date.day == day &&
+            transaction.date.month == date.month &&
+            transaction.date.year == date.year)
+        .toList();
+  }
+
+  double getTotalIncomeByDay(
+    List<TransactionModel> transactions,
+    DateTime date,
+    int day,
+  ) {
+    double total = 0;
+    for (var transaction in transactions) {
+      if (transaction.category.isIncome &&
+          transaction.date.day == day &&
+          transaction.date.month == date.month &&
+          transaction.date.year == date.year) {
+        total += transaction.amount;
+      }
+    }
+    return total;
+  }
+
+  double getTotalExpensesByDay(
+    List<TransactionModel> transactions,
+    DateTime date,
+    int day,
+  ) {
+    double total = 0;
+    for (var transaction in transactions) {
+      if (!transaction.category.isIncome &&
+          transaction.date.day == day &&
+          transaction.date.month == date.month &&
+          transaction.date.year == date.year) {
+        total += transaction.amount;
+      }
+    }
+    return total;
+  }
+
+  // getAccountOfTransaction
+  AccountModel? getAccountOfTransaction(
+    UserModel user,
+    TransactionModel transaction,
+  ) {
+    for (var account in user.accounts) {
+      if (account.transactions.contains(transaction)) {
+        return account;
+      }
+    }
+    return null;
+  }
+
+// Hasta aca las necesito todas
+// ------------------------------------------------------------
 
   List<TransactionModel> getTransactionsByAccount(
     AccountModel account,

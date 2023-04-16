@@ -31,13 +31,7 @@ Future<void> main() async {
           create: (context) => AccountBloc(),
         ),
         BlocProvider(
-          create: (context) => TransactionBloc(),
-        ),
-        BlocProvider(
           create: (context) => CreditCardBloc(),
-        ),
-        BlocProvider(
-          create: (context) => CreditCardExpenseBloc(),
         ),
       ],
       child: const MyApp(),

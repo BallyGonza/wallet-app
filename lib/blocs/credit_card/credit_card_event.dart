@@ -12,4 +12,12 @@ class CreditCardEvent with _$CreditCardEvent {
   const factory CreditCardEvent.remove(
     CreditCardModel creditCard,
   ) = CreditCardRemoveEvent;
+  const factory CreditCardEvent.addTransaction(
+    CreditCardModel creditCard,
+    CreditCardTransactionModel creditCardTransaction,
+  ) = CreditCardAddTransactionEvent;
+  const factory CreditCardEvent.removeTransaction(
+    CreditCardModel creditCard,
+    CreditCardTransactionModel creditCardTransaction,
+  ) = CreditCardRemoveTransactionEvent;
 }

@@ -193,8 +193,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   user: widget.user,
                   onPressed: (account, transaction) {
                     setState(() {
-                      context.read<TransactionBloc>().add(
-                            TransactionEvent.add(
+                      context.read<AccountBloc>().add(
+                            AccountEvent.addTransaction(
                               account,
                               transaction,
                             ),
@@ -219,8 +219,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   user: widget.user,
                   onPressed: (account, transaction) {
                     setState(() {
-                      context.read<TransactionBloc>().add(
-                            TransactionEvent.add(
+                      context.read<AccountBloc>().add(
+                            AccountEvent.addTransaction(
                               account,
                               transaction,
                             ),
@@ -243,6 +243,18 @@ class _HomeScreenState extends State<HomeScreen> {
               MaterialPageRoute(
                 builder: (_) => AddTransferScreen(
                   user: widget.user,
+                  onPressed: (fromSelectedAccount, fromAccount,
+                      toSelectedAccount, toAccount) {
+                    setState(() {
+                      context.read<AccountBloc>().add(
+                            AccountEvent.addTransaction(
+                                fromSelectedAccount, fromAccount),
+                          );
+                      context.read<AccountBloc>().add(
+                          AccountEvent.addTransaction(
+                              toSelectedAccount, toAccount));
+                    });
+                  },
                 ),
               ),
             );

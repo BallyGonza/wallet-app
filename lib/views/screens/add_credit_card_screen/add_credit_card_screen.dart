@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wallet_app/blocs/credit_card/credit_card.dart';
 
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
@@ -8,12 +10,10 @@ import 'package:wallet_app/views/views.dart';
 class AddCreditCardScreen extends StatefulWidget {
   const AddCreditCardScreen({
     required this.user,
-    required this.onPressed,
     Key? key,
   }) : super(key: key);
 
   final UserModel user;
-  final Function(CreditCardModel) onPressed;
 
   @override
   State<AddCreditCardScreen> createState() => _AddCreditCardScreenState();
@@ -339,17 +339,18 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                   return;
                 }
 
-                setState(() {
-                  var creditCard = CreditCardModel(
-                    id: DateTime.now().millisecondsSinceEpoch,
-                    institution: _selectedInstitution,
-                    name: _noteController.text,
-                    cardType: _selectedCardType,
-                    number: _numberController.text,
-                    expenses: [],
-                  );
-                  widget.onPressed(creditCard);
-                });
+                var creditCard = CreditCardModel(
+                  id: DateTime.now().millisecondsSinceEpoch,
+                  institution: _selectedInstitution,
+                  name: _noteController.text,
+                  cardType: _selectedCardType,
+                  number: _numberController.text,
+                  expenses: [],
+                );
+                context
+                    .read<CreditCardBloc>()
+                    .add(CreditCardEvent.add(creditCard));
+
                 Navigator.pop(context);
               },
               child: const Text('Save', style: TextStyle(fontSize: 16)),

@@ -16,6 +16,7 @@ class TransactionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AccountRepository accountRepository = AccountRepository();
     return SafeArea(
       child: Container(
         decoration: const BoxDecoration(
@@ -25,11 +26,13 @@ class TransactionsScreen extends StatelessWidget {
             topRight: Radius.circular(20),
           ),
         ),
-        child: BlocBuilder<TransactionBloc, TransactionState>(
+        child: BlocBuilder<AccountBloc, AccountState>(
           builder: (context, state) {
             return state.maybeWhen(
               orElse: () => const Center(child: CircularProgressIndicator()),
-              loaded: (transactions) {
+              loaded: (accounts) {
+                final transactions =
+                    accountRepository.getAllTransactions(accounts, date);
                 return transactions.isEmpty
                     ? const Center(
                         child: Text('No transactions yet',

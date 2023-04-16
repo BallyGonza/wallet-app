@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wallet_app/blocs/blocs.dart';
 
 import 'package:wallet_app/data/data.dart';
 
@@ -141,29 +139,6 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
                         backgroundColor:
                             widget.transaction.category.backgroundColor,
                         description: widget.transaction.category.name,
-                        transaction: widget.transaction,
-                        onTap: () {},
-                      ),
-                      DescriptionItem(
-                        title: 'Banco',
-                        icon: widget.transaction.creditCard.institution.logo,
-                        backgroundColor: widget
-                            .transaction.creditCard.institution.backgroundColor,
-                        description:
-                            widget.transaction.creditCard.institution.name,
-                        transaction: widget.transaction,
-                        onTap: () {},
-                      ),
-                      DescriptionItem(
-                        title: 'Numero de tarjeta',
-                        icon: widget.transaction.creditCard.cardType.logo,
-                        backgroundColor: white,
-                        description: widget.transaction.creditCard.number
-                            .replaceAllMapped(
-                              RegExp(r'.{4}'),
-                              (Match m) => '${m[0]} ',
-                            )
-                            .trim(),
                         transaction: widget.transaction,
                         onTap: () {},
                       ),

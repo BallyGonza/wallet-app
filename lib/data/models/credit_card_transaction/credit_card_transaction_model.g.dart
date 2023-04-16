@@ -23,16 +23,15 @@ class CreditCardTransactionModelAdapter
       amount: fields[2] as double,
       date: fields[3] as DateTime,
       category: fields[4] as CategoryModel,
-      creditCard: fields[5] as CreditCardModel,
-      isReccurent: fields[6] as bool,
-      cuotas: fields[7] as int,
+      isReccurent: fields[5] as bool,
+      cuotas: fields[6] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, CreditCardTransactionModel obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -44,10 +43,8 @@ class CreditCardTransactionModelAdapter
       ..writeByte(4)
       ..write(obj.category)
       ..writeByte(5)
-      ..write(obj.creditCard)
-      ..writeByte(6)
       ..write(obj.isReccurent)
-      ..writeByte(7)
+      ..writeByte(6)
       ..write(obj.cuotas);
   }
 

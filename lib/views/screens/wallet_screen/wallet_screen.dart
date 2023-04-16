@@ -46,11 +46,6 @@ class _WalletScreenState extends State<WalletScreen> {
           MaterialPageRoute(
             builder: (context) => AddCreditCardScreen(
               user: widget.user,
-              onPressed: (creditCard) {
-                // setState(() {
-                //   widget.onPressedAddCreditCard(creditCard);
-                // });
-              },
             ),
           ),
         );
@@ -69,14 +64,7 @@ class _WalletScreenState extends State<WalletScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => AddAccountScreen(
-                // user: widget.user,
-                // onPressed: (account) {
-                //   setState(() {
-                //     widget.onPressedAddAccount(account);
-                //   });
-                // },
-                ),
+            builder: (context) => const AddAccountScreen(),
           ),
         );
       },

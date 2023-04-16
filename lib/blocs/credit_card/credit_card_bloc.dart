@@ -9,11 +9,13 @@ class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
     on<CreditCardInitialEvent>(_onInit);
     on<CreditCardAddEvent>(_onAdd);
     on<CreditCardRemoveEvent>(_onRemove);
+    on<CreditCardAddTransactionEvent>(_onAddTransaction);
+    on<CreditCardRemoveTransactionEvent>(_onRemoveTransaction);
 
     add(const CreditCardEvent.init());
   }
 
-  final UserRepository userRepository = UserRepository();
+  final CreditCardRepository creditCardRepository = CreditCardRepository();
 
   late UserModel user;
   late List<CreditCardModel> creditCards;
@@ -23,8 +25,7 @@ class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
     Emitter<CreditCardState> emit,
   ) async {
     emit(const CreditCardState.loading());
-    user = await userRepository.getUser();
-    creditCards = user.creditCards;
+    creditCards = await creditCardRepository.getCreditCards();
     emit(CreditCardState.loaded(creditCards));
   }
 
@@ -33,8 +34,8 @@ class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
     Emitter<CreditCardState> emit,
   ) async {
     emit(const CreditCardState.loading());
-    creditCards.add(event.creditCard);
-    await userRepository.saveUser(user);
+    await creditCardRepository.addCreditCard(event.creditCard);
+    creditCards = await creditCardRepository.getCreditCards();
     emit(CreditCardState.loaded(creditCards));
   }
 
@@ -43,8 +44,34 @@ class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
     Emitter<CreditCardState> emit,
   ) async {
     emit(const CreditCardState.loading());
-    creditCards.removeWhere((element) => element.id == event.creditCard.id);
-    await userRepository.saveUser(user);
+    await creditCardRepository.removeCreditCard(event.creditCard);
+    creditCards = await creditCardRepository.getCreditCards();
+    emit(CreditCardState.loaded(creditCards));
+  }
+
+  Future<void> _onAddTransaction(
+    CreditCardAddTransactionEvent event,
+    Emitter<CreditCardState> emit,
+  ) async {
+    emit(const CreditCardState.loading());
+    await creditCardRepository.addTransaction(
+      event.creditCard,
+      event.creditCardTransaction,
+    );
+    creditCards = await creditCardRepository.getCreditCards();
+    emit(CreditCardState.loaded(creditCards));
+  }
+
+  Future<void> _onRemoveTransaction(
+    CreditCardRemoveTransactionEvent event,
+    Emitter<CreditCardState> emit,
+  ) async {
+    emit(const CreditCardState.loading());
+    await creditCardRepository.removeTransaction(
+      event.creditCard,
+      event.creditCardTransaction,
+    );
+    creditCards = await creditCardRepository.getCreditCards();
     emit(CreditCardState.loaded(creditCards));
   }
 }

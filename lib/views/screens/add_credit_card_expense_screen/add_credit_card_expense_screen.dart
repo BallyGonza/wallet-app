@@ -551,14 +551,13 @@ class _AddCreditCardExpenseScreenState
                   note: _noteController.text,
                   amount: amount,
                   category: _selectedCategory,
-                  creditCard: _selectedCreditCard,
                   date: _selectedDateTime,
                   isReccurent: _isRecurrent,
                   cuotas: _cuotas,
                 );
-                context
-                    .read<CreditCardExpenseBloc>()
-                    .add(CreditCardExpenseEvent.add(creditCardExpense));
+                context.read<CreditCardBloc>().add(
+                    CreditCardEvent.addTransaction(
+                        _selectedCreditCard, creditCardExpense));
                 Navigator.pop(context);
               },
               child: const Text('Save', style: TextStyle(fontSize: 16)),

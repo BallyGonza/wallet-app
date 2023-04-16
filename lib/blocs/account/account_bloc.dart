@@ -9,11 +9,13 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     on<AccountInitialEvent>(_onInit);
     on<AccountAddEvent>(_onAdd);
     on<AccountRemoveEvent>(_onRemove);
+    on<AccountAddTransactionEvent>(_onAddTransaction);
+    on<AccountRemoveTransactionEvent>(_onRemoveTransaction);
 
     add(const AccountEvent.init());
   }
 
-  final UserRepository userRepository = UserRepository();
+  final AccountRepository accountRepository = AccountRepository();
 
   late UserModel user;
   late List<AccountModel> accounts;
@@ -23,8 +25,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     emit(const AccountState.loading());
-    user = await userRepository.getUser();
-    accounts = user.accounts;
+    accounts = await accountRepository.getAccounts();
     emit(AccountState.loaded(accounts));
   }
 
@@ -33,8 +34,8 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     emit(const AccountState.loading());
-    accounts.add(event.account);
-    await userRepository.saveUser(user);
+    await accountRepository.addAccount(event.account);
+    accounts = await accountRepository.getAccounts();
     emit(AccountState.loaded(accounts));
   }
 
@@ -43,8 +44,34 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     emit(const AccountState.loading());
-    accounts.removeWhere((element) => element.id == event.account.id);
-    await userRepository.saveUser(user);
+    await accountRepository.removeAccount(event.account);
+    accounts = await accountRepository.getAccounts();
+    emit(AccountState.loaded(accounts));
+  }
+
+  Future<void> _onAddTransaction(
+    AccountAddTransactionEvent event,
+    Emitter<AccountState> emit,
+  ) async {
+    emit(const AccountState.loading());
+    await accountRepository.addTransaction(
+      event.account,
+      event.transaction,
+    );
+    accounts = await accountRepository.getAccounts();
+    emit(AccountState.loaded(accounts));
+  }
+
+  Future<void> _onRemoveTransaction(
+    AccountRemoveTransactionEvent event,
+    Emitter<AccountState> emit,
+  ) async {
+    emit(const AccountState.loading());
+    await accountRepository.removeTransaction(
+      event.account,
+      event.transaction,
+    );
+    accounts = await accountRepository.getAccounts();
     emit(AccountState.loaded(accounts));
   }
 }

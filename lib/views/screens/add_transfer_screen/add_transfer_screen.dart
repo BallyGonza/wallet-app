@@ -10,10 +10,13 @@ import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.
 class AddTransferScreen extends StatefulWidget {
   const AddTransferScreen({
     required this.user,
+    required this.onPressed,
     Key? key,
   }) : super(key: key);
 
   final UserModel user;
+  final Function(AccountModel, TransactionModel, AccountModel, TransactionModel)
+      onPressed;
 
   @override
   State<AddTransferScreen> createState() => _AddTransferScreenState();
@@ -413,12 +416,10 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                   category: transferIn,
                   date: _selectedDateTime,
                 );
-                context.read<TransactionBloc>().add(
-                      TransactionEvent.add(_fromSelectedAccount, fromAccount),
-                    );
-                context
-                    .read<TransactionBloc>()
-                    .add(TransactionEvent.add(_toSelectedAccount, toAccount));
+
+                widget.onPressed(_fromSelectedAccount, fromAccount,
+                    _toSelectedAccount, toAccount);
+
                 Navigator.pop(context);
               },
               child: const Text('Save', style: TextStyle(fontSize: 16)),
