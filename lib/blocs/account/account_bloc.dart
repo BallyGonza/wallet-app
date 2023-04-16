@@ -17,7 +17,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
 
   final AccountRepository accountRepository = AccountRepository();
 
-  late UserModel user;
   late List<AccountModel> accounts;
 
   Future<void> _onInit(
@@ -54,10 +53,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     emit(const AccountState.loading());
-    await accountRepository.addTransaction(
-      event.account,
-      event.transaction,
-    );
+    await accountRepository.addTransaction(event.account, event.transaction);
     accounts = await accountRepository.getAccounts();
     emit(AccountState.loaded(accounts));
   }
@@ -67,10 +63,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     emit(const AccountState.loading());
-    await accountRepository.removeTransaction(
-      event.account,
-      event.transaction,
-    );
+    await accountRepository.removeTransaction(event.account, event.transaction);
     accounts = await accountRepository.getAccounts();
     emit(AccountState.loaded(accounts));
   }

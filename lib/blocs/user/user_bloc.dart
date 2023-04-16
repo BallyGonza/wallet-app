@@ -24,23 +24,4 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     user = await userRepository.getUser();
     emit(UserState.loaded(user));
   }
-
-  // Future<void> _onPayCreditCard(
-  //   UserPayCreditCardEvent event,
-  //   Emitter<UserState> emit,
-  // ) async {
-  //   emit(const UserState.loading());
-  //   for (var transaction in event.creditCardExpenses) {
-  //     int currentCuota =
-  //         (transaction.date.difference(event.date).inDays / 30).round().abs();
-  //     if (currentCuota == transaction.cuotas) {
-  //       creditCardExpenses
-  //           .removeWhere((element) => element.id == transaction.id);
-  //       // creditCardExpenses.sort((a, b) => a.date.compareTo(b.date));
-  //       user.creditCardExpenses = creditCardExpenses;
-  //     }
-  //   }
-  //   await userRepository.saveUser(user);
-  //   emit(UserState.loaded(user));
-  // }
 }

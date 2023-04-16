@@ -6,9 +6,4 @@ part 'user_event.freezed.dart';
 @freezed
 class UserEvent with _$UserEvent {
   const factory UserEvent.init() = UserInitialEvent;
-
-  const factory UserEvent.payCreditCard(
-    List<CreditCardTransactionModel> creditCardExpenses,
-    DateTime date,
-  ) = UserPayCreditCardEvent;
 }
