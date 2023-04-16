@@ -20,19 +20,21 @@ class AccountModelAdapter extends TypeAdapter<AccountModel> {
       id: fields[0] as int,
       name: fields[1] as String,
       institution: fields[2] as InstitutionModel,
-    );
+    )..transactions = (fields[3] as List).cast<TransactionModel>();
   }
 
   @override
   void write(BinaryWriter writer, AccountModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.institution);
+      ..write(obj.institution)
+      ..writeByte(3)
+      ..write(obj.transactions);
   }
 
   @override

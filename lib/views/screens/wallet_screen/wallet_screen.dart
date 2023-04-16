@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
-
 import 'package:wallet_app/data/data.dart';
-
 import 'package:wallet_app/views/views.dart';
-
 import 'widgets/widgets.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({
-    Key? key,
     required this.user,
+    Key? key,
     required this.date,
-    required this.onPressedAddAccount,
-    required this.onPressedAddCreditCard,
   }) : super(key: key);
 
-  final UserModel user;
   final DateTime date;
-  final Function onPressedAddAccount;
-  final Function onPressedAddCreditCard;
+  final UserModel user;
 
   @override
   State<WalletScreen> createState() => _WalletScreenState();
@@ -54,9 +47,9 @@ class _WalletScreenState extends State<WalletScreen> {
             builder: (context) => AddCreditCardScreen(
               user: widget.user,
               onPressed: (creditCard) {
-                setState(() {
-                  widget.onPressedAddCreditCard(creditCard);
-                });
+                // setState(() {
+                //   widget.onPressedAddCreditCard(creditCard);
+                // });
               },
             ),
           ),
@@ -77,13 +70,13 @@ class _WalletScreenState extends State<WalletScreen> {
           context,
           MaterialPageRoute(
             builder: (context) => AddAccountScreen(
-              user: widget.user,
-              onPressed: (account) {
-                setState(() {
-                  widget.onPressedAddAccount(account);
-                });
-              },
-            ),
+                // user: widget.user,
+                // onPressed: (account) {
+                //   setState(() {
+                //     widget.onPressedAddAccount(account);
+                //   });
+                // },
+                ),
           ),
         );
       },
@@ -103,7 +96,7 @@ class _WalletScreenState extends State<WalletScreen> {
         child: Column(
           children: [
             AccountsBalance(
-              transactions: widget.user.transactions,
+              accounts: widget.user.accounts,
               date: widget.date,
             ),
             const SizedBox(height: 8),

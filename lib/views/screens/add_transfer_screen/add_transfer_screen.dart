@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
 
 class AddTransferScreen extends StatefulWidget {
   const AddTransferScreen({
     required this.user,
-    required this.onPressed,
     Key? key,
   }) : super(key: key);
 
-  final Function(TransactionModel, TransactionModel) onPressed;
   final UserModel user;
 
   @override
@@ -396,27 +396,29 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                   );
                   return;
                 }
-                setState(() {
-                  var amount = double.parse(
-                      _amountController.text.replaceAll(RegExp(r'[,]'), '.'));
-                  var fromAccount = TransactionModel(
-                    id: DateTime.now().millisecondsSinceEpoch,
-                    note: _noteController.text,
-                    amount: -amount,
-                    category: transferOut,
-                    account: _fromSelectedAccount,
-                    date: _selectedDateTime,
-                  );
-                  var toAccount = TransactionModel(
-                    id: DateTime.now().millisecondsSinceEpoch,
-                    note: _noteController.text,
-                    amount: amount,
-                    category: transferIn,
-                    account: _toSelectedAccount,
-                    date: _selectedDateTime,
-                  );
-                  widget.onPressed(fromAccount, toAccount);
-                });
+
+                var amount = double.parse(
+                    _amountController.text.replaceAll(RegExp(r'[,]'), '.'));
+                var fromAccount = TransactionModel(
+                  id: DateTime.now().millisecondsSinceEpoch,
+                  note: _noteController.text,
+                  amount: -amount,
+                  category: transferOut,
+                  date: _selectedDateTime,
+                );
+                var toAccount = TransactionModel(
+                  id: DateTime.now().millisecondsSinceEpoch,
+                  note: _noteController.text,
+                  amount: amount,
+                  category: transferIn,
+                  date: _selectedDateTime,
+                );
+                context.read<TransactionBloc>().add(
+                      TransactionEvent.add(_fromSelectedAccount, fromAccount),
+                    );
+                context
+                    .read<TransactionBloc>()
+                    .add(TransactionEvent.add(_toSelectedAccount, toAccount));
                 Navigator.pop(context);
               },
               child: const Text('Save', style: TextStyle(fontSize: 16)),

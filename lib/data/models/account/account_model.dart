@@ -11,6 +11,8 @@ class AccountModel extends HiveObject {
   String name;
   @HiveField(2)
   InstitutionModel institution;
+  @HiveField(3)
+  List<TransactionModel> transactions = [];
 
   AccountModel({
     required this.id,

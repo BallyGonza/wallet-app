@@ -6,27 +6,16 @@ class AccountRepository {
 
   final Box<UserModel> box = Hive.box<UserModel>('users_box');
 
-  // update accounts of the user
-  Future<void> updateAccounts(
-      UserModel user, List<AccountModel> accounts) async {
-    user.accounts = accounts;
-    await box.put(user.id, user);
-  }
-
   List<TransactionModel> getTransactionsByAccount(
     AccountModel account,
-    List<TransactionModel> transactions,
+    UserModel user,
     DateTime date,
   ) {
-    final List<TransactionModel> accountTransactions = transactions
+    return account.transactions
         .where((transaction) =>
-            transaction.account.id == account.id &&
             transaction.date.month == date.month &&
             transaction.date.year == date.year)
         .toList();
-    // sort transactions by date
-    accountTransactions.sort((a, b) => b.date.compareTo(a.date));
-    return accountTransactions;
   }
 
   List<TransactionModel> getTransactionsByDate(
@@ -55,46 +44,51 @@ class AccountRepository {
 
   List<TransactionModel> getTransactionsByInstitution(
     InstitutionModel institution,
-    List<TransactionModel> transactions,
+    UserModel user,
     DateTime date,
   ) {
-    return transactions
+    final List<TransactionModel> institutionTransactions = [];
+    for (var account in user.accounts) {
+      if (account.institution.id == institution.id) {
+        institutionTransactions.addAll(account.transactions);
+      }
+    }
+    return institutionTransactions
         .where((transaction) =>
-            transaction.account.institution.id == institution.id &&
             transaction.date.month == date.month &&
             transaction.date.year == date.year)
         .toList();
   }
 
   double getTotalIncomes(
-    AccountModel account,
-    List<TransactionModel> transactions,
+    UserModel user,
     DateTime date,
   ) {
     double income = 0;
-    for (var transaction in transactions) {
-      if (transaction.account.id == account.id &&
-          transaction.category.isIncome &&
-          transaction.date.month <= date.month &&
-          transaction.date.year <= date.year) {
-        income += transaction.amount;
+    for (var account in user.accounts) {
+      for (var transaction in account.transactions) {
+        if (transaction.category.isIncome &&
+            transaction.date.month <= date.month &&
+            transaction.date.year <= date.year) {
+          income += transaction.amount;
+        }
       }
     }
     return income;
   }
 
   double getTotalExpenses(
-    AccountModel account,
-    List<TransactionModel> transactions,
+    UserModel user,
     DateTime date,
   ) {
     double expenses = 0;
-    for (var transaction in transactions) {
-      if (transaction.account.id == account.id &&
-          !transaction.category.isIncome &&
-          transaction.date.month <= date.month &&
-          transaction.date.year <= date.year) {
-        expenses += transaction.amount;
+    for (var account in user.accounts) {
+      for (var transaction in account.transactions) {
+        if (!transaction.category.isIncome &&
+            transaction.date.month <= date.month &&
+            transaction.date.year <= date.year) {
+          expenses += transaction.amount;
+        }
       }
     }
     return expenses;
@@ -102,13 +96,11 @@ class AccountRepository {
 
   double getBalance(
     AccountModel account,
-    List<TransactionModel> transactions,
     DateTime date,
   ) {
     double balance = 0;
-    for (var transaction in transactions) {
-      if (transaction.account.id == account.id &&
-          transaction.date.month <= date.month &&
+    for (var transaction in account.transactions) {
+      if (transaction.date.month <= date.month &&
           transaction.date.year <= date.year) {
         balance += transaction.amount;
       }
@@ -117,7 +109,7 @@ class AccountRepository {
   }
 }
 
-List<AccountModel> defaultAccounts = [];
+List<AccountModel> defaultAccounts = [cash];
 
 AccountModel cash = AccountModel(
   id: 0,

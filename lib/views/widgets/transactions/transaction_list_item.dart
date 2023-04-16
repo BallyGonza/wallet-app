@@ -1,119 +1,130 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wallet_app/blocs/blocs.dart';
 
 import 'package:wallet_app/data/data.dart';
 
 class TransactionListItem extends StatelessWidget {
   const TransactionListItem({
+    required this.user,
     required this.transaction,
-    required this.onPressDelete,
     super.key,
   });
 
   final TransactionModel transaction;
-  final VoidCallback onPressDelete;
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
+    final TransactionRepository transactionRepository = TransactionRepository();
+
     return InkWell(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-        showModalBottomSheet(
-          backgroundColor: Colors.transparent,
-          context: context,
-          builder: (context) {
-            return Container(
-              decoration: const BoxDecoration(
-                color: colorCards,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-              ),
-              height: MediaQuery.of(context).size.height * 0.5,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.5 - 100,
-                      child: Column(
-                        children: [
-                          DescriptionItem(
-                            title: 'Category',
-                            icon: transaction.category.icon,
-                            iconColor: transaction.category.iconColor,
-                            backgroundColor:
-                                transaction.category.backgroundColor,
-                            description: transaction.category.name,
-                            transaction: transaction,
-                          ),
-                          DescriptionItem(
-                            title: 'Account',
-                            icon: transaction.account.institution.logo,
-                            backgroundColor:
-                                transaction.account.institution.backgroundColor,
-                            description: transaction.account.name,
-                            transaction: transaction,
-                          ),
-                          DescriptionItem(
-                            title: 'Amount',
-                            icon: 'assets/icons/coin.png',
-                            backgroundColor: yellow,
-                            description: transaction.account.name == 'Ahorros'
-                                ? dolarAmountFormat.format(
-                                    transaction.amount,
-                                  )
-                                : amountFormat.format(
-                                    transaction.amount,
-                                  ),
-                            descriptionColor: transaction.category.isIncome
-                                ? incomeColor
-                                : expenseColor,
-                            transaction: transaction,
-                          ),
-                          DescriptionItem(
-                            title: 'Date',
-                            icon: 'assets/icons/calendar.png',
-                            backgroundColor: indigo,
-                            description: dateFormat.format(transaction.date),
-                            transaction: transaction,
-                          ),
-                          DescriptionItem(
-                            title: 'Note',
-                            icon: 'assets/icons/pencil.png',
-                            backgroundColor: indigo,
-                            description: transaction.note.isEmpty
-                                ? 'None'
-                                : transaction.note,
-                            transaction: transaction,
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          backgroundColor: expenseColor,
-                        ),
-                        onPressed: onPressDelete,
-                        child: const Text(
-                          'Delete',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          },
-        );
-      },
+      // onTap: () {
+      //   FocusScope.of(context).unfocus();
+      //   showModalBottomSheet(
+      //     backgroundColor: Colors.transparent,
+      //     context: context,
+      //     builder: (context) {
+      //       return Container(
+      //         decoration: const BoxDecoration(
+      //           color: colorCards,
+      //           borderRadius: BorderRadius.only(
+      //             topLeft: Radius.circular(30),
+      //             topRight: Radius.circular(30),
+      //           ),
+      //         ),
+      //         height: MediaQuery.of(context).size.height * 0.5,
+      //         child: Padding(
+      //           padding: const EdgeInsets.all(8.0),
+      //           child: Column(
+      //             children: [
+      //               SizedBox(
+      //                 height: MediaQuery.of(context).size.height * 0.5 - 100,
+      //                 child: Column(
+      //                   children: [
+      //                     DescriptionItem(
+      //                       title: 'Category',
+      //                       icon: transaction.category.icon,
+      //                       iconColor: transaction.category.iconColor,
+      //                       backgroundColor:
+      //                           transaction.category.backgroundColor,
+      //                       description: transaction.category.name,
+      //                       transaction: transaction,
+      //                     ),
+      //                     // DescriptionItem(
+      //                     //   title: 'Account',
+      //                     //   icon: transaction.account.institution.logo,
+      //                     //   backgroundColor:
+      //                     //       transaction.account.institution.backgroundColor,
+      //                     //   description: transaction.account.name,
+      //                     //   transaction: transaction,
+      //                     // ),
+      //                     DescriptionItem(
+      //                       title: 'Amount',
+      //                       icon: 'assets/icons/coin.png',
+      //                       backgroundColor: yellow,
+      //                       description:
+      //                       // transaction.account.name == 'Ahorros'
+      //                       //     ? dolarAmountFormat.format(
+      //                       //         transaction.amount,
+      //                       //       )
+      //                       //     :
+      //                            amountFormat.format(
+      //                               transaction.amount,
+      //                             ),
+      //                       descriptionColor: transaction.category.isIncome
+      //                           ? incomeColor
+      //                           : expenseColor,
+      //                       transaction: transaction,
+      //                     ),
+      //                     DescriptionItem(
+      //                       title: 'Date',
+      //                       icon: 'assets/icons/calendar.png',
+      //                       backgroundColor: indigo,
+      //                       description: dateFormat.format(transaction.date),
+      //                       transaction: transaction,
+      //                     ),
+      //                     DescriptionItem(
+      //                       title: 'Note',
+      //                       icon: 'assets/icons/pencil.png',
+      //                       backgroundColor: indigo,
+      //                       description: transaction.note.isEmpty
+      //                           ? 'None'
+      //                           : transaction.note,
+      //                       transaction: transaction,
+      //                     ),
+      //                   ],
+      //                 ),
+      //               ),
+      //               SizedBox(
+      //                 width: MediaQuery.of(context).size.width * 0.8,
+      //                 child: ElevatedButton(
+      //                   style: ElevatedButton.styleFrom(
+      //                     shape: RoundedRectangleBorder(
+      //                       borderRadius: BorderRadius.circular(20),
+      //                     ),
+      //                     backgroundColor: expenseColor,
+      //                   ),
+      //                   onPressed: () {
+      //                     context
+      //                         .read<TransactionBloc>()
+      //                         .add(TransactionEvent.remove(account,transaction));
+      //                     Navigator.pop(context);
+      //                   },
+      //                   child: const Text(
+      //                     'Delete',
+      //                     style: TextStyle(fontSize: 16),
+      //                   ),
+      //                 ),
+      //               )
+      //             ],
+      //           ),
+      //         ),
+      //       );
+      //     },
+      //   );
+      // },
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Row(
@@ -154,7 +165,9 @@ class TransactionListItem extends StatelessWidget {
                         ),
                       ),
                       TextSpan(
-                        text: transaction.account.name,
+                        text: transactionRepository
+                            .getAccount(user, transaction)
+                            .name,
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
@@ -188,13 +201,14 @@ class TransactionListItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  transaction.account.name == 'Ahorros'
-                      ? dolarAmountFormat.format(
-                          transaction.amount,
-                        )
-                      : amountFormat.format(
-                          transaction.amount,
-                        ),
+                  // transaction.account.name == 'Ahorros'
+                  //     ? dolarAmountFormat.format(
+                  //         transaction.amount,
+                  //       )
+                  //     :
+                  amountFormat.format(
+                    transaction.amount,
+                  ),
                   style: TextStyle(
                     color: transaction.category.isIncome
                         ? Colors.green

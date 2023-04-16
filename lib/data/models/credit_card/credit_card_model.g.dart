@@ -22,13 +22,14 @@ class CreditCardModelAdapter extends TypeAdapter<CreditCardModel> {
       institution: fields[2] as InstitutionModel,
       cardType: fields[3] as InstitutionModel,
       number: fields[4] as String,
+      expenses: (fields[5] as List).cast<CreditCardTransactionModel>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, CreditCardModel obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -38,7 +39,9 @@ class CreditCardModelAdapter extends TypeAdapter<CreditCardModel> {
       ..writeByte(3)
       ..write(obj.cardType)
       ..writeByte(4)
-      ..write(obj.number);
+      ..write(obj.number)
+      ..writeByte(5)
+      ..write(obj.expenses);
   }
 
   @override

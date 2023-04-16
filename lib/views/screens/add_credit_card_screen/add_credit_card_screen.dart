@@ -346,6 +346,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                     name: _noteController.text,
                     cardType: _selectedCardType,
                     number: _numberController.text,
+                    expenses: [],
                   );
                   widget.onPressed(creditCard);
                 });

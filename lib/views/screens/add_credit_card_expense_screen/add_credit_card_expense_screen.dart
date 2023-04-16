@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
 
@@ -10,11 +12,9 @@ import 'widgets/credit_card_list_item.dart';
 class AddCreditCardExpenseScreen extends StatefulWidget {
   const AddCreditCardExpenseScreen({
     required this.user,
-    required this.onPressed,
     Key? key,
   }) : super(key: key);
 
-  final Function(CreditCardTransactionModel) onPressed;
   final UserModel user;
 
   @override
@@ -544,21 +544,21 @@ class _AddCreditCardExpenseScreenState
                   );
                   return;
                 }
-                setState(() {
-                  var amount = double.parse(
-                      _amountController.text.replaceAll(RegExp(r'[,]'), '.'));
-                  var creditCardExpense = CreditCardTransactionModel(
-                    id: DateTime.now().millisecondsSinceEpoch,
-                    note: _noteController.text,
-                    amount: amount,
-                    category: _selectedCategory,
-                    creditCard: _selectedCreditCard,
-                    date: _selectedDateTime,
-                    isReccurent: _isRecurrent,
-                    cuotas: _cuotas,
-                  );
-                  widget.onPressed(creditCardExpense);
-                });
+                var amount = double.parse(
+                    _amountController.text.replaceAll(RegExp(r'[,]'), '.'));
+                var creditCardExpense = CreditCardTransactionModel(
+                  id: DateTime.now().millisecondsSinceEpoch,
+                  note: _noteController.text,
+                  amount: amount,
+                  category: _selectedCategory,
+                  creditCard: _selectedCreditCard,
+                  date: _selectedDateTime,
+                  isReccurent: _isRecurrent,
+                  cuotas: _cuotas,
+                );
+                context
+                    .read<CreditCardExpenseBloc>()
+                    .add(CreditCardExpenseEvent.add(creditCardExpense));
                 Navigator.pop(context);
               },
               child: const Text('Save', style: TextStyle(fontSize: 16)),

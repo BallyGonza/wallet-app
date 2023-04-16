@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:wallet_app/blocs/blocs.dart';
 
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
@@ -7,13 +9,13 @@ import 'package:wallet_app/views/views.dart';
 
 class AddAccountScreen extends StatefulWidget {
   const AddAccountScreen({
-    required this.user,
-    required this.onPressed,
+    // required this.user,
+    // required this.onPressed,
     Key? key,
   }) : super(key: key);
 
-  final UserModel user;
-  final Function(AccountModel) onPressed;
+  // final UserModel user;
+  // final Function(AccountModel) onPressed;
 
   @override
   State<AddAccountScreen> createState() => _AddAccountScreenState();
@@ -172,29 +174,30 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                backgroundColor: widget.user.accounts.any((element) =>
-                        element.institution == _selectedInstitution)
-                    ? Colors.grey
-                    : primaryColor,
+                // backgroundColor: widget.user.accounts.any((element) =>
+                //         element.institution == _selectedInstitution)
+                //     ? Colors.grey
+                //     : primaryColor,
               ),
               onPressed: () {
-                if (widget.user.accounts.any(
-                    (element) => element.institution == _selectedInstitution)) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('La cuenta que intenta crear ya existe'),
-                    ),
-                  );
-                  return;
-                }
-                setState(() {
-                  var account = AccountModel(
-                    id: DateTime.now().millisecondsSinceEpoch,
-                    institution: _selectedInstitution,
-                    name: _selectedInstitution.name,
-                  );
-                  widget.onPressed(account);
-                });
+                // if (widget.user.accounts.any(
+                //     (element) => element.institution == _selectedInstitution)) {
+                //   ScaffoldMessenger.of(context).showSnackBar(
+                //     const SnackBar(
+                //       content: Text('La cuenta que intenta crear ya existe'),
+                //     ),
+                //   );
+                //   return;
+                // }
+                // setState(() {
+                var account = AccountModel(
+                  id: DateTime.now().millisecondsSinceEpoch,
+                  institution: _selectedInstitution,
+                  name: _selectedInstitution.name,
+                );
+                context.read<AccountBloc>().add(AccountEvent.add(account));
+                // widget.onPressed(account);
+                // });
                 Navigator.pop(context);
               },
               child: const Text('Save', style: TextStyle(fontSize: 16)),

@@ -13,8 +13,8 @@ class AccountScreen extends StatefulWidget {
     required this.account,
   }) : super(key: key);
 
-  final UserModel user;
   final DateTime date;
+  final UserModel user;
   final AccountModel account;
 
   @override
@@ -27,8 +27,8 @@ class _AccountScreenState extends State<AccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    transactions = accountRepository.getTransactionsByAccount(
-        widget.account, widget.user.transactions, widget.date);
+    // transactions = accountRepository.getTransactionsByAccount(
+    //     widget.account, widget.user.transactions, widget.date);
     return Scaffold(
       appBar: _AppBar(context),
       body: SafeArea(
@@ -62,17 +62,8 @@ class _AccountScreenState extends State<AccountScreen> {
                   (index) {
                     final transaction = transactions[index];
                     return TransactionListItem(
+                      user: widget.user,
                       transaction: transaction,
-                      onPressDelete: () {
-                        setState(() {
-                          context.read<UserBloc>().add(
-                                UserEvent.removeTransaction(
-                                  transaction,
-                                ),
-                              );
-                        });
-                        Navigator.of(context).pop();
-                      },
                     );
                   },
                 ),
@@ -92,28 +83,28 @@ class _AccountScreenState extends State<AccountScreen> {
           )),
       child: Column(
         children: [
-          _resumeItem(
-            'Ingreso',
-            accountRepository.getTotalIncomes(
-                widget.account, widget.user.transactions, widget.date),
-            incomeColor!.value,
-          ),
-          _resumeItem(
-            'Gasto',
-            accountRepository.getTotalExpenses(
-                widget.account, widget.user.transactions, widget.date),
-            expenseColor!.value,
-          ),
-          _resumeItem(
-            'Saldo',
-            accountRepository.getBalance(
-                widget.account, widget.user.transactions, widget.date),
-            accountRepository.getBalance(
-                        widget.account, widget.user.transactions, widget.date) >
-                    0
-                ? incomeColor!.value
-                : expenseColor!.value,
-          ),
+          // _resumeItem(
+          //   'Ingreso',
+          //   accountRepository.getTotalIncomes(
+          //       widget.account, widget.user.transactions, widget.date),
+          //   incomeColor!.value,
+          // ),
+          // _resumeItem(
+          //   'Gasto',
+          //   accountRepository.getTotalExpenses(
+          //       widget.account, widget.user.transactions, widget.date),
+          //   expenseColor!.value,
+          // ),
+          // _resumeItem(
+          //   'Saldo',
+          //   accountRepository.getBalance(
+          //       widget.account, widget.user.transactions, widget.date),
+          //   accountRepository.getBalance(
+          //               widget.account, widget.user.transactions, widget.date) >
+          //           0
+          //       ? incomeColor!.value
+          //       : expenseColor!.value,
+          // ),
         ],
       ),
     );
@@ -163,8 +154,8 @@ class _AccountScreenState extends State<AccountScreen> {
                   TextButton(
                     onPressed: () {
                       setState(() {
-                        context.read<UserBloc>().add(
-                              UserEvent.removeAccount(widget.account),
+                        context.read<AccountBloc>().add(
+                              AccountEvent.remove(widget.account),
                             );
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();

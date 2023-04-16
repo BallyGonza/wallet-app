@@ -15,6 +15,8 @@ class CreditCardModel extends HiveObject {
   InstitutionModel cardType;
   @HiveField(4)
   String number;
+  @HiveField(5)
+  List<CreditCardTransactionModel> expenses;
 
   CreditCardModel({
     required this.id,
@@ -22,5 +24,6 @@ class CreditCardModel extends HiveObject {
     required this.institution,
     required this.cardType,
     required this.number,
+    required this.expenses,
   });
 }

@@ -10,23 +10,17 @@ class UserModel extends HiveObject {
   @HiveField(1)
   List<AccountModel> accounts;
   @HiveField(2)
-  List<TransactionModel> transactions;
-  @HiveField(3)
   List<CategoryModel> incomeCategories;
-  @HiveField(4)
+  @HiveField(3)
   List<CategoryModel> expenseCategories;
-  @HiveField(5)
+  @HiveField(4)
   List<CreditCardModel> creditCards;
-  @HiveField(6)
-  List<CreditCardTransactionModel> creditCardExpenses;
 
   UserModel({
     required this.id,
     required this.accounts,
-    required this.transactions,
     required this.incomeCategories,
     required this.expenseCategories,
     required this.creditCards,
-    required this.creditCardExpenses,
   });
 }

@@ -8,13 +8,13 @@ import 'data/data.dart';
 import 'views/views.dart';
 
 Future<void> main() async {
-  Hive.registerAdapter(UserModelAdapter());
-  Hive.registerAdapter(InstitutionModelAdapter());
   Hive.registerAdapter(AccountModelAdapter());
-  Hive.registerAdapter(TransactionModelAdapter());
   Hive.registerAdapter(CategoryModelAdapter());
   Hive.registerAdapter(CreditCardModelAdapter());
   Hive.registerAdapter(CreditCardTransactionModelAdapter());
+  Hive.registerAdapter(InstitutionModelAdapter());
+  Hive.registerAdapter(TransactionModelAdapter());
+  Hive.registerAdapter(UserModelAdapter());
 
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -22,8 +22,24 @@ Future<void> main() async {
   await Hive.openBox<UserModel>('users_box');
 
   runApp(
-    BlocProvider(
-      create: (context) => UserBloc(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => UserBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AccountBloc(),
+        ),
+        BlocProvider(
+          create: (context) => TransactionBloc(),
+        ),
+        BlocProvider(
+          create: (context) => CreditCardBloc(),
+        ),
+        BlocProvider(
+          create: (context) => CreditCardExpenseBloc(),
+        ),
+      ],
       child: const MyApp(),
     ),
   );
@@ -42,7 +58,9 @@ class MyApp extends StatelessWidget {
           return state.maybeWhen(
               orElse: () => const Center(child: CircularProgressIndicator()),
               loaded: (user) {
-                return HomeScreen(user: user);
+                return HomeScreen(
+                  user: user,
+                );
               });
         },
       ),

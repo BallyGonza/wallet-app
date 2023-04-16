@@ -19,18 +19,21 @@ mixin _$UserState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(UserModel user) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
     TResult? Function(UserModel user)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserModel user)? loaded,
     required TResult orElse(),
   }) =>
@@ -38,18 +41,21 @@ mixin _$UserState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitial value) initial,
+    required TResult Function(UserLoading value) loading,
     required TResult Function(UserUpdated value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitial value)? initial,
+    TResult? Function(UserLoading value)? loading,
     TResult? Function(UserUpdated value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitial value)? initial,
+    TResult Function(UserLoading value)? loading,
     TResult Function(UserUpdated value)? loaded,
     required TResult orElse(),
   }) =>
@@ -112,6 +118,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(UserModel user) loaded,
   }) {
     return initial();
@@ -121,6 +128,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
     TResult? Function(UserModel user)? loaded,
   }) {
     return initial?.call();
@@ -130,6 +138,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserModel user)? loaded,
     required TResult orElse(),
   }) {
@@ -143,6 +152,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitial value) initial,
+    required TResult Function(UserLoading value) loading,
     required TResult Function(UserUpdated value) loaded,
   }) {
     return initial(this);
@@ -152,6 +162,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitial value)? initial,
+    TResult? Function(UserLoading value)? loading,
     TResult? Function(UserUpdated value)? loaded,
   }) {
     return initial?.call(this);
@@ -161,6 +172,7 @@ class _$UserInitial implements UserInitial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitial value)? initial,
+    TResult Function(UserLoading value)? loading,
     TResult Function(UserUpdated value)? loaded,
     required TResult orElse(),
   }) {
@@ -173,6 +185,114 @@ class _$UserInitial implements UserInitial {
 
 abstract class UserInitial implements UserState {
   const factory UserInitial() = _$UserInitial;
+}
+
+/// @nodoc
+abstract class _$$UserLoadingCopyWith<$Res> {
+  factory _$$UserLoadingCopyWith(
+          _$UserLoading value, $Res Function(_$UserLoading) then) =
+      __$$UserLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$UserLoadingCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserLoading>
+    implements _$$UserLoadingCopyWith<$Res> {
+  __$$UserLoadingCopyWithImpl(
+      _$UserLoading _value, $Res Function(_$UserLoading) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$UserLoading implements UserLoading {
+  const _$UserLoading();
+
+  @override
+  String toString() {
+    return 'UserState.loading()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$UserLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UserModel user) loaded,
+  }) {
+    return loading();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserModel user)? loaded,
+  }) {
+    return loading?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UserModel user)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserInitial value) initial,
+    required TResult Function(UserLoading value) loading,
+    required TResult Function(UserUpdated value) loaded,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(UserInitial value)? initial,
+    TResult? Function(UserLoading value)? loading,
+    TResult? Function(UserUpdated value)? loaded,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserInitial value)? initial,
+    TResult Function(UserLoading value)? loading,
+    TResult Function(UserUpdated value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UserLoading implements UserState {
+  const factory UserLoading() = _$UserLoading;
 }
 
 /// @nodoc
@@ -240,6 +360,7 @@ class _$UserUpdated implements UserUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(UserModel user) loaded,
   }) {
     return loaded(user);
@@ -249,6 +370,7 @@ class _$UserUpdated implements UserUpdated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
+    TResult? Function()? loading,
     TResult? Function(UserModel user)? loaded,
   }) {
     return loaded?.call(user);
@@ -258,6 +380,7 @@ class _$UserUpdated implements UserUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserModel user)? loaded,
     required TResult orElse(),
   }) {
@@ -271,6 +394,7 @@ class _$UserUpdated implements UserUpdated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitial value) initial,
+    required TResult Function(UserLoading value) loading,
     required TResult Function(UserUpdated value) loaded,
   }) {
     return loaded(this);
@@ -280,6 +404,7 @@ class _$UserUpdated implements UserUpdated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitial value)? initial,
+    TResult? Function(UserLoading value)? loading,
     TResult? Function(UserUpdated value)? loaded,
   }) {
     return loaded?.call(this);
@@ -289,6 +414,7 @@ class _$UserUpdated implements UserUpdated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitial value)? initial,
+    TResult Function(UserLoading value)? loading,
     TResult Function(UserUpdated value)? loaded,
     required TResult orElse(),
   }) {

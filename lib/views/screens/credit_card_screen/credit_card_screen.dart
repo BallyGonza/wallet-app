@@ -24,11 +24,19 @@ class CreditCardScreen extends StatefulWidget {
 
 class _CreditCardScreenState extends State<CreditCardScreen> {
   @override
+  void initState() {
+    context
+        .read<CreditCardExpenseBloc>()
+        .add(CreditCardExpenseEvent.init(widget.creditCard));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final CreditCardRepository creditCardRepository = CreditCardRepository();
     final List<CreditCardTransactionModel> creditCardExpenses =
         creditCardRepository.getTransactionsByCreditCard(
-            widget.creditCard, widget.user.creditCardExpenses, widget.date);
+            widget.creditCard, widget.date);
 
     return Scaffold(
       bottomNavigationBar:
@@ -75,8 +83,8 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
             transaction: creditCardExpense,
             onPressDelete: () {
               setState(() {
-                context.read<UserBloc>().add(
-                      UserEvent.removeCreditCardExpense(
+                context.read<CreditCardExpenseBloc>().add(
+                      CreditCardExpenseEvent.remove(
                         creditCardExpense,
                       ),
                     );
@@ -105,7 +113,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
       ),
       trailing: Text(
         amountFormat.format(creditCardRepository.getTotalOfCreditCard(
-            widget.creditCard, widget.date, creditCardExpenses)),
+            widget.creditCard, widget.date)),
         style: const TextStyle(fontSize: 16, color: Colors.white),
       ),
     );
@@ -137,8 +145,8 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                   TextButton(
                     onPressed: () {
                       setState(() {
-                        context.read<UserBloc>().add(
-                              UserEvent.removeCreditCard(widget.creditCard),
+                        context.read<CreditCardBloc>().add(
+                              CreditCardEvent.remove(widget.creditCard),
                             );
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
@@ -180,21 +188,19 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
         ),
         onPressed: () {
           setState(() {
-            context.read<UserBloc>().add(
-                  UserEvent.addTransaction(
+            context.read<TransactionBloc>().add(
+                  TransactionEvent.add(
+                    widget.user.accounts.firstWhere(
+                      (element) =>
+                          element.name == widget.creditCard.institution.name,
+                    ),
                     TransactionModel(
                       id: DateTime.now().microsecondsSinceEpoch,
                       date: widget.date,
                       amount: creditCardRepository.getTotalOfCreditCard(
-                              widget.creditCard,
-                              widget.date,
-                              creditCardExpenses) *
+                              widget.creditCard, widget.date) *
                           -1,
                       note: widget.creditCard.institution.name,
-                      account: widget.user.accounts.firstWhere(
-                        (element) =>
-                            element.name == widget.creditCard.institution.name,
-                      ),
                       category: widget.creditCard.cardType.name == 'Visa'
                           ? widget.user.expenseCategories
                               .firstWhere((element) =>

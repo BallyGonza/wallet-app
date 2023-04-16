@@ -6,20 +6,12 @@ class CreditCardRepository {
 
   final Box<UserModel> box = Hive.box<UserModel>('users_box');
 
-  // update credit cards of the user
-  Future<void> updateCreditCards(
-      UserModel user, List<CreditCardModel> creditCards) async {
-    user.creditCards = creditCards;
-    await box.put(user.id, user);
-  }
-
   double getTotalOfCreditCard(
     CreditCardModel creditCard,
     DateTime date,
-    List<CreditCardTransactionModel> creditCardExpenses,
   ) {
     double total = 0;
-    for (var transaction in creditCardExpenses) {
+    for (var transaction in creditCard.expenses) {
       int currentCuota =
           (transaction.date.difference(date).inDays / 30).round().abs();
       if (transaction.creditCard.institution.name ==
@@ -37,10 +29,8 @@ class CreditCardRepository {
   }
 
   List<CreditCardTransactionModel> getTransactionsByCreditCard(
-      CreditCardModel creditCard,
-      List<CreditCardTransactionModel> transactions,
-      DateTime date) {
-    var creditCardExpenses = transactions
+      CreditCardModel creditCard, DateTime date) {
+    var creditCardExpenses = creditCard.expenses
         .where((element) => element.creditCard.id == creditCard.id)
         .toList();
 

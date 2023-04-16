@@ -27,7 +27,7 @@ class AddTransactionScreen extends StatefulWidget {
         super(key: key);
 
   final UserModel user;
-  final Function(TransactionModel) onPressed;
+  final Function(AccountModel, TransactionModel) onPressed;
   final bool _isIncome;
   final Color _color;
   final String _title;
@@ -419,20 +419,19 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   );
                   return;
                 }
-                setState(() {
-                  var amount = double.parse(
-                      _amountController.text.replaceAll(RegExp(r'[,]'), '.'));
-                  amountFormat.format(amount);
-                  var transaction = TransactionModel(
-                    id: DateTime.now().millisecondsSinceEpoch,
-                    note: _noteController.text,
-                    amount: widget._isIncome ? amount : -amount,
-                    category: _selectedCategory,
-                    account: _selectedAccount,
-                    date: _selectedDateTime,
-                  );
-                  widget.onPressed(transaction);
-                });
+
+                var amount = double.parse(
+                    _amountController.text.replaceAll(RegExp(r'[,]'), '.'));
+                amountFormat.format(amount);
+                var transaction = TransactionModel(
+                  id: DateTime.now().millisecondsSinceEpoch,
+                  note: _noteController.text,
+                  amount: widget._isIncome ? amount : -amount,
+                  category: _selectedCategory,
+                  date: _selectedDateTime,
+                );
+                widget.onPressed(_selectedAccount, transaction);
+
                 Navigator.pop(context);
               },
               child: const Text('Save', style: TextStyle(fontSize: 16)),

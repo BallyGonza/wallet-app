@@ -15,8 +15,6 @@ class TransactionModel extends HiveObject {
   DateTime date;
   @HiveField(4)
   CategoryModel category;
-  @HiveField(5)
-  AccountModel account;
 
   TransactionModel({
     required this.id,
@@ -24,6 +22,5 @@ class TransactionModel extends HiveObject {
     required this.amount,
     required this.date,
     required this.category,
-    required this.account,
   });
 }

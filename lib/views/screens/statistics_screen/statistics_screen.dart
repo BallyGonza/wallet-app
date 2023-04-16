@@ -34,7 +34,7 @@ class StatisticsScreen extends StatelessWidget {
     } else {
       transactions = userRepository.getTransactionsByDate(user, date);
       accountsBalance =
-          amountFormat.format(userRepository.getBalance(transactions, date));
+          amountFormat.format(userRepository.getBalance(user.accounts, date));
       incomeBalance =
           amountFormat.format(userRepository.getTotalIncome(user, date));
       expenseBalance =
