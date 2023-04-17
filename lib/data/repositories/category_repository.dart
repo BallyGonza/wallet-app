@@ -51,10 +51,9 @@ CategoryModel replenishment = CategoryModel(
 CategoryModel afip = CategoryModel(
   id: 3,
   name: 'AFIP',
-  icon: 'assets/icons/categories/afip.png',
+  icon: 'assets/icons/categories/afip.jpeg',
   isIncome: true,
   backgroundColor: white,
-  iconColor: black,
   subCategories: [],
 );
 
@@ -269,24 +268,6 @@ CategoryModel creditCard = CategoryModel(
   isIncome: false,
   backgroundColor: purple,
   iconColor: white,
-  subCategories: [visa, mastercard],
-);
-
-CategoryModel visa = CategoryModel(
-  id: 25,
-  name: 'VISA',
-  icon: 'assets/icons/categories/visa.png',
-  isIncome: false,
-  backgroundColor: white,
-  subCategories: [],
-);
-
-CategoryModel mastercard = CategoryModel(
-  id: 26,
-  name: 'Mastercard',
-  icon: 'assets/icons/categories/mastercard.png',
-  isIncome: false,
-  backgroundColor: white,
   subCategories: [],
 );
 
@@ -433,7 +414,7 @@ CategoryModel transferIn = CategoryModel(
   icon: 'assets/icons/categories/transfer.png',
   isIncome: true,
   backgroundColor: green,
-  iconColor: white,
+  iconColor: black,
   subCategories: [],
 );
 
@@ -443,7 +424,7 @@ CategoryModel transferOut = CategoryModel(
   icon: 'assets/icons/categories/transfer.png',
   isIncome: false,
   backgroundColor: red,
-  iconColor: white,
+  iconColor: black,
   subCategories: [],
 );
 
