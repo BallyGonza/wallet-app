@@ -59,16 +59,20 @@ class _AccountItemState extends State<AccountItem> {
         ),
         subtitle: Text(
           widget.account.name == 'Ahorros'
-              ? dolarAmountFormat.format(
-                  accountRepository.getBalance(widget.account, widget.date))
-              : amountFormat.format(
-                  accountRepository.getBalance(widget.account, widget.date)),
+              ? dolarAmountFormat.format(accountRepository.getBalanceOfAccount(
+                  widget.account, widget.date))
+              : amountFormat.format(accountRepository.getBalanceOfAccount(
+                  widget.account, widget.date)),
           style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                color:
-                    accountRepository.getBalance(widget.account, widget.date) >=
+                color: accountRepository.getBalanceOfAccount(
+                            widget.account, widget.date) >
+                        0
+                    ? Colors.green
+                    : accountRepository.getBalanceOfAccount(
+                                widget.account, widget.date) <
                             0
-                        ? Colors.green
-                        : Colors.red,
+                        ? Colors.red
+                        : Colors.grey,
               ),
         ),
         trailing: const Icon(

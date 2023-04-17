@@ -27,14 +27,14 @@ class WalletListTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 if (leading != null) leading!,
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(child: content),
                 if (trailing != null) trailing!,
               ],
             ),
           ),
         ),
-        const Divider(color: Colors.black)
+        const Divider(color: Colors.grey, thickness: 0.1)
       ],
     );
   }

@@ -27,7 +27,9 @@ class UserRepository {
       for (var transaction in account.transactions) {
         if (transaction.date.month == date.month &&
             transaction.date.year == date.year &&
-            transaction.category.name != 'Transfer in') {
+            transaction.category.name != 'Transfer in' &&
+            transaction.category.name != 'Transfer out' &&
+            transaction.category.name != 'Ahorros') {
           if (transaction.category.isIncome) {
             total += transaction.amount;
           } else {
@@ -46,7 +48,8 @@ class UserRepository {
       for (var transaction in account.transactions) {
         if (transaction.date.month == date.month &&
             transaction.date.year == date.year &&
-            transaction.category.name != 'Transfer in') {
+            transaction.category.name != 'Transfer in' &&
+            transaction.category.name != 'Ahorros') {
           transactions.add(transaction);
         }
       }
@@ -67,7 +70,8 @@ class UserRepository {
       for (var transaction in account.transactions) {
         if (transaction.date.month == date.month &&
             transaction.date.year == date.year &&
-            transaction.category.name != 'Transfer out') {
+            transaction.category.name != 'Transfer out' &&
+            transaction.category.name != 'Ahorros') {
           transactions.add(transaction);
         }
       }
@@ -96,7 +100,9 @@ class UserRepository {
       for (var transaction in account.transactions) {
         if (transaction.date.month == date.month &&
             transaction.date.year == date.year &&
-            transaction.category.name != 'Transfer out') {
+            transaction.category.name != 'Transfer out' &&
+            transaction.category.name != 'Transfer in' &&
+            transaction.category.name != 'Ahorros') {
           transactions.add(transaction);
         }
       }
@@ -139,7 +145,9 @@ class UserRepository {
     for (var account in user.accounts) {
       for (var transaction in account.transactions) {
         if (transaction.date.year == date.year &&
-            transaction.category.name != 'Transfer out') {
+            transaction.category.name != 'Transfer out' &&
+            transaction.category.name != 'Transfer in' &&
+            transaction.category.name != 'Ahorros') {
           transactions.add(transaction);
         }
       }
@@ -153,7 +161,8 @@ class UserRepository {
     for (var account in user.accounts) {
       for (var transaction in account.transactions) {
         if (transaction.date.year == date.year &&
-            transaction.category.name != 'Transfer in') {
+            transaction.category.name != 'Transfer in' &&
+            transaction.category.name != 'Ahorros') {
           transactions.add(transaction);
         }
       }
@@ -174,7 +183,8 @@ class UserRepository {
         if (transaction.date.day == day &&
             transaction.date.month == date.month &&
             transaction.date.year == date.year &&
-            transaction.category.name != 'Transfer in') {
+            transaction.category.name != 'Transfer in' &&
+            transaction.category.name != 'Ahorros') {
           transactions.add(transaction);
         }
       }
@@ -193,7 +203,8 @@ class UserRepository {
     for (var account in user.accounts) {
       for (var transaction in account.transactions) {
         if (transaction.date.year == date.year &&
-            transaction.category.name != 'Transfer out') {
+            transaction.category.name != 'Transfer out' &&
+            transaction.category.name != 'Ahorros') {
           transactions.add(transaction);
         }
       }
@@ -214,7 +225,8 @@ class UserRepository {
         if (transaction.date.day == day &&
             transaction.date.month == date.month &&
             transaction.date.year == date.year &&
-            transaction.category.name != 'Transfer out') {
+            transaction.category.name != 'Transfer out' &&
+            transaction.category.name != 'Ahorros') {
           transactions.add(transaction);
         }
       }
@@ -229,7 +241,9 @@ class UserRepository {
     for (var account in user.accounts) {
       for (var transaction in account.transactions) {
         if (transaction.date.year == date.year &&
-            transaction.category.name != 'Transfer out') {
+            transaction.category.name != 'Transfer out' &&
+            transaction.category.name != 'Transfer in' &&
+            transaction.category.name != 'Ahorros') {
           transactions.add(transaction);
         }
       }
@@ -293,7 +307,9 @@ class UserRepository {
         if (transaction.date.day == date.day &&
             transaction.date.month == date.month &&
             transaction.date.year == date.year &&
-            transaction.category.name != 'Transfer out') {
+            transaction.category.name != 'Transfer out' &&
+            transaction.category.name != 'Transfer in' &&
+            transaction.category.name != 'Ahorros') {
           transactions.add(transaction);
         }
       }

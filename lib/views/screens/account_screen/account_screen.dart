@@ -27,16 +27,25 @@ class _AccountScreenState extends State<AccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // transactions = accountRepository.getTransactionsByAccount(
-    //     widget.account, widget.user.transactions, widget.date);
     return Scaffold(
-      appBar: _AppBar(context),
+      appBar: _appBar(context),
       body: SafeArea(
-        child: Column(
-          children: [
-            _listOfTransactions(context),
-            _resume(context),
-          ],
+        child: BlocBuilder<AccountBloc, AccountState>(
+          builder: (context, state) {
+            return state.maybeWhen(
+              orElse: () => const Center(child: CircularProgressIndicator()),
+              loaded: (accounts) {
+                transactions = accountRepository.getTransactionsByAccount(
+                    widget.account, widget.user, widget.date);
+                return Column(
+                  children: [
+                    _listOfTransactions(context),
+                    _resume(context),
+                  ],
+                );
+              },
+            );
+          },
         ),
       ),
     );
@@ -83,28 +92,26 @@ class _AccountScreenState extends State<AccountScreen> {
           )),
       child: Column(
         children: [
-          // _resumeItem(
-          //   'Ingreso',
-          //   accountRepository.getTotalIncomes(
-          //       widget.account, widget.user.transactions, widget.date),
-          //   incomeColor!.value,
-          // ),
-          // _resumeItem(
-          //   'Gasto',
-          //   accountRepository.getTotalExpenses(
-          //       widget.account, widget.user.transactions, widget.date),
-          //   expenseColor!.value,
-          // ),
-          // _resumeItem(
-          //   'Saldo',
-          //   accountRepository.getBalance(
-          //       widget.account, widget.user.transactions, widget.date),
-          //   accountRepository.getBalance(
-          //               widget.account, widget.user.transactions, widget.date) >
-          //           0
-          //       ? incomeColor!.value
-          //       : expenseColor!.value,
-          // ),
+          _resumeItem(
+            'Ingreso',
+            accountRepository.getTotalIncomesByAccount(
+                widget.account, widget.date),
+            incomeColor!.value,
+          ),
+          _resumeItem(
+            'Gasto',
+            accountRepository.getTotalExpensesByAccount(
+                widget.account, widget.date),
+            expenseColor!.value,
+          ),
+          _resumeItem(
+            'Saldo',
+            accountRepository.getBalanceOfAccount(widget.account, widget.date),
+            accountRepository.getBalanceOfAccount(widget.account, widget.date) >
+                    0
+                ? incomeColor!.value
+                : expenseColor!.value,
+          ),
         ],
       ),
     );
@@ -128,7 +135,7 @@ class _AccountScreenState extends State<AccountScreen> {
     );
   }
 
-  AppBar _AppBar(BuildContext context) {
+  AppBar _appBar(BuildContext context) {
     return AppBar(
       elevation: 0,
       title: Container(

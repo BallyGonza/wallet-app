@@ -280,7 +280,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                         leading: const Padding(
                           padding: EdgeInsets.only(left: 10.0),
                           child: FaIcon(
-                            FontAwesomeIcons.fileSignature,
+                            FontAwesomeIcons.creditCard,
                             color: Colors.grey,
                           ),
                         ),

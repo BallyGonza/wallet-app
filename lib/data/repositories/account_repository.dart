@@ -72,6 +72,8 @@ class AccountRepository {
     for (var account in accounts) {
       transactions.addAll(account.transactions);
     }
+    // sort
+    transactions.sort((a, b) => a.date.compareTo(b.date));
     return transactions
         .where((transaction) =>
             transaction.date.day == day &&
@@ -90,7 +92,9 @@ class AccountRepository {
       if (transaction.category.isIncome &&
           transaction.date.day == day &&
           transaction.date.month == date.month &&
-          transaction.date.year == date.year) {
+          transaction.date.year == date.year &&
+          transaction.category.name != 'Ahorros' &&
+          transaction.category.name != 'Transfer in') {
         total += transaction.amount;
       }
     }
@@ -107,7 +111,8 @@ class AccountRepository {
       if (!transaction.category.isIncome &&
           transaction.date.day == day &&
           transaction.date.month == date.month &&
-          transaction.date.year == date.year) {
+          transaction.date.year == date.year &&
+          transaction.category.name != 'Transfer out') {
         total += transaction.amount;
       }
     }
@@ -184,41 +189,37 @@ class AccountRepository {
         .toList();
   }
 
-  double getTotalIncomes(
-    UserModel user,
+  double getTotalIncomesByAccount(
+    AccountModel account,
     DateTime date,
   ) {
     double income = 0;
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
-        if (transaction.category.isIncome &&
-            transaction.date.month <= date.month &&
-            transaction.date.year <= date.year) {
-          income += transaction.amount;
-        }
+    for (var transaction in account.transactions) {
+      if (transaction.category.isIncome &&
+          transaction.date.month <= date.month &&
+          transaction.date.year <= date.year) {
+        income += transaction.amount;
       }
     }
     return income;
   }
 
-  double getTotalExpenses(
-    UserModel user,
+  double getTotalExpensesByAccount(
+    AccountModel account,
     DateTime date,
   ) {
     double expenses = 0;
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
-        if (!transaction.category.isIncome &&
-            transaction.date.month <= date.month &&
-            transaction.date.year <= date.year) {
-          expenses += transaction.amount;
-        }
+    for (var transaction in account.transactions) {
+      if (!transaction.category.isIncome &&
+          transaction.date.month <= date.month &&
+          transaction.date.year <= date.year) {
+        expenses += transaction.amount;
       }
     }
     return expenses;
   }
 
-  double getBalance(
+  double getBalanceOfAccount(
     AccountModel account,
     DateTime date,
   ) {

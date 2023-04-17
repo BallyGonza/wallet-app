@@ -34,11 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: walletAppTheme.scaffoldBackgroundColor,
@@ -61,7 +56,11 @@ class _HomeScreenState extends State<HomeScreen> {
             date: selectedDate,
             user: widget.user,
           ),
-          // StatisticsScreen(date: selectedDate, yearMode: _yearMode),
+          StatisticsScreen(
+            user: widget.user,
+            date: selectedDate,
+            yearMode: _yearMode,
+          ),
         ],
       ),
     );
@@ -71,87 +70,83 @@ class _HomeScreenState extends State<HomeScreen> {
     return AppBar(
       backgroundColor: walletAppTheme.scaffoldBackgroundColor,
       elevation: 0,
-      title: _datePicker(),
-    );
-  }
-
-  Row _datePicker() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: walletAppTheme.scaffoldBackgroundColor,
-            elevation: 0,
-            shape: const CircleBorder(),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: walletAppTheme.scaffoldBackgroundColor,
+              elevation: 0,
+              shape: const CircleBorder(),
+            ),
+            onPressed: () {
+              setState(() {
+                _yearMode
+                    ? selectedDate = selectedDate.subtract(
+                        const Duration(days: 365),
+                      )
+                    : selectedDate = selectedDate.subtract(
+                        const Duration(days: 30),
+                      );
+              });
+            },
+            child: const Icon(
+              FontAwesomeIcons.chevronLeft,
+              size: 12,
+              color: Colors.grey,
+            ),
           ),
-          onPressed: () {
-            setState(() {
-              _yearMode
-                  ? selectedDate = selectedDate.subtract(
-                      const Duration(days: 365),
-                    )
-                  : selectedDate = selectedDate.subtract(
-                      const Duration(days: 30),
-                    );
-            });
-          },
-          child: const Icon(
-            FontAwesomeIcons.chevronLeft,
-            size: 12,
-            color: Colors.grey,
-          ),
-        ),
-        GestureDetector(
-          onTap: () {
-            setState(() {
-              _yearMode = !_yearMode;
-            });
-          },
-          child: _yearMode
-              ? Text(
-                  selectedDate.year.toString(),
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                _yearMode = !_yearMode;
+              });
+            },
+            child: _yearMode
+                ? Text(
+                    selectedDate.year.toString(),
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                : Text(
+                    selectedDate.year == DateTime.now().year
+                        ? DateFormat('MMMM').format(selectedDate)
+                        : DateFormat('MMMM yyyy').format(selectedDate),
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                )
-              : Text(
-                  selectedDate.year == DateTime.now().year
-                      ? DateFormat('MMMM').format(selectedDate)
-                      : DateFormat('MMMM yyyy').format(selectedDate),
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-        ),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: walletAppTheme.scaffoldBackgroundColor,
-            elevation: 0,
-            shape: const CircleBorder(),
           ),
-          onPressed: () {
-            setState(() {
-              _yearMode
-                  ? selectedDate = selectedDate.add(
-                      const Duration(days: 365),
-                    )
-                  : selectedDate = selectedDate.add(
-                      const Duration(days: 30),
-                    );
-            });
-          },
-          child: const Icon(
-            FontAwesomeIcons.chevronRight,
-            size: 12,
-            color: Colors.grey,
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: walletAppTheme.scaffoldBackgroundColor,
+              elevation: 0,
+              shape: const CircleBorder(),
+            ),
+            onPressed: () {
+              setState(() {
+                _yearMode
+                    ? selectedDate = selectedDate.add(
+                        const Duration(days: 365),
+                      )
+                    : selectedDate = selectedDate.add(
+                        const Duration(days: 30),
+                      );
+              });
+            },
+            child: const Icon(
+              FontAwesomeIcons.chevronRight,
+              size: 12,
+              color: Colors.grey,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

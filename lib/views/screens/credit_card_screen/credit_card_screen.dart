@@ -180,35 +180,35 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
         ),
         onPressed: () {
           setState(() {
-            // context.read<AccountBloc>().add(
-            //       AccountEvent.add(
-            //         widget.user.accounts.firstWhere(
-            //           (element) =>
-            //               element.name == widget.creditCard.institution.name,
-            //         ),
-            //         TransactionModel(
-            //           id: DateTime.now().microsecondsSinceEpoch,
-            //           date: widget.date,
-            //           amount: creditCardRepository.getTotalOfCreditCard(
-            //                   widget.creditCard, widget.date) *
-            //               -1,
-            //           note: widget.creditCard.institution.name,
-            //           category: widget.creditCard.cardType.name == 'Visa'
-            //               ? widget.user.expenseCategories
-            //                   .firstWhere((element) =>
-            //                       element.name == 'Tarjeta de Credito')
-            //                   .subCategories[0]
-            //               : widget.user.expenseCategories
-            //                   .firstWhere((element) =>
-            //                       element.name == 'Tarjeta de Credito')
-            //                   .subCategories[1],
-            //         ),
-            //       ),
-            //     );
-            // context.read<UserBloc>().add(
-            //       UserEvent.payCreditCard(creditCardExpenses, widget.date),
-            //     );
-            // Navigator.pop(context);
+            context.read<AccountBloc>().add(
+                  AccountEvent.addTransaction(
+                    widget.user.accounts.firstWhere(
+                      (element) =>
+                          element.name == widget.creditCard.institution.name,
+                    ),
+                    TransactionModel(
+                      id: DateTime.now().microsecondsSinceEpoch,
+                      date: widget.date,
+                      amount: creditCardRepository.getTotalOfCreditCard(
+                              widget.creditCard, widget.date) *
+                          -1,
+                      note: widget.creditCard.institution.name,
+                      category: widget.creditCard.cardType.name == 'Visa'
+                          ? widget.user.expenseCategories
+                              .firstWhere((element) =>
+                                  element.name == 'Tarjeta de Credito')
+                              .subCategories[0]
+                          : widget.user.expenseCategories
+                              .firstWhere((element) =>
+                                  element.name == 'Tarjeta de Credito')
+                              .subCategories[1],
+                    ),
+                  ),
+                );
+            context.read<CreditCardBloc>().add(
+                  CreditCardEvent.pay(widget.creditCard, widget.date),
+                );
+            Navigator.pop(context);
           });
         },
         child: const Text(

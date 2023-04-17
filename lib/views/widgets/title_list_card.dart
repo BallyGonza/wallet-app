@@ -32,8 +32,14 @@ class TitleListCard extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                SizedBox(
-                  height: 10,
+                Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5),
+                    ),
+                  ),
+                  height: 20,
                   width: 30,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(

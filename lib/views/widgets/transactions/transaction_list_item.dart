@@ -199,14 +199,13 @@ class TransactionListItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  // transaction.account.name == 'Ahorros'
-                  //     ? dolarAmountFormat.format(
-                  //         transaction.amount,
-                  //       )
-                  //     :
-                  amountFormat.format(
-                    transaction.amount,
-                  ),
+                  transaction.category.name == 'Ahorros'
+                      ? dolarAmountFormat.format(
+                          transaction.amount,
+                        )
+                      : amountFormat.format(
+                          transaction.amount,
+                        ),
                   style: TextStyle(
                     color: transaction.category.isIncome
                         ? Colors.green
