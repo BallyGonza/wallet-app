@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-const appBackgroundColor = Color(0xff1E1E1E);
-const colorCards = Color.fromARGB(255, 38, 38, 38);
+const appBackgroundColor = Color(0xff18171E);
+const colorCards = Color(0xff1C1C1E);
 
 // colors
 final green = const Color(0xFF159F48).value;

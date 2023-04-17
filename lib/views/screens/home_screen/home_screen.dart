@@ -182,6 +182,20 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           backgroundColor: incomeColor,
           onTap: () {
+            if (widget.user.accounts.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'You need to add an account first',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  backgroundColor: Colors.red,
+                ),
+              );
+              return;
+            }
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => AddTransactionScreen.income(
@@ -208,6 +222,20 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           backgroundColor: expenseColor,
           onTap: () {
+            if (widget.user.accounts.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'You need to add an account first',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  backgroundColor: Colors.red,
+                ),
+              );
+              return;
+            }
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => AddTransactionScreen.expense(
@@ -234,6 +262,20 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           backgroundColor: transferColor,
           onTap: () {
+            if (widget.user.accounts.length <= 1) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'You need to have 2 accounts first',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  backgroundColor: Colors.red,
+                ),
+              );
+              return;
+            }
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => AddTransferScreen(
@@ -262,6 +304,20 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           backgroundColor: expenseColor,
           onTap: () {
+            if (widget.user.creditCards.isEmpty) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text(
+                    'You need to add a credit card first',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  backgroundColor: Colors.red,
+                ),
+              );
+              return;
+            }
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => AddCreditCardExpenseScreen(

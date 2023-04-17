@@ -64,7 +64,9 @@ class _WalletScreenState extends State<WalletScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const AddAccountScreen(),
+            builder: (context) => AddAccountScreen(
+              user: widget.user,
+            ),
           ),
         );
       },
