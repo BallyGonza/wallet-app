@@ -78,7 +78,7 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
                   style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 10,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
@@ -94,7 +94,7 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
                   style: const TextStyle(
                     color: Colors.red,
                     fontSize: 12,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -104,7 +104,7 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
-                          fontWeight: FontWeight.normal,
+                          fontWeight: FontWeight.bold,
                         ),
                       )
                     : const SizedBox.shrink()

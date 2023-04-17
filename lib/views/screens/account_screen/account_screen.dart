@@ -127,13 +127,15 @@ class _AccountScreenState extends State<AccountScreen> {
       child: ListTile(
         title: Text(
           title,
-          style: const TextStyle(fontSize: 16, color: Colors.grey),
+          style: const TextStyle(
+              fontSize: 16, color: Colors.grey, fontWeight: FontWeight.bold),
         ),
         trailing: Text(
           widget.account.name == 'Ahorros'
               ? dolarAmountFormat.format(amount)
               : amountFormat.format(amount),
-          style: TextStyle(fontSize: 16, color: Color(color)),
+          style: TextStyle(
+              fontSize: 16, color: Color(color), fontWeight: FontWeight.bold),
         ),
       ),
     );
@@ -149,8 +151,9 @@ class _AccountScreenState extends State<AccountScreen> {
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child:
-                Text(widget.account.name, style: const TextStyle(fontSize: 16)),
+            child: Text(widget.account.name,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           )),
       actions: [
         IconButton(

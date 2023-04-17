@@ -102,12 +102,14 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
     return ListTile(
       title: const Text(
         'Gastos totales',
-        style: TextStyle(fontSize: 16, color: Colors.grey),
+        style: TextStyle(
+            fontSize: 16, color: Colors.grey, fontWeight: FontWeight.bold),
       ),
       trailing: Text(
         amountFormat.format(creditCardRepository.getTotalOfCreditCard(
             widget.creditCard, widget.date)),
-        style: TextStyle(fontSize: 16, color: expenseColor),
+        style: TextStyle(
+            fontSize: 16, color: expenseColor, fontWeight: FontWeight.bold),
       ),
     );
   }
@@ -123,7 +125,8 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Text(widget.creditCard.name,
-                style: const TextStyle(fontSize: 16)),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           )),
       actions: [
         IconButton(
@@ -212,7 +215,8 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
         },
         child: const Text(
           'Pagar',
-          style: TextStyle(fontSize: 16, color: Colors.white),
+          style: TextStyle(
+              fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
     );

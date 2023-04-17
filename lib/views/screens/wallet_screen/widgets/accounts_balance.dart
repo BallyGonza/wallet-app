@@ -20,7 +20,7 @@ class AccountsBalance extends StatelessWidget {
             style: TextStyle(
               color: Colors.grey,
               fontSize: 12,
-              fontWeight: FontWeight.normal,
+              fontWeight: FontWeight.bold,
             ),
           ),
           SizedBox(

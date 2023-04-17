@@ -28,7 +28,7 @@ class TitleListCard extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 15,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const Spacer(),

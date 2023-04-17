@@ -60,7 +60,7 @@ class CreditCardItem extends StatelessWidget {
                       creditCard, date)),
                   style: const TextStyle(
                     fontSize: 18,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
                 )

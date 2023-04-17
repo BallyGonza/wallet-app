@@ -53,6 +53,7 @@ class SummaryCard extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
+                  fontWeight: FontWeight.bold,
                   fontSize: 10,
                   color: Colors.grey,
                 ),
@@ -63,6 +64,7 @@ class SummaryCard extends StatelessWidget {
               Text(
                 amountFormat.format(amount),
                 style: TextStyle(
+                  fontWeight: FontWeight.bold,
                   fontSize: 16,
                   color: color,
                 ),

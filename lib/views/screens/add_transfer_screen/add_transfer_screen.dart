@@ -125,7 +125,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                           'From Account',
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.bold,
                             color: Colors.grey,
                           ),
                         ),
@@ -206,7 +206,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                           'To Account',
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.bold,
                             color: Colors.grey,
                           ),
                         ),
@@ -283,7 +283,9 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                           padding: const EdgeInsets.only(left: 5.0),
                           child: Text(
                             _selectedDate,
-                            style: const TextStyle(color: Colors.grey),
+                            style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         trailing: const FaIcon(
@@ -369,7 +371,8 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
           ),
           child: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Text('Transfer', style: TextStyle(fontSize: 16)),
+            child: Text('Transfer',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           )),
     );
   }
@@ -422,7 +425,8 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
 
                 Navigator.pop(context);
               },
-              child: const Text('Save', style: TextStyle(fontSize: 16)),
+              child: const Text('Save',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             ),
           ),
         ],

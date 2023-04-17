@@ -55,8 +55,8 @@ class _AddCreditCardExpenseScreenState
             ),
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child:
-                  Text('Credit Card Expense', style: TextStyle(fontSize: 16)),
+              child: Text('Credit Card Expense',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             )),
       ),
       bottomNavigationBar: _saveButton(context),
@@ -140,7 +140,7 @@ class _AddCreditCardExpenseScreenState
                           'Tarjeta',
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.bold,
                             color: Colors.grey,
                           ),
                         ),
@@ -231,7 +231,7 @@ class _AddCreditCardExpenseScreenState
                           'Categoria',
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.bold,
                             color: Colors.grey,
                           ),
                         ),
@@ -327,7 +327,9 @@ class _AddCreditCardExpenseScreenState
                           padding: const EdgeInsets.only(left: 5.0),
                           child: Text(
                             _selectedDate,
-                            style: const TextStyle(color: Colors.grey),
+                            style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         trailing: const FaIcon(
@@ -384,7 +386,7 @@ class _AddCreditCardExpenseScreenState
                               'Recurrente',
                               style: TextStyle(
                                 fontSize: 16,
-                                fontWeight: FontWeight.normal,
+                                fontWeight: FontWeight.bold,
                                 color: Colors.grey,
                               ),
                             ),
@@ -405,14 +407,16 @@ class _AddCreditCardExpenseScreenState
                               leading: const Padding(
                                 padding: EdgeInsets.only(left: 10.0),
                                 child: FaIcon(
-                                  FontAwesomeIcons.fileSignature,
+                                  FontAwesomeIcons.list,
                                   color: Colors.grey,
                                 ),
                               ),
                               content: DropdownButtonFormField(
                                 decoration: const InputDecoration(
                                   border: InputBorder.none,
-                                  hintStyle: TextStyle(color: Colors.grey),
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey,
+                                  ),
                                 ),
                                 value: _cuotas,
                                 items: const [
@@ -560,7 +564,8 @@ class _AddCreditCardExpenseScreenState
                         _selectedCreditCard, creditCardExpense));
                 Navigator.pop(context);
               },
-              child: const Text('Save', style: TextStyle(fontSize: 16)),
+              child: const Text('Save',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             ),
           ),
         ],

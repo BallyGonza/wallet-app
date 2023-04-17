@@ -53,7 +53,7 @@ class _AccountItemState extends State<AccountItem> {
           widget.account.name,
           style: const TextStyle(
             color: Colors.white,
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -63,17 +63,18 @@ class _AccountItemState extends State<AccountItem> {
                   widget.account, widget.date))
               : amountFormat.format(accountRepository.getBalanceOfAccount(
                   widget.account, widget.date)),
-          style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                color: accountRepository.getBalanceOfAccount(
-                            widget.account, widget.date) >
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: accountRepository.getBalanceOfAccount(
+                        widget.account, widget.date) >
+                    0
+                ? Colors.green
+                : accountRepository.getBalanceOfAccount(
+                            widget.account, widget.date) <
                         0
-                    ? Colors.green
-                    : accountRepository.getBalanceOfAccount(
-                                widget.account, widget.date) <
-                            0
-                        ? Colors.red
-                        : Colors.grey,
-              ),
+                    ? Colors.red
+                    : Colors.grey,
+          ),
         ),
         trailing: const Icon(
           Icons.arrow_forward_ios,

@@ -153,8 +153,8 @@ class TransactionListItem extends StatelessWidget {
                     children: [
                       const WidgetSpan(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 5, vertical: 3.2),
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 5, vertical: 1),
                           child: FaIcon(
                             FontAwesomeIcons.arrowRight,
                             size: 10,
@@ -167,7 +167,7 @@ class TransactionListItem extends StatelessWidget {
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
-                          fontWeight: FontWeight.normal,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
@@ -209,7 +209,7 @@ class TransactionListItem extends StatelessWidget {
                         ? Colors.green
                         : Colors.red,
                     fontSize: 12,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(
@@ -220,7 +220,7 @@ class TransactionListItem extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 9,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],

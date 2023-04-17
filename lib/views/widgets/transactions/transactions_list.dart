@@ -66,6 +66,7 @@ class _TransactionsListState extends State<TransactionsList> {
                                     transactions, widget.date, widget.day),
                               ),
                               style: const TextStyle(
+                                fontWeight: FontWeight.bold,
                                 color: Colors.green,
                                 fontSize: 12,
                               ),
@@ -77,6 +78,7 @@ class _TransactionsListState extends State<TransactionsList> {
                                     transactions, widget.date, widget.day),
                               ),
                               style: const TextStyle(
+                                fontWeight: FontWeight.bold,
                                 color: Colors.red,
                                 fontSize: 12,
                               ),

@@ -66,7 +66,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text(widget._title, style: const TextStyle(fontSize: 16)),
+              child: Text(widget._title,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold)),
             )),
       ),
       bottomNavigationBar: _saveButton(context),
@@ -153,7 +155,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           'Category',
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.bold,
                             color: Colors.grey,
                           ),
                         ),
@@ -240,7 +242,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           'Account',
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.bold,
                             color: Colors.grey,
                           ),
                         ),
@@ -317,7 +319,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           padding: const EdgeInsets.only(left: 5.0),
                           child: Text(
                             _selectedDate,
-                            style: const TextStyle(color: Colors.grey),
+                            style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         trailing: const FaIcon(
