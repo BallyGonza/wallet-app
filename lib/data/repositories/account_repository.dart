@@ -140,22 +140,28 @@ class AccountRepository {
     UserModel user,
     DateTime date,
   ) {
-    return account.transactions
+    List<TransactionModel> transactions = [];
+    transactions = account.transactions
         .where((transaction) =>
             transaction.date.month == date.month &&
             transaction.date.year == date.year)
         .toList();
+    transactions.sort((a, b) => b.date.compareTo(a.date));
+    return transactions;
   }
 
   List<TransactionModel> getTransactionsByDate(
     DateTime date,
     List<TransactionModel> transactions,
   ) {
-    return transactions
+    List<TransactionModel> transactions = [];
+    transactions = transactions
         .where((transaction) =>
             transaction.date.month == date.month &&
             transaction.date.year == date.year)
         .toList();
+    transactions.sort((a, b) => b.date.compareTo(a.date));
+    return transactions;
   }
 
   List<TransactionModel> getTransactionsByCategory(

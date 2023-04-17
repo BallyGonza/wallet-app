@@ -199,6 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => AddTransactionScreen.income(
+                  selectedAccount: widget.user.accounts.first,
                   user: widget.user,
                   onPressed: (account, transaction) {
                     setState(() {
@@ -239,6 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => AddTransactionScreen.expense(
+                  selectedAccount: widget.user.accounts.first,
                   user: widget.user,
                   onPressed: (account, transaction) {
                     setState(() {
@@ -321,7 +323,18 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => AddCreditCardExpenseScreen(
+                  selectedCreditCard: widget.user.creditCards.first,
                   user: widget.user,
+                  onPressed: (creditCard, transaction) {
+                    setState(() {
+                      context.read<CreditCardBloc>().add(
+                            CreditCardEvent.addTransaction(
+                              creditCard,
+                              transaction,
+                            ),
+                          );
+                    });
+                  },
                 ),
               ),
             );

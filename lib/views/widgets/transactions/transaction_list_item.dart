@@ -23,101 +23,114 @@ class TransactionListItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         showModalBottomSheet(
-          backgroundColor: Colors.transparent,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(20),
+            ),
+          ),
+          backgroundColor: appBackgroundColor,
           context: context,
           builder: (context) {
-            return Container(
-              decoration: const BoxDecoration(
-                color: colorCards,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-              ),
-              height: MediaQuery.of(context).size.height * 0.5,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.5 - 100,
-                      child: Column(
-                        children: [
-                          DescriptionItem(
-                            title: 'Category',
-                            icon: transaction.category.icon,
-                            iconColor: transaction.category.iconColor,
-                            backgroundColor:
-                                transaction.category.backgroundColor,
-                            description: transaction.category.name,
-                            transaction: transaction,
-                          ),
-                          DescriptionItem(
-                            title: 'Account',
-                            icon: account.institution.logo,
-                            backgroundColor:
-                                account.institution.backgroundColor,
-                            description: account.name,
-                            transaction: transaction,
-                          ),
-                          DescriptionItem(
-                            title: 'Amount',
-                            icon: 'assets/icons/coin.png',
-                            backgroundColor: yellow,
-                            description: transaction.category.name == 'Ahorros'
-                                ? dolarAmountFormat.format(
-                                    transaction.amount,
-                                  )
-                                : amountFormat.format(
-                                    transaction.amount,
-                                  ),
-                            descriptionColor: transaction.category.isIncome
-                                ? incomeColor
-                                : expenseColor,
-                            transaction: transaction,
-                          ),
-                          DescriptionItem(
-                            title: 'Date',
-                            icon: 'assets/icons/calendar.png',
-                            backgroundColor: white,
-                            description: dateFormat.format(transaction.date),
-                            transaction: transaction,
-                          ),
-                          DescriptionItem(
-                            title: 'Note',
-                            icon: 'assets/icons/pencil.png',
-                            backgroundColor: white,
-                            description: transaction.note.isEmpty
-                                ? 'None'
-                                : transaction.note,
-                            transaction: transaction,
-                          ),
-                        ],
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                        color: Color(transaction.category.isIncome
+                            ? incomeColor!.value
+                            : expenseColor!.value),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
+                        child: Text(transaction.category.name,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            )),
+                      )),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.5 - 100,
+                    child: Column(
+                      children: [
+                        DescriptionItem(
+                          title: 'Category',
+                          icon: transaction.category.icon,
+                          iconColor: transaction.category.iconColor,
+                          backgroundColor: transaction.category.backgroundColor,
+                          description: transaction.category.name,
+                          transaction: transaction,
+                        ),
+                        DescriptionItem(
+                          title: 'Account',
+                          icon: account.institution.logo,
+                          backgroundColor: account.institution.backgroundColor,
+                          description: account.name,
+                          transaction: transaction,
+                        ),
+                        DescriptionItem(
+                          title: 'Amount',
+                          icon: 'assets/icons/coin.png',
+                          backgroundColor: yellow,
+                          description: transaction.category.name == 'Ahorros'
+                              ? dolarAmountFormat.format(
+                                  transaction.amount,
+                                )
+                              : amountFormat.format(
+                                  transaction.amount,
+                                ),
+                          descriptionColor: transaction.category.isIncome
+                              ? incomeColor
+                              : expenseColor,
+                          transaction: transaction,
+                        ),
+                        DescriptionItem(
+                          title: 'Date',
+                          icon: 'assets/icons/calendar.png',
+                          backgroundColor: white,
+                          description: dateFormat.format(transaction.date),
+                          transaction: transaction,
+                        ),
+                        DescriptionItem(
+                          title: 'Note',
+                          icon: 'assets/icons/pencil.png',
+                          backgroundColor: white,
+                          description: transaction.note.isEmpty
+                              ? 'None'
+                              : transaction.note,
+                          transaction: transaction,
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        backgroundColor: Colors.red,
+                      ),
+                      onPressed: () {
+                        context.read<AccountBloc>().add(
+                            AccountEvent.removeTransaction(
+                                account, transaction));
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Delete',
+                        style: TextStyle(fontSize: 16),
                       ),
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          backgroundColor: expenseColor,
-                        ),
-                        onPressed: () {
-                          context.read<AccountBloc>().add(
-                              AccountEvent.removeTransaction(
-                                  account, transaction));
-                          Navigator.pop(context);
-                        },
-                        child: const Text(
-                          'Delete',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
             );
           },
@@ -257,40 +270,38 @@ class DescriptionItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CircleAvatar(
-            backgroundColor: Color(backgroundColor),
-            child: Image(
-              image: AssetImage(icon),
-              height: 25,
-              width: 25,
-              color: iconColor != null ? Color(iconColor!) : null,
-            ),
-          ),
-          const SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
             children: [
+              CircleAvatar(
+                backgroundColor: Color(backgroundColor),
+                child: Image(
+                  image: AssetImage(icon),
+                  height: 25,
+                  width: 25,
+                  color: iconColor != null ? Color(iconColor!) : null,
+                ),
+              ),
+              const SizedBox(width: 10),
               Text(
                 title,
                 style: const TextStyle(
                   color: Colors.grey,
-                  fontSize: 12,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-              const SizedBox(
-                height: 2,
-              ),
-              Text(
-                description,
-                style: TextStyle(
-                  color: descriptionColor ?? Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.normal,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
+          ),
+          Text(
+            description,
+            style: TextStyle(
+              color: descriptionColor ?? Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.normal,
+              fontStyle: FontStyle.italic,
+            ),
           ),
         ],
       ),

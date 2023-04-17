@@ -8,6 +8,7 @@ import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.
 class AddTransactionScreen extends StatefulWidget {
   AddTransactionScreen.income({
     required this.user,
+    required this.selectedAccount,
     required this.onPressed,
     Key? key,
   })  : _title = 'Ingreso',
@@ -18,6 +19,7 @@ class AddTransactionScreen extends StatefulWidget {
 
   AddTransactionScreen.expense({
     required this.user,
+    required this.selectedAccount,
     required this.onPressed,
     Key? key,
   })  : _title = 'Egreso',
@@ -27,6 +29,7 @@ class AddTransactionScreen extends StatefulWidget {
         super(key: key);
 
   final UserModel user;
+  AccountModel selectedAccount;
   final Function(AccountModel, TransactionModel) onPressed;
   final bool _isIncome;
   final Color _color;
@@ -41,7 +44,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
   late CategoryModel _selectedCategory;
-  late AccountModel _selectedAccount;
 
   String _selectedDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
   DateTime _selectedDateTime = DateTime.now();
@@ -49,7 +51,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   @override
   void initState() {
     _selectedCategory = widget._categories[0];
-    _selectedAccount = widget.user.accounts[0];
 
     super.initState();
   }
@@ -228,11 +229,11 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       ),
                       WalletListTile(
                         leading: CircleAvatar(
-                          backgroundColor: Color(
-                              _selectedAccount.institution.backgroundColor),
+                          backgroundColor: Color(widget
+                              .selectedAccount.institution.backgroundColor),
                           child: Image(
                             image: AssetImage(
-                              _selectedAccount.institution.logo,
+                              widget.selectedAccount.institution.logo,
                             ),
                             height: 25,
                             width: 25,
@@ -252,7 +253,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                _selectedAccount.name,
+                                widget.selectedAccount.name,
                                 style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.normal,
@@ -290,7 +291,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                       return InkWell(
                                         onTap: () {
                                           setState(() {
-                                            _selectedAccount =
+                                            widget.selectedAccount =
                                                 widget.user.accounts[index];
                                           });
                                           Navigator.pop(context);
@@ -434,7 +435,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   category: _selectedCategory,
                   date: _selectedDateTime,
                 );
-                widget.onPressed(_selectedAccount, transaction);
+                widget.onPressed(widget.selectedAccount, transaction);
 
                 Navigator.pop(context);
               },

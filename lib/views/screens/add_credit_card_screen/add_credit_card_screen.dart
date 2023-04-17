@@ -46,7 +46,8 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
             ),
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text('New Credit Card', style: TextStyle(fontSize: 16)),
+              child: Text('New Credit Card',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             )),
       ),
       bottomNavigationBar: _saveButton(context),
@@ -84,7 +85,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                           'Banco',
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.bold,
                             color: Colors.grey,
                           ),
                         ),
@@ -178,7 +179,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                           'Tarjeta',
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight: FontWeight.normal,
+                            fontWeight: FontWeight.bold,
                             color: Colors.grey,
                           ),
                         ),
@@ -290,7 +291,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                           style: const TextStyle(color: Colors.grey),
                           decoration: const InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Numero de Tarjeta',
+                            hintText: 'Ultimos 4 digitos de la tarjeta',
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
                           maxLines: 1,
@@ -353,7 +354,8 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
 
                 Navigator.pop(context);
               },
-              child: const Text('Save', style: TextStyle(fontSize: 16)),
+              child: const Text('Save',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             ),
           ),
         ],

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
@@ -69,12 +67,7 @@ class CreditCardItem extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                creditCard.number
-                    .replaceAllMapped(
-                      RegExp(r'.{4}'),
-                      (Match m) => '${m[0]} ',
-                    )
-                    .trim(),
+                '**** **** **** ${creditCard.number}',
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.normal,

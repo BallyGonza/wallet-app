@@ -26,4 +26,13 @@ class CreditCardModel extends HiveObject {
     required this.number,
     required this.expenses,
   });
+
+  void update(CreditCardModel creditCard) {
+    id = creditCard.id;
+    name = creditCard.name;
+    institution = creditCard.institution;
+    cardType = creditCard.cardType;
+    number = creditCard.number;
+    expenses = creditCard.expenses;
+  }
 }

@@ -27,6 +27,7 @@ mixin _$CreditCardEvent {
     required TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)
         removeTransaction,
+    required TResult Function(CreditCardModel creditCard) update,
     required TResult Function(CreditCardModel creditCard, DateTime date) pay,
   }) =>
       throw _privateConstructorUsedError;
@@ -41,6 +42,7 @@ mixin _$CreditCardEvent {
     TResult? Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult? Function(CreditCardModel creditCard)? update,
     TResult? Function(CreditCardModel creditCard, DateTime date)? pay,
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +57,7 @@ mixin _$CreditCardEvent {
     TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult Function(CreditCardModel creditCard)? update,
     TResult Function(CreditCardModel creditCard, DateTime date)? pay,
     required TResult orElse(),
   }) =>
@@ -68,6 +71,7 @@ mixin _$CreditCardEvent {
         addTransaction,
     required TResult Function(CreditCardRemoveTransactionEvent value)
         removeTransaction,
+    required TResult Function(CreditCardUpdateEvent value) update,
     required TResult Function(CreditCardPayEvent value) pay,
   }) =>
       throw _privateConstructorUsedError;
@@ -79,6 +83,7 @@ mixin _$CreditCardEvent {
     TResult? Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult? Function(CreditCardRemoveTransactionEvent value)?
         removeTransaction,
+    TResult? Function(CreditCardUpdateEvent value)? update,
     TResult? Function(CreditCardPayEvent value)? pay,
   }) =>
       throw _privateConstructorUsedError;
@@ -89,6 +94,7 @@ mixin _$CreditCardEvent {
     TResult Function(CreditCardRemoveEvent value)? remove,
     TResult Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult Function(CreditCardRemoveTransactionEvent value)? removeTransaction,
+    TResult Function(CreditCardUpdateEvent value)? update,
     TResult Function(CreditCardPayEvent value)? pay,
     required TResult orElse(),
   }) =>
@@ -160,6 +166,7 @@ class _$CreditCardInitialEvent implements CreditCardInitialEvent {
     required TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)
         removeTransaction,
+    required TResult Function(CreditCardModel creditCard) update,
     required TResult Function(CreditCardModel creditCard, DateTime date) pay,
   }) {
     return init();
@@ -177,6 +184,7 @@ class _$CreditCardInitialEvent implements CreditCardInitialEvent {
     TResult? Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult? Function(CreditCardModel creditCard)? update,
     TResult? Function(CreditCardModel creditCard, DateTime date)? pay,
   }) {
     return init?.call();
@@ -194,6 +202,7 @@ class _$CreditCardInitialEvent implements CreditCardInitialEvent {
     TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult Function(CreditCardModel creditCard)? update,
     TResult Function(CreditCardModel creditCard, DateTime date)? pay,
     required TResult orElse(),
   }) {
@@ -213,6 +222,7 @@ class _$CreditCardInitialEvent implements CreditCardInitialEvent {
         addTransaction,
     required TResult Function(CreditCardRemoveTransactionEvent value)
         removeTransaction,
+    required TResult Function(CreditCardUpdateEvent value) update,
     required TResult Function(CreditCardPayEvent value) pay,
   }) {
     return init(this);
@@ -227,6 +237,7 @@ class _$CreditCardInitialEvent implements CreditCardInitialEvent {
     TResult? Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult? Function(CreditCardRemoveTransactionEvent value)?
         removeTransaction,
+    TResult? Function(CreditCardUpdateEvent value)? update,
     TResult? Function(CreditCardPayEvent value)? pay,
   }) {
     return init?.call(this);
@@ -240,6 +251,7 @@ class _$CreditCardInitialEvent implements CreditCardInitialEvent {
     TResult Function(CreditCardRemoveEvent value)? remove,
     TResult Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult Function(CreditCardRemoveTransactionEvent value)? removeTransaction,
+    TResult Function(CreditCardUpdateEvent value)? update,
     TResult Function(CreditCardPayEvent value)? pay,
     required TResult orElse(),
   }) {
@@ -329,6 +341,7 @@ class _$CreditCardAddEvent implements CreditCardAddEvent {
     required TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)
         removeTransaction,
+    required TResult Function(CreditCardModel creditCard) update,
     required TResult Function(CreditCardModel creditCard, DateTime date) pay,
   }) {
     return add(creditCard);
@@ -346,6 +359,7 @@ class _$CreditCardAddEvent implements CreditCardAddEvent {
     TResult? Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult? Function(CreditCardModel creditCard)? update,
     TResult? Function(CreditCardModel creditCard, DateTime date)? pay,
   }) {
     return add?.call(creditCard);
@@ -363,6 +377,7 @@ class _$CreditCardAddEvent implements CreditCardAddEvent {
     TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult Function(CreditCardModel creditCard)? update,
     TResult Function(CreditCardModel creditCard, DateTime date)? pay,
     required TResult orElse(),
   }) {
@@ -382,6 +397,7 @@ class _$CreditCardAddEvent implements CreditCardAddEvent {
         addTransaction,
     required TResult Function(CreditCardRemoveTransactionEvent value)
         removeTransaction,
+    required TResult Function(CreditCardUpdateEvent value) update,
     required TResult Function(CreditCardPayEvent value) pay,
   }) {
     return add(this);
@@ -396,6 +412,7 @@ class _$CreditCardAddEvent implements CreditCardAddEvent {
     TResult? Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult? Function(CreditCardRemoveTransactionEvent value)?
         removeTransaction,
+    TResult? Function(CreditCardUpdateEvent value)? update,
     TResult? Function(CreditCardPayEvent value)? pay,
   }) {
     return add?.call(this);
@@ -409,6 +426,7 @@ class _$CreditCardAddEvent implements CreditCardAddEvent {
     TResult Function(CreditCardRemoveEvent value)? remove,
     TResult Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult Function(CreditCardRemoveTransactionEvent value)? removeTransaction,
+    TResult Function(CreditCardUpdateEvent value)? update,
     TResult Function(CreditCardPayEvent value)? pay,
     required TResult orElse(),
   }) {
@@ -504,6 +522,7 @@ class _$CreditCardRemoveEvent implements CreditCardRemoveEvent {
     required TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)
         removeTransaction,
+    required TResult Function(CreditCardModel creditCard) update,
     required TResult Function(CreditCardModel creditCard, DateTime date) pay,
   }) {
     return remove(creditCard);
@@ -521,6 +540,7 @@ class _$CreditCardRemoveEvent implements CreditCardRemoveEvent {
     TResult? Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult? Function(CreditCardModel creditCard)? update,
     TResult? Function(CreditCardModel creditCard, DateTime date)? pay,
   }) {
     return remove?.call(creditCard);
@@ -538,6 +558,7 @@ class _$CreditCardRemoveEvent implements CreditCardRemoveEvent {
     TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult Function(CreditCardModel creditCard)? update,
     TResult Function(CreditCardModel creditCard, DateTime date)? pay,
     required TResult orElse(),
   }) {
@@ -557,6 +578,7 @@ class _$CreditCardRemoveEvent implements CreditCardRemoveEvent {
         addTransaction,
     required TResult Function(CreditCardRemoveTransactionEvent value)
         removeTransaction,
+    required TResult Function(CreditCardUpdateEvent value) update,
     required TResult Function(CreditCardPayEvent value) pay,
   }) {
     return remove(this);
@@ -571,6 +593,7 @@ class _$CreditCardRemoveEvent implements CreditCardRemoveEvent {
     TResult? Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult? Function(CreditCardRemoveTransactionEvent value)?
         removeTransaction,
+    TResult? Function(CreditCardUpdateEvent value)? update,
     TResult? Function(CreditCardPayEvent value)? pay,
   }) {
     return remove?.call(this);
@@ -584,6 +607,7 @@ class _$CreditCardRemoveEvent implements CreditCardRemoveEvent {
     TResult Function(CreditCardRemoveEvent value)? remove,
     TResult Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult Function(CreditCardRemoveTransactionEvent value)? removeTransaction,
+    TResult Function(CreditCardUpdateEvent value)? update,
     TResult Function(CreditCardPayEvent value)? pay,
     required TResult orElse(),
   }) {
@@ -694,6 +718,7 @@ class _$CreditCardAddTransactionEvent implements CreditCardAddTransactionEvent {
     required TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)
         removeTransaction,
+    required TResult Function(CreditCardModel creditCard) update,
     required TResult Function(CreditCardModel creditCard, DateTime date) pay,
   }) {
     return addTransaction(creditCard, creditCardTransaction);
@@ -711,6 +736,7 @@ class _$CreditCardAddTransactionEvent implements CreditCardAddTransactionEvent {
     TResult? Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult? Function(CreditCardModel creditCard)? update,
     TResult? Function(CreditCardModel creditCard, DateTime date)? pay,
   }) {
     return addTransaction?.call(creditCard, creditCardTransaction);
@@ -728,6 +754,7 @@ class _$CreditCardAddTransactionEvent implements CreditCardAddTransactionEvent {
     TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult Function(CreditCardModel creditCard)? update,
     TResult Function(CreditCardModel creditCard, DateTime date)? pay,
     required TResult orElse(),
   }) {
@@ -747,6 +774,7 @@ class _$CreditCardAddTransactionEvent implements CreditCardAddTransactionEvent {
         addTransaction,
     required TResult Function(CreditCardRemoveTransactionEvent value)
         removeTransaction,
+    required TResult Function(CreditCardUpdateEvent value) update,
     required TResult Function(CreditCardPayEvent value) pay,
   }) {
     return addTransaction(this);
@@ -761,6 +789,7 @@ class _$CreditCardAddTransactionEvent implements CreditCardAddTransactionEvent {
     TResult? Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult? Function(CreditCardRemoveTransactionEvent value)?
         removeTransaction,
+    TResult? Function(CreditCardUpdateEvent value)? update,
     TResult? Function(CreditCardPayEvent value)? pay,
   }) {
     return addTransaction?.call(this);
@@ -774,6 +803,7 @@ class _$CreditCardAddTransactionEvent implements CreditCardAddTransactionEvent {
     TResult Function(CreditCardRemoveEvent value)? remove,
     TResult Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult Function(CreditCardRemoveTransactionEvent value)? removeTransaction,
+    TResult Function(CreditCardUpdateEvent value)? update,
     TResult Function(CreditCardPayEvent value)? pay,
     required TResult orElse(),
   }) {
@@ -889,6 +919,7 @@ class _$CreditCardRemoveTransactionEvent
     required TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)
         removeTransaction,
+    required TResult Function(CreditCardModel creditCard) update,
     required TResult Function(CreditCardModel creditCard, DateTime date) pay,
   }) {
     return removeTransaction(creditCard, creditCardTransaction);
@@ -906,6 +937,7 @@ class _$CreditCardRemoveTransactionEvent
     TResult? Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult? Function(CreditCardModel creditCard)? update,
     TResult? Function(CreditCardModel creditCard, DateTime date)? pay,
   }) {
     return removeTransaction?.call(creditCard, creditCardTransaction);
@@ -923,6 +955,7 @@ class _$CreditCardRemoveTransactionEvent
     TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult Function(CreditCardModel creditCard)? update,
     TResult Function(CreditCardModel creditCard, DateTime date)? pay,
     required TResult orElse(),
   }) {
@@ -942,6 +975,7 @@ class _$CreditCardRemoveTransactionEvent
         addTransaction,
     required TResult Function(CreditCardRemoveTransactionEvent value)
         removeTransaction,
+    required TResult Function(CreditCardUpdateEvent value) update,
     required TResult Function(CreditCardPayEvent value) pay,
   }) {
     return removeTransaction(this);
@@ -956,6 +990,7 @@ class _$CreditCardRemoveTransactionEvent
     TResult? Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult? Function(CreditCardRemoveTransactionEvent value)?
         removeTransaction,
+    TResult? Function(CreditCardUpdateEvent value)? update,
     TResult? Function(CreditCardPayEvent value)? pay,
   }) {
     return removeTransaction?.call(this);
@@ -969,6 +1004,7 @@ class _$CreditCardRemoveTransactionEvent
     TResult Function(CreditCardRemoveEvent value)? remove,
     TResult Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult Function(CreditCardRemoveTransactionEvent value)? removeTransaction,
+    TResult Function(CreditCardUpdateEvent value)? update,
     TResult Function(CreditCardPayEvent value)? pay,
     required TResult orElse(),
   }) {
@@ -991,6 +1027,187 @@ abstract class CreditCardRemoveTransactionEvent implements CreditCardEvent {
   _$$CreditCardRemoveTransactionEventCopyWith<
           _$CreditCardRemoveTransactionEvent>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CreditCardUpdateEventCopyWith<$Res> {
+  factory _$$CreditCardUpdateEventCopyWith(_$CreditCardUpdateEvent value,
+          $Res Function(_$CreditCardUpdateEvent) then) =
+      __$$CreditCardUpdateEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CreditCardModel creditCard});
+}
+
+/// @nodoc
+class __$$CreditCardUpdateEventCopyWithImpl<$Res>
+    extends _$CreditCardEventCopyWithImpl<$Res, _$CreditCardUpdateEvent>
+    implements _$$CreditCardUpdateEventCopyWith<$Res> {
+  __$$CreditCardUpdateEventCopyWithImpl(_$CreditCardUpdateEvent _value,
+      $Res Function(_$CreditCardUpdateEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? creditCard = null,
+  }) {
+    return _then(_$CreditCardUpdateEvent(
+      null == creditCard
+          ? _value.creditCard
+          : creditCard // ignore: cast_nullable_to_non_nullable
+              as CreditCardModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreditCardUpdateEvent implements CreditCardUpdateEvent {
+  const _$CreditCardUpdateEvent(this.creditCard);
+
+  @override
+  final CreditCardModel creditCard;
+
+  @override
+  String toString() {
+    return 'CreditCardEvent.update(creditCard: $creditCard)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreditCardUpdateEvent &&
+            (identical(other.creditCard, creditCard) ||
+                other.creditCard == creditCard));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, creditCard);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreditCardUpdateEventCopyWith<_$CreditCardUpdateEvent> get copyWith =>
+      __$$CreditCardUpdateEventCopyWithImpl<_$CreditCardUpdateEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(CreditCardModel creditCard) add,
+    required TResult Function(CreditCardModel creditCard) remove,
+    required TResult Function(CreditCardModel creditCard,
+            CreditCardTransactionModel creditCardTransaction)
+        addTransaction,
+    required TResult Function(CreditCardModel creditCard,
+            CreditCardTransactionModel creditCardTransaction)
+        removeTransaction,
+    required TResult Function(CreditCardModel creditCard) update,
+    required TResult Function(CreditCardModel creditCard, DateTime date) pay,
+  }) {
+    return update(creditCard);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(CreditCardModel creditCard)? add,
+    TResult? Function(CreditCardModel creditCard)? remove,
+    TResult? Function(CreditCardModel creditCard,
+            CreditCardTransactionModel creditCardTransaction)?
+        addTransaction,
+    TResult? Function(CreditCardModel creditCard,
+            CreditCardTransactionModel creditCardTransaction)?
+        removeTransaction,
+    TResult? Function(CreditCardModel creditCard)? update,
+    TResult? Function(CreditCardModel creditCard, DateTime date)? pay,
+  }) {
+    return update?.call(creditCard);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(CreditCardModel creditCard)? add,
+    TResult Function(CreditCardModel creditCard)? remove,
+    TResult Function(CreditCardModel creditCard,
+            CreditCardTransactionModel creditCardTransaction)?
+        addTransaction,
+    TResult Function(CreditCardModel creditCard,
+            CreditCardTransactionModel creditCardTransaction)?
+        removeTransaction,
+    TResult Function(CreditCardModel creditCard)? update,
+    TResult Function(CreditCardModel creditCard, DateTime date)? pay,
+    required TResult orElse(),
+  }) {
+    if (update != null) {
+      return update(creditCard);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CreditCardInitialEvent value) init,
+    required TResult Function(CreditCardAddEvent value) add,
+    required TResult Function(CreditCardRemoveEvent value) remove,
+    required TResult Function(CreditCardAddTransactionEvent value)
+        addTransaction,
+    required TResult Function(CreditCardRemoveTransactionEvent value)
+        removeTransaction,
+    required TResult Function(CreditCardUpdateEvent value) update,
+    required TResult Function(CreditCardPayEvent value) pay,
+  }) {
+    return update(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CreditCardInitialEvent value)? init,
+    TResult? Function(CreditCardAddEvent value)? add,
+    TResult? Function(CreditCardRemoveEvent value)? remove,
+    TResult? Function(CreditCardAddTransactionEvent value)? addTransaction,
+    TResult? Function(CreditCardRemoveTransactionEvent value)?
+        removeTransaction,
+    TResult? Function(CreditCardUpdateEvent value)? update,
+    TResult? Function(CreditCardPayEvent value)? pay,
+  }) {
+    return update?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CreditCardInitialEvent value)? init,
+    TResult Function(CreditCardAddEvent value)? add,
+    TResult Function(CreditCardRemoveEvent value)? remove,
+    TResult Function(CreditCardAddTransactionEvent value)? addTransaction,
+    TResult Function(CreditCardRemoveTransactionEvent value)? removeTransaction,
+    TResult Function(CreditCardUpdateEvent value)? update,
+    TResult Function(CreditCardPayEvent value)? pay,
+    required TResult orElse(),
+  }) {
+    if (update != null) {
+      return update(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CreditCardUpdateEvent implements CreditCardEvent {
+  const factory CreditCardUpdateEvent(final CreditCardModel creditCard) =
+      _$CreditCardUpdateEvent;
+
+  CreditCardModel get creditCard;
+  @JsonKey(ignore: true)
+  _$$CreditCardUpdateEventCopyWith<_$CreditCardUpdateEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1076,6 +1293,7 @@ class _$CreditCardPayEvent implements CreditCardPayEvent {
     required TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)
         removeTransaction,
+    required TResult Function(CreditCardModel creditCard) update,
     required TResult Function(CreditCardModel creditCard, DateTime date) pay,
   }) {
     return pay(creditCard, date);
@@ -1093,6 +1311,7 @@ class _$CreditCardPayEvent implements CreditCardPayEvent {
     TResult? Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult? Function(CreditCardModel creditCard)? update,
     TResult? Function(CreditCardModel creditCard, DateTime date)? pay,
   }) {
     return pay?.call(creditCard, date);
@@ -1110,6 +1329,7 @@ class _$CreditCardPayEvent implements CreditCardPayEvent {
     TResult Function(CreditCardModel creditCard,
             CreditCardTransactionModel creditCardTransaction)?
         removeTransaction,
+    TResult Function(CreditCardModel creditCard)? update,
     TResult Function(CreditCardModel creditCard, DateTime date)? pay,
     required TResult orElse(),
   }) {
@@ -1129,6 +1349,7 @@ class _$CreditCardPayEvent implements CreditCardPayEvent {
         addTransaction,
     required TResult Function(CreditCardRemoveTransactionEvent value)
         removeTransaction,
+    required TResult Function(CreditCardUpdateEvent value) update,
     required TResult Function(CreditCardPayEvent value) pay,
   }) {
     return pay(this);
@@ -1143,6 +1364,7 @@ class _$CreditCardPayEvent implements CreditCardPayEvent {
     TResult? Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult? Function(CreditCardRemoveTransactionEvent value)?
         removeTransaction,
+    TResult? Function(CreditCardUpdateEvent value)? update,
     TResult? Function(CreditCardPayEvent value)? pay,
   }) {
     return pay?.call(this);
@@ -1156,6 +1378,7 @@ class _$CreditCardPayEvent implements CreditCardPayEvent {
     TResult Function(CreditCardRemoveEvent value)? remove,
     TResult Function(CreditCardAddTransactionEvent value)? addTransaction,
     TResult Function(CreditCardRemoveTransactionEvent value)? removeTransaction,
+    TResult Function(CreditCardUpdateEvent value)? update,
     TResult Function(CreditCardPayEvent value)? pay,
     required TResult orElse(),
   }) {

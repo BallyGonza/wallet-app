@@ -1,21 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
 
 import 'widgets/credit_card_list_item.dart';
 
 class AddCreditCardExpenseScreen extends StatefulWidget {
-  const AddCreditCardExpenseScreen({
+  AddCreditCardExpenseScreen({
+    required this.onPressed,
+    required this.selectedCreditCard,
     required this.user,
     Key? key,
   }) : super(key: key);
 
   final UserModel user;
+  CreditCardModel selectedCreditCard;
+  final Function(CreditCardModel, CreditCardTransactionModel) onPressed;
 
   @override
   State<AddCreditCardExpenseScreen> createState() =>
@@ -27,7 +29,6 @@ class _AddCreditCardExpenseScreenState
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
 
-  late CreditCardModel _selectedCreditCard;
   late CategoryModel _selectedCategory;
   bool _isRecurrent = false;
   int _cuotas = 1;
@@ -37,7 +38,6 @@ class _AddCreditCardExpenseScreenState
 
   @override
   void initState() {
-    _selectedCreditCard = widget.user.creditCards[0];
     _selectedCategory = defaultExpenseCategories[0];
 
     super.initState();
@@ -126,11 +126,11 @@ class _AddCreditCardExpenseScreenState
                     children: [
                       WalletListTile(
                         leading: CircleAvatar(
-                          backgroundColor: Color(
-                              _selectedCreditCard.institution.backgroundColor),
+                          backgroundColor: Color(widget
+                              .selectedCreditCard.institution.backgroundColor),
                           child: Image(
                             image: AssetImage(
-                              _selectedCreditCard.cardType.logo,
+                              widget.selectedCreditCard.cardType.logo,
                             ),
                             height: 25,
                             width: 25,
@@ -150,7 +150,7 @@ class _AddCreditCardExpenseScreenState
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                _selectedCreditCard.institution.name,
+                                widget.selectedCreditCard.institution.name,
                                 style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.normal,
@@ -193,8 +193,9 @@ class _AddCreditCardExpenseScreenState
                                             return InkWell(
                                               onTap: () {
                                                 setState(() {
-                                                  _selectedCreditCard = widget
-                                                      .user.creditCards[index];
+                                                  widget.selectedCreditCard =
+                                                      widget.user
+                                                          .creditCards[index];
                                                 });
                                                 Navigator.pop(context);
                                               },
@@ -559,9 +560,7 @@ class _AddCreditCardExpenseScreenState
                   isReccurent: _isRecurrent,
                   cuotas: _cuotas,
                 );
-                context.read<CreditCardBloc>().add(
-                    CreditCardEvent.addTransaction(
-                        _selectedCreditCard, creditCardExpense));
+                widget.onPressed(widget.selectedCreditCard, creditCardExpense);
                 Navigator.pop(context);
               },
               child: const Text('Save',

@@ -20,6 +20,9 @@ class CreditCardEvent with _$CreditCardEvent {
     CreditCardModel creditCard,
     CreditCardTransactionModel creditCardTransaction,
   ) = CreditCardRemoveTransactionEvent;
+  const factory CreditCardEvent.update(
+    CreditCardModel creditCard,
+  ) = CreditCardUpdateEvent;
   const factory CreditCardEvent.pay(
     CreditCardModel creditCard,
     DateTime date,

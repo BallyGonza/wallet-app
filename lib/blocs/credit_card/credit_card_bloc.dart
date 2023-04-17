@@ -11,6 +11,7 @@ class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
     on<CreditCardRemoveEvent>(_onRemove);
     on<CreditCardAddTransactionEvent>(_onAddTransaction);
     on<CreditCardRemoveTransactionEvent>(_onRemoveTransaction);
+    on<CreditCardUpdateEvent>(_onUpdate);
     on<CreditCardPayEvent>(_onPay);
 
     add(const CreditCardEvent.init());
@@ -45,6 +46,16 @@ class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
   ) async {
     emit(const CreditCardState.loading());
     await creditCardRepository.removeCreditCard(event.creditCard);
+    creditCards = await creditCardRepository.getCreditCards();
+    emit(CreditCardState.loaded(creditCards));
+  }
+
+  Future<void> _onUpdate(
+    CreditCardUpdateEvent event,
+    Emitter<CreditCardState> emit,
+  ) async {
+    emit(const CreditCardState.loading());
+    await creditCardRepository.updateCreditCard(event.creditCard);
     creditCards = await creditCardRepository.getCreditCards();
     emit(CreditCardState.loaded(creditCards));
   }

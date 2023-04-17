@@ -41,7 +41,8 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             ),
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text('New Account', style: TextStyle(fontSize: 16)),
+              child: Text('New Account',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             )),
       ),
       bottomNavigationBar: _saveButton(context),
@@ -75,7 +76,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                         'Cuenta',
                         style: TextStyle(
                           fontSize: 16,
-                          fontWeight: FontWeight.normal,
+                          fontWeight: FontWeight.bold,
                           color: Colors.grey,
                         ),
                       ),
@@ -197,7 +198,8 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
 
                 Navigator.pop(context);
               },
-              child: const Text('Save', style: TextStyle(fontSize: 16)),
+              child: const Text('Save',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             ),
           ),
         ],

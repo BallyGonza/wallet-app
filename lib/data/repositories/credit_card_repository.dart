@@ -28,6 +28,15 @@ class CreditCardRepository {
     await userRepository.saveUser(user);
   }
 
+  // Update a credit card
+  Future<void> updateCreditCard(CreditCardModel creditCard) async {
+    final user = await userRepository.getUser();
+    user.creditCards
+        .firstWhere((element) => element.id == creditCard.id)
+        .update(creditCard);
+    await userRepository.saveUser(user);
+  }
+
   // Add a transaction to a credit card
   Future<void> addTransaction(
     CreditCardModel creditCard,
