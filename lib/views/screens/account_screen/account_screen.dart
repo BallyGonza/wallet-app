@@ -110,7 +110,11 @@ class _AccountScreenState extends State<AccountScreen> {
             accountRepository.getBalanceOfAccount(widget.account, widget.date) >
                     0
                 ? incomeColor!.value
-                : expenseColor!.value,
+                : accountRepository.getBalanceOfAccount(
+                            widget.account, widget.date) <
+                        0
+                    ? expenseColor!.value
+                    : Colors.grey.value,
           ),
         ],
       ),

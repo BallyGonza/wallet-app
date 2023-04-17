@@ -52,27 +52,25 @@ class TransactionListItem extends StatelessWidget {
                             description: transaction.category.name,
                             transaction: transaction,
                           ),
-                          // DescriptionItem(
-                          //   title: 'Account',
-                          //   icon: transaction.account.institution.logo,
-                          //   backgroundColor:
-                          //       transaction.account.institution.backgroundColor,
-                          //   description: transaction.account.name,
-                          //   transaction: transaction,
-                          // ),
+                          DescriptionItem(
+                            title: 'Account',
+                            icon: account.institution.logo,
+                            backgroundColor:
+                                account.institution.backgroundColor,
+                            description: account.name,
+                            transaction: transaction,
+                          ),
                           DescriptionItem(
                             title: 'Amount',
                             icon: 'assets/icons/coin.png',
                             backgroundColor: yellow,
-                            description:
-                                // transaction.account.name == 'Ahorros'
-                                //     ? dolarAmountFormat.format(
-                                //         transaction.amount,
-                                //       )
-                                //     :
-                                amountFormat.format(
-                              transaction.amount,
-                            ),
+                            description: transaction.category.name == 'Ahorros'
+                                ? dolarAmountFormat.format(
+                                    transaction.amount,
+                                  )
+                                : amountFormat.format(
+                                    transaction.amount,
+                                  ),
                             descriptionColor: transaction.category.isIncome
                                 ? incomeColor
                                 : expenseColor,
@@ -81,14 +79,14 @@ class TransactionListItem extends StatelessWidget {
                           DescriptionItem(
                             title: 'Date',
                             icon: 'assets/icons/calendar.png',
-                            backgroundColor: indigo,
+                            backgroundColor: white,
                             description: dateFormat.format(transaction.date),
                             transaction: transaction,
                           ),
                           DescriptionItem(
                             title: 'Note',
                             icon: 'assets/icons/pencil.png',
-                            backgroundColor: indigo,
+                            backgroundColor: white,
                             description: transaction.note.isEmpty
                                 ? 'None'
                                 : transaction.note,

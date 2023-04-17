@@ -2,8 +2,8 @@ import 'package:wallet_app/data/data.dart';
 
 List<CategoryModel> defaultIncomeCategories = [
   income,
+  replenishment,
   savingsCategory,
-  replenishment
 ];
 List<CategoryModel> defaultExpenseCategories = [
   others,
@@ -14,8 +14,8 @@ List<CategoryModel> defaultExpenseCategories = [
   shopping,
   services,
   education,
-  savings,
   creditCard,
+  savings,
 ];
 
 CategoryModel income = CategoryModel(
@@ -51,7 +51,7 @@ CategoryModel replenishment = CategoryModel(
 CategoryModel afip = CategoryModel(
   id: 3,
   name: 'AFIP',
-  icon: 'assets/icons/categories/afip.jpeg',
+  icon: 'assets/icons/categories/afip.png',
   isIncome: true,
   backgroundColor: white,
   subCategories: [],
@@ -424,7 +424,7 @@ CategoryModel transferOut = CategoryModel(
   icon: 'assets/icons/categories/transfer.png',
   isIncome: false,
   backgroundColor: red,
-  iconColor: black,
+  iconColor: white,
   subCategories: [],
 );
 

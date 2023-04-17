@@ -87,7 +87,11 @@ class _ExpenseItemState extends State<ExpenseItem>
                           widget.user, widget.date, widget.expense),
                     ),
                     style: TextStyle(
-                      color: expenseColor,
+                      color: userRepository.getTotalByCategoryRecursive(
+                                  widget.user, widget.date, widget.expense) ==
+                              0
+                          ? Colors.grey
+                          : expenseColor,
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),

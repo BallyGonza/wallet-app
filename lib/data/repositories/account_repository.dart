@@ -227,7 +227,11 @@ class AccountRepository {
     for (var transaction in account.transactions) {
       if (transaction.date.month <= date.month &&
           transaction.date.year <= date.year) {
-        balance += transaction.amount;
+        if (transaction.category.isIncome) {
+          balance += transaction.amount;
+        } else {
+          balance -= transaction.amount;
+        }
       }
     }
     return balance;

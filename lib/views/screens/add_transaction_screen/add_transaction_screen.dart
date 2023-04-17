@@ -426,7 +426,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 var transaction = TransactionModel(
                   id: DateTime.now().millisecondsSinceEpoch,
                   note: _noteController.text,
-                  amount: widget._isIncome ? amount : -amount,
+                  amount: amount,
                   category: _selectedCategory,
                   date: _selectedDateTime,
                 );

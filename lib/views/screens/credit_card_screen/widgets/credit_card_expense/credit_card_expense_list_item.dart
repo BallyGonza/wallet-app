@@ -22,7 +22,6 @@ class CreditCardExpenseListItem extends StatefulWidget {
 class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController amountController = TextEditingController();
     int currentCuota =
         (widget.transaction.date.difference(widget.date).inDays / 30)
             .round()
@@ -128,116 +127,76 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
           builder: (context) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Column(
-                    children: [
-                      DescriptionItem(
-                        title: 'Categoria',
-                        icon: widget.transaction.category.icon,
-                        iconColor: widget.transaction.category.iconColor,
-                        backgroundColor:
-                            widget.transaction.category.backgroundColor,
-                        description: widget.transaction.category.name,
-                        transaction: widget.transaction,
-                        onTap: () {},
-                      ),
-                      DescriptionItem(
-                        title: 'Monto',
-                        icon: 'assets/icons/coin.png',
-                        backgroundColor: yellow,
-                        description:
-                            amountFormat.format(widget.transaction.amount),
-                        descriptionColor: widget.transaction.category.isIncome
-                            ? incomeColor
-                            : expenseColor,
-                        transaction: widget.transaction,
-                        onTap: () {
-                          // showDialog(
-                          //   context: context,
-                          //   builder: (context) {
-                          //     return AlertDialog(
-                          //       title: const Text('Editar monto'),
-                          //       content: TextField(
-                          //         controller: amountController,
-                          //         keyboardType: TextInputType.number,
-                          //         decoration: const InputDecoration(
-                          //           hintText: 'Monto',
-                          //         ),
-                          //       ),
-                          //       actions: [
-                          //         TextButton(
-                          //           onPressed: () {
-                          //             Navigator.of(context).pop();
-                          //           },
-                          //           child: const Text('Cancelar'),
-                          //         ),
-                          //         TextButton(
-                          //           onPressed: () {
-                          //             var amount = double.parse(amountController
-                          //                 .text
-                          //                 .replaceAll(RegExp(r'[,]'), '.'));
-                          //             setState(() {
-                          //               widget.transaction.amount = amount;
-                          //             });
-
-                          //              context
-                          //               UserEvent.updateCreditCardExpense(
-                          //                 widget.transaction.copyWith(
-                          //                   amount: amount,
-                          //                 ),
-                          //               ),
-                          //             );
-                          //             Navigator.of(context).pop();
-                          //           },
-                          //           child: const Text('Guardar'),
-                          //         ),
-                          //       ],
-                          //     );
-                          //   },
-                          // );
-                        },
-                      ),
-                      DescriptionItem(
-                        title: 'Fecha',
-                        icon: 'assets/icons/calendar.png',
-                        backgroundColor: indigo,
-                        description: dateFormat.format(widget.transaction.date),
-                        transaction: widget.transaction,
-                        onTap: () {},
-                      ),
-                      DescriptionItem(
-                        title: 'Note',
-                        icon: 'assets/icons/pencil.png',
-                        backgroundColor: indigo,
-                        description: widget.transaction.note.isEmpty
-                            ? 'None'
-                            : widget.transaction.note,
-                        transaction: widget.transaction,
-                        onTap: () {},
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.4,
+                child: Column(
+                  children: [
+                    Column(
+                      children: [
+                        DescriptionItem(
+                          title: 'Categoria',
+                          icon: widget.transaction.category.icon,
+                          iconColor: widget.transaction.category.iconColor,
+                          backgroundColor:
+                              widget.transaction.category.backgroundColor,
+                          description: widget.transaction.category.name,
+                          transaction: widget.transaction,
+                          onTap: () {},
                         ),
-                        backgroundColor: expenseColor,
-                      ),
-                      onPressed: widget.onPressDelete,
-                      child: const Text(
-                        'Delete',
-                        style: TextStyle(fontSize: 16),
-                      ),
+                        DescriptionItem(
+                          title: 'Monto',
+                          icon: 'assets/icons/coin.png',
+                          backgroundColor: yellow,
+                          description:
+                              amountFormat.format(widget.transaction.amount),
+                          descriptionColor: widget.transaction.category.isIncome
+                              ? incomeColor
+                              : expenseColor,
+                          transaction: widget.transaction,
+                          onTap: () {},
+                        ),
+                        DescriptionItem(
+                          title: 'Fecha',
+                          icon: 'assets/icons/calendar.png',
+                          backgroundColor: white,
+                          description:
+                              dateFormat.format(widget.transaction.date),
+                          transaction: widget.transaction,
+                          onTap: () {},
+                        ),
+                        DescriptionItem(
+                          title: 'Note',
+                          icon: 'assets/icons/pencil.png',
+                          backgroundColor: white,
+                          description: widget.transaction.note.isEmpty
+                              ? 'None'
+                              : widget.transaction.note,
+                          transaction: widget.transaction,
+                          onTap: () {},
+                        ),
+                      ],
                     ),
-                  )
-                ],
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          backgroundColor: expenseColor,
+                        ),
+                        onPressed: widget.onPressDelete,
+                        child: const Text(
+                          'Delete',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             );
           },

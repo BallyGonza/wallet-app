@@ -38,8 +38,8 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            _totalExpenses(creditCardRepository, creditCardExpenses),
             _expensesList(creditCardExpenses, context),
+            _totalExpenses(creditCardRepository, creditCardExpenses),
           ],
         ),
       ),
@@ -52,9 +52,8 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
       child: Container(
         decoration: const BoxDecoration(
           color: colorCards,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
+          borderRadius: BorderRadius.all(
+            Radius.circular(20),
           ),
         ),
         child: creditCardExpenses.isEmpty
@@ -108,7 +107,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
       trailing: Text(
         amountFormat.format(creditCardRepository.getTotalOfCreditCard(
             widget.creditCard, widget.date)),
-        style: const TextStyle(fontSize: 16, color: Colors.white),
+        style: TextStyle(fontSize: 16, color: expenseColor),
       ),
     );
   }

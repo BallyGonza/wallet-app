@@ -90,7 +90,11 @@ class _IncomeItemState extends State<IncomeItem> with TickerProviderStateMixin {
                               widget.user, widget.date, widget.income),
                         ),
                   style: TextStyle(
-                    color: incomeColor,
+                    color: userRepository.getTotalByCategoryRecursive(
+                                widget.user, widget.date, widget.income) ==
+                            0
+                        ? Colors.grey
+                        : incomeColor,
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
                   ),
@@ -163,8 +167,14 @@ class _IncomeItemState extends State<IncomeItem> with TickerProviderStateMixin {
                                     userRepository.getTotalByCategory(
                                         widget.user, widget.date, subCategory),
                                   ),
-                            style: const TextStyle(
-                              color: Colors.white,
+                            style: TextStyle(
+                              color: userRepository.getTotalByCategory(
+                                          widget.user,
+                                          widget.date,
+                                          subCategory) ==
+                                      0
+                                  ? Colors.grey
+                                  : incomeColor,
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
