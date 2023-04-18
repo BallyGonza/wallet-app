@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
 
@@ -408,7 +406,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                 var fromAccount = TransactionModel(
                   id: DateTime.now().millisecondsSinceEpoch,
                   note: _noteController.text,
-                  amount: -amount,
+                  amount: amount,
                   category: transferOut,
                   date: _selectedDateTime,
                 );

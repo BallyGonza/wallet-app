@@ -4,7 +4,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
-import 'package:wallet_app/views/widgets/widgets.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({
