@@ -27,8 +27,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final PageController _pageController = PageController(initialPage: 0);
-  UserRepository usersRepository = UserRepository();
-  late Box<UserModel> box;
   DateTime selectedDate = DateTime.now();
   bool _yearMode = false;
   int currentIndex = 0;
