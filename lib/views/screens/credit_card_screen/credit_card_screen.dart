@@ -341,15 +341,15 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                       amount: creditCardRepository.getTotalOfCreditCard(
                           widget.creditCard, widget.date),
                       note: 'Pago de tarjeta de crédito',
-                      category: widget.creditCard.cardType.name == 'VISA'
+                      category: widget.creditCard.cardType.name == 'Visa'
                           ? widget.user.expenseCategories
                               .firstWhere((element) =>
                                   element.name == 'Tarjeta de Credito')
-                              .subCategories[1]
+                              .subCategories[0]
                           : widget.user.expenseCategories
                               .firstWhere((element) =>
                                   element.name == 'Tarjeta de Credito')
-                              .subCategories[0],
+                              .subCategories[1],
                     ),
                   ),
                 );

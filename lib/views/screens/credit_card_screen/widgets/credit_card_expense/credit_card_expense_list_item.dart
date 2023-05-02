@@ -23,9 +23,7 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
   @override
   Widget build(BuildContext context) {
     int currentCuota =
-        (widget.transaction.date.difference(widget.date).inDays / 30)
-            .round()
-            .abs();
+        (widget.transaction.date.month - widget.date.month).abs();
     return InkWell(
       child: Padding(
         padding: const EdgeInsets.all(16.0),

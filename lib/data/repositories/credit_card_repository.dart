@@ -90,7 +90,7 @@ class CreditCardRepository {
   // Pay a credit card
   Future<void> pay(CreditCardModel creditCard, DateTime date) async {
     final user = await userRepository.getUser();
-    final cuota = (DateTime.now().difference(date).inDays / 30).round().abs();
+    final cuota = (date.month - creditCard.expenses.first.date.month).abs();
     user.creditCards
         .firstWhere((element) => element.id == creditCard.id)
         .expenses

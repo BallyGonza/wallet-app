@@ -25,8 +25,8 @@ class UserRepository {
     double total = 0;
     for (var account in accounts) {
       for (var transaction in account.transactions) {
-        if (transaction.date.month == date.month &&
-            transaction.date.year == date.year &&
+        if (transaction.date.month <= date.month &&
+            transaction.date.year <= date.year &&
             transaction.category.name != 'Transfer in' &&
             transaction.category.name != 'Transfer out' &&
             transaction.category.name != 'Ahorros') {
