@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/number_symbols.dart';
+import 'package:intl/number_symbols_data.dart';
 import 'package:wallet_app/theme.dart';
 
 import 'blocs/blocs.dart';
@@ -8,6 +10,27 @@ import 'data/data.dart';
 import 'views/views.dart';
 
 Future<void> main() async {
+  var argentina = const NumberSymbols(
+    NAME: "es_AR",
+    DECIMAL_SEP: ',',
+    GROUP_SEP: '.',
+    PERCENT: '%',
+    ZERO_DIGIT: '0',
+    PLUS_SIGN: '+',
+    MINUS_SIGN: '-',
+    EXP_SYMBOL: 'E',
+    PERMILL: '\u2030',
+    INFINITY: '\u221E',
+    NAN: 'NaN',
+    DECIMAL_PATTERN: '#,##0.###',
+    SCIENTIFIC_PATTERN: '#E0',
+    PERCENT_PATTERN: '#,##0\u00A0%',
+    CURRENCY_PATTERN: '\u00A4#,##0.00\u00A0',
+    DEF_CURRENCY_CODE: r'$',
+  );
+
+  numberFormatSymbols['es_AR'] = argentina;
+
   Hive.registerAdapter(AccountModelAdapter());
   Hive.registerAdapter(CategoryModelAdapter());
   Hive.registerAdapter(CreditCardModelAdapter());

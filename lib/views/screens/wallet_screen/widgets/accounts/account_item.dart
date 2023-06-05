@@ -59,9 +59,9 @@ class _AccountItemState extends State<AccountItem> {
         ),
         subtitle: Text(
           widget.account.name == 'Ahorros'
-              ? dolarAmountFormat.format(accountRepository.getBalanceOfAccount(
+              ? dolar.format(accountRepository.getBalanceOfAccount(
                   widget.account, widget.date))
-              : amountFormat.format(accountRepository.getBalanceOfAccount(
+              : arg.format(accountRepository.getBalanceOfAccount(
                   widget.account, widget.date)),
           style: TextStyle(
             fontWeight: FontWeight.bold,

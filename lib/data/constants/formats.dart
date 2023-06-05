@@ -1,5 +1,8 @@
 import 'package:intl/intl.dart';
 
-NumberFormat amountFormat = NumberFormat("\$ #,##0.00", "pt_BR");
-NumberFormat dolarAmountFormat = NumberFormat("U\$D #,##0.00", "en_US");
+NumberFormat arg = NumberFormat.currency(locale: "es_AR");
+NumberFormat dolar = NumberFormat.currency(
+  locale: "en_US",
+  symbol: "\$",
+);
 DateFormat dateFormat = DateFormat("dd/MM/yyyy");

@@ -59,7 +59,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
         title: Container(
             decoration: BoxDecoration(
               color: widget._color,
@@ -426,8 +425,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 }
 
                 var amount = double.parse(
-                    _amountController.text.replaceAll(RegExp(r'[,]'), '.'));
-                amountFormat.format(amount);
+                  _amountController.text.replaceAll(RegExp(r'[,]'), '.'),
+                );
+                arg.format(amount);
                 var transaction = TransactionModel(
                   id: DateTime.now().millisecondsSinceEpoch,
                   note: _noteController.text,
@@ -435,7 +435,10 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   category: _selectedCategory,
                   date: _selectedDateTime,
                 );
-                widget.onPressed(widget.selectedAccount, transaction);
+                widget.onPressed(
+                  widget.selectedAccount,
+                  transaction,
+                );
 
                 Navigator.pop(context);
               },

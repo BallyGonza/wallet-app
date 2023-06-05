@@ -162,13 +162,23 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
       title: const Text(
         'Gastos totales',
         style: TextStyle(
-            fontSize: 16, color: Colors.grey, fontWeight: FontWeight.bold),
+          fontSize: 16,
+          color: Colors.grey,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       trailing: Text(
-        amountFormat.format(creditCardRepository.getTotalOfCreditCard(
-            widget.creditCard, widget.date)),
+        arg.format(
+          creditCardRepository.getTotalOfCreditCard(
+            widget.creditCard,
+            widget.date,
+          ),
+        ),
         style: TextStyle(
-            fontSize: 16, color: expenseColor, fontWeight: FontWeight.bold),
+          fontSize: 16,
+          color: expenseColor,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -184,9 +194,10 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Text(widget.creditCard.institution.name,
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            child: Text(
+              widget.creditCard.institution.name,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
           )),
       actions: [
         IconButton(

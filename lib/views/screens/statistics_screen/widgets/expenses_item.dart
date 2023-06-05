@@ -82,7 +82,7 @@ class _ExpenseItemState extends State<ExpenseItem>
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text(
-                    amountFormat.format(
+                    arg.format(
                       userRepository.getTotalByCategoryRecursive(
                           widget.user, widget.date, widget.expense),
                     ),
@@ -156,7 +156,7 @@ class _ExpenseItemState extends State<ExpenseItem>
                               ),
                             ),
                             trailing: Text(
-                              amountFormat.format(
+                              arg.format(
                                 userRepository.getTotalByCategory(
                                     widget.user, widget.date, subCategory),
                               ),

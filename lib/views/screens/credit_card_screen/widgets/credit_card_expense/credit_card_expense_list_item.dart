@@ -86,7 +86,7 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  amountFormat.format(
+                  arg.format(
                     widget.transaction.amount / widget.transaction.cuotas,
                   ),
                   style: const TextStyle(
@@ -125,76 +125,65 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
           builder: (context) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.4,
-                child: Column(
-                  children: [
-                    Column(
-                      children: [
-                        DescriptionItem(
-                          title: 'Categoria',
-                          icon: widget.transaction.category.icon,
-                          iconColor: widget.transaction.category.iconColor,
-                          backgroundColor:
-                              widget.transaction.category.backgroundColor,
-                          description: widget.transaction.category.name,
-                          transaction: widget.transaction,
-                          onTap: () {},
+              child: Column(
+                children: [
+                  DescriptionItem(
+                    title: 'Categoria',
+                    icon: widget.transaction.category.icon,
+                    iconColor: widget.transaction.category.iconColor,
+                    backgroundColor:
+                        widget.transaction.category.backgroundColor,
+                    description: widget.transaction.category.name,
+                    transaction: widget.transaction,
+                    onTap: () {},
+                  ),
+                  DescriptionItem(
+                    title: 'Monto',
+                    icon: 'assets/icons/coin.png',
+                    backgroundColor: yellow,
+                    description: arg.format(widget.transaction.amount),
+                    descriptionColor: widget.transaction.category.isIncome
+                        ? incomeColor
+                        : expenseColor,
+                    transaction: widget.transaction,
+                    onTap: () {},
+                  ),
+                  DescriptionItem(
+                    title: 'Fecha',
+                    icon: 'assets/icons/calendar.png',
+                    backgroundColor: white,
+                    description: dateFormat.format(widget.transaction.date),
+                    transaction: widget.transaction,
+                    onTap: () {},
+                  ),
+                  DescriptionItem(
+                    title: 'Note',
+                    icon: 'assets/icons/pencil.png',
+                    backgroundColor: white,
+                    description: widget.transaction.note.isEmpty
+                        ? 'None'
+                        : widget.transaction.note,
+                    transaction: widget.transaction,
+                    onTap: () {},
+                  ),
+                  const Spacer(),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
                         ),
-                        DescriptionItem(
-                          title: 'Monto',
-                          icon: 'assets/icons/coin.png',
-                          backgroundColor: yellow,
-                          description:
-                              amountFormat.format(widget.transaction.amount),
-                          descriptionColor: widget.transaction.category.isIncome
-                              ? incomeColor
-                              : expenseColor,
-                          transaction: widget.transaction,
-                          onTap: () {},
-                        ),
-                        DescriptionItem(
-                          title: 'Fecha',
-                          icon: 'assets/icons/calendar.png',
-                          backgroundColor: white,
-                          description:
-                              dateFormat.format(widget.transaction.date),
-                          transaction: widget.transaction,
-                          onTap: () {},
-                        ),
-                        DescriptionItem(
-                          title: 'Note',
-                          icon: 'assets/icons/pencil.png',
-                          backgroundColor: white,
-                          description: widget.transaction.note.isEmpty
-                              ? 'None'
-                              : widget.transaction.note,
-                          transaction: widget.transaction,
-                          onTap: () {},
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          backgroundColor: expenseColor,
-                        ),
-                        onPressed: widget.onPressDelete,
-                        child: const Text(
-                          'Delete',
-                          style: TextStyle(fontSize: 16),
-                        ),
+                        backgroundColor: expenseColor,
                       ),
-                    )
-                  ],
-                ),
+                      onPressed: widget.onPressDelete,
+                      child: const Text(
+                        'Delete',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  )
+                ],
               ),
             );
           },

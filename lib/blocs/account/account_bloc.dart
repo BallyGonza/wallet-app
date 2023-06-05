@@ -10,6 +10,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     on<AccountAddEvent>(_onAdd);
     on<AccountRemoveEvent>(_onRemove);
     on<AccountAddTransactionEvent>(_onAddTransaction);
+    on<AccountUpdateTransactionEvent>(_onUpdateTransaction);
     on<AccountRemoveTransactionEvent>(_onRemoveTransaction);
 
     add(const AccountEvent.init());
@@ -54,6 +55,16 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   ) async {
     emit(const AccountState.loading());
     await accountRepository.addTransaction(event.account, event.transaction);
+    accounts = await accountRepository.getAccounts();
+    emit(AccountState.loaded(accounts));
+  }
+
+  Future<void> _onUpdateTransaction(
+    AccountUpdateTransactionEvent event,
+    Emitter<AccountState> emit,
+  ) async {
+    emit(const AccountState.loading());
+    await accountRepository.updateTransaction(event.account, event.transaction);
     accounts = await accountRepository.getAccounts();
     emit(AccountState.loaded(accounts));
   }

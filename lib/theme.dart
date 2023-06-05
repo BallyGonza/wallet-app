@@ -7,6 +7,7 @@ ThemeData walletAppTheme = ThemeData(
   textTheme: GoogleFonts.mavenProTextTheme(),
   appBarTheme: const AppBarTheme(
     color: appBackgroundColor,
+    centerTitle: true,
     elevation: 0,
     iconTheme: IconThemeData(
       color: Colors.white,

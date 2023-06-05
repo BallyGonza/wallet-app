@@ -25,20 +25,18 @@ class StatisticsScreen extends StatelessWidget {
     String expenseBalance;
     if (yearMode) {
       transactions = userRepository.getTransactionsByYear(user, date);
-      accountsBalance = amountFormat
-          .format(userRepository.getBalanceByYear(transactions, date));
+      accountsBalance =
+          arg.format(userRepository.getBalanceByYear(transactions, date));
       incomeBalance =
-          amountFormat.format(userRepository.getTotalIncomeByYear(user, date));
+          arg.format(userRepository.getTotalIncomeByYear(user, date));
       expenseBalance =
-          amountFormat.format(userRepository.getTotalExpenseByYear(user, date));
+          arg.format(userRepository.getTotalExpenseByYear(user, date));
     } else {
       transactions = userRepository.getTransactionsByDate(user, date);
       accountsBalance =
-          amountFormat.format(userRepository.getBalance(user.accounts, date));
-      incomeBalance =
-          amountFormat.format(userRepository.getTotalIncome(user, date));
-      expenseBalance =
-          amountFormat.format(userRepository.getTotalExpense(user, date));
+          arg.format(userRepository.getBalance(user.accounts, date));
+      incomeBalance = arg.format(userRepository.getTotalIncome(user, date));
+      expenseBalance = arg.format(userRepository.getTotalExpense(user, date));
     }
 
     return SafeArea(

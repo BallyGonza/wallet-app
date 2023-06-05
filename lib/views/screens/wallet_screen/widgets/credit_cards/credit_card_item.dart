@@ -54,7 +54,7 @@ class CreditCardItem extends StatelessWidget {
                       : null,
                 ),
                 Text(
-                  amountFormat.format(creditCardRepository.getTotalOfCreditCard(
+                  arg.format(creditCardRepository.getTotalOfCreditCard(
                       creditCard, date)),
                   style: const TextStyle(
                     fontSize: 18,

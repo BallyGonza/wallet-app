@@ -81,11 +81,11 @@ class _IncomeItemState extends State<IncomeItem> with TickerProviderStateMixin {
               children: [
                 Text(
                   widget.yearMode
-                      ? amountFormat.format(
+                      ? arg.format(
                           userRepository.getTotalByCategoryRecursiveByYear(
                               widget.user, widget.date, widget.income),
                         )
-                      : amountFormat.format(
+                      : arg.format(
                           userRepository.getTotalByCategoryRecursive(
                               widget.user, widget.date, widget.income),
                         ),
@@ -159,11 +159,11 @@ class _IncomeItemState extends State<IncomeItem> with TickerProviderStateMixin {
                           ),
                           trailing: Text(
                             widget.yearMode
-                                ? amountFormat.format(
+                                ? arg.format(
                                     userRepository.getTotalByCategoryYear(
                                         widget.user, widget.date, subCategory),
                                   )
-                                : amountFormat.format(
+                                : arg.format(
                                     userRepository.getTotalByCategory(
                                         widget.user, widget.date, subCategory),
                                   ),

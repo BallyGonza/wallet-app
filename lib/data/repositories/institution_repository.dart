@@ -12,6 +12,7 @@ List<InstitutionModel> defaultInstitutions = [
   wallet,
   mercadoPagoInstitution,
   bbvaInstitution,
+  naranjaXInstitution,
   hsbcInstitution,
   savingsInstitution,
 ];
@@ -19,6 +20,7 @@ List<InstitutionModel> defaultInstitutions = [
 List<InstitutionModel> defaultBankInstitutions = [
   bbvaInstitution,
   hsbcInstitution,
+  naranjaXInstitution,
 ];
 
 List<InstitutionModel> defaultCardTypes = [
@@ -87,4 +89,12 @@ InstitutionModel mastercardInstitution = InstitutionModel(
   name: 'Mastercard',
   logo: 'assets/icons/institutions/mastercard.png',
   backgroundColor: white,
+);
+
+InstitutionModel naranjaXInstitution = InstitutionModel(
+  id: 2,
+  name: 'Naranja X',
+  logo: 'assets/icons/institutions/naranja.png',
+  backgroundColor: white,
+  logoColor: naranjaColor,
 );

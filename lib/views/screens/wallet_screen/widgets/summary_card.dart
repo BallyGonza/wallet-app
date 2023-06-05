@@ -62,7 +62,7 @@ class SummaryCard extends StatelessWidget {
                 height: 1,
               ),
               Text(
-                amountFormat.format(amount),
+                arg.format(amount),
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,

@@ -43,7 +43,7 @@ class ExpensesScreen extends StatelessWidget {
                   fontSize: 18,
                   color: Colors.grey)),
           trailing: Text(
-            amountFormat.format(total),
+            arg.format(total),
             style: const TextStyle(
                 fontWeight: FontWeight.bold, fontSize: 18, color: Colors.grey),
           ),

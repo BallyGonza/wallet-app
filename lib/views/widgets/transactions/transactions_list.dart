@@ -61,7 +61,7 @@ class _TransactionsListState extends State<TransactionsList> {
                             ),
                             const Spacer(),
                             Text(
-                              amountFormat.format(
+                              arg.format(
                                 accountRepository.getTotalIncomeByDay(
                                     transactions, widget.date, widget.day),
                               ),
@@ -73,7 +73,7 @@ class _TransactionsListState extends State<TransactionsList> {
                             ),
                             const SizedBox(width: 10),
                             Text(
-                              amountFormat.format(
+                              arg.format(
                                 accountRepository.getTotalExpensesByDay(
                                     transactions, widget.date, widget.day),
                               ),

@@ -31,6 +31,7 @@ final lightViolet = const Color(0xFFEE82EE).value;
 // institutions colors
 final hsbcColor = const Color(0xFFD90009).value;
 final bbvaColor = const Color(0xFF004891).value;
+final naranjaColor = const Color(0xFFE67E22).value;
 final mercadoPagoColor = const Color(0xFF009FE2).value;
 
 // income color

@@ -59,7 +59,7 @@ CategoryModel afip = CategoryModel(
 
 CategoryModel savingsCategory = CategoryModel(
   id: 4,
-  name: 'Ahorros',
+  name: 'Savings',
   icon: 'assets/icons/categories/savings.png',
   isIncome: true,
   backgroundColor: green,

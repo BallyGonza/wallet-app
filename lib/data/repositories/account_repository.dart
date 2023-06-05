@@ -35,6 +35,27 @@ class AccountRepository {
     await _userRepository.saveUser(user);
   }
 
+  Future<void> updateTransaction(
+    AccountModel account,
+    TransactionModel transaction,
+  ) async {
+    final UserModel user = await _userRepository.getUser();
+    for (final AccountModel accountToUpdate in user.accounts) {
+      if (accountToUpdate.id == account.id) {
+        for (final TransactionModel transactionToUpdate
+            in accountToUpdate.transactions) {
+          if (transactionToUpdate.id == transaction.id) {
+            transactionToUpdate.amount = transaction.amount;
+            transactionToUpdate.category = transaction.category;
+            transactionToUpdate.date = transaction.date;
+            transactionToUpdate.note = transaction.note;
+          }
+        }
+      }
+    }
+    await _userRepository.saveUser(user);
+  }
+
   Future<void> removeTransaction(
     AccountModel account,
     TransactionModel transaction,
@@ -244,8 +265,6 @@ class AccountRepository {
   }
 }
 
-List<AccountModel> defaultAccounts = [cash];
-
 AccountModel cash = AccountModel(
   id: 0,
   name: 'Efectivo',
@@ -258,20 +277,26 @@ AccountModel hsbc = AccountModel(
   institution: hsbcInstitution,
 );
 
-AccountModel bbva = AccountModel(
+AccountModel naranjaX = AccountModel(
   id: 2,
+  name: 'Naranja X',
+  institution: bbvaInstitution,
+);
+
+AccountModel bbva = AccountModel(
+  id: 3,
   name: 'BBVA',
   institution: bbvaInstitution,
 );
 
 AccountModel mercadoPago = AccountModel(
-  id: 3,
+  id: 4,
   name: 'Mercado Pago',
   institution: mercadoPagoInstitution,
 );
 
 AccountModel savingsAccount = AccountModel(
-  id: 4,
+  id: 5,
   name: 'Ahorros',
   institution: savingsInstitution,
 );
