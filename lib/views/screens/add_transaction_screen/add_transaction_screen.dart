@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, inference_failure_on_function_return_type
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,28 +12,23 @@ class AddTransactionScreen extends StatefulWidget {
     required this.user,
     required this.selectedAccount,
     required this.onPressed,
-    Key? key,
+    super.key,
   })  : _title = 'Ingreso',
-        _isIncome = true,
         _color = incomeColor!,
-        _categories = user.incomeCategories,
-        super(key: key);
+        _categories = user.incomeCategories;
 
   AddTransactionScreen.expense({
     required this.user,
     required this.selectedAccount,
     required this.onPressed,
-    Key? key,
+    super.key,
   })  : _title = 'Egreso',
-        _isIncome = false,
         _color = expenseColor!,
-        _categories = user.expenseCategories,
-        super(key: key);
+        _categories = user.expenseCategories;
 
   final UserModel user;
   AccountModel selectedAccount;
   final Function(AccountModel, TransactionModel) onPressed;
-  final bool _isIncome;
   final Color _color;
   final String _title;
   final List<CategoryModel> _categories;
@@ -60,32 +57,35 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Container(
-            decoration: BoxDecoration(
-              color: widget._color,
-              borderRadius: BorderRadius.circular(20),
+          decoration: BoxDecoration(
+            color: widget._color,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text(
+              widget._title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text(widget._title,
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.bold)),
-            )),
+          ),
+        ),
       ),
       bottomNavigationBar: _saveButton(context),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Row(
                     children: [
                       Text(
-                        '\$',
+                        r'$',
                         style: TextStyle(
                           fontSize: 20,
                           color: widget._color,
@@ -109,7 +109,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           keyboardAppearance: Brightness.dark,
                           keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
-                            signed: false,
                           ),
                           style: TextStyle(
                             fontSize: 32,
@@ -117,7 +116,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             color: widget._color,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
@@ -133,7 +132,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16),
                   child: ListView(
                     children: [
                       WalletListTile(
@@ -183,7 +182,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         ),
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          showModalBottomSheet(
+                          showModalBottomSheet<Padding>(
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -194,7 +193,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             context: context,
                             builder: (context) {
                               return Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8),
                                 child: SizedBox(
                                   height: widget._categories.length * 85.0,
                                   child: ListView.builder(
@@ -208,7 +207,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                           });
                                           Navigator.pop(context);
                                         },
-                                        onSubCategoryTap: (subIndex) {
+                                        onSubCategoryTap: (int subIndex) {
                                           setState(() {
                                             _selectedCategory = widget
                                                 ._categories[index]
@@ -228,8 +227,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       ),
                       WalletListTile(
                         leading: CircleAvatar(
-                          backgroundColor: Color(widget
-                              .selectedAccount.institution.backgroundColor),
+                          backgroundColor: Color(
+                            widget.selectedAccount.institution.backgroundColor,
+                          ),
                           child: Image(
                             image: AssetImage(
                               widget.selectedAccount.institution.logo,
@@ -270,7 +270,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         ),
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          showModalBottomSheet(
+                          showModalBottomSheet<Padding>(
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -281,7 +281,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             context: context,
                             builder: (context) {
                               return Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8),
                                 child: SizedBox(
                                   height: widget.user.accounts.length * 80.0,
                                   child: ListView.builder(
@@ -309,19 +309,20 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       ),
                       WalletListTile(
                         leading: const Padding(
-                          padding: EdgeInsets.only(left: 10.0),
+                          padding: EdgeInsets.only(left: 10),
                           child: FaIcon(
                             FontAwesomeIcons.calendar,
                             color: Colors.grey,
                           ),
                         ),
                         content: Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
+                          padding: const EdgeInsets.only(left: 5),
                           child: Text(
                             _selectedDate,
                             style: const TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         trailing: const FaIcon(
@@ -331,7 +332,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         ),
                         onTap: () {
                           // cupertinoDatePicker
-                          showCupertinoModalPopup(
+                          showCupertinoModalPopup<CupertinoDatePicker>(
                             context: context,
                             builder: (context) {
                               return SizedBox(
@@ -348,7 +349,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                   child: CupertinoDatePicker(
                                     dateOrder: DatePickerDateOrder.dmy,
                                     backgroundColor: colorCards,
-                                    mode: CupertinoDatePickerMode.dateAndTime,
                                     initialDateTime: DateTime.now(),
                                     onDateTimeChanged: (value) {
                                       setState(() {
@@ -366,7 +366,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       ),
                       WalletListTile(
                         leading: const Padding(
-                          padding: EdgeInsets.only(left: 10.0),
+                          padding: EdgeInsets.only(left: 10),
                           child: FaIcon(
                             FontAwesomeIcons.fileSignature,
                             color: Colors.grey,
@@ -382,7 +382,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             hintText: 'Add note',
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
-                          maxLines: 1,
                           keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.multiline,
                         ),
@@ -424,11 +423,11 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   return;
                 }
 
-                var amount = double.parse(
-                  _amountController.text.replaceAll(RegExp(r'[,]'), '.'),
+                final amount = double.parse(
+                  _amountController.text.replaceAll(RegExp('[,]'), '.'),
                 );
                 arg.format(amount);
-                var transaction = TransactionModel(
+                final transaction = TransactionModel(
                   id: DateTime.now().millisecondsSinceEpoch,
                   note: _noteController.text,
                   amount: amount,

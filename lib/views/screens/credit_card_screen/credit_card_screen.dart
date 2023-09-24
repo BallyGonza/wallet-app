@@ -3,17 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/views/screens/credit_card_screen/widgets/widgets.dart';
 import 'package:wallet_app/views/views.dart';
-
-import 'widgets/widgets.dart';
 
 class CreditCardScreen extends StatefulWidget {
   const CreditCardScreen({
-    Key? key,
     required this.user,
     required this.date,
     required this.creditCard,
-  }) : super(key: key);
+    super.key,
+  });
 
   final UserModel user;
   final CreditCardModel creditCard;
@@ -26,10 +25,11 @@ class CreditCardScreen extends StatefulWidget {
 class _CreditCardScreenState extends State<CreditCardScreen> {
   @override
   Widget build(BuildContext context) {
-    final CreditCardRepository creditCardRepository = CreditCardRepository();
-    final List<CreditCardTransactionModel> creditCardExpenses =
-        creditCardRepository.getTransactionsByCreditCard(
-            widget.creditCard, widget.date);
+    final creditCardRepository = CreditCardRepository();
+    final creditCardExpenses = creditCardRepository.getTransactionsByCreditCard(
+      widget.creditCard,
+      widget.date,
+    );
 
     return Scaffold(
       bottomNavigationBar:
@@ -44,17 +44,19 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                 title: const Text(
                   'Owner',
                   style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 trailing: Text(
                   widget.creditCard.name,
                   style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic),
+                    fontSize: 16,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ),
             ),
@@ -64,17 +66,19 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                 title: const Text(
                   'Card number',
                   style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold),
+                    fontSize: 16,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 trailing: Text(
                   '**** **** **** ${widget.creditCard.number}',
                   style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.italic),
+                    fontSize: 16,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ),
             ),
@@ -86,8 +90,10 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
     );
   }
 
-  Expanded _expensesList(List<CreditCardTransactionModel> creditCardExpenses,
-      BuildContext context) {
+  Expanded _expensesList(
+    List<CreditCardTransactionModel> creditCardExpenses,
+    BuildContext context,
+  ) {
     return Expanded(
       child: Stack(
         children: [
@@ -122,8 +128,10 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
     );
   }
 
-  ListView _expenses(List<CreditCardTransactionModel> creditCardExpenses,
-      BuildContext context) {
+  ListView _expenses(
+    List<CreditCardTransactionModel> creditCardExpenses,
+    BuildContext context,
+  ) {
     return ListView(
       children: List.generate(
         creditCardExpenses.length,
@@ -151,13 +159,17 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
 
   Center _emptyExpenses() {
     return const Center(
-      child: Text('No expenses yet',
-          style: TextStyle(fontSize: 12, color: Colors.grey)),
+      child: Text(
+        'No expenses yet',
+        style: TextStyle(fontSize: 12, color: Colors.grey),
+      ),
     );
   }
 
-  ListTile _totalExpenses(CreditCardRepository creditCardRepository,
-      List<CreditCardTransactionModel> creditCardExpenses) {
+  ListTile _totalExpenses(
+    CreditCardRepository creditCardRepository,
+    List<CreditCardTransactionModel> creditCardExpenses,
+  ) {
     return ListTile(
       title: const Text(
         'Gastos totales',
@@ -184,137 +196,144 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
   }
 
   AppBar _appBar(BuildContext context) {
-    final TextEditingController numberCardController = TextEditingController();
+    final numberCardController = TextEditingController();
     return AppBar(
       elevation: 0,
       title: Container(
-          decoration: BoxDecoration(
-            color: Color(widget.creditCard.institution.logoColor!),
-            borderRadius: BorderRadius.circular(20),
+        decoration: BoxDecoration(
+          color: Color(widget.creditCard.institution.logoColor!),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Text(
+            widget.creditCard.institution.name,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Text(
-              widget.creditCard.institution.name,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          )),
+        ),
+      ),
       actions: [
         IconButton(
           onPressed: () {
-            showModalBottomSheet(
-                backgroundColor: appBackgroundColor,
-                constraints: const BoxConstraints(
-                  maxHeight: 180,
+            showModalBottomSheet<SizedBox>(
+              backgroundColor: appBackgroundColor,
+              constraints: const BoxConstraints(
+                maxHeight: 180,
+              ),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(20),
                 ),
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(20),
-                  ),
-                ),
-                context: context,
-                builder: (_) {
-                  return SizedBox(
-                    width: double.infinity,
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        ActionButton(
-                          text: 'Add expense',
-                          color: Color(expenseColor!.value),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                            setState(() {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => AddCreditCardExpenseScreen(
-                                    selectedCreditCard: widget.creditCard,
-                                    user: widget.user,
-                                    onPressed: (selectedCreditCard,
-                                        creditCardExpense) {
-                                      setState(() {
-                                        context.read<CreditCardBloc>().add(
-                                              CreditCardEvent.addTransaction(
-                                                  selectedCreditCard,
-                                                  creditCardExpense),
-                                            );
-                                      });
-                                    },
-                                  ),
+              ),
+              context: context,
+              builder: (_) {
+                return SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ActionButton(
+                        text: 'Add expense',
+                        color: Color(expenseColor!.value),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          setState(() {
+                            Navigator.of(context).push(
+                              MaterialPageRoute<AddCreditCardExpenseScreen>(
+                                builder: (_) => AddCreditCardExpenseScreen(
+                                  selectedCreditCard: widget.creditCard,
+                                  user: widget.user,
+                                  onPressed: (
+                                    selectedCreditCard,
+                                    creditCardExpense,
+                                  ) {
+                                    setState(() {
+                                      context.read<CreditCardBloc>().add(
+                                            CreditCardEvent.addTransaction(
+                                              selectedCreditCard,
+                                              creditCardExpense,
+                                            ),
+                                          );
+                                    });
+                                  },
                                 ),
-                              );
-                            });
-                          },
-                        ),
-                        ActionButton(
-                          text: 'Editar',
-                          color: Colors.blue,
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                            showDialog(
-                              context: context,
-                              builder: (_) => WalletAlertDialog(
-                                title: 'Editar tarjeta',
-                                content: WalletDialogTextField(
-                                  controller: numberCardController,
-                                  hint: 'Número de tarjeta',
-                                ),
-                                primaryActionTitle: 'Save',
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                  setState(() {
-                                    context.read<CreditCardBloc>().add(
-                                          CreditCardEvent.update(
-                                            CreditCardModel(
-                                                id: widget.creditCard.id,
-                                                cardType:
-                                                    widget.creditCard.cardType,
-                                                name: widget.creditCard.name,
-                                                number:
-                                                    numberCardController.text,
-                                                institution: widget
-                                                    .creditCard.institution,
-                                                expenses:
-                                                    widget.creditCard.expenses),
-                                          ),
-                                        );
-                                  });
-                                },
                               ),
                             );
-                          },
-                        ),
-                        ActionButton(
-                          text: 'Eliminar',
-                          color: Colors.red,
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                            showDialog(
-                              context: context,
-                              builder: (_) => WalletAlertDialog(
-                                  title: 'Eliminar tarjeta',
-                                  content: const Text(
-                                      '¿Estás seguro que deseas eliminar esta tarjeta?',
-                                      style: TextStyle(color: Colors.white)),
-                                  primaryActionTitle: 'Eliminar',
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                    context.read<CreditCardBloc>().add(
-                                          CreditCardEvent.remove(
-                                              widget.creditCard),
-                                        );
-                                    Navigator.of(context).pop();
-                                    Navigator.of(context).pop();
-                                  }),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  );
-                });
+                          });
+                        },
+                      ),
+                      ActionButton(
+                        text: 'Editar',
+                        color: Colors.blue,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          showDialog<WalletAlertDialog>(
+                            context: context,
+                            builder: (_) => WalletAlertDialog(
+                              title: 'Editar tarjeta',
+                              content: WalletDialogTextField(
+                                controller: numberCardController,
+                                hint: 'Número de tarjeta',
+                              ),
+                              primaryActionTitle: 'Save',
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                setState(() {
+                                  context.read<CreditCardBloc>().add(
+                                        CreditCardEvent.update(
+                                          CreditCardModel(
+                                            id: widget.creditCard.id,
+                                            cardType:
+                                                widget.creditCard.cardType,
+                                            name: widget.creditCard.name,
+                                            number: numberCardController.text,
+                                            institution:
+                                                widget.creditCard.institution,
+                                            expenses:
+                                                widget.creditCard.expenses,
+                                          ),
+                                        ),
+                                      );
+                                });
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                      ActionButton(
+                        text: 'Eliminar',
+                        color: Colors.red,
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          showDialog<WalletAlertDialog>(
+                            context: context,
+                            builder: (_) => WalletAlertDialog(
+                              title: 'Eliminar tarjeta',
+                              content: const Text(
+                                '¿Estás seguro que deseas eliminar esta tarjeta?',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              primaryActionTitle: 'Eliminar',
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                context.read<CreditCardBloc>().add(
+                                      CreditCardEvent.remove(
+                                        widget.creditCard,
+                                      ),
+                                    );
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+            );
           },
           icon: const Icon(FontAwesomeIcons.ellipsis),
         ),
@@ -323,9 +342,10 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
   }
 
   Padding _bottomNavBar(
-      BuildContext context,
-      CreditCardRepository creditCardRepository,
-      List<CreditCardTransactionModel> creditCardExpenses) {
+    BuildContext context,
+    CreditCardRepository creditCardRepository,
+    List<CreditCardTransactionModel> creditCardExpenses,
+  ) {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 8),
       child: ElevatedButton(
@@ -350,16 +370,22 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                       id: DateTime.now().microsecondsSinceEpoch,
                       date: widget.date,
                       amount: creditCardRepository.getTotalOfCreditCard(
-                          widget.creditCard, widget.date),
+                        widget.creditCard,
+                        widget.date,
+                      ),
                       note: 'Pago de tarjeta de crédito',
                       category: widget.creditCard.cardType.name == 'Visa'
                           ? widget.user.expenseCategories
-                              .firstWhere((element) =>
-                                  element.name == 'Tarjeta de Credito')
+                              .firstWhere(
+                                (element) =>
+                                    element.name == 'Tarjeta de Credito',
+                              )
                               .subCategories[0]
                           : widget.user.expenseCategories
-                              .firstWhere((element) =>
-                                  element.name == 'Tarjeta de Credito')
+                              .firstWhere(
+                                (element) =>
+                                    element.name == 'Tarjeta de Credito',
+                              )
                               .subCategories[1],
                     ),
                   ),
@@ -373,7 +399,10 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
         child: const Text(
           'Pagar',
           style: TextStyle(
-              fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+            fontSize: 16,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

@@ -10,8 +10,8 @@ import 'package:wallet_app/views/views.dart';
 class AddAccountScreen extends StatefulWidget {
   const AddAccountScreen({
     required this.user,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final UserModel user;
 
@@ -35,19 +35,21 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
       appBar: AppBar(
         elevation: 0,
         title: Container(
-            decoration: BoxDecoration(
-              color: primaryColor,
-              borderRadius: BorderRadius.circular(20),
+          decoration: BoxDecoration(
+            color: primaryColor,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text(
+              'New Account',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text('New Account',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            )),
+          ),
+        ),
       ),
       bottomNavigationBar: _saveButton(context),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
             child: Container(
@@ -59,7 +61,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16),
                 child: ListView(
                   children: [
                     WalletListTile(
@@ -104,7 +106,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                       ),
                       onTap: () {
                         FocusScope.of(context).unfocus();
-                        showModalBottomSheet(
+                        showModalBottomSheet<Padding>(
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
@@ -115,7 +117,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                           context: context,
                           builder: (context) {
                             return Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.all(8),
                               child: SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height * 0.45,
@@ -173,14 +175,16 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                backgroundColor: widget.user.accounts.any((element) =>
-                        element.institution == _selectedInstitution)
+                backgroundColor: widget.user.accounts.any(
+                  (element) => element.institution == _selectedInstitution,
+                )
                     ? Colors.grey
                     : primaryColor,
               ),
               onPressed: () {
                 if (widget.user.accounts.any(
-                    (element) => element.institution == _selectedInstitution)) {
+                  (element) => element.institution == _selectedInstitution,
+                )) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('La cuenta que intenta crear ya existe'),
@@ -189,7 +193,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                   return;
                 }
 
-                var account = AccountModel(
+                final account = AccountModel(
                   id: DateTime.now().millisecondsSinceEpoch,
                   institution: _selectedInstitution,
                   name: _selectedInstitution.name,
@@ -198,8 +202,10 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
 
                 Navigator.pop(context);
               },
-              child: const Text('Save',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              child: const Text(
+                'Save',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],

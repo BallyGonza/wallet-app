@@ -34,7 +34,7 @@ class WalletListTile extends StatelessWidget {
             ),
           ),
         ),
-        const Divider(color: Colors.black)
+        const Divider(color: Colors.black),
       ],
     );
   }

@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/data/data.dart';
 
-import 'widgets/widgets.dart';
+import 'package:wallet_app/views/screens/statistics_screen/widgets/widgets.dart';
 
 class IncomesScreen extends StatelessWidget {
-  const IncomesScreen(
-      {required this.user,
-      required this.date,
-      required this.yearMode,
-      super.key});
+  const IncomesScreen({
+    required this.user,
+    required this.date,
+    required this.yearMode,
+    super.key,
+  });
 
   final UserModel user;
   final DateTime date;
   final bool yearMode;
   @override
   Widget build(BuildContext context) {
-    final UserRepository userRepository = UserRepository();
+    final userRepository = UserRepository();
     final categories = user.incomeCategories;
     double total;
     if (yearMode) {
@@ -37,15 +38,21 @@ class IncomesScreen extends StatelessWidget {
           ),
         ),
         child: ListTile(
-          title: const Text('Total',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.grey)),
+          title: const Text(
+            'Total',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              color: Colors.grey,
+            ),
+          ),
           trailing: Text(
             arg.format(total),
             style: const TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 18, color: Colors.grey),
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              color: Colors.grey,
+            ),
           ),
         ),
       ),
@@ -54,19 +61,20 @@ class IncomesScreen extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.75,
             child: ListView.separated(
-                separatorBuilder: (context, index) => Container(
-                      height: 0.1,
-                      color: Colors.grey,
-                    ),
-                itemCount: categories.length,
-                itemBuilder: (context, index) {
-                  return IncomeItem(
-                    user: user,
-                    income: categories[index],
-                    date: date,
-                    yearMode: yearMode,
-                  );
-                }),
+              separatorBuilder: (context, index) => Container(
+                height: 0.1,
+                color: Colors.grey,
+              ),
+              itemCount: categories.length,
+              itemBuilder: (context, index) {
+                return IncomeItem(
+                  user: user,
+                  income: categories[index],
+                  date: date,
+                  yearMode: yearMode,
+                );
+              },
+            ),
           ),
         ],
       ),

@@ -6,22 +6,20 @@ class SummaryCard extends StatelessWidget {
   SummaryCard.income({
     required this.user,
     required this.date,
-    Key? key,
+    super.key,
   })  : title = 'Incomes',
         color = Colors.green,
         icon = FontAwesomeIcons.arrowUp,
-        amount = UserRepository().getTotalIncome(user, date),
-        super(key: key);
+        amount = UserRepository().getTotalIncome(user, date);
 
   SummaryCard.expense({
     required this.user,
     required this.date,
-    Key? key,
+    super.key,
   })  : title = 'Expenses',
         color = Colors.red,
         icon = FontAwesomeIcons.arrowDown,
-        amount = UserRepository().getTotalExpense(user, date),
-        super(key: key);
+        amount = UserRepository().getTotalExpense(user, date);
 
   final String title;
   final Color color;
@@ -35,7 +33,6 @@ class SummaryCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           CircleAvatar(
             radius: 20,

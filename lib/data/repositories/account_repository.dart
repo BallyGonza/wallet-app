@@ -6,18 +6,18 @@ class AccountRepository {
   final UserRepository _userRepository = UserRepository();
 
   Future<List<AccountModel>> getAccounts() async {
-    final UserModel user = await _userRepository.getUser();
+    final user = await _userRepository.getUser();
     return user.accounts;
   }
 
   Future<void> addAccount(AccountModel account) async {
-    final UserModel user = await _userRepository.getUser();
+    final user = await _userRepository.getUser();
     user.accounts.add(account);
     await _userRepository.saveUser(user);
   }
 
   Future<void> removeAccount(AccountModel account) async {
-    final UserModel user = await _userRepository.getUser();
+    final user = await _userRepository.getUser();
     user.accounts.remove(account);
     await _userRepository.saveUser(user);
   }
@@ -26,8 +26,8 @@ class AccountRepository {
     AccountModel account,
     TransactionModel transaction,
   ) async {
-    final UserModel user = await _userRepository.getUser();
-    for (final AccountModel accountToUpdate in user.accounts) {
+    final user = await _userRepository.getUser();
+    for (final accountToUpdate in user.accounts) {
       if (accountToUpdate.id == account.id) {
         accountToUpdate.transactions.add(transaction);
       }
@@ -39,16 +39,16 @@ class AccountRepository {
     AccountModel account,
     TransactionModel transaction,
   ) async {
-    final UserModel user = await _userRepository.getUser();
-    for (final AccountModel accountToUpdate in user.accounts) {
+    final user = await _userRepository.getUser();
+    for (final accountToUpdate in user.accounts) {
       if (accountToUpdate.id == account.id) {
-        for (final TransactionModel transactionToUpdate
-            in accountToUpdate.transactions) {
+        for (final transactionToUpdate in accountToUpdate.transactions) {
           if (transactionToUpdate.id == transaction.id) {
-            transactionToUpdate.amount = transaction.amount;
-            transactionToUpdate.category = transaction.category;
-            transactionToUpdate.date = transaction.date;
-            transactionToUpdate.note = transaction.note;
+            transactionToUpdate
+              ..amount = transaction.amount
+              ..category = transaction.category
+              ..date = transaction.date
+              ..note = transaction.note;
           }
         }
       }
@@ -60,8 +60,8 @@ class AccountRepository {
     AccountModel account,
     TransactionModel transaction,
   ) async {
-    final UserModel user = await _userRepository.getUser();
-    for (final AccountModel accountToUpdate in user.accounts) {
+    final user = await _userRepository.getUser();
+    for (final accountToUpdate in user.accounts) {
       if (accountToUpdate.id == account.id) {
         accountToUpdate.transactions.remove(transaction);
       }
@@ -73,14 +73,16 @@ class AccountRepository {
     List<AccountModel> accounts,
     DateTime date,
   ) {
-    final List<TransactionModel> transactions = [];
-    for (var account in accounts) {
+    final transactions = <TransactionModel>[];
+    for (final account in accounts) {
       transactions.addAll(account.transactions);
     }
     return transactions
-        .where((transaction) =>
-            transaction.date.month == date.month &&
-            transaction.date.year == date.year)
+        .where(
+          (transaction) =>
+              transaction.date.month == date.month &&
+              transaction.date.year == date.year,
+        )
         .toList();
   }
 
@@ -89,17 +91,19 @@ class AccountRepository {
     DateTime date,
     int day,
   ) {
-    final List<TransactionModel> transactions = [];
-    for (var account in accounts) {
+    final transactions = <TransactionModel>[];
+    for (final account in accounts) {
       transactions.addAll(account.transactions);
     }
     // sort
     transactions.sort((a, b) => a.date.compareTo(b.date));
     return transactions
-        .where((transaction) =>
-            transaction.date.day == day &&
-            transaction.date.month == date.month &&
-            transaction.date.year == date.year)
+        .where(
+          (transaction) =>
+              transaction.date.day == day &&
+              transaction.date.month == date.month &&
+              transaction.date.year == date.year,
+        )
         .toList();
   }
 
@@ -108,8 +112,8 @@ class AccountRepository {
     DateTime date,
     int day,
   ) {
-    double total = 0;
-    for (var transaction in transactions) {
+    var total = 0.0;
+    for (final transaction in transactions) {
       if (transaction.category.isIncome &&
           transaction.date.day == day &&
           transaction.date.month == date.month &&
@@ -127,8 +131,8 @@ class AccountRepository {
     DateTime date,
     int day,
   ) {
-    double total = 0;
-    for (var transaction in transactions) {
+    var total = 0.0;
+    for (final transaction in transactions) {
       if (!transaction.category.isIncome &&
           transaction.date.day == day &&
           transaction.date.month == date.month &&
@@ -145,12 +149,11 @@ class AccountRepository {
     UserModel user,
     TransactionModel transaction,
   ) {
-    for (var account in user.accounts) {
+    for (final account in user.accounts) {
       if (account.transactions.contains(transaction)) {
         return account;
       }
     }
-    return null;
   }
 
 // Hasta aca las necesito todas
@@ -161,28 +164,28 @@ class AccountRepository {
     UserModel user,
     DateTime date,
   ) {
-    List<TransactionModel> transactions = [];
-    transactions = account.transactions
-        .where((transaction) =>
-            transaction.date.month == date.month &&
-            transaction.date.year == date.year)
-        .toList();
-    transactions.sort((a, b) => b.date.compareTo(a.date));
-    return transactions;
+    return account.transactions
+        .where(
+          (transaction) =>
+              transaction.date.month == date.month &&
+              transaction.date.year == date.year,
+        )
+        .toList()
+      ..sort((a, b) => b.date.compareTo(a.date));
   }
 
   List<TransactionModel> getTransactionsByDate(
     DateTime date,
     List<TransactionModel> transactions,
   ) {
-    List<TransactionModel> transactions = [];
-    transactions = transactions
-        .where((transaction) =>
-            transaction.date.month == date.month &&
-            transaction.date.year == date.year)
-        .toList();
-    transactions.sort((a, b) => b.date.compareTo(a.date));
-    return transactions;
+    return transactions
+        .where(
+          (transaction) =>
+              transaction.date.month == date.month &&
+              transaction.date.year == date.year,
+        )
+        .toList()
+      ..sort((a, b) => b.date.compareTo(a.date));
   }
 
   List<TransactionModel> getTransactionsByCategory(
@@ -191,10 +194,12 @@ class AccountRepository {
     DateTime date,
   ) {
     return transactions
-        .where((transaction) =>
-            transaction.category.id == category.id &&
-            transaction.date.month == date.month &&
-            transaction.date.year == date.year)
+        .where(
+          (transaction) =>
+              transaction.category.id == category.id &&
+              transaction.date.month == date.month &&
+              transaction.date.year == date.year,
+        )
         .toList();
   }
 
@@ -203,16 +208,18 @@ class AccountRepository {
     UserModel user,
     DateTime date,
   ) {
-    final List<TransactionModel> institutionTransactions = [];
-    for (var account in user.accounts) {
+    final institutionTransactions = <TransactionModel>[];
+    for (final account in user.accounts) {
       if (account.institution.id == institution.id) {
         institutionTransactions.addAll(account.transactions);
       }
     }
     return institutionTransactions
-        .where((transaction) =>
-            transaction.date.month == date.month &&
-            transaction.date.year == date.year)
+        .where(
+          (transaction) =>
+              transaction.date.month == date.month &&
+              transaction.date.year == date.year,
+        )
         .toList();
   }
 
@@ -220,8 +227,8 @@ class AccountRepository {
     AccountModel account,
     DateTime date,
   ) {
-    double income = 0;
-    for (var transaction in account.transactions) {
+    var income = 0.0;
+    for (final transaction in account.transactions) {
       if (transaction.category.isIncome &&
           transaction.date.month <= date.month &&
           transaction.date.year <= date.year) {
@@ -235,8 +242,8 @@ class AccountRepository {
     AccountModel account,
     DateTime date,
   ) {
-    double expenses = 0;
-    for (var transaction in account.transactions) {
+    var expenses = 0.0;
+    for (final transaction in account.transactions) {
       if (!transaction.category.isIncome &&
           transaction.date.month <= date.month &&
           transaction.date.year <= date.year) {
@@ -250,8 +257,8 @@ class AccountRepository {
     AccountModel account,
     DateTime date,
   ) {
-    double balance = 0;
-    for (var transaction in account.transactions) {
+    var balance = 0.0;
+    for (final transaction in account.transactions) {
       if (transaction.date.month <= date.month &&
           transaction.date.year <= date.year) {
         if (transaction.category.isIncome) {

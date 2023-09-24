@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/views/screens/wallet_screen/widgets/widgets.dart';
 import 'package:wallet_app/views/views.dart';
-import 'widgets/widgets.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({
     required this.user,
-    Key? key,
     required this.date,
-  }) : super(key: key);
+    super.key,
+  });
 
   final DateTime date;
   final UserModel user;
@@ -43,7 +43,7 @@ class _WalletScreenState extends State<WalletScreen> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
+          MaterialPageRoute<AddCreditCardScreen>(
             builder: (context) => AddCreditCardScreen(
               user: widget.user,
             ),
@@ -63,7 +63,7 @@ class _WalletScreenState extends State<WalletScreen> {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
+          MaterialPageRoute<AddAccountScreen>(
             builder: (context) => AddAccountScreen(
               user: widget.user,
             ),

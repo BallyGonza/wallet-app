@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class WalletDialogTextField extends StatelessWidget {
-  const WalletDialogTextField(
-      {required this.hint, required this.controller, super.key});
+  const WalletDialogTextField({
+    required this.hint,
+    required this.controller,
+    super.key,
+  });
 
   final String hint;
   final TextEditingController controller;

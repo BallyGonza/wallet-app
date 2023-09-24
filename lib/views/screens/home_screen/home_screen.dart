@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
-
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/theme.dart';
+import 'package:wallet_app/views/screens/home_screen/widgets/widgets.dart';
 import 'package:wallet_app/views/views.dart';
-
-import 'widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -26,7 +22,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final PageController _pageController = PageController(initialPage: 0);
+  final PageController _pageController = PageController();
   DateTime selectedDate = DateTime.now();
   bool _yearMode = false;
   int currentIndex = 0;
@@ -195,7 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return;
             }
             Navigator.of(context).push(
-              MaterialPageRoute(
+              MaterialPageRoute<AddTransactionScreen>(
                 builder: (_) => AddTransactionScreen.income(
                   selectedAccount: widget.user.accounts.first,
                   user: widget.user,
@@ -236,7 +232,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return;
             }
             Navigator.of(context).push(
-              MaterialPageRoute(
+              MaterialPageRoute<AddTransactionScreen>(
                 builder: (_) => AddTransactionScreen.expense(
                   selectedAccount: widget.user.accounts.first,
                   user: widget.user,
@@ -277,19 +273,28 @@ class _HomeScreenState extends State<HomeScreen> {
               return;
             }
             Navigator.of(context).push(
-              MaterialPageRoute(
+              MaterialPageRoute<AddTransferScreen>(
                 builder: (_) => AddTransferScreen(
                   user: widget.user,
-                  onPressed: (fromSelectedAccount, fromAccount,
-                      toSelectedAccount, toAccount) {
+                  onPressed: (
+                    fromSelectedAccount,
+                    fromAccount,
+                    toSelectedAccount,
+                    toAccount,
+                  ) {
                     setState(() {
                       context.read<AccountBloc>().add(
                             AccountEvent.addTransaction(
-                                fromSelectedAccount, fromAccount),
+                              fromSelectedAccount,
+                              fromAccount,
+                            ),
                           );
                       context.read<AccountBloc>().add(
-                          AccountEvent.addTransaction(
-                              toSelectedAccount, toAccount));
+                            AccountEvent.addTransaction(
+                              toSelectedAccount,
+                              toAccount,
+                            ),
+                          );
                     });
                   },
                 ),
@@ -319,7 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
               return;
             }
             Navigator.of(context).push(
-              MaterialPageRoute(
+              MaterialPageRoute<AddCreditCardExpenseScreen>(
                 builder: (_) => AddCreditCardExpenseScreen(
                   selectedCreditCard: widget.user.creditCards.first,
                   user: widget.user,

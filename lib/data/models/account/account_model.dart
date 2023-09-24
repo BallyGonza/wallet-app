@@ -5,6 +5,12 @@ part 'account_model.g.dart';
 
 @HiveType(typeId: 0)
 class AccountModel extends HiveObject {
+  AccountModel({
+    required this.id,
+    required this.name,
+    required this.institution,
+  });
+
   @HiveField(0)
   int id;
   @HiveField(1)
@@ -13,10 +19,4 @@ class AccountModel extends HiveObject {
   InstitutionModel institution;
   @HiveField(3)
   List<TransactionModel> transactions = [];
-
-  AccountModel({
-    required this.id,
-    required this.name,
-    required this.institution,
-  });
 }

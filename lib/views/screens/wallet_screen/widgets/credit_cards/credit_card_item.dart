@@ -16,11 +16,11 @@ class CreditCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CreditCardRepository creditCardRepository = CreditCardRepository();
+    final creditCardRepository = CreditCardRepository();
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
-          MaterialPageRoute(
+          MaterialPageRoute<CreditCardScreen>(
             builder: (_) => CreditCardScreen(
               user: user,
               creditCard: creditCard,
@@ -54,14 +54,18 @@ class CreditCardItem extends StatelessWidget {
                       : null,
                 ),
                 Text(
-                  arg.format(creditCardRepository.getTotalOfCreditCard(
-                      creditCard, date)),
+                  arg.format(
+                    creditCardRepository.getTotalOfCreditCard(
+                      creditCard,
+                      date,
+                    ),
+                  ),
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
-                )
+                ),
               ],
             ),
             Align(

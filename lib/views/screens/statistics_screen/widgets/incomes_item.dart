@@ -5,12 +5,12 @@ import 'package:wallet_app/data/data.dart';
 
 class IncomeItem extends StatefulWidget {
   const IncomeItem({
-    Key? key,
     required this.user,
     required this.income,
     required this.date,
     required this.yearMode,
-  }) : super(key: key);
+    super.key,
+  });
 
   final UserModel user;
   final DateTime date;
@@ -83,15 +83,24 @@ class _IncomeItemState extends State<IncomeItem> with TickerProviderStateMixin {
                   widget.yearMode
                       ? arg.format(
                           userRepository.getTotalByCategoryRecursiveByYear(
-                              widget.user, widget.date, widget.income),
+                            widget.user,
+                            widget.date,
+                            widget.income,
+                          ),
                         )
                       : arg.format(
                           userRepository.getTotalByCategoryRecursive(
-                              widget.user, widget.date, widget.income),
+                            widget.user,
+                            widget.date,
+                            widget.income,
+                          ),
                         ),
                   style: TextStyle(
                     color: userRepository.getTotalByCategoryRecursive(
-                                widget.user, widget.date, widget.income) ==
+                              widget.user,
+                              widget.date,
+                              widget.income,
+                            ) ==
                             0
                         ? Colors.grey
                         : incomeColor,
@@ -102,18 +111,19 @@ class _IncomeItemState extends State<IncomeItem> with TickerProviderStateMixin {
                 const SizedBox(
                   width: 10,
                 ),
-                widget.income.subCategories.isEmpty
-                    ? const SizedBox(width: 10)
-                    : SizedBox(
-                        width: 10,
-                        child: FaIcon(
-                          isExpanded
-                              ? FontAwesomeIcons.angleDown
-                              : FontAwesomeIcons.angleRight,
-                          color: Colors.grey,
-                          size: 16,
-                        ),
-                      ),
+                if (widget.income.subCategories.isEmpty)
+                  const SizedBox(width: 10)
+                else
+                  SizedBox(
+                    width: 10,
+                    child: FaIcon(
+                      isExpanded
+                          ? FontAwesomeIcons.angleDown
+                          : FontAwesomeIcons.angleRight,
+                      color: Colors.grey,
+                      size: 16,
+                    ),
+                  ),
               ],
             ),
           ),
@@ -123,17 +133,18 @@ class _IncomeItemState extends State<IncomeItem> with TickerProviderStateMixin {
           curve: Curves.fastOutSlowIn,
           child: SizeTransition(
             sizeFactor: _controller,
-            axisAlignment: 0.0,
             child: Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: Column(
                 children: [
-                  for (var subCategory in widget.income.subCategories)
+                  for (final subCategory in widget.income.subCategories)
                     SizedBox(
                       height: 60,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 4, vertical: 8),
+                          horizontal: 4,
+                          vertical: 8,
+                        ),
                         child: ListTile(
                           leading: CircleAvatar(
                             radius: 20,
@@ -161,17 +172,24 @@ class _IncomeItemState extends State<IncomeItem> with TickerProviderStateMixin {
                             widget.yearMode
                                 ? arg.format(
                                     userRepository.getTotalByCategoryYear(
-                                        widget.user, widget.date, subCategory),
+                                      widget.user,
+                                      widget.date,
+                                      subCategory,
+                                    ),
                                   )
                                 : arg.format(
                                     userRepository.getTotalByCategory(
-                                        widget.user, widget.date, subCategory),
+                                      widget.user,
+                                      widget.date,
+                                      subCategory,
+                                    ),
                                   ),
                             style: TextStyle(
                               color: userRepository.getTotalByCategory(
-                                          widget.user,
-                                          widget.date,
-                                          subCategory) ==
+                                        widget.user,
+                                        widget.date,
+                                        subCategory,
+                                      ) ==
                                       0
                                   ? Colors.grey
                                   : incomeColor,

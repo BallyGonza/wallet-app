@@ -3,10 +3,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wallet_app/data/constants/colors.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar(
-      {required this.onTap, required this.currentIndex, super.key});
+  const BottomNavBar({
+    required this.onTap,
+    required this.currentIndex,
+    super.key,
+  });
 
-  final Function(int) onTap;
+  final void Function(int) onTap;
   final int currentIndex;
 
   @override

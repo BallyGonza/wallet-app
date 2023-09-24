@@ -4,15 +4,15 @@ import 'package:intl/intl.dart';
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 
-import 'transaction_list_item.dart';
+import 'package:wallet_app/views/widgets/transactions/transaction_list_item.dart';
 
 class TransactionsList extends StatefulWidget {
   const TransactionsList({
-    Key? key,
     required this.user,
     required this.date,
     required this.day,
-  }) : super(key: key);
+    super.key,
+  });
 
   final UserModel user;
   final DateTime date;
@@ -32,7 +32,10 @@ class _TransactionsListState extends State<TransactionsList> {
           orElse: () => const SizedBox.shrink(),
           loaded: (accounts) {
             final transactions = accountRepository.getTransactionsByDay(
-                accounts, widget.date, widget.day);
+              accounts,
+              widget.date,
+              widget.day,
+            );
             return transactions.isEmpty
                 ? const SizedBox.shrink()
                 : Column(
@@ -50,20 +53,27 @@ class _TransactionsListState extends State<TransactionsList> {
                                           DateTime.now().month &&
                                       widget.date.year == DateTime.now().year
                                   ? 'Hoy'
-                                  : DateFormat('EEEE dd')
-                                      .format(DateTime(widget.date.year,
-                                          widget.date.month, widget.day))
-                                      .toString(),
+                                  : DateFormat('EEEE dd').format(
+                                      DateTime(
+                                        widget.date.year,
+                                        widget.date.month,
+                                        widget.day,
+                                      ),
+                                    ),
                               style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.white,
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             const Spacer(),
                             Text(
                               arg.format(
                                 accountRepository.getTotalIncomeByDay(
-                                    transactions, widget.date, widget.day),
+                                  transactions,
+                                  widget.date,
+                                  widget.day,
+                                ),
                               ),
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -75,7 +85,10 @@ class _TransactionsListState extends State<TransactionsList> {
                             Text(
                               arg.format(
                                 accountRepository.getTotalExpensesByDay(
-                                    transactions, widget.date, widget.day),
+                                  transactions,
+                                  widget.date,
+                                  widget.day,
+                                ),
                               ),
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,

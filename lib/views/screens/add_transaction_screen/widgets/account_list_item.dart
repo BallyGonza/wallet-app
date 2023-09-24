@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/data/data.dart';
 
 class AccountListItem extends StatefulWidget {
-  const AccountListItem({required this.account, Key? key}) : super(key: key);
+  const AccountListItem({
+    required this.account,
+    super.key,
+  });
 
   final AccountModel account;
 

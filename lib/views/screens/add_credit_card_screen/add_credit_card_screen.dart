@@ -10,8 +10,8 @@ import 'package:wallet_app/views/views.dart';
 class AddCreditCardScreen extends StatefulWidget {
   const AddCreditCardScreen({
     required this.user,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final UserModel user;
 
@@ -40,21 +40,23 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
       appBar: AppBar(
         elevation: 0,
         title: Container(
-            decoration: BoxDecoration(
-              color: primaryColor,
-              borderRadius: BorderRadius.circular(20),
+          decoration: BoxDecoration(
+            color: primaryColor,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text(
+              'New Credit Card',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text('New Credit Card',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            )),
+          ),
+        ),
       ),
       bottomNavigationBar: _saveButton(context),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
               child: Container(
@@ -66,7 +68,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16),
                   child: ListView(
                     children: [
                       WalletListTile(
@@ -113,7 +115,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                         ),
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          showModalBottomSheet(
+                          showModalBottomSheet<Padding>(
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -124,7 +126,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                             context: context,
                             builder: (context) {
                               return Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8),
                                 child: SizedBox(
                                   height: defaultBankInstitutions.length * 90,
                                   child: Column(
@@ -207,7 +209,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                         ),
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          showModalBottomSheet(
+                          showModalBottomSheet<Padding>(
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -218,7 +220,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                             context: context,
                             builder: (context) {
                               return Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8),
                                 child: SizedBox(
                                   height: defaultCardTypes.length * 90,
                                   child: Column(
@@ -256,7 +258,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                       ),
                       WalletListTile(
                         leading: const Padding(
-                          padding: EdgeInsets.only(left: 10.0),
+                          padding: EdgeInsets.only(left: 10),
                           child: FaIcon(
                             FontAwesomeIcons.fileSignature,
                             color: Colors.grey,
@@ -272,14 +274,13 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                             hintText: 'Propietario',
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
-                          maxLines: 1,
                           keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.multiline,
                         ),
                       ),
                       WalletListTile(
                         leading: const Padding(
-                          padding: EdgeInsets.only(left: 10.0),
+                          padding: EdgeInsets.only(left: 10),
                           child: FaIcon(
                             FontAwesomeIcons.creditCard,
                             color: Colors.grey,
@@ -294,11 +295,9 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                             hintText: 'Ultimos 4 digitos de la tarjeta',
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
-                          maxLines: 1,
                           keyboardAppearance: Brightness.dark,
                           keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
-                            signed: false,
                           ),
                         ),
                       ),
@@ -340,7 +339,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                   return;
                 }
 
-                var creditCard = CreditCardModel(
+                final creditCard = CreditCardModel(
                   id: DateTime.now().millisecondsSinceEpoch,
                   institution: _selectedInstitution,
                   name: _noteController.text,
@@ -354,8 +353,10 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
 
                 Navigator.pop(context);
               },
-              child: const Text('Save',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              child: const Text(
+                'Save',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],

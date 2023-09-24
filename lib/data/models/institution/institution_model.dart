@@ -4,6 +4,17 @@ part 'institution_model.g.dart';
 
 @HiveType(typeId: 4)
 class InstitutionModel extends HiveObject {
+  InstitutionModel({
+    required this.id,
+    required this.name,
+    required this.logo,
+    required this.backgroundColor,
+    this.logoColor,
+    this.textColor,
+    this.visaCardColor,
+    this.masterCardColor,
+  });
+
   @HiveField(0)
   int id;
   @HiveField(1)
@@ -20,15 +31,4 @@ class InstitutionModel extends HiveObject {
   int? visaCardColor;
   @HiveField(7)
   int? masterCardColor;
-
-  InstitutionModel({
-    required this.id,
-    required this.name,
-    required this.logo,
-    required this.backgroundColor,
-    this.logoColor,
-    this.textColor,
-    this.visaCardColor,
-    this.masterCardColor,
-  });
 }

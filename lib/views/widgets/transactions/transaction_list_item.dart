@@ -22,18 +22,28 @@ class TransactionListItem extends StatefulWidget {
 }
 
 class _TransactionListItemState extends State<TransactionListItem> {
+  late AccountRepository accountRepository;
+  late AccountModel? account;
+
+  @override
+  void initState() {
+    accountRepository = AccountRepository();
+    account = accountRepository.getAccountOfTransaction(
+      widget.user,
+      widget.transaction,
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController amountController =
+    final amountController =
         TextEditingController(text: widget.transaction.amount.toString());
-    final TextEditingController noteController =
-        TextEditingController(text: widget.transaction.note);
-    final AccountRepository accountRepository = AccountRepository();
-    final account = accountRepository.getAccountOfTransaction(
-        widget.user, widget.transaction)!;
+    final noteController = TextEditingController(text: widget.transaction.note);
+
     return InkWell(
       onTap: () {
-        showModalBottomSheet(
+        showModalBottomSheet<Padding>(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(20),
@@ -43,7 +53,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
           context: context,
           builder: (context) {
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Column(
                 children: [
                   DescriptionItem(
@@ -57,9 +67,9 @@ class _TransactionListItemState extends State<TransactionListItem> {
                   ),
                   DescriptionItem(
                     title: 'Account',
-                    icon: account.institution.logo,
-                    backgroundColor: account.institution.backgroundColor,
-                    description: account.name,
+                    icon: account!.institution.logo,
+                    backgroundColor: account!.institution.backgroundColor,
+                    description: account!.name,
                     transaction: widget.transaction,
                   ),
                   DescriptionItem(
@@ -78,7 +88,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                         : expenseColor,
                     transaction: widget.transaction,
                     onTap: () {
-                      showDialog(
+                      showDialog<WalletAlertDialog>(
                         context: context,
                         builder: (_) => WalletAlertDialog(
                           title: 'Editar monto',
@@ -92,7 +102,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                             setState(() {
                               context.read<AccountBloc>().add(
                                     AccountEvent.updateTransaction(
-                                      account,
+                                      account!,
                                       widget.transaction.copyWith(
                                         amount: double.parse(
                                           amountController.text
@@ -114,7 +124,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                     description: dateFormat.format(widget.transaction.date),
                     transaction: widget.transaction,
                     onTap: () {
-                      showModalBottomSheet(
+                      showModalBottomSheet<SizedBox>(
                         context: context,
                         builder: (context) {
                           return SizedBox(
@@ -129,7 +139,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                                     onDateTimeChanged: (DateTime newDate) {
                                       context.read<AccountBloc>().add(
                                             AccountEvent.updateTransaction(
-                                              account,
+                                              account!,
                                               widget.transaction.copyWith(
                                                 date: newDate,
                                               ),
@@ -145,7 +155,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                                   onPressed: () {
                                     Navigator.of(context).pop();
                                   },
-                                )
+                                ),
                               ],
                             ),
                           );
@@ -162,7 +172,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                         : widget.transaction.note,
                     transaction: widget.transaction,
                     onTap: () {
-                      showDialog(
+                      showDialog<WalletAlertDialog>(
                         context: context,
                         builder: (_) => WalletAlertDialog(
                           title: 'Editar nota',
@@ -176,7 +186,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                             setState(() {
                               context.read<AccountBloc>().add(
                                     AccountEvent.updateTransaction(
-                                      account,
+                                      account!,
                                       widget.transaction.copyWith(
                                         note: noteController.text,
                                       ),
@@ -200,8 +210,11 @@ class _TransactionListItemState extends State<TransactionListItem> {
                       ),
                       onPressed: () {
                         context.read<AccountBloc>().add(
-                            AccountEvent.removeTransaction(
-                                account, widget.transaction));
+                              AccountEvent.removeTransaction(
+                                account!,
+                                widget.transaction,
+                              ),
+                            );
                         Navigator.pop(context);
                       },
                       child: const Text(
@@ -218,7 +231,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(15),
         child: Row(
           children: [
             CircleAvatar(
@@ -258,7 +271,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                         ),
                       ),
                       TextSpan(
-                        text: account.name,
+                        text: account!.name,
                         style: const TextStyle(
                           color: Colors.grey,
                           fontSize: 12,
@@ -268,23 +281,24 @@ class _TransactionListItemState extends State<TransactionListItem> {
                     ],
                   ),
                 ),
-                widget.transaction.note == ''
-                    ? const SizedBox.shrink()
-                    : Column(
-                        children: [
-                          const SizedBox(height: 1),
-                          Text(
-                            widget.transaction.note,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
-                              fontStyle: FontStyle.italic,
-                            ),
-                          ),
-                          const SizedBox(height: 1),
-                        ],
+                if (widget.transaction.note == '')
+                  const SizedBox.shrink()
+                else
+                  Column(
+                    children: [
+                      const SizedBox(height: 1),
+                      Text(
+                        widget.transaction.note,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12,
+                          fontWeight: FontWeight.normal,
+                          fontStyle: FontStyle.italic,
+                        ),
                       ),
+                      const SizedBox(height: 1),
+                    ],
+                  ),
               ],
             ),
             const Spacer(),
@@ -329,16 +343,16 @@ class _TransactionListItemState extends State<TransactionListItem> {
 
 class DescriptionItem extends StatelessWidget {
   const DescriptionItem({
-    Key? key,
     required this.title,
     required this.icon,
-    this.iconColor,
     required this.backgroundColor,
     required this.description,
-    this.descriptionColor,
     required this.transaction,
+    super.key,
+    this.iconColor,
+    this.descriptionColor,
     this.onTap,
-  }) : super(key: key);
+  });
 
   final String title;
   final String icon;
@@ -347,18 +361,16 @@ class DescriptionItem extends StatelessWidget {
   final String description;
   final Color? descriptionColor;
   final TransactionModel transaction;
-  final Function()? onTap;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (onTap != null) {
-          onTap!();
-        }
+        onTap?.call();
       },
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

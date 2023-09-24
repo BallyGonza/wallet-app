@@ -5,11 +5,11 @@ import 'package:wallet_app/data/data.dart';
 
 class ExpenseItem extends StatefulWidget {
   const ExpenseItem({
-    Key? key,
     required this.user,
     required this.expense,
     required this.date,
-  }) : super(key: key);
+    super.key,
+  });
 
   final UserModel user;
   final DateTime date;
@@ -37,7 +37,7 @@ class _ExpenseItemState extends State<ExpenseItem>
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: Column(
         children: [
           ListTile(
@@ -84,11 +84,17 @@ class _ExpenseItemState extends State<ExpenseItem>
                   Text(
                     arg.format(
                       userRepository.getTotalByCategoryRecursive(
-                          widget.user, widget.date, widget.expense),
+                        widget.user,
+                        widget.date,
+                        widget.expense,
+                      ),
                     ),
                     style: TextStyle(
                       color: userRepository.getTotalByCategoryRecursive(
-                                  widget.user, widget.date, widget.expense) ==
+                                widget.user,
+                                widget.date,
+                                widget.expense,
+                              ) ==
                               0
                           ? Colors.grey
                           : expenseColor,
@@ -99,18 +105,19 @@ class _ExpenseItemState extends State<ExpenseItem>
                   const SizedBox(
                     width: 10,
                   ),
-                  widget.expense.subCategories.isEmpty
-                      ? const SizedBox(width: 10)
-                      : SizedBox(
-                          width: 10,
-                          child: FaIcon(
-                            isExpanded
-                                ? FontAwesomeIcons.angleDown
-                                : FontAwesomeIcons.angleRight,
-                            color: Colors.grey,
-                            size: 16,
-                          ),
-                        ),
+                  if (widget.expense.subCategories.isEmpty)
+                    const SizedBox(width: 10)
+                  else
+                    SizedBox(
+                      width: 10,
+                      child: FaIcon(
+                        isExpanded
+                            ? FontAwesomeIcons.angleDown
+                            : FontAwesomeIcons.angleRight,
+                        color: Colors.grey,
+                        size: 16,
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -120,17 +127,18 @@ class _ExpenseItemState extends State<ExpenseItem>
             curve: Curves.fastOutSlowIn,
             child: SizeTransition(
               sizeFactor: _controller,
-              axisAlignment: 0.0,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
-                    for (var subCategory in widget.expense.subCategories)
+                    for (final subCategory in widget.expense.subCategories)
                       SizedBox(
                         height: 60,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 4, vertical: 8),
+                            horizontal: 4,
+                            vertical: 8,
+                          ),
                           child: ListTile(
                             leading: CircleAvatar(
                               radius: 20,
@@ -158,7 +166,10 @@ class _ExpenseItemState extends State<ExpenseItem>
                             trailing: Text(
                               arg.format(
                                 userRepository.getTotalByCategory(
-                                    widget.user, widget.date, subCategory),
+                                  widget.user,
+                                  widget.date,
+                                  subCategory,
+                                ),
                               ),
                               style: TextStyle(
                                 color: expenseColor,

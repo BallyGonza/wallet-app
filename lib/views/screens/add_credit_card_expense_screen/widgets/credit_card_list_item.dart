@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/data/data.dart';
 
 class CreditCardListItem extends StatelessWidget {
-  const CreditCardListItem({required this.creditCard, Key? key})
-      : super(key: key);
+  const CreditCardListItem({
+    required this.creditCard,
+    super.key,
+  });
 
   final CreditCardModel creditCard;
 

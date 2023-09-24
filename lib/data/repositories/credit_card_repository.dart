@@ -68,8 +68,8 @@ class CreditCardRepository {
     CreditCardModel creditCard,
     DateTime date,
   ) {
-    double total = 0;
-    for (var transaction in creditCard.expenses) {
+    var total = 0.0;
+    for (final transaction in creditCard.expenses) {
       total += transaction.amount / transaction.cuotas;
     }
     return total;
@@ -77,13 +77,17 @@ class CreditCardRepository {
 
   // Get transactions by credit card
   List<CreditCardTransactionModel> getTransactionsByCreditCard(
-      CreditCardModel creditCard, DateTime date) {
-    List<CreditCardTransactionModel> creditCardExpenses = creditCard.expenses;
+    CreditCardModel creditCard,
+    DateTime date,
+  ) {
+    var creditCardExpenses = creditCard.expenses;
     creditCardExpenses.sort((a, b) => b.date.compareTo(a.date));
     return creditCardExpenses = creditCardExpenses
-        .where((element) =>
-            element.cuotas >=
-            (element.date.difference(date).inDays / 30).round().abs())
+        .where(
+          (element) =>
+              element.cuotas >=
+              (element.date.difference(date).inDays / 30).round().abs(),
+        )
         .toList();
   }
 

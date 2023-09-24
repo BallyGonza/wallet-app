@@ -22,13 +22,12 @@ class CreditCardExpenseListItem extends StatefulWidget {
 class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
   @override
   Widget build(BuildContext context) {
-    int currentCuota =
+    final currentCuota =
         (widget.transaction.date.month - widget.date.month).abs();
     return InkWell(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CircleAvatar(
               backgroundColor:
@@ -57,20 +56,22 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
                   ),
                 ),
                 const SizedBox(height: 2),
-                widget.transaction.note != ''
-                    ? Text(
-                        widget.transaction.note,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      )
-                    : const SizedBox.shrink(),
-                widget.transaction.note != ''
-                    ? const SizedBox(height: 2)
-                    : const SizedBox.shrink(),
+                if (widget.transaction.note != '')
+                  Text(
+                    widget.transaction.note,
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  )
+                else
+                  const SizedBox.shrink(),
+                if (widget.transaction.note != '')
+                  const SizedBox(height: 2)
+                else
+                  const SizedBox.shrink(),
                 Text(
                   '${widget.transaction.date.day}/${widget.transaction.date.month}/${widget.transaction.date.year}',
                   style: const TextStyle(
@@ -96,16 +97,17 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
                   ),
                 ),
                 const SizedBox(height: 2),
-                widget.transaction.isReccurent == false
-                    ? Text(
-                        '$currentCuota/${widget.transaction.cuotas} cuotas',
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      )
-                    : const SizedBox.shrink()
+                if (widget.transaction.isReccurent == false)
+                  Text(
+                    '$currentCuota/${widget.transaction.cuotas} cuotas',
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                else
+                  const SizedBox.shrink(),
               ],
             ),
           ],
@@ -113,7 +115,7 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
       ),
       onTap: () {
         FocusScope.of(context).unfocus();
-        showModalBottomSheet(
+        showModalBottomSheet<Padding>(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30),
@@ -124,7 +126,7 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
           context: context,
           builder: (context) {
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Column(
                 children: [
                   DescriptionItem(
@@ -182,7 +184,7 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             );
@@ -195,16 +197,16 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
 
 class DescriptionItem extends StatelessWidget {
   const DescriptionItem({
-    Key? key,
     required this.title,
     required this.icon,
-    this.iconColor,
     required this.backgroundColor,
     required this.description,
-    this.descriptionColor,
     required this.transaction,
     required this.onTap,
-  }) : super(key: key);
+    super.key,
+    this.iconColor,
+    this.descriptionColor,
+  });
 
   final String title;
   final String icon;

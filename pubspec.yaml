@@ -54,6 +54,7 @@ dev_dependencies:
   hive_generator: ^2.0.0
   json_annotation: ^4.8.0
   json_serializable: ^6.6.1
+  very_good_analysis: ^5.1.0
 
 # flutter pub run flutter_launcher_icons
 flutter_launcher_icons:

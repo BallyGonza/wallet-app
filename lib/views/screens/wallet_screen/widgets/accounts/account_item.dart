@@ -4,11 +4,11 @@ import 'package:wallet_app/views/views.dart';
 
 class AccountItem extends StatefulWidget {
   const AccountItem({
-    Key? key,
     required this.account,
     required this.date,
     required this.user,
-  }) : super(key: key);
+    super.key,
+  });
 
   final AccountModel account;
   final UserModel user;
@@ -21,13 +21,13 @@ class AccountItem extends StatefulWidget {
 class _AccountItemState extends State<AccountItem> {
   @override
   Widget build(BuildContext context) {
-    final AccountRepository accountRepository = AccountRepository();
+    final accountRepository = AccountRepository();
 
     return InkWell(
       onTap: () {
         setState(() {
           Navigator.of(context).push(
-            MaterialPageRoute(
+            MaterialPageRoute<AccountScreen>(
               builder: (_) => AccountScreen(
                 user: widget.user,
                 account: widget.account,
@@ -59,18 +59,30 @@ class _AccountItemState extends State<AccountItem> {
         ),
         subtitle: Text(
           widget.account.name == 'Ahorros'
-              ? dolar.format(accountRepository.getBalanceOfAccount(
-                  widget.account, widget.date))
-              : arg.format(accountRepository.getBalanceOfAccount(
-                  widget.account, widget.date)),
+              ? dolar.format(
+                  accountRepository.getBalanceOfAccount(
+                    widget.account,
+                    widget.date,
+                  ),
+                )
+              : arg.format(
+                  accountRepository.getBalanceOfAccount(
+                    widget.account,
+                    widget.date,
+                  ),
+                ),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: accountRepository.getBalanceOfAccount(
-                        widget.account, widget.date) >
+                      widget.account,
+                      widget.date,
+                    ) >
                     0
                 ? Colors.green
                 : accountRepository.getBalanceOfAccount(
-                            widget.account, widget.date) <
+                          widget.account,
+                          widget.date,
+                        ) <
                         0
                     ? Colors.red
                     : Colors.grey,

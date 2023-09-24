@@ -1,8 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wallet_app/blocs/account/account_event.dart';
+import 'package:wallet_app/blocs/account/account_state.dart';
 import 'package:wallet_app/data/data.dart';
-
-import 'account_event.dart';
-import 'account_state.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
   AccountBloc() : super(const AccountState.initial()) {

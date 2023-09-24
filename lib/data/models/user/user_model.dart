@@ -5,6 +5,14 @@ part 'user_model.g.dart';
 
 @HiveType(typeId: 6)
 class UserModel extends HiveObject {
+  UserModel({
+    required this.id,
+    required this.accounts,
+    required this.incomeCategories,
+    required this.expenseCategories,
+    required this.creditCards,
+  });
+
   @HiveField(0)
   int id;
   @HiveField(1)
@@ -15,12 +23,4 @@ class UserModel extends HiveObject {
   List<CategoryModel> expenseCategories;
   @HiveField(4)
   List<CreditCardModel> creditCards;
-
-  UserModel({
-    required this.id,
-    required this.accounts,
-    required this.incomeCategories,
-    required this.expenseCategories,
-    required this.creditCards,
-  });
 }

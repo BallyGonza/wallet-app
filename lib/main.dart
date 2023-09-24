@@ -3,15 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/number_symbols.dart';
 import 'package:intl/number_symbols_data.dart';
+import 'package:wallet_app/blocs/blocs.dart';
+import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/theme.dart';
-
-import 'blocs/blocs.dart';
-import 'data/data.dart';
-import 'views/views.dart';
+import 'package:wallet_app/views/views.dart';
 
 Future<void> main() async {
-  var argentina = const NumberSymbols(
-    NAME: "es_AR",
+  const argentina = NumberSymbols(
+    NAME: 'es_AR',
     DECIMAL_SEP: ',',
     GROUP_SEP: '.',
     PERCENT: '%',
@@ -31,13 +30,14 @@ Future<void> main() async {
 
   numberFormatSymbols['es_AR'] = argentina;
 
-  Hive.registerAdapter(AccountModelAdapter());
-  Hive.registerAdapter(CategoryModelAdapter());
-  Hive.registerAdapter(CreditCardModelAdapter());
-  Hive.registerAdapter(CreditCardTransactionModelAdapter());
-  Hive.registerAdapter(InstitutionModelAdapter());
-  Hive.registerAdapter(TransactionModelAdapter());
-  Hive.registerAdapter(UserModelAdapter());
+  Hive
+    ..registerAdapter(AccountModelAdapter())
+    ..registerAdapter(CategoryModelAdapter())
+    ..registerAdapter(CreditCardModelAdapter())
+    ..registerAdapter(CreditCardTransactionModelAdapter())
+    ..registerAdapter(InstitutionModelAdapter())
+    ..registerAdapter(TransactionModelAdapter())
+    ..registerAdapter(UserModelAdapter());
 
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -73,12 +73,13 @@ class MyApp extends StatelessWidget {
       home: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
           return state.maybeWhen(
-              orElse: () => const Center(child: CircularProgressIndicator()),
-              loaded: (user) {
-                return HomeScreen(
-                  user: user,
-                );
-              });
+            orElse: () => const Center(child: CircularProgressIndicator()),
+            loaded: (user) {
+              return HomeScreen(
+                user: user,
+              );
+            },
+          );
         },
       ),
     );

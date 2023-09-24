@@ -22,9 +22,9 @@ class UserRepository {
   }
 
   double getBalance(List<AccountModel> accounts, DateTime date) {
-    double total = 0;
-    for (var account in accounts) {
-      for (var transaction in account.transactions) {
+    var total = 0.0;
+    for (final account in accounts) {
+      for (final transaction in account.transactions) {
         if (transaction.date.month <= date.month &&
             transaction.date.year <= date.year &&
             transaction.category.name != 'Transfer in' &&
@@ -42,10 +42,10 @@ class UserRepository {
   }
 
   double getTotalIncome(UserModel user, DateTime date) {
-    double income = 0;
-    List<TransactionModel> transactions = [];
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
+    var income = 0.0;
+    final transactions = <TransactionModel>[];
+    for (final account in user.accounts) {
+      for (final transaction in account.transactions) {
         if (transaction.date.month == date.month &&
             transaction.date.year == date.year &&
             transaction.category.name != 'Transfer in' &&
@@ -54,7 +54,7 @@ class UserRepository {
         }
       }
     }
-    for (var transaction in transactions) {
+    for (final transaction in transactions) {
       if (transaction.category.isIncome) {
         income += transaction.amount;
       }
@@ -64,10 +64,10 @@ class UserRepository {
   }
 
   double getTotalExpense(UserModel user, DateTime date) {
-    double expense = 0;
-    List<TransactionModel> transactions = [];
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
+    var expense = 0.0;
+    final transactions = <TransactionModel>[];
+    for (final account in user.accounts) {
+      for (final transaction in account.transactions) {
         if (transaction.date.month == date.month &&
             transaction.date.year == date.year &&
             transaction.category.name != 'Transfer out' &&
@@ -76,7 +76,7 @@ class UserRepository {
         }
       }
     }
-    for (var transaction in transactions) {
+    for (final transaction in transactions) {
       if (!transaction.category.isIncome) {
         expense += transaction.amount;
       }
@@ -84,20 +84,28 @@ class UserRepository {
     return expense;
   }
 
-  filterTransactionsByDate(List<TransactionModel> transactions, DateTime date) {
+  List<TransactionModel> filterTransactionsByDate(
+    List<TransactionModel> transactions,
+    DateTime date,
+  ) {
     return transactions
-        .where((transaction) =>
-            transaction.date.month == date.month &&
-            transaction.date.year == date.year)
+        .where(
+          (transaction) =>
+              transaction.date.month == date.month &&
+              transaction.date.year == date.year,
+        )
         .toList();
   }
 
   double getTotalByCategory(
-      UserModel user, DateTime date, CategoryModel category) {
-    double total = 0;
-    List<TransactionModel> transactions = [];
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
+    UserModel user,
+    DateTime date,
+    CategoryModel category,
+  ) {
+    var total = 0.0;
+    final transactions = <TransactionModel>[];
+    for (final account in user.accounts) {
+      for (final transaction in account.transactions) {
         if (transaction.date.month == date.month &&
             transaction.date.year == date.year &&
             transaction.category.name != 'Transfer out' &&
@@ -107,7 +115,7 @@ class UserRepository {
         }
       }
     }
-    for (var transaction in transactions) {
+    for (final transaction in transactions) {
       if (transaction.category.id == category.id) {
         total += transaction.amount;
       }
@@ -116,11 +124,14 @@ class UserRepository {
   }
 
   double getTotalByCategoryRecursive(
-      UserModel user, DateTime date, CategoryModel category) {
-    double total = 0;
-    List<TransactionModel> transactions = [];
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
+    UserModel user,
+    DateTime date,
+    CategoryModel category,
+  ) {
+    var total = 0.0;
+    final transactions = <TransactionModel>[];
+    for (final account in user.accounts) {
+      for (final transaction in account.transactions) {
         if (transaction.date.month == date.month &&
             transaction.date.year == date.year &&
             transaction.category.name != 'Transfer out') {
@@ -128,22 +139,22 @@ class UserRepository {
         }
       }
     }
-    for (var transaction in transactions) {
+    for (final transaction in transactions) {
       if (transaction.category.id == category.id) {
         total += transaction.amount;
       }
     }
 
-    for (var subcategory in category.subCategories) {
+    for (final subcategory in category.subCategories) {
       total += getTotalByCategoryRecursive(user, date, subcategory);
     }
     return total;
   }
 
   List<TransactionModel> getTransactionsByYear(UserModel user, DateTime date) {
-    List<TransactionModel> transactions = [];
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
+    final transactions = <TransactionModel>[];
+    for (final account in user.accounts) {
+      for (final transaction in account.transactions) {
         if (transaction.date.year == date.year &&
             transaction.category.name != 'Transfer out' &&
             transaction.category.name != 'Transfer in' &&
@@ -156,10 +167,10 @@ class UserRepository {
   }
 
   double getTotalIncomeByYear(UserModel user, DateTime date) {
-    double income = 0;
-    List<TransactionModel> transactions = [];
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
+    var income = 0.0;
+    final transactions = <TransactionModel>[];
+    for (final account in user.accounts) {
+      for (final transaction in account.transactions) {
         if (transaction.date.year == date.year &&
             transaction.category.name != 'Transfer in' &&
             transaction.category.name != 'Ahorros') {
@@ -167,7 +178,7 @@ class UserRepository {
         }
       }
     }
-    for (var transaction in transactions) {
+    for (final transaction in transactions) {
       if (transaction.category.isIncome) {
         income += transaction.amount;
       }
@@ -176,10 +187,10 @@ class UserRepository {
   }
 
   double getTotalIncomeByDay(UserModel user, DateTime date, int day) {
-    double income = 0;
-    List<TransactionModel> transactions = [];
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
+    var income = 0.0;
+    final transactions = <TransactionModel>[];
+    for (final account in user.accounts) {
+      for (final transaction in account.transactions) {
         if (transaction.date.day == day &&
             transaction.date.month == date.month &&
             transaction.date.year == date.year &&
@@ -189,7 +200,7 @@ class UserRepository {
         }
       }
     }
-    for (var transaction in transactions) {
+    for (final transaction in transactions) {
       if (transaction.category.isIncome) {
         income += transaction.amount;
       }
@@ -198,10 +209,10 @@ class UserRepository {
   }
 
   double getTotalExpenseByYear(UserModel user, DateTime date) {
-    double expense = 0;
-    List<TransactionModel> transactions = [];
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
+    var expense = 0.0;
+    final transactions = <TransactionModel>[];
+    for (final account in user.accounts) {
+      for (final transaction in account.transactions) {
         if (transaction.date.year == date.year &&
             transaction.category.name != 'Transfer out' &&
             transaction.category.name != 'Ahorros') {
@@ -209,7 +220,7 @@ class UserRepository {
         }
       }
     }
-    for (var transaction in transactions) {
+    for (final transaction in transactions) {
       if (!transaction.category.isIncome) {
         expense += transaction.amount;
       }
@@ -217,29 +228,15 @@ class UserRepository {
     return expense;
   }
 
-  double getTotalExpenseByDay(UserModel user, DateTime date, int day) {
-    double expense = 0;
-    List<TransactionModel> transactions = [];
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
-        if (transaction.date.day == day &&
-            transaction.date.month == date.month &&
-            transaction.date.year == date.year &&
-            transaction.category.name != 'Transfer out' &&
-            transaction.category.name != 'Ahorros') {
-          transactions.add(transaction);
-        }
-      }
-    }
-    return expense;
-  }
-
   double getTotalByCategoryYear(
-      UserModel user, DateTime date, CategoryModel income) {
-    double total = 0;
-    List<TransactionModel> transactions = [];
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
+    UserModel user,
+    DateTime date,
+    CategoryModel income,
+  ) {
+    var total = 0.0;
+    final transactions = <TransactionModel>[];
+    for (final account in user.accounts) {
+      for (final transaction in account.transactions) {
         if (transaction.date.year == date.year &&
             transaction.category.name != 'Transfer out' &&
             transaction.category.name != 'Transfer in' &&
@@ -248,7 +245,7 @@ class UserRepository {
         }
       }
     }
-    for (var transaction in transactions) {
+    for (final transaction in transactions) {
       if (transaction.category.id == income.id) {
         total += transaction.amount;
       }
@@ -257,32 +254,35 @@ class UserRepository {
   }
 
   double getTotalByCategoryRecursiveByYear(
-      UserModel user, DateTime date, CategoryModel income) {
-    double total = 0;
+    UserModel user,
+    DateTime date,
+    CategoryModel income,
+  ) {
+    var total = 0.0;
 
-    List<TransactionModel> transactions = [];
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
+    final transactions = <TransactionModel>[];
+    for (final account in user.accounts) {
+      for (final transaction in account.transactions) {
         if (transaction.date.year == date.year &&
             transaction.category.name != 'Transfer out') {
           transactions.add(transaction);
         }
       }
     }
-    for (var transaction in transactions) {
+    for (final transaction in transactions) {
       if (transaction.category.id == income.id) {
         total += transaction.amount;
       }
     }
-    for (var subcategory in income.subCategories) {
+    for (final subcategory in income.subCategories) {
       total += getTotalByCategoryRecursiveByYear(user, date, subcategory);
     }
     return total;
   }
 
   double getBalanceByYear(List<TransactionModel> transactions, DateTime date) {
-    double total = 0;
-    for (var transaction in transactions) {
+    var total = 0.0;
+    for (final transaction in transactions) {
       if (transaction.date.year <= date.year) {
         total += transaction.amount;
       }
@@ -290,20 +290,25 @@ class UserRepository {
     return total;
   }
 
-  filterTransactionsByDay(
-      List<TransactionModel> transactions, DateTime date, int day) {
+  List<TransactionModel> filterTransactionsByDay(
+    List<TransactionModel> transactions,
+    DateTime date,
+    int day,
+  ) {
     return transactions
-        .where((transaction) =>
-            transaction.date.day == day &&
-            transaction.date.month == date.month &&
-            transaction.date.year == date.year)
+        .where(
+          (transaction) =>
+              transaction.date.day == day &&
+              transaction.date.month == date.month &&
+              transaction.date.year == date.year,
+        )
         .toList();
   }
 
   List<TransactionModel> getTransactionsByDate(UserModel user, DateTime date) {
-    List<TransactionModel> transactions = [];
-    for (var account in user.accounts) {
-      for (var transaction in account.transactions) {
+    final transactions = <TransactionModel>[];
+    for (final account in user.accounts) {
+      for (final transaction in account.transactions) {
         if (transaction.date.day == date.day &&
             transaction.date.month == date.month &&
             transaction.date.year == date.year &&

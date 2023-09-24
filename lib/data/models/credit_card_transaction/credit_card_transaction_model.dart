@@ -5,6 +5,16 @@ part 'credit_card_transaction_model.g.dart';
 
 @HiveType(typeId: 3)
 class CreditCardTransactionModel extends HiveObject {
+  CreditCardTransactionModel({
+    required this.id,
+    required this.note,
+    required this.amount,
+    required this.date,
+    required this.category,
+    required this.isReccurent,
+    required this.cuotas,
+  });
+
   @HiveField(0)
   int id;
   @HiveField(1)
@@ -19,16 +29,6 @@ class CreditCardTransactionModel extends HiveObject {
   bool isReccurent;
   @HiveField(6)
   int cuotas;
-
-  CreditCardTransactionModel({
-    required this.id,
-    required this.note,
-    required this.amount,
-    required this.date,
-    required this.category,
-    required this.isReccurent,
-    required this.cuotas,
-  });
 
   CreditCardTransactionModel copyWith({required double amount}) {
     return CreditCardTransactionModel(

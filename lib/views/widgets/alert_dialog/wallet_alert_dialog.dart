@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/data/constants/colors.dart';
 
 class WalletAlertDialog extends StatelessWidget {
-  const WalletAlertDialog(
-      {required this.title,
-      required this.content,
-      required this.primaryActionTitle,
-      required this.onPressed,
-      super.key});
+  const WalletAlertDialog({
+    required this.title,
+    required this.content,
+    required this.primaryActionTitle,
+    required this.onPressed,
+    super.key,
+  });
 
   final String title;
   final Widget content;
@@ -17,11 +18,15 @@ class WalletAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       backgroundColor: appBackgroundColor,
-      title: Text(title,
-          style: const TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold)),
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       content: content,
       actions: [
         TextButton(
@@ -29,8 +34,10 @@ class WalletAlertDialog extends StatelessWidget {
             onPressed();
             Navigator.of(context).pop();
           },
-          child: Text(primaryActionTitle,
-              style: const TextStyle(color: Colors.green)),
+          child: Text(
+            primaryActionTitle,
+            style: const TextStyle(color: Colors.green),
+          ),
         ),
         TextButton(
           onPressed: () {

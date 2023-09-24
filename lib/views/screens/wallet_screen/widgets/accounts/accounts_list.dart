@@ -3,14 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 
-import 'account_item.dart';
+import 'package:wallet_app/views/screens/wallet_screen/widgets/accounts/account_item.dart';
 
 class AccountsList extends StatelessWidget {
   const AccountsList({
-    Key? key,
     required this.user,
     required this.date,
-  }) : super(key: key);
+    super.key,
+  });
 
   final DateTime date;
   final UserModel user;

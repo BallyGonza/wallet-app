@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wallet_app/data/data.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wallet_app/data/data.dart';
 
 ThemeData walletAppTheme = ThemeData(
   primaryColor: Colors.white,

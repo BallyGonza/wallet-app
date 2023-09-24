@@ -1,3 +1,5 @@
+// ignore_for_file: inference_failure_on_function_return_type
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,8 +11,8 @@ class AddTransferScreen extends StatefulWidget {
   const AddTransferScreen({
     required this.user,
     required this.onPressed,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final UserModel user;
   final Function(AccountModel, TransactionModel, AccountModel, TransactionModel)
@@ -46,17 +48,15 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Row(
                     children: [
                       Text(
-                        '\$',
+                        r'$',
                         style: TextStyle(
                           fontSize: 20,
                           color: transferColor,
@@ -80,7 +80,6 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                           keyboardAppearance: Brightness.dark,
                           keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
-                            signed: false,
                           ),
                           style: TextStyle(
                             fontSize: 32,
@@ -88,7 +87,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                             color: transferColor,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
@@ -104,13 +103,14 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16),
                   child: ListView(
                     children: [
                       WalletListTile(
                         leading: CircleAvatar(
                           backgroundColor: Color(
-                              _fromSelectedAccount.institution.backgroundColor),
+                            _fromSelectedAccount.institution.backgroundColor,
+                          ),
                           child: Image(
                             image: AssetImage(
                               _fromSelectedAccount.institution.logo,
@@ -151,7 +151,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                         ),
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          showModalBottomSheet(
+                          showModalBottomSheet<Padding>(
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -162,7 +162,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                             context: context,
                             builder: (context) {
                               return Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8),
                                 child: SizedBox(
                                   height: widget.user.accounts.length * 80.0,
                                   child: ListView.builder(
@@ -191,7 +191,8 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                       WalletListTile(
                         leading: CircleAvatar(
                           backgroundColor: Color(
-                              _toSelectedAccount.institution.backgroundColor),
+                            _toSelectedAccount.institution.backgroundColor,
+                          ),
                           child: Image(
                             image: AssetImage(
                               _toSelectedAccount.institution.logo,
@@ -232,7 +233,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                         ),
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          showModalBottomSheet(
+                          showModalBottomSheet<Padding>(
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -243,7 +244,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                             context: context,
                             builder: (context) {
                               return Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8),
                                 child: SizedBox(
                                   height: widget.user.accounts.length * 80.0,
                                   child: ListView.builder(
@@ -271,19 +272,20 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                       ),
                       WalletListTile(
                         leading: const Padding(
-                          padding: EdgeInsets.only(left: 10.0),
+                          padding: EdgeInsets.only(left: 10),
                           child: FaIcon(
                             FontAwesomeIcons.calendar,
                             color: Colors.grey,
                           ),
                         ),
                         content: Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
+                          padding: const EdgeInsets.only(left: 5),
                           child: Text(
                             _selectedDate,
                             style: const TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         trailing: const FaIcon(
@@ -292,7 +294,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                           size: 12,
                         ),
                         onTap: () {
-                          showCupertinoModalPopup(
+                          showCupertinoModalPopup<SizedBox>(
                             context: context,
                             builder: (context) {
                               return SizedBox(
@@ -309,7 +311,6 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                                   child: CupertinoDatePicker(
                                     dateOrder: DatePickerDateOrder.dmy,
                                     backgroundColor: colorCards,
-                                    mode: CupertinoDatePickerMode.dateAndTime,
                                     initialDateTime: DateTime.now(),
                                     onDateTimeChanged: (value) {
                                       setState(() {
@@ -327,7 +328,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                       ),
                       WalletListTile(
                         leading: const Padding(
-                          padding: EdgeInsets.only(left: 10.0),
+                          padding: EdgeInsets.only(left: 10),
                           child: FaIcon(
                             FontAwesomeIcons.fileSignature,
                             color: Colors.grey,
@@ -343,7 +344,6 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                             hintText: 'Add note',
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
-                          maxLines: 1,
                           keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.multiline,
                         ),
@@ -363,15 +363,18 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
     return AppBar(
       elevation: 0,
       title: Container(
-          decoration: BoxDecoration(
-            color: transferColor,
-            borderRadius: BorderRadius.circular(20),
+        decoration: BoxDecoration(
+          color: transferColor,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Text(
+            'Transfer',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Text('Transfer',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          )),
+        ),
+      ),
     );
   }
 
@@ -401,16 +404,17 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                   return;
                 }
 
-                var amount = double.parse(
-                    _amountController.text.replaceAll(RegExp(r'[,]'), '.'));
-                var fromAccount = TransactionModel(
+                final amount = double.parse(
+                  _amountController.text.replaceAll(RegExp('[,]'), '.'),
+                );
+                final fromAccount = TransactionModel(
                   id: DateTime.now().millisecondsSinceEpoch,
                   note: _noteController.text,
                   amount: amount,
                   category: transferOut,
                   date: _selectedDateTime,
                 );
-                var toAccount = TransactionModel(
+                final toAccount = TransactionModel(
                   id: DateTime.now().millisecondsSinceEpoch,
                   note: _noteController.text,
                   amount: amount,
@@ -418,13 +422,19 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                   date: _selectedDateTime,
                 );
 
-                widget.onPressed(_fromSelectedAccount, fromAccount,
-                    _toSelectedAccount, toAccount);
+                widget.onPressed(
+                  _fromSelectedAccount,
+                  fromAccount,
+                  _toSelectedAccount,
+                  toAccount,
+                );
 
                 Navigator.pop(context);
               },
-              child: const Text('Save',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              child: const Text(
+                'Save',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],

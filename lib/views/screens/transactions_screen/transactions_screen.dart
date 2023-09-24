@@ -6,17 +6,17 @@ import 'package:wallet_app/views/views.dart';
 
 class TransactionsScreen extends StatelessWidget {
   const TransactionsScreen({
-    Key? key,
     required this.date,
     required this.user,
-  }) : super(key: key);
+    super.key,
+  });
 
   final DateTime date;
   final UserModel user;
 
   @override
   Widget build(BuildContext context) {
-    final AccountRepository accountRepository = AccountRepository();
+    final accountRepository = AccountRepository();
     return SafeArea(
       child: Container(
         decoration: const BoxDecoration(
@@ -35,8 +35,10 @@ class TransactionsScreen extends StatelessWidget {
                     accountRepository.getAllTransactions(accounts, date);
                 return transactions.isEmpty
                     ? const Center(
-                        child: Text('No transactions yet',
-                            style: TextStyle(fontSize: 12, color: Colors.grey)),
+                        child: Text(
+                          'No transactions yet',
+                          style: TextStyle(fontSize: 12, color: Colors.grey),
+                        ),
                       )
                     : ListView.builder(
                         itemCount: 31,

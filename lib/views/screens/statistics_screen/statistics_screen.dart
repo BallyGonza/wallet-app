@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/data/data.dart';
 
-import 'expenses_screen.dart';
-import 'incomes_screen.dart';
+import 'package:wallet_app/views/screens/statistics_screen/expenses_screen.dart';
+import 'package:wallet_app/views/screens/statistics_screen/incomes_screen.dart';
 
 class StatisticsScreen extends StatelessWidget {
-  const StatisticsScreen(
-      {Key? key,
-      required this.user,
-      required this.date,
-      required this.yearMode})
-      : super(key: key);
+  const StatisticsScreen({
+    required this.user,
+    required this.date,
+    required this.yearMode,
+    super.key,
+  });
 
   final UserModel user;
   final DateTime date;
@@ -18,7 +18,7 @@ class StatisticsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserRepository userRepository = UserRepository();
+    final userRepository = UserRepository();
     List<TransactionModel> transactions;
     String accountsBalance;
     String incomeBalance;
@@ -49,13 +49,13 @@ class StatisticsScreen extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              balanceItem('Income', incomeBalance.toString(), () {
+              balanceItem('Income', incomeBalance, () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
+                  MaterialPageRoute<IncomesScreen>(
                     builder: (context) => IncomesScreen(
                       user: user,
                       date: date,
@@ -64,10 +64,10 @@ class StatisticsScreen extends StatelessWidget {
                   ),
                 );
               }),
-              balanceItem('Expense', expenseBalance.toString(), () {
+              balanceItem('Expense', expenseBalance, () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
+                  MaterialPageRoute<ExpensesScreen>(
                     builder: (context) => ExpensesScreen(
                       user: user,
                       date: date,
@@ -76,7 +76,7 @@ class StatisticsScreen extends StatelessWidget {
                   ),
                 );
               }),
-              balanceItem('Balance', accountsBalance.toString(), () {}),
+              balanceItem('Balance', accountsBalance, () {}),
             ],
           ),
         ),
@@ -84,7 +84,7 @@ class StatisticsScreen extends StatelessWidget {
     );
   }
 
-  Card balanceItem(String title, String amount, Function() onTap) {
+  Card balanceItem(String title, String amount, void Function() onTap) {
     return Card(
       color: Colors.transparent,
       shape: RoundedRectangleBorder(

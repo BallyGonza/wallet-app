@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 
-import '../widgets.dart';
+import 'package:wallet_app/views/screens/wallet_screen/widgets/widgets.dart';
 
 class CreditCardList extends StatelessWidget {
   const CreditCardList({
@@ -21,8 +21,6 @@ class CreditCardList extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: 175,
       child: PageView(
-        scrollDirection: Axis.horizontal,
-        pageSnapping: true,
         children: [
           BlocBuilder<CreditCardBloc, CreditCardState>(
             builder: (context, state) {
@@ -62,7 +60,7 @@ class CreditCardList extends StatelessWidget {
                 },
               );
             },
-          )
+          ),
         ],
       ),
     );

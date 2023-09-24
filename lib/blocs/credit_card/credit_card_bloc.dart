@@ -1,8 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wallet_app/blocs/credit_card/credit_card_event.dart';
+import 'package:wallet_app/blocs/credit_card/credit_card_state.dart';
 import 'package:wallet_app/data/data.dart';
-
-import 'credit_card_event.dart';
-import 'credit_card_state.dart';
 
 class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
   CreditCardBloc() : super(const CreditCardState.initial()) {
@@ -66,7 +65,9 @@ class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
   ) async {
     emit(const CreditCardState.loading());
     await creditCardRepository.addTransaction(
-        event.creditCard, event.creditCardTransaction);
+      event.creditCard,
+      event.creditCardTransaction,
+    );
     creditCards = await creditCardRepository.getCreditCards();
     emit(CreditCardState.loaded(creditCards));
   }
@@ -77,7 +78,9 @@ class CreditCardBloc extends Bloc<CreditCardEvent, CreditCardState> {
   ) async {
     emit(const CreditCardState.loading());
     await creditCardRepository.removeTransaction(
-        event.creditCard, event.creditCardTransaction);
+      event.creditCard,
+      event.creditCardTransaction,
+    );
     creditCards = await creditCardRepository.getCreditCards();
     emit(CreditCardState.loaded(creditCards));
   }

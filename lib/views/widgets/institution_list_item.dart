@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:wallet_app/data/data.dart';
 
 class InstitutionListItem extends StatefulWidget {
-  const InstitutionListItem({required this.institution, Key? key})
-      : super(key: key);
+  const InstitutionListItem({
+    required this.institution,
+    super.key,
+  });
 
   final InstitutionModel institution;
 

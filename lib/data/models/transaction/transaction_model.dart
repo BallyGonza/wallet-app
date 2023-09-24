@@ -5,6 +5,14 @@ part 'transaction_model.g.dart';
 
 @HiveType(typeId: 5)
 class TransactionModel extends HiveObject {
+  TransactionModel({
+    required this.id,
+    required this.note,
+    required this.amount,
+    required this.date,
+    required this.category,
+  });
+
   @HiveField(0)
   int id;
   @HiveField(1)
@@ -15,14 +23,6 @@ class TransactionModel extends HiveObject {
   DateTime date;
   @HiveField(4)
   CategoryModel category;
-
-  TransactionModel({
-    required this.id,
-    required this.note,
-    required this.amount,
-    required this.date,
-    required this.category,
-  });
 
   TransactionModel copyWith({
     int? id,

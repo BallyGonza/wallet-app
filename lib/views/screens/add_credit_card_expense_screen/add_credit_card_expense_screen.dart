@@ -1,19 +1,20 @@
+// ignore_for_file: must_be_immutable, inference_failure_on_function_return_type
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/views/screens/add_credit_card_expense_screen/widgets/credit_card_list_item.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
-
-import 'widgets/credit_card_list_item.dart';
 
 class AddCreditCardExpenseScreen extends StatefulWidget {
   AddCreditCardExpenseScreen({
     required this.onPressed,
     required this.selectedCreditCard,
     required this.user,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final UserModel user;
   CreditCardModel selectedCreditCard;
@@ -49,31 +50,32 @@ class _AddCreditCardExpenseScreenState
       appBar: AppBar(
         elevation: 0,
         title: Container(
-            decoration: BoxDecoration(
-              color: expenseColor,
-              borderRadius: BorderRadius.circular(20),
+          decoration: BoxDecoration(
+            color: expenseColor,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text(
+              'Credit Card Expense',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Text('Credit Card Expense',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            )),
+          ),
+        ),
       ),
       bottomNavigationBar: _saveButton(context),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Row(
                     children: [
                       Text(
-                        '\$',
+                        r'$',
                         style: TextStyle(
                           fontSize: 20,
                           color: expenseColor,
@@ -97,7 +99,6 @@ class _AddCreditCardExpenseScreenState
                           keyboardAppearance: Brightness.dark,
                           keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
-                            signed: false,
                           ),
                           style: TextStyle(
                             fontSize: 32,
@@ -105,7 +106,7 @@ class _AddCreditCardExpenseScreenState
                             color: expenseColor,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
@@ -121,13 +122,15 @@ class _AddCreditCardExpenseScreenState
                   ),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16),
                   child: ListView(
                     children: [
                       WalletListTile(
                         leading: CircleAvatar(
-                          backgroundColor: Color(widget
-                              .selectedCreditCard.institution.backgroundColor),
+                          backgroundColor: Color(
+                            widget
+                                .selectedCreditCard.institution.backgroundColor,
+                          ),
                           child: Image(
                             image: AssetImage(
                               widget.selectedCreditCard.cardType.logo,
@@ -168,7 +171,7 @@ class _AddCreditCardExpenseScreenState
                         ),
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          showModalBottomSheet(
+                          showModalBottomSheet<Container>(
                             backgroundColor: Colors.transparent,
                             context: context,
                             builder: (context) {
@@ -182,7 +185,7 @@ class _AddCreditCardExpenseScreenState
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(8),
                                   child: Column(
                                     children: [
                                       Expanded(
@@ -260,7 +263,7 @@ class _AddCreditCardExpenseScreenState
                         ),
                         onTap: () {
                           FocusScope.of(context).unfocus();
-                          showModalBottomSheet(
+                          showModalBottomSheet<Container>(
                             backgroundColor: Colors.transparent,
                             context: context,
                             builder: (context) {
@@ -274,7 +277,7 @@ class _AddCreditCardExpenseScreenState
                                   ),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(8),
                                   child: Column(
                                     children: [
                                       Expanded(
@@ -291,7 +294,7 @@ class _AddCreditCardExpenseScreenState
                                                 });
                                                 Navigator.pop(context);
                                               },
-                                              onSubCategoryTap: (subIndex) {
+                                              onSubCategoryTap: (int subIndex) {
                                                 setState(() {
                                                   _selectedCategory =
                                                       defaultExpenseCategories[
@@ -318,19 +321,20 @@ class _AddCreditCardExpenseScreenState
                       ),
                       WalletListTile(
                         leading: const Padding(
-                          padding: EdgeInsets.only(left: 10.0),
+                          padding: EdgeInsets.only(left: 10),
                           child: FaIcon(
                             FontAwesomeIcons.calendar,
                             color: Colors.grey,
                           ),
                         ),
                         content: Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
+                          padding: const EdgeInsets.only(left: 5),
                           child: Text(
                             _selectedDate,
                             style: const TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                         trailing: const FaIcon(
@@ -339,7 +343,7 @@ class _AddCreditCardExpenseScreenState
                           size: 12,
                         ),
                         onTap: () {
-                          showCupertinoModalPopup(
+                          showCupertinoModalPopup<CupertinoDatePicker>(
                             context: context,
                             builder: (context) {
                               return SizedBox(
@@ -356,7 +360,6 @@ class _AddCreditCardExpenseScreenState
                                   child: CupertinoDatePicker(
                                     dateOrder: DatePickerDateOrder.dmy,
                                     backgroundColor: colorCards,
-                                    mode: CupertinoDatePickerMode.dateAndTime,
                                     initialDateTime: DateTime.now(),
                                     onDateTimeChanged: (value) {
                                       setState(() {
@@ -373,10 +376,10 @@ class _AddCreditCardExpenseScreenState
                         },
                       ),
                       WalletListTile(
-                        leading: Row(
-                          children: const [
+                        leading: const Row(
+                          children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 10.0),
+                              padding: EdgeInsets.only(left: 10),
                               child: FaIcon(
                                 FontAwesomeIcons.repeat,
                                 color: Colors.grey,
@@ -403,96 +406,121 @@ class _AddCreditCardExpenseScreenState
                           },
                         ),
                       ),
-                      _isRecurrent == false
-                          ? WalletListTile(
-                              leading: const Padding(
-                                padding: EdgeInsets.only(left: 10.0),
-                                child: FaIcon(
-                                  FontAwesomeIcons.list,
-                                  color: Colors.grey,
+                      if (_isRecurrent == false)
+                        WalletListTile(
+                          leading: const Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: FaIcon(
+                              FontAwesomeIcons.list,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          content: DropdownButtonFormField(
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
+                            value: _cuotas,
+                            items: const [
+                              DropdownMenuItem(
+                                value: 1,
+                                child: Text(
+                                  '1 Cuota',
+                                  style: TextStyle(color: Colors.grey),
                                 ),
                               ),
-                              content: DropdownButtonFormField(
-                                decoration: const InputDecoration(
-                                  border: InputBorder.none,
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                  ),
+                              DropdownMenuItem(
+                                value: 2,
+                                child: Text(
+                                  '2 Cuotas',
+                                  style: TextStyle(color: Colors.grey),
                                 ),
-                                value: _cuotas,
-                                items: const [
-                                  DropdownMenuItem(
-                                    value: 1,
-                                    child: Text('1 Cuota',
-                                        style: TextStyle(color: Colors.grey)),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 2,
-                                    child: Text('2 Cuotas',
-                                        style: TextStyle(color: Colors.grey)),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 3,
-                                    child: Text('3 Cuotas',
-                                        style: TextStyle(color: Colors.grey)),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 4,
-                                    child: Text('4 Cuotas',
-                                        style: TextStyle(color: Colors.grey)),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 5,
-                                    child: Text('5 Cuotas',
-                                        style: TextStyle(color: Colors.grey)),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 6,
-                                    child: Text('6 Cuotas',
-                                        style: TextStyle(color: Colors.grey)),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 7,
-                                    child: Text('7 Cuotas',
-                                        style: TextStyle(color: Colors.grey)),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 8,
-                                    child: Text('8 Cuotas',
-                                        style: TextStyle(color: Colors.grey)),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 9,
-                                    child: Text('9 Cuotas',
-                                        style: TextStyle(color: Colors.grey)),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 10,
-                                    child: Text('10 Cuotas',
-                                        style: TextStyle(color: Colors.grey)),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 11,
-                                    child: Text('11 Cuotas',
-                                        style: TextStyle(color: Colors.grey)),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 12,
-                                    child: Text('12 Cuotas',
-                                        style: TextStyle(color: Colors.grey)),
-                                  ),
-                                ],
-                                onChanged: (value) {
-                                  setState(() {
-                                    _cuotas = value!;
-                                  });
-                                },
                               ),
-                            )
-                          : const SizedBox.shrink(),
+                              DropdownMenuItem(
+                                value: 3,
+                                child: Text(
+                                  '3 Cuotas',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 4,
+                                child: Text(
+                                  '4 Cuotas',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 5,
+                                child: Text(
+                                  '5 Cuotas',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 6,
+                                child: Text(
+                                  '6 Cuotas',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 7,
+                                child: Text(
+                                  '7 Cuotas',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 8,
+                                child: Text(
+                                  '8 Cuotas',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 9,
+                                child: Text(
+                                  '9 Cuotas',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 10,
+                                child: Text(
+                                  '10 Cuotas',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 11,
+                                child: Text(
+                                  '11 Cuotas',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                              DropdownMenuItem(
+                                value: 12,
+                                child: Text(
+                                  '12 Cuotas',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                            ],
+                            onChanged: (value) {
+                              setState(() {
+                                _cuotas = value!;
+                              });
+                            },
+                          ),
+                        )
+                      else
+                        const SizedBox.shrink(),
                       WalletListTile(
                         leading: const Padding(
-                          padding: EdgeInsets.only(left: 10.0),
+                          padding: EdgeInsets.only(left: 10),
                           child: FaIcon(
                             FontAwesomeIcons.fileSignature,
                             color: Colors.grey,
@@ -508,7 +536,6 @@ class _AddCreditCardExpenseScreenState
                             hintText: 'Add note',
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
-                          maxLines: 1,
                           keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.multiline,
                         ),
@@ -549,9 +576,10 @@ class _AddCreditCardExpenseScreenState
                   );
                   return;
                 }
-                var amount = double.parse(
-                    _amountController.text.replaceAll(RegExp(r'[,]'), '.'));
-                var creditCardExpense = CreditCardTransactionModel(
+                final amount = double.parse(
+                  _amountController.text.replaceAll(RegExp('[,]'), '.'),
+                );
+                final creditCardExpense = CreditCardTransactionModel(
                   id: DateTime.now().millisecondsSinceEpoch,
                   note: _noteController.text,
                   amount: amount,
@@ -563,8 +591,10 @@ class _AddCreditCardExpenseScreenState
                 widget.onPressed(widget.selectedCreditCard, creditCardExpense);
                 Navigator.pop(context);
               },
-              child: const Text('Save',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              child: const Text(
+                'Save',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],

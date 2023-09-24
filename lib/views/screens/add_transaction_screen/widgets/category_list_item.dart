@@ -47,13 +47,10 @@ class _CategoryListItemState extends State<CategoryListItem>
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
                     onTap: widget.onCategoryTap,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         CircleAvatar(
                           radius: 20,
@@ -85,41 +82,42 @@ class _CategoryListItemState extends State<CategoryListItem>
                       ],
                     ),
                   ),
-                  widget.category.subCategories.isEmpty
-                      ? const SizedBox()
-                      : GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isExpanded = !isExpanded;
-                              isExpanded
-                                  ? _controller.forward()
-                                  : _controller.reverse();
-                            });
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            width: 100,
-                            height: 40,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                SizedBox(
-                                  width: 10,
-                                  child: FaIcon(
-                                    isExpanded
-                                        ? FontAwesomeIcons.angleDown
-                                        : FontAwesomeIcons.angleRight,
-                                    color: Colors.grey,
-                                    size: 16,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                  if (widget.category.subCategories.isEmpty)
+                    const SizedBox()
+                  else
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isExpanded = !isExpanded;
+                          isExpanded
+                              ? _controller.forward()
+                              : _controller.reverse();
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(20),
                         ),
+                        width: 100,
+                        height: 40,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SizedBox(
+                              width: 10,
+                              child: FaIcon(
+                                isExpanded
+                                    ? FontAwesomeIcons.angleDown
+                                    : FontAwesomeIcons.angleRight,
+                                color: Colors.grey,
+                                size: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -129,7 +127,6 @@ class _CategoryListItemState extends State<CategoryListItem>
             curve: Curves.fastOutSlowIn,
             child: SizeTransition(
               sizeFactor: _controller,
-              axisAlignment: 0.0,
               child: Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
                 child: Column(
