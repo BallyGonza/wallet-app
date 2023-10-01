@@ -9,6 +9,8 @@ import 'package:wallet_app/theme.dart';
 import 'package:wallet_app/views/views.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   const argentina = NumberSymbols(
     NAME: 'es_AR',
     DECIMAL_SEP: ',',
@@ -38,8 +40,6 @@ Future<void> main() async {
     ..registerAdapter(InstitutionModelAdapter())
     ..registerAdapter(TransactionModelAdapter())
     ..registerAdapter(UserModelAdapter());
-
-  WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
   await Hive.openBox<UserModel>('users_box');

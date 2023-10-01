@@ -36,7 +36,9 @@ class CreditCardItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: creditCard.cardType.name == 'Visa'
               ? Color(creditCard.institution.visaCardColor!)
-              : Color(creditCard.institution.masterCardColor!),
+              : creditCard.cardType.name == 'American Express'
+                  ? Color(creditCard.institution.americianExpressColor!)
+                  : Color(creditCard.institution.masterCardColor!),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(

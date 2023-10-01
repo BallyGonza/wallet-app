@@ -1,3 +1,5 @@
+// ignore_for_file: cascade_invocations
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wallet_app/data/data.dart';
 

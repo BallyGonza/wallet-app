@@ -3,7 +3,7 @@ import 'package:wallet_app/data/data.dart';
 List<CategoryModel> defaultIncomeCategories = [
   income,
   replenishment,
-  savingsCategory,
+  // savingsCategory,
 ];
 List<CategoryModel> defaultExpenseCategories = [
   others,
@@ -15,6 +15,7 @@ List<CategoryModel> defaultExpenseCategories = [
   services,
   education,
   creditCard,
+  church,
   savings,
 ];
 
@@ -384,7 +385,7 @@ CategoryModel shopping = CategoryModel(
   isIncome: false,
   backgroundColor: yellow,
   iconColor: black,
-  subCategories: [clothes, electro, home, gifts, pets],
+  subCategories: [clothes, electro, gaming, home, gifts, pets],
 );
 
 CategoryModel clothes = CategoryModel(
@@ -513,5 +514,25 @@ CategoryModel prime = CategoryModel(
   isIncome: false,
   backgroundColor: white,
   iconColor: blue,
+  subCategories: [],
+);
+
+CategoryModel church = CategoryModel(
+  id: 50,
+  name: 'Iglesia',
+  icon: 'assets/icons/categories/church.png',
+  isIncome: false,
+  backgroundColor: white,
+  iconColor: black,
+  subCategories: [],
+);
+
+CategoryModel gaming = CategoryModel(
+  id: 51,
+  name: 'gaming',
+  icon: 'assets/icons/categories/gaming.png',
+  isIncome: false,
+  backgroundColor: white,
+  iconColor: black,
   subCategories: [],
 );

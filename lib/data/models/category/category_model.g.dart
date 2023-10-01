@@ -21,9 +21,9 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel> {
       name: fields[1] as String,
       icon: fields[2] as String,
       backgroundColor: fields[3] as int,
-      iconColor: fields[4] as int?,
       subCategories: (fields[5] as List).cast<CategoryModel>(),
       isIncome: fields[6] as bool,
+      iconColor: fields[4] as int?,
     );
   }
 

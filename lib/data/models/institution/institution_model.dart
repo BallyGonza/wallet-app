@@ -9,10 +9,11 @@ class InstitutionModel extends HiveObject {
     required this.name,
     required this.logo,
     required this.backgroundColor,
-    this.logoColor,
+    required this.logoColor,
     this.textColor,
     this.visaCardColor,
     this.masterCardColor,
+    this.americianExpressColor,
   });
 
   @HiveField(0)
@@ -24,11 +25,13 @@ class InstitutionModel extends HiveObject {
   @HiveField(3)
   int backgroundColor;
   @HiveField(4)
-  int? logoColor;
+  int logoColor;
   @HiveField(5)
   int? textColor;
   @HiveField(6)
   int? visaCardColor;
   @HiveField(7)
   int? masterCardColor;
+  @HiveField(8)
+  int? americianExpressColor;
 }

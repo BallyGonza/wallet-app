@@ -76,13 +76,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                     title: 'Amount',
                     icon: 'assets/icons/coin.png',
                     backgroundColor: yellow,
-                    description: widget.transaction.category.name == 'Ahorros'
-                        ? dolar.format(
-                            widget.transaction.amount,
-                          )
-                        : arg.format(
-                            widget.transaction.amount,
-                          ),
+                    description: arg.format(widget.transaction.amount),
                     descriptionColor: widget.transaction.category.isIncome
                         ? incomeColor
                         : expenseColor,
@@ -306,13 +300,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  widget.transaction.category.name == 'Ahorros'
-                      ? dolar.format(
-                          widget.transaction.amount,
-                        )
-                      : arg.format(
-                          widget.transaction.amount,
-                        ),
+                  arg.format(widget.transaction.amount),
                   style: TextStyle(
                     color: widget.transaction.category.isIncome
                         ? Colors.green

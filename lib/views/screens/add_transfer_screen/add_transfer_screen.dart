@@ -385,7 +385,8 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          Container(
+            margin: const EdgeInsets.only(bottom: 16),
             width: MediaQuery.of(context).size.width - 32,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(

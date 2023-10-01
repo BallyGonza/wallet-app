@@ -33,6 +33,8 @@ final hsbcColor = const Color(0xFFD90009).value;
 final bbvaColor = const Color(0xFF004891).value;
 final naranjaColor = const Color(0xFFE67E22).value;
 final mercadoPagoColor = const Color(0xFF009FE2).value;
+final prexColor = const Color(0xFF5C19AD).value;
+final galiciaColor = const Color(0xFFED5013).value;
 
 // income color
 final incomeColor = Colors.green[300];

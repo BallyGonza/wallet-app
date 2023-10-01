@@ -11,9 +11,11 @@ class InstitutionRepository {
 List<InstitutionModel> defaultInstitutions = [
   wallet,
   mercadoPagoInstitution,
-  bbvaInstitution,
-  naranjaXInstitution,
+  prexInstitution,
+  galiciaInstitution,
   hsbcInstitution,
+  naranjaXInstitution,
+  bbvaInstitution,
   savingsInstitution,
 ];
 
@@ -21,11 +23,13 @@ List<InstitutionModel> defaultBankInstitutions = [
   bbvaInstitution,
   hsbcInstitution,
   naranjaXInstitution,
+  galiciaInstitution,
 ];
 
 List<InstitutionModel> defaultCardTypes = [
   visaInstitution,
   mastercardInstitution,
+  americanExpressInstitution,
 ];
 
 InstitutionModel wallet = InstitutionModel(
@@ -82,6 +86,7 @@ InstitutionModel visaInstitution = InstitutionModel(
   name: 'Visa',
   logo: 'assets/icons/institutions/visa.png',
   backgroundColor: white,
+  logoColor: blue,
 );
 
 InstitutionModel mastercardInstitution = InstitutionModel(
@@ -89,12 +94,39 @@ InstitutionModel mastercardInstitution = InstitutionModel(
   name: 'Mastercard',
   logo: 'assets/icons/institutions/mastercard.png',
   backgroundColor: white,
+  logoColor: red,
 );
 
 InstitutionModel naranjaXInstitution = InstitutionModel(
-  id: 2,
+  id: 7,
   name: 'Naranja X',
   logo: 'assets/icons/institutions/naranja.png',
   backgroundColor: white,
   logoColor: naranjaColor,
+);
+
+InstitutionModel galiciaInstitution = InstitutionModel(
+  id: 7,
+  name: 'Galicia',
+  logo: 'assets/icons/institutions/galicia.png',
+  backgroundColor: galiciaColor,
+  visaCardColor: orange,
+  americianExpressColor: silver,
+  logoColor: galiciaColor,
+);
+
+InstitutionModel prexInstitution = InstitutionModel(
+  id: 8,
+  name: 'Prex',
+  logo: 'assets/icons/institutions/prex.png',
+  backgroundColor: prexColor,
+  logoColor: prexColor,
+);
+
+InstitutionModel americanExpressInstitution = InstitutionModel(
+  id: 9,
+  name: 'American Express',
+  logo: 'assets/icons/institutions/american.png',
+  backgroundColor: white,
+  logoColor: blue,
 );

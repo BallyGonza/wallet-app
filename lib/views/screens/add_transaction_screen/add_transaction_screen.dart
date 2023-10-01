@@ -110,6 +110,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
                           ),
+                          autofocus: true,
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
@@ -372,7 +373,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             color: Colors.grey,
                           ),
                         ),
-                        content: TextFormField(
+                        content: TextField(
                           textCapitalization: TextCapitalization.sentences,
                           controller: _noteController,
                           cursorColor: Colors.grey,
@@ -384,6 +385,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           ),
                           keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.multiline,
+                          onEditingComplete: () {
+                            FocusScope.of(context).unfocus();
+                          },
                         ),
                       ),
                     ],
@@ -404,8 +408,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          Container(
             width: MediaQuery.of(context).size.width - 32,
+            margin: const EdgeInsets.only(bottom: 16),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(

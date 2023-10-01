@@ -154,6 +154,7 @@ class AccountRepository {
         return account;
       }
     }
+    return null;
   }
 
 // Hasta aca las necesito todas
@@ -284,26 +285,38 @@ AccountModel hsbc = AccountModel(
   institution: hsbcInstitution,
 );
 
-AccountModel naranjaX = AccountModel(
+AccountModel galicia = AccountModel(
   id: 2,
+  name: 'Galicia',
+  institution: galiciaInstitution,
+);
+
+AccountModel naranjaX = AccountModel(
+  id: 3,
   name: 'Naranja X',
   institution: bbvaInstitution,
 );
 
 AccountModel bbva = AccountModel(
-  id: 3,
+  id: 4,
   name: 'BBVA',
   institution: bbvaInstitution,
 );
 
 AccountModel mercadoPago = AccountModel(
-  id: 4,
+  id: 5,
   name: 'Mercado Pago',
   institution: mercadoPagoInstitution,
 );
 
+AccountModel prex = AccountModel(
+  id: 6,
+  name: 'Prex',
+  institution: prexInstitution,
+);
+
 AccountModel savingsAccount = AccountModel(
-  id: 5,
+  id: 7,
   name: 'Ahorros',
   institution: savingsInstitution,
 );

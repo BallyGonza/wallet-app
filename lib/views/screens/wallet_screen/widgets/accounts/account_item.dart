@@ -58,19 +58,12 @@ class _AccountItemState extends State<AccountItem> {
           ),
         ),
         subtitle: Text(
-          widget.account.name == 'Ahorros'
-              ? dolar.format(
-                  accountRepository.getBalanceOfAccount(
-                    widget.account,
-                    widget.date,
-                  ),
-                )
-              : arg.format(
-                  accountRepository.getBalanceOfAccount(
-                    widget.account,
-                    widget.date,
-                  ),
-                ),
+          arg.format(
+            accountRepository.getBalanceOfAccount(
+              widget.account,
+              widget.date,
+            ),
+          ),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: accountRepository.getBalanceOfAccount(

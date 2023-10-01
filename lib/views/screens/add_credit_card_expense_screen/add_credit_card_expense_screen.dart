@@ -128,8 +128,7 @@ class _AddCreditCardExpenseScreenState
                       WalletListTile(
                         leading: CircleAvatar(
                           backgroundColor: Color(
-                            widget
-                                .selectedCreditCard.institution.backgroundColor,
+                            widget.selectedCreditCard.cardType.backgroundColor,
                           ),
                           child: Image(
                             image: AssetImage(
@@ -558,7 +557,8 @@ class _AddCreditCardExpenseScreenState
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          Container(
+            margin: const EdgeInsets.only(bottom: 16),
             width: MediaQuery.of(context).size.width - 32,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
