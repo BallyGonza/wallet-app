@@ -22,6 +22,8 @@ class TransactionListItem extends StatefulWidget {
 }
 
 class _TransactionListItemState extends State<TransactionListItem> {
+  late TextEditingController amountController;
+  late TextEditingController noteController;
   late AccountRepository accountRepository;
   late AccountModel? account;
 
@@ -32,15 +34,14 @@ class _TransactionListItemState extends State<TransactionListItem> {
       widget.user,
       widget.transaction,
     );
+    amountController =
+        TextEditingController(text: widget.transaction.amount.toString());
+    noteController = TextEditingController(text: widget.transaction.note);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final amountController =
-        TextEditingController(text: widget.transaction.amount.toString());
-    final noteController = TextEditingController(text: widget.transaction.note);
-
     return InkWell(
       onTap: () {
         showModalBottomSheet<Padding>(
@@ -92,7 +93,6 @@ class _TransactionListItemState extends State<TransactionListItem> {
                           ),
                           primaryActionTitle: 'Save',
                           onPressed: () {
-                            Navigator.of(context).pop();
                             setState(() {
                               context.read<AccountBloc>().add(
                                     AccountEvent.updateTransaction(
