@@ -130,6 +130,7 @@ class _CategoryListItemState extends State<CategoryListItem>
                           final subCategory =
                               widget.category.subCategories[index];
                           return InkWell(
+                            enableFeedback: false,
                             onTap: () {
                               widget.onSubCategoryTap(index);
                             },

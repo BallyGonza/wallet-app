@@ -21,6 +21,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   ) async {
     emit(const UserState.loading());
     user = await userRepository.getUser();
+    await userRepository.updateCategories(user);
     emit(UserState.loaded(user));
   }
 }

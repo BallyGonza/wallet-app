@@ -41,6 +41,7 @@ class TransactionsScreen extends StatelessWidget {
                         ),
                       )
                     : ListView.builder(
+                        physics: const BouncingScrollPhysics(),
                         itemCount: 31,
                         itemBuilder: (context, index) {
                           return TransactionsList(

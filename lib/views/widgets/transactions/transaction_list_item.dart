@@ -43,8 +43,10 @@ class _TransactionListItemState extends State<TransactionListItem> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      enableFeedback: false,
       onTap: () {
         showModalBottomSheet<Padding>(
+          isScrollControlled: true,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(20),
@@ -354,6 +356,7 @@ class DescriptionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      enableFeedback: false,
       onTap: () {
         onTap?.call();
       },

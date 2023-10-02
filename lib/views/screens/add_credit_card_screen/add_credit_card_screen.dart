@@ -116,6 +116,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           showModalBottomSheet<Padding>(
+                            isScrollControlled: true,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -133,10 +134,13 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                                     children: [
                                       Expanded(
                                         child: ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
                                           itemCount:
                                               defaultBankInstitutions.length,
                                           itemBuilder: (context, index) {
                                             return InkWell(
+                                              enableFeedback: false,
                                               onTap: () {
                                                 setState(() {
                                                   _selectedInstitution =
@@ -210,6 +214,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           showModalBottomSheet<Padding>(
+                            isScrollControlled: true,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -227,9 +232,12 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                                     children: [
                                       Expanded(
                                         child: ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
                                           itemCount: defaultCardTypes.length,
                                           itemBuilder: (context, index) {
                                             return InkWell(
+                                              enableFeedback: false,
                                               onTap: () {
                                                 setState(() {
                                                   _selectedCardType =

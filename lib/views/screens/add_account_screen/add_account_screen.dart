@@ -107,6 +107,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                       onTap: () {
                         FocusScope.of(context).unfocus();
                         showModalBottomSheet<Padding>(
+                          isScrollControlled: true,
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
@@ -119,15 +120,16 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                             return Padding(
                               padding: const EdgeInsets.all(8),
                               child: SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.45,
+                                height: defaultInstitutions.length * 70,
                                 child: Column(
                                   children: [
                                     Expanded(
                                       child: ListView.builder(
+                                        physics: const BouncingScrollPhysics(),
                                         itemCount: defaultInstitutions.length,
                                         itemBuilder: (context, index) {
                                           return InkWell(
+                                            enableFeedback: false,
                                             onTap: () {
                                               setState(() {
                                                 _selectedInstitution =

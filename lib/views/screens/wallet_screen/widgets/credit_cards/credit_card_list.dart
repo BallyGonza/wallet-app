@@ -46,6 +46,7 @@ class CreditCardList extends StatelessWidget {
                           ),
                         )
                       : ListView.builder(
+                          physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemCount: creditCards.length,
                           itemBuilder: (context, index) {

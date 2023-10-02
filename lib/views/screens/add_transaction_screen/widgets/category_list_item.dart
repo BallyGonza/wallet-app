@@ -141,7 +141,7 @@ class _CategoryListItemState extends State<CategoryListItem>
                         itemBuilder: (context, index) {
                           final subCategory =
                               widget.category.subCategories[index];
-                          return InkWell(
+                          return GestureDetector(
                             onTap: () {
                               widget.onSubCategoryTap(index);
                             },

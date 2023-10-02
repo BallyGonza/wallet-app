@@ -152,6 +152,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           showModalBottomSheet<Padding>(
+                            isScrollControlled: true,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -166,9 +167,11 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                                 child: SizedBox(
                                   height: widget.user.accounts.length * 80.0,
                                   child: ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
                                     itemCount: widget.user.accounts.length,
                                     itemBuilder: (context, index) {
                                       return InkWell(
+                                        enableFeedback: false,
                                         onTap: () {
                                           setState(() {
                                             _fromSelectedAccount =
@@ -234,6 +237,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           showModalBottomSheet<Padding>(
+                            isScrollControlled: true,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -248,9 +252,11 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                                 child: SizedBox(
                                   height: widget.user.accounts.length * 80.0,
                                   child: ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
                                     itemCount: widget.user.accounts.length,
                                     itemBuilder: (context, index) {
                                       return InkWell(
+                                        enableFeedback: false,
                                         onTap: () {
                                           setState(() {
                                             _toSelectedAccount =

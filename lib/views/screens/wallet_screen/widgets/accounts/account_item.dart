@@ -24,6 +24,7 @@ class _AccountItemState extends State<AccountItem> {
     final accountRepository = AccountRepository();
 
     return InkWell(
+      enableFeedback: false,
       onTap: () {
         setState(() {
           Navigator.of(context).push(

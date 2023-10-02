@@ -21,6 +21,14 @@ class UserRepository {
     await box.put(user.id, user);
   }
 
+  // update incomeCategories
+  Future<void> updateCategories(UserModel user) async {
+    user
+      ..incomeCategories = defaultIncomeCategories
+      ..expenseCategories = defaultExpenseCategories;
+    await saveUser(user);
+  }
+
   double getBalance(List<AccountModel> accounts, DateTime date) {
     var total = 0.0;
     for (final account in accounts) {

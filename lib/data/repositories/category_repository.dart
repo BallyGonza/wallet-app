@@ -26,7 +26,7 @@ CategoryModel income = CategoryModel(
   isIncome: true,
   backgroundColor: green,
   iconColor: black,
-  subCategories: [salary, honorarios, cashGift, sell],
+  subCategories: [salary, honorarios, interest, cashGift, sell],
 );
 
 CategoryModel salary = CategoryModel(
@@ -269,7 +269,7 @@ CategoryModel creditCard = CategoryModel(
   isIncome: false,
   backgroundColor: purple,
   iconColor: white,
-  subCategories: [visa, mastercard],
+  subCategories: [visa, mastercard, americanExpress],
 );
 
 CategoryModel visa = CategoryModel(
@@ -534,5 +534,23 @@ CategoryModel gaming = CategoryModel(
   isIncome: false,
   backgroundColor: white,
   iconColor: black,
+  subCategories: [],
+);
+
+CategoryModel americanExpress = CategoryModel(
+  id: 52,
+  name: 'American Express',
+  icon: 'assets/icons/institutions/american.png',
+  isIncome: false,
+  backgroundColor: white,
+  subCategories: [],
+);
+
+CategoryModel interest = CategoryModel(
+  id: 53,
+  name: 'Int. Cta. Remunerada',
+  icon: 'assets/icons/categories/interest.png',
+  isIncome: true,
+  backgroundColor: green,
   subCategories: [],
 );

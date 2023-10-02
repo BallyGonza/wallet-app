@@ -189,10 +189,13 @@ class _AddCreditCardExpenseScreenState
                                     children: [
                                       Expanded(
                                         child: ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
                                           itemCount:
                                               widget.user.creditCards.length,
                                           itemBuilder: (context, index) {
                                             return InkWell(
+                                              enableFeedback: false,
                                               onTap: () {
                                                 setState(() {
                                                   widget.selectedCreditCard =
@@ -281,6 +284,8 @@ class _AddCreditCardExpenseScreenState
                                     children: [
                                       Expanded(
                                         child: ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
                                           itemCount:
                                               defaultExpenseCategories.length,
                                           itemBuilder: (context, index) {

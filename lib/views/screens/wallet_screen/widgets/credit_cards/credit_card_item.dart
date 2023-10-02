@@ -18,6 +18,7 @@ class CreditCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final creditCardRepository = CreditCardRepository();
     return InkWell(
+      enableFeedback: false,
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute<CreditCardScreen>(

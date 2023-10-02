@@ -160,7 +160,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           ),
                         ),
                         trailing: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.4,
+                          width: MediaQuery.of(context).size.width * 0.5,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -184,6 +184,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           showModalBottomSheet<Padding>(
+                            isScrollControlled: true,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -196,8 +197,12 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                               return Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: SizedBox(
-                                  height: widget._categories.length * 85.0,
+                                  height: widget._title == 'Ingreso'
+                                      ? MediaQuery.of(context).size.height *
+                                          0.65
+                                      : widget._categories.length * 65,
                                   child: ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
                                     itemCount: widget._categories.length,
                                     itemBuilder: (context, index) {
                                       return CategoryListItem(
@@ -272,6 +277,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           showModalBottomSheet<Padding>(
+                            isScrollControlled: true,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -284,11 +290,13 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                               return Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: SizedBox(
-                                  height: widget.user.accounts.length * 80.0,
+                                  height: widget.user.accounts.length * 65.0,
                                   child: ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
                                     itemCount: widget.user.accounts.length,
                                     itemBuilder: (context, index) {
                                       return InkWell(
+                                        enableFeedback: false,
                                         onTap: () {
                                           setState(() {
                                             widget.selectedAccount =
