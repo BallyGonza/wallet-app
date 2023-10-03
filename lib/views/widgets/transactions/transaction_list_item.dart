@@ -46,7 +46,6 @@ class _TransactionListItemState extends State<TransactionListItem> {
       enableFeedback: false,
       onTap: () {
         showModalBottomSheet<Padding>(
-          isScrollControlled: true,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(20),
@@ -130,9 +129,12 @@ class _TransactionListItemState extends State<TransactionListItem> {
                                 SizedBox(
                                   height:
                                       MediaQuery.of(context).size.height * 0.3,
-                                  child: CupertinoDatePicker(
-                                    initialDateTime: widget.transaction.date,
-                                    onDateTimeChanged: (DateTime newDate) {
+                                  child: CalendarDatePicker(
+                                    currentDate: widget.transaction.date,
+                                    initialDate: widget.transaction.date,
+                                    firstDate: DateTime(2000),
+                                    lastDate: DateTime(2050),
+                                    onDateChanged: (DateTime newDate) {
                                       context.read<AccountBloc>().add(
                                             AccountEvent.updateTransaction(
                                               account!,
@@ -142,7 +144,6 @@ class _TransactionListItemState extends State<TransactionListItem> {
                                             ),
                                           );
                                     },
-                                    mode: CupertinoDatePickerMode.date,
                                   ),
                                 ),
                                 ActionButton(
