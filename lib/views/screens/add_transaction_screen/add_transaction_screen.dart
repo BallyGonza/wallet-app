@@ -6,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
+import 'package:wallet_app/views/views.dart';
 
 class AddTransactionScreen extends StatefulWidget {
   AddTransactionScreen.income({
@@ -340,33 +341,40 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           size: 12,
                         ),
                         onTap: () {
-                          // cupertinoDatePicker
-                          showCupertinoModalPopup<CupertinoDatePicker>(
+                          // date picker
+                          showModalBottomSheet<SizedBox>(
                             context: context,
                             builder: (context) {
                               return SizedBox(
                                 height:
-                                    MediaQuery.of(context).size.height * 0.3,
-                                child: CupertinoTheme(
-                                  data: const CupertinoThemeData(
-                                    textTheme: CupertinoTextThemeData(
-                                      dateTimePickerTextStyle: TextStyle(
-                                        color: Colors.white,
+                                    MediaQuery.of(context).size.height * 0.4,
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.3,
+                                      child: CalendarDatePicker(
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(2000),
+                                        lastDate: DateTime(2050),
+                                        onDateChanged: (DateTime value) {
+                                          setState(() {
+                                            _selectedDate =
+                                                dateFormat.format(value);
+                                            _selectedDateTime = value;
+                                          });
+                                        },
                                       ),
                                     ),
-                                  ),
-                                  child: CupertinoDatePicker(
-                                    dateOrder: DatePickerDateOrder.dmy,
-                                    backgroundColor: colorCards,
-                                    initialDateTime: DateTime.now(),
-                                    onDateTimeChanged: (value) {
-                                      setState(() {
-                                        _selectedDate =
-                                            dateFormat.format(value);
-                                        _selectedDateTime = value;
-                                      });
-                                    },
-                                  ),
+                                    ActionButton(
+                                      color: Colors.blue,
+                                      text: 'Save',
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                  ],
                                 ),
                               );
                             },
