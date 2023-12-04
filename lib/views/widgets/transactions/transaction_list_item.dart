@@ -1,9 +1,11 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wallet_app/blocs/blocs.dart';
-
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/views/screens/add_transfer_screen/widgets/widgets.dart';
 import 'package:wallet_app/views/views.dart';
 
 class TransactionListItem extends StatefulWidget {
@@ -25,6 +27,8 @@ class _TransactionListItemState extends State<TransactionListItem> {
   late TextEditingController noteController;
   late AccountRepository accountRepository;
   late AccountModel? account;
+  late CategoryModel selectedCategory;
+  late bool isIncome;
 
   @override
   void initState() {
@@ -36,6 +40,8 @@ class _TransactionListItemState extends State<TransactionListItem> {
     amountController =
         TextEditingController(text: widget.transaction.amount.toString());
     noteController = TextEditingController(text: widget.transaction.note);
+    selectedCategory = widget.transaction.category;
+    isIncome = widget.transaction.category.isIncome;
     super.initState();
   }
 
@@ -65,7 +71,84 @@ class _TransactionListItemState extends State<TransactionListItem> {
                         widget.transaction.category.backgroundColor,
                     description: widget.transaction.category.name,
                     transaction: widget.transaction,
-                    onTap: () {},
+                    onTap: () {
+                      showModalBottomSheet<Padding>(
+                        isScrollControlled: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30),
+                          ),
+                        ),
+                        backgroundColor: colorCards,
+                        context: context,
+                        builder: (context) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: SizedBox(
+                              height: isIncome
+                                  ? defaultIncomeCategories.length * 200
+                                  : defaultExpenseCategories.length * 60,
+                              child: ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: isIncome
+                                    ? defaultIncomeCategories.length
+                                    : defaultExpenseCategories.length,
+                                itemBuilder: (context, index) {
+                                  return CategoryListItem(
+                                    onCategoryTap: () {
+                                      setState(() {
+                                        context.read<AccountBloc>().add(
+                                              AccountEvent.updateTransaction(
+                                                account!,
+                                                null,
+                                                widget.transaction.copyWith(
+                                                  category: isIncome
+                                                      ? defaultIncomeCategories[
+                                                          index]
+                                                      : defaultExpenseCategories[
+                                                          index],
+                                                ),
+                                              ),
+                                            );
+                                      });
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
+                                    },
+                                    onSubCategoryTap: (int subIndex) {
+                                      setState(() {
+                                        context.read<AccountBloc>().add(
+                                              AccountEvent.updateTransaction(
+                                                account!,
+                                                null,
+                                                widget.transaction.copyWith(
+                                                  category: isIncome
+                                                      ? defaultIncomeCategories[
+                                                                  index]
+                                                              .subCategories[
+                                                          subIndex]
+                                                      : defaultExpenseCategories[
+                                                                  index]
+                                                              .subCategories[
+                                                          subIndex],
+                                                ),
+                                              ),
+                                            );
+                                      });
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
+                                    },
+                                    category: isIncome
+                                        ? defaultIncomeCategories[index]
+                                        : defaultExpenseCategories[index],
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
                   ),
                   DescriptionItem(
                     title: 'Account',
@@ -73,6 +156,51 @@ class _TransactionListItemState extends State<TransactionListItem> {
                     backgroundColor: account!.institution.backgroundColor,
                     description: account!.name,
                     transaction: widget.transaction,
+                    onTap: () {
+                      showModalBottomSheet<Padding>(
+                        isScrollControlled: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            topRight: Radius.circular(30),
+                          ),
+                        ),
+                        backgroundColor: colorCards,
+                        context: context,
+                        builder: (context) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8),
+                            child: SizedBox(
+                              height: widget.user.accounts.length * 80,
+                              child: ListView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: widget.user.accounts.length,
+                                itemBuilder: (context, index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        context.read<AccountBloc>().add(
+                                              AccountEvent.updateTransaction(
+                                                account!,
+                                                widget.user.accounts[index],
+                                                widget.transaction,
+                                              ),
+                                            );
+                                      });
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
+                                    },
+                                    child: AccountListItem(
+                                      account: widget.user.accounts[index],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
                   ),
                   DescriptionItem(
                     title: 'Amount',
@@ -98,6 +226,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                               context.read<AccountBloc>().add(
                                     AccountEvent.updateTransaction(
                                       account!,
+                                      null,
                                       widget.transaction.copyWith(
                                         amount: double.parse(
                                           amountController.text
@@ -138,6 +267,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                                       context.read<AccountBloc>().add(
                                             AccountEvent.updateTransaction(
                                               account!,
+                                              null,
                                               widget.transaction.copyWith(
                                                 date: newDate,
                                               ),
@@ -184,6 +314,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                               context.read<AccountBloc>().add(
                                     AccountEvent.updateTransaction(
                                       account!,
+                                      null,
                                       widget.transaction.copyWith(
                                         note: noteController.text,
                                       ),

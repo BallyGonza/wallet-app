@@ -80,25 +80,25 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
 }
 
 /// @nodoc
-abstract class _$$UserInitialCopyWith<$Res> {
-  factory _$$UserInitialCopyWith(
-          _$UserInitial value, $Res Function(_$UserInitial) then) =
-      __$$UserInitialCopyWithImpl<$Res>;
+abstract class _$$UserInitialImplCopyWith<$Res> {
+  factory _$$UserInitialImplCopyWith(
+          _$UserInitialImpl value, $Res Function(_$UserInitialImpl) then) =
+      __$$UserInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UserInitialCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$UserInitial>
-    implements _$$UserInitialCopyWith<$Res> {
-  __$$UserInitialCopyWithImpl(
-      _$UserInitial _value, $Res Function(_$UserInitial) _then)
+class __$$UserInitialImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserInitialImpl>
+    implements _$$UserInitialImplCopyWith<$Res> {
+  __$$UserInitialImplCopyWithImpl(
+      _$UserInitialImpl _value, $Res Function(_$UserInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$UserInitial implements UserInitial {
-  const _$UserInitial();
+class _$UserInitialImpl implements UserInitial {
+  const _$UserInitialImpl();
 
   @override
   String toString() {
@@ -108,7 +108,7 @@ class _$UserInitial implements UserInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UserInitial);
+        (other.runtimeType == runtimeType && other is _$UserInitialImpl);
   }
 
   @override
@@ -184,29 +184,29 @@ class _$UserInitial implements UserInitial {
 }
 
 abstract class UserInitial implements UserState {
-  const factory UserInitial() = _$UserInitial;
+  const factory UserInitial() = _$UserInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$UserLoadingCopyWith<$Res> {
-  factory _$$UserLoadingCopyWith(
-          _$UserLoading value, $Res Function(_$UserLoading) then) =
-      __$$UserLoadingCopyWithImpl<$Res>;
+abstract class _$$UserLoadingImplCopyWith<$Res> {
+  factory _$$UserLoadingImplCopyWith(
+          _$UserLoadingImpl value, $Res Function(_$UserLoadingImpl) then) =
+      __$$UserLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UserLoadingCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$UserLoading>
-    implements _$$UserLoadingCopyWith<$Res> {
-  __$$UserLoadingCopyWithImpl(
-      _$UserLoading _value, $Res Function(_$UserLoading) _then)
+class __$$UserLoadingImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserLoadingImpl>
+    implements _$$UserLoadingImplCopyWith<$Res> {
+  __$$UserLoadingImplCopyWithImpl(
+      _$UserLoadingImpl _value, $Res Function(_$UserLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$UserLoading implements UserLoading {
-  const _$UserLoading();
+class _$UserLoadingImpl implements UserLoading {
+  const _$UserLoadingImpl();
 
   @override
   String toString() {
@@ -216,7 +216,7 @@ class _$UserLoading implements UserLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UserLoading);
+        (other.runtimeType == runtimeType && other is _$UserLoadingImpl);
   }
 
   @override
@@ -292,24 +292,24 @@ class _$UserLoading implements UserLoading {
 }
 
 abstract class UserLoading implements UserState {
-  const factory UserLoading() = _$UserLoading;
+  const factory UserLoading() = _$UserLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$UserUpdatedCopyWith<$Res> {
-  factory _$$UserUpdatedCopyWith(
-          _$UserUpdated value, $Res Function(_$UserUpdated) then) =
-      __$$UserUpdatedCopyWithImpl<$Res>;
+abstract class _$$UserUpdatedImplCopyWith<$Res> {
+  factory _$$UserUpdatedImplCopyWith(
+          _$UserUpdatedImpl value, $Res Function(_$UserUpdatedImpl) then) =
+      __$$UserUpdatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserModel user});
 }
 
 /// @nodoc
-class __$$UserUpdatedCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$UserUpdated>
-    implements _$$UserUpdatedCopyWith<$Res> {
-  __$$UserUpdatedCopyWithImpl(
-      _$UserUpdated _value, $Res Function(_$UserUpdated) _then)
+class __$$UserUpdatedImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserUpdatedImpl>
+    implements _$$UserUpdatedImplCopyWith<$Res> {
+  __$$UserUpdatedImplCopyWithImpl(
+      _$UserUpdatedImpl _value, $Res Function(_$UserUpdatedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -317,7 +317,7 @@ class __$$UserUpdatedCopyWithImpl<$Res>
   $Res call({
     Object? user = null,
   }) {
-    return _then(_$UserUpdated(
+    return _then(_$UserUpdatedImpl(
       null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -328,8 +328,8 @@ class __$$UserUpdatedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UserUpdated implements UserUpdated {
-  const _$UserUpdated(this.user);
+class _$UserUpdatedImpl implements UserUpdated {
+  const _$UserUpdatedImpl(this.user);
 
   @override
   final UserModel user;
@@ -343,7 +343,7 @@ class _$UserUpdated implements UserUpdated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserUpdated &&
+            other is _$UserUpdatedImpl &&
             (identical(other.user, user) || other.user == user));
   }
 
@@ -353,8 +353,8 @@ class _$UserUpdated implements UserUpdated {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserUpdatedCopyWith<_$UserUpdated> get copyWith =>
-      __$$UserUpdatedCopyWithImpl<_$UserUpdated>(this, _$identity);
+  _$$UserUpdatedImplCopyWith<_$UserUpdatedImpl> get copyWith =>
+      __$$UserUpdatedImplCopyWithImpl<_$UserUpdatedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -426,10 +426,10 @@ class _$UserUpdated implements UserUpdated {
 }
 
 abstract class UserUpdated implements UserState {
-  const factory UserUpdated(final UserModel user) = _$UserUpdated;
+  const factory UserUpdated(final UserModel user) = _$UserUpdatedImpl;
 
   UserModel get user;
   @JsonKey(ignore: true)
-  _$$UserUpdatedCopyWith<_$UserUpdated> get copyWith =>
+  _$$UserUpdatedImplCopyWith<_$UserUpdatedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

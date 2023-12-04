@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable, inference_failure_on_function_return_type
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';

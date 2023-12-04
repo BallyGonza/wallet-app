@@ -37,9 +37,15 @@ class AccountRepository {
 
   Future<void> updateTransaction(
     AccountModel account,
+    AccountModel? newAccount,
     TransactionModel transaction,
   ) async {
     final user = await _userRepository.getUser();
+    if (newAccount != null) {
+      account.transactions.remove(transaction);
+      newAccount.transactions.add(transaction);
+      return;
+    }
     for (final accountToUpdate in user.accounts) {
       if (accountToUpdate.id == account.id) {
         for (final transactionToUpdate in accountToUpdate.transactions) {
