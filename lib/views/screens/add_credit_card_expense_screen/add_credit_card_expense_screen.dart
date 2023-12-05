@@ -128,8 +128,7 @@ class _AddCreditCardExpenseScreenState
                       WalletListTile(
                         leading: CircleAvatar(
                           backgroundColor: Color(
-                            widget
-                                .selectedCreditCard.institution.backgroundColor,
+                            widget.selectedCreditCard.cardType.backgroundColor,
                           ),
                           child: Image(
                             image: AssetImage(
@@ -190,10 +189,13 @@ class _AddCreditCardExpenseScreenState
                                     children: [
                                       Expanded(
                                         child: ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
                                           itemCount:
                                               widget.user.creditCards.length,
                                           itemBuilder: (context, index) {
                                             return InkWell(
+                                              enableFeedback: false,
                                               onTap: () {
                                                 setState(() {
                                                   widget.selectedCreditCard =
@@ -282,6 +284,8 @@ class _AddCreditCardExpenseScreenState
                                     children: [
                                       Expanded(
                                         child: ListView.builder(
+                                          physics:
+                                              const BouncingScrollPhysics(),
                                           itemCount:
                                               defaultExpenseCategories.length,
                                           itemBuilder: (context, index) {
@@ -343,36 +347,22 @@ class _AddCreditCardExpenseScreenState
                           size: 12,
                         ),
                         onTap: () {
-                          showCupertinoModalPopup<CupertinoDatePicker>(
+                          FocusScope.of(context).unfocus();
+                          showDatePicker(
                             context: context,
-                            builder: (context) {
-                              return SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.3,
-                                child: CupertinoTheme(
-                                  data: const CupertinoThemeData(
-                                    textTheme: CupertinoTextThemeData(
-                                      dateTimePickerTextStyle: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  child: CupertinoDatePicker(
-                                    dateOrder: DatePickerDateOrder.dmy,
-                                    backgroundColor: colorCards,
-                                    initialDateTime: DateTime.now(),
-                                    onDateTimeChanged: (value) {
-                                      setState(() {
-                                        _selectedDate =
-                                            dateFormat.format(value);
-                                        _selectedDateTime = value;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              );
-                            },
-                          );
+                            initialDate: DateTime.now(),
+                            lastDate: DateTime.now(),
+                            firstDate: DateTime.now().subtract(
+                              const Duration(days: 365),
+                            ),
+                          ).then((value) {
+                            if (value != null) {
+                              setState(() {
+                                _selectedDate = dateFormat.format(value);
+                                _selectedDateTime = value;
+                              });
+                            }
+                          });
                         },
                       ),
                       WalletListTile(
@@ -558,7 +548,8 @@ class _AddCreditCardExpenseScreenState
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          Container(
+            margin: const EdgeInsets.only(bottom: 16),
             width: MediaQuery.of(context).size.width - 32,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(

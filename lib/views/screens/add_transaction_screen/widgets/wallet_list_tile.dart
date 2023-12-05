@@ -19,6 +19,7 @@ class WalletListTile extends StatelessWidget {
     return Column(
       children: [
         InkWell(
+          enableFeedback: false,
           onTap: onTap ?? () {},
           child: SizedBox(
             height: 50,

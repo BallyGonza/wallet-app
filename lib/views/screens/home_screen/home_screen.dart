@@ -50,11 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
             date: selectedDate,
             user: widget.user,
           ),
-          StatisticsScreen(
-            user: widget.user,
-            date: selectedDate,
-            yearMode: _yearMode,
-          ),
         ],
       ),
     );
@@ -80,7 +75,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         const Duration(days: 365),
                       )
                     : selectedDate = selectedDate.subtract(
-                        const Duration(days: 30),
+                        const Duration(
+                          days: 30,
+                          hours: 23,
+                          minutes: 59,
+                          seconds: 59,
+                        ),
                       );
               });
             },

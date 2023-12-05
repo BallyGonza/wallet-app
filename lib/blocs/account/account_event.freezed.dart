@@ -24,8 +24,8 @@ mixin _$AccountEvent {
     required TResult Function(
             AccountModel account, TransactionModel transaction)
         addTransaction,
-    required TResult Function(
-            AccountModel account, TransactionModel transaction)
+    required TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)
         updateTransaction,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -39,7 +39,8 @@ mixin _$AccountEvent {
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult? Function(AccountModel account, TransactionModel transaction)?
+    TResult? Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
@@ -52,7 +53,8 @@ mixin _$AccountEvent {
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult Function(AccountModel account, TransactionModel transaction)?
+    TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
@@ -113,25 +115,25 @@ class _$AccountEventCopyWithImpl<$Res, $Val extends AccountEvent>
 }
 
 /// @nodoc
-abstract class _$$AccountInitialEventCopyWith<$Res> {
-  factory _$$AccountInitialEventCopyWith(_$AccountInitialEvent value,
-          $Res Function(_$AccountInitialEvent) then) =
-      __$$AccountInitialEventCopyWithImpl<$Res>;
+abstract class _$$AccountInitialEventImplCopyWith<$Res> {
+  factory _$$AccountInitialEventImplCopyWith(_$AccountInitialEventImpl value,
+          $Res Function(_$AccountInitialEventImpl) then) =
+      __$$AccountInitialEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AccountInitialEventCopyWithImpl<$Res>
-    extends _$AccountEventCopyWithImpl<$Res, _$AccountInitialEvent>
-    implements _$$AccountInitialEventCopyWith<$Res> {
-  __$$AccountInitialEventCopyWithImpl(
-      _$AccountInitialEvent _value, $Res Function(_$AccountInitialEvent) _then)
+class __$$AccountInitialEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res, _$AccountInitialEventImpl>
+    implements _$$AccountInitialEventImplCopyWith<$Res> {
+  __$$AccountInitialEventImplCopyWithImpl(_$AccountInitialEventImpl _value,
+      $Res Function(_$AccountInitialEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AccountInitialEvent implements AccountInitialEvent {
-  const _$AccountInitialEvent();
+class _$AccountInitialEventImpl implements AccountInitialEvent {
+  const _$AccountInitialEventImpl();
 
   @override
   String toString() {
@@ -141,7 +143,8 @@ class _$AccountInitialEvent implements AccountInitialEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AccountInitialEvent);
+        (other.runtimeType == runtimeType &&
+            other is _$AccountInitialEventImpl);
   }
 
   @override
@@ -156,8 +159,8 @@ class _$AccountInitialEvent implements AccountInitialEvent {
     required TResult Function(
             AccountModel account, TransactionModel transaction)
         addTransaction,
-    required TResult Function(
-            AccountModel account, TransactionModel transaction)
+    required TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)
         updateTransaction,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -174,7 +177,8 @@ class _$AccountInitialEvent implements AccountInitialEvent {
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult? Function(AccountModel account, TransactionModel transaction)?
+    TResult? Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
@@ -190,7 +194,8 @@ class _$AccountInitialEvent implements AccountInitialEvent {
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult Function(AccountModel account, TransactionModel transaction)?
+    TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
@@ -249,24 +254,24 @@ class _$AccountInitialEvent implements AccountInitialEvent {
 }
 
 abstract class AccountInitialEvent implements AccountEvent {
-  const factory AccountInitialEvent() = _$AccountInitialEvent;
+  const factory AccountInitialEvent() = _$AccountInitialEventImpl;
 }
 
 /// @nodoc
-abstract class _$$AccountAddEventCopyWith<$Res> {
-  factory _$$AccountAddEventCopyWith(
-          _$AccountAddEvent value, $Res Function(_$AccountAddEvent) then) =
-      __$$AccountAddEventCopyWithImpl<$Res>;
+abstract class _$$AccountAddEventImplCopyWith<$Res> {
+  factory _$$AccountAddEventImplCopyWith(_$AccountAddEventImpl value,
+          $Res Function(_$AccountAddEventImpl) then) =
+      __$$AccountAddEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({AccountModel account});
 }
 
 /// @nodoc
-class __$$AccountAddEventCopyWithImpl<$Res>
-    extends _$AccountEventCopyWithImpl<$Res, _$AccountAddEvent>
-    implements _$$AccountAddEventCopyWith<$Res> {
-  __$$AccountAddEventCopyWithImpl(
-      _$AccountAddEvent _value, $Res Function(_$AccountAddEvent) _then)
+class __$$AccountAddEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res, _$AccountAddEventImpl>
+    implements _$$AccountAddEventImplCopyWith<$Res> {
+  __$$AccountAddEventImplCopyWithImpl(
+      _$AccountAddEventImpl _value, $Res Function(_$AccountAddEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -274,7 +279,7 @@ class __$$AccountAddEventCopyWithImpl<$Res>
   $Res call({
     Object? account = null,
   }) {
-    return _then(_$AccountAddEvent(
+    return _then(_$AccountAddEventImpl(
       null == account
           ? _value.account
           : account // ignore: cast_nullable_to_non_nullable
@@ -285,8 +290,8 @@ class __$$AccountAddEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AccountAddEvent implements AccountAddEvent {
-  const _$AccountAddEvent(this.account);
+class _$AccountAddEventImpl implements AccountAddEvent {
+  const _$AccountAddEventImpl(this.account);
 
   @override
   final AccountModel account;
@@ -300,7 +305,7 @@ class _$AccountAddEvent implements AccountAddEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountAddEvent &&
+            other is _$AccountAddEventImpl &&
             (identical(other.account, account) || other.account == account));
   }
 
@@ -310,8 +315,9 @@ class _$AccountAddEvent implements AccountAddEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountAddEventCopyWith<_$AccountAddEvent> get copyWith =>
-      __$$AccountAddEventCopyWithImpl<_$AccountAddEvent>(this, _$identity);
+  _$$AccountAddEventImplCopyWith<_$AccountAddEventImpl> get copyWith =>
+      __$$AccountAddEventImplCopyWithImpl<_$AccountAddEventImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -322,8 +328,8 @@ class _$AccountAddEvent implements AccountAddEvent {
     required TResult Function(
             AccountModel account, TransactionModel transaction)
         addTransaction,
-    required TResult Function(
-            AccountModel account, TransactionModel transaction)
+    required TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)
         updateTransaction,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -340,7 +346,8 @@ class _$AccountAddEvent implements AccountAddEvent {
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult? Function(AccountModel account, TransactionModel transaction)?
+    TResult? Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
@@ -356,7 +363,8 @@ class _$AccountAddEvent implements AccountAddEvent {
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult Function(AccountModel account, TransactionModel transaction)?
+    TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
@@ -415,29 +423,30 @@ class _$AccountAddEvent implements AccountAddEvent {
 }
 
 abstract class AccountAddEvent implements AccountEvent {
-  const factory AccountAddEvent(final AccountModel account) = _$AccountAddEvent;
+  const factory AccountAddEvent(final AccountModel account) =
+      _$AccountAddEventImpl;
 
   AccountModel get account;
   @JsonKey(ignore: true)
-  _$$AccountAddEventCopyWith<_$AccountAddEvent> get copyWith =>
+  _$$AccountAddEventImplCopyWith<_$AccountAddEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AccountRemoveEventCopyWith<$Res> {
-  factory _$$AccountRemoveEventCopyWith(_$AccountRemoveEvent value,
-          $Res Function(_$AccountRemoveEvent) then) =
-      __$$AccountRemoveEventCopyWithImpl<$Res>;
+abstract class _$$AccountRemoveEventImplCopyWith<$Res> {
+  factory _$$AccountRemoveEventImplCopyWith(_$AccountRemoveEventImpl value,
+          $Res Function(_$AccountRemoveEventImpl) then) =
+      __$$AccountRemoveEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({AccountModel account});
 }
 
 /// @nodoc
-class __$$AccountRemoveEventCopyWithImpl<$Res>
-    extends _$AccountEventCopyWithImpl<$Res, _$AccountRemoveEvent>
-    implements _$$AccountRemoveEventCopyWith<$Res> {
-  __$$AccountRemoveEventCopyWithImpl(
-      _$AccountRemoveEvent _value, $Res Function(_$AccountRemoveEvent) _then)
+class __$$AccountRemoveEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res, _$AccountRemoveEventImpl>
+    implements _$$AccountRemoveEventImplCopyWith<$Res> {
+  __$$AccountRemoveEventImplCopyWithImpl(_$AccountRemoveEventImpl _value,
+      $Res Function(_$AccountRemoveEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -445,7 +454,7 @@ class __$$AccountRemoveEventCopyWithImpl<$Res>
   $Res call({
     Object? account = null,
   }) {
-    return _then(_$AccountRemoveEvent(
+    return _then(_$AccountRemoveEventImpl(
       null == account
           ? _value.account
           : account // ignore: cast_nullable_to_non_nullable
@@ -456,8 +465,8 @@ class __$$AccountRemoveEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AccountRemoveEvent implements AccountRemoveEvent {
-  const _$AccountRemoveEvent(this.account);
+class _$AccountRemoveEventImpl implements AccountRemoveEvent {
+  const _$AccountRemoveEventImpl(this.account);
 
   @override
   final AccountModel account;
@@ -471,7 +480,7 @@ class _$AccountRemoveEvent implements AccountRemoveEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountRemoveEvent &&
+            other is _$AccountRemoveEventImpl &&
             (identical(other.account, account) || other.account == account));
   }
 
@@ -481,8 +490,8 @@ class _$AccountRemoveEvent implements AccountRemoveEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountRemoveEventCopyWith<_$AccountRemoveEvent> get copyWith =>
-      __$$AccountRemoveEventCopyWithImpl<_$AccountRemoveEvent>(
+  _$$AccountRemoveEventImplCopyWith<_$AccountRemoveEventImpl> get copyWith =>
+      __$$AccountRemoveEventImplCopyWithImpl<_$AccountRemoveEventImpl>(
           this, _$identity);
 
   @override
@@ -494,8 +503,8 @@ class _$AccountRemoveEvent implements AccountRemoveEvent {
     required TResult Function(
             AccountModel account, TransactionModel transaction)
         addTransaction,
-    required TResult Function(
-            AccountModel account, TransactionModel transaction)
+    required TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)
         updateTransaction,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -512,7 +521,8 @@ class _$AccountRemoveEvent implements AccountRemoveEvent {
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult? Function(AccountModel account, TransactionModel transaction)?
+    TResult? Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
@@ -528,7 +538,8 @@ class _$AccountRemoveEvent implements AccountRemoveEvent {
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult Function(AccountModel account, TransactionModel transaction)?
+    TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
@@ -588,31 +599,31 @@ class _$AccountRemoveEvent implements AccountRemoveEvent {
 
 abstract class AccountRemoveEvent implements AccountEvent {
   const factory AccountRemoveEvent(final AccountModel account) =
-      _$AccountRemoveEvent;
+      _$AccountRemoveEventImpl;
 
   AccountModel get account;
   @JsonKey(ignore: true)
-  _$$AccountRemoveEventCopyWith<_$AccountRemoveEvent> get copyWith =>
+  _$$AccountRemoveEventImplCopyWith<_$AccountRemoveEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AccountAddTransactionEventCopyWith<$Res> {
-  factory _$$AccountAddTransactionEventCopyWith(
-          _$AccountAddTransactionEvent value,
-          $Res Function(_$AccountAddTransactionEvent) then) =
-      __$$AccountAddTransactionEventCopyWithImpl<$Res>;
+abstract class _$$AccountAddTransactionEventImplCopyWith<$Res> {
+  factory _$$AccountAddTransactionEventImplCopyWith(
+          _$AccountAddTransactionEventImpl value,
+          $Res Function(_$AccountAddTransactionEventImpl) then) =
+      __$$AccountAddTransactionEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({AccountModel account, TransactionModel transaction});
 }
 
 /// @nodoc
-class __$$AccountAddTransactionEventCopyWithImpl<$Res>
-    extends _$AccountEventCopyWithImpl<$Res, _$AccountAddTransactionEvent>
-    implements _$$AccountAddTransactionEventCopyWith<$Res> {
-  __$$AccountAddTransactionEventCopyWithImpl(
-      _$AccountAddTransactionEvent _value,
-      $Res Function(_$AccountAddTransactionEvent) _then)
+class __$$AccountAddTransactionEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res, _$AccountAddTransactionEventImpl>
+    implements _$$AccountAddTransactionEventImplCopyWith<$Res> {
+  __$$AccountAddTransactionEventImplCopyWithImpl(
+      _$AccountAddTransactionEventImpl _value,
+      $Res Function(_$AccountAddTransactionEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -621,7 +632,7 @@ class __$$AccountAddTransactionEventCopyWithImpl<$Res>
     Object? account = null,
     Object? transaction = null,
   }) {
-    return _then(_$AccountAddTransactionEvent(
+    return _then(_$AccountAddTransactionEventImpl(
       null == account
           ? _value.account
           : account // ignore: cast_nullable_to_non_nullable
@@ -636,8 +647,8 @@ class __$$AccountAddTransactionEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AccountAddTransactionEvent implements AccountAddTransactionEvent {
-  const _$AccountAddTransactionEvent(this.account, this.transaction);
+class _$AccountAddTransactionEventImpl implements AccountAddTransactionEvent {
+  const _$AccountAddTransactionEventImpl(this.account, this.transaction);
 
   @override
   final AccountModel account;
@@ -653,7 +664,7 @@ class _$AccountAddTransactionEvent implements AccountAddTransactionEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountAddTransactionEvent &&
+            other is _$AccountAddTransactionEventImpl &&
             (identical(other.account, account) || other.account == account) &&
             (identical(other.transaction, transaction) ||
                 other.transaction == transaction));
@@ -665,9 +676,9 @@ class _$AccountAddTransactionEvent implements AccountAddTransactionEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountAddTransactionEventCopyWith<_$AccountAddTransactionEvent>
-      get copyWith => __$$AccountAddTransactionEventCopyWithImpl<
-          _$AccountAddTransactionEvent>(this, _$identity);
+  _$$AccountAddTransactionEventImplCopyWith<_$AccountAddTransactionEventImpl>
+      get copyWith => __$$AccountAddTransactionEventImplCopyWithImpl<
+          _$AccountAddTransactionEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -678,8 +689,8 @@ class _$AccountAddTransactionEvent implements AccountAddTransactionEvent {
     required TResult Function(
             AccountModel account, TransactionModel transaction)
         addTransaction,
-    required TResult Function(
-            AccountModel account, TransactionModel transaction)
+    required TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)
         updateTransaction,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -696,7 +707,8 @@ class _$AccountAddTransactionEvent implements AccountAddTransactionEvent {
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult? Function(AccountModel account, TransactionModel transaction)?
+    TResult? Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
@@ -712,7 +724,8 @@ class _$AccountAddTransactionEvent implements AccountAddTransactionEvent {
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult Function(AccountModel account, TransactionModel transaction)?
+    TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
@@ -773,45 +786,54 @@ class _$AccountAddTransactionEvent implements AccountAddTransactionEvent {
 abstract class AccountAddTransactionEvent implements AccountEvent {
   const factory AccountAddTransactionEvent(
           final AccountModel account, final TransactionModel transaction) =
-      _$AccountAddTransactionEvent;
+      _$AccountAddTransactionEventImpl;
 
   AccountModel get account;
   TransactionModel get transaction;
   @JsonKey(ignore: true)
-  _$$AccountAddTransactionEventCopyWith<_$AccountAddTransactionEvent>
+  _$$AccountAddTransactionEventImplCopyWith<_$AccountAddTransactionEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AccountUpdateTransactionEventCopyWith<$Res> {
-  factory _$$AccountUpdateTransactionEventCopyWith(
-          _$AccountUpdateTransactionEvent value,
-          $Res Function(_$AccountUpdateTransactionEvent) then) =
-      __$$AccountUpdateTransactionEventCopyWithImpl<$Res>;
+abstract class _$$AccountUpdateTransactionEventImplCopyWith<$Res> {
+  factory _$$AccountUpdateTransactionEventImplCopyWith(
+          _$AccountUpdateTransactionEventImpl value,
+          $Res Function(_$AccountUpdateTransactionEventImpl) then) =
+      __$$AccountUpdateTransactionEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AccountModel account, TransactionModel transaction});
+  $Res call(
+      {AccountModel account,
+      AccountModel? newAccount,
+      TransactionModel transaction});
 }
 
 /// @nodoc
-class __$$AccountUpdateTransactionEventCopyWithImpl<$Res>
-    extends _$AccountEventCopyWithImpl<$Res, _$AccountUpdateTransactionEvent>
-    implements _$$AccountUpdateTransactionEventCopyWith<$Res> {
-  __$$AccountUpdateTransactionEventCopyWithImpl(
-      _$AccountUpdateTransactionEvent _value,
-      $Res Function(_$AccountUpdateTransactionEvent) _then)
+class __$$AccountUpdateTransactionEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res,
+        _$AccountUpdateTransactionEventImpl>
+    implements _$$AccountUpdateTransactionEventImplCopyWith<$Res> {
+  __$$AccountUpdateTransactionEventImplCopyWithImpl(
+      _$AccountUpdateTransactionEventImpl _value,
+      $Res Function(_$AccountUpdateTransactionEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? account = null,
+    Object? newAccount = freezed,
     Object? transaction = null,
   }) {
-    return _then(_$AccountUpdateTransactionEvent(
+    return _then(_$AccountUpdateTransactionEventImpl(
       null == account
           ? _value.account
           : account // ignore: cast_nullable_to_non_nullable
               as AccountModel,
+      freezed == newAccount
+          ? _value.newAccount
+          : newAccount // ignore: cast_nullable_to_non_nullable
+              as AccountModel?,
       null == transaction
           ? _value.transaction
           : transaction // ignore: cast_nullable_to_non_nullable
@@ -822,38 +844,46 @@ class __$$AccountUpdateTransactionEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AccountUpdateTransactionEvent implements AccountUpdateTransactionEvent {
-  const _$AccountUpdateTransactionEvent(this.account, this.transaction);
+class _$AccountUpdateTransactionEventImpl
+    implements AccountUpdateTransactionEvent {
+  const _$AccountUpdateTransactionEventImpl(
+      this.account, this.newAccount, this.transaction);
 
   @override
   final AccountModel account;
+  @override
+  final AccountModel? newAccount;
   @override
   final TransactionModel transaction;
 
   @override
   String toString() {
-    return 'AccountEvent.updateTransaction(account: $account, transaction: $transaction)';
+    return 'AccountEvent.updateTransaction(account: $account, newAccount: $newAccount, transaction: $transaction)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountUpdateTransactionEvent &&
+            other is _$AccountUpdateTransactionEventImpl &&
             (identical(other.account, account) || other.account == account) &&
+            (identical(other.newAccount, newAccount) ||
+                other.newAccount == newAccount) &&
             (identical(other.transaction, transaction) ||
                 other.transaction == transaction));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, account, transaction);
+  int get hashCode =>
+      Object.hash(runtimeType, account, newAccount, transaction);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountUpdateTransactionEventCopyWith<_$AccountUpdateTransactionEvent>
-      get copyWith => __$$AccountUpdateTransactionEventCopyWithImpl<
-          _$AccountUpdateTransactionEvent>(this, _$identity);
+  _$$AccountUpdateTransactionEventImplCopyWith<
+          _$AccountUpdateTransactionEventImpl>
+      get copyWith => __$$AccountUpdateTransactionEventImplCopyWithImpl<
+          _$AccountUpdateTransactionEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -864,14 +894,14 @@ class _$AccountUpdateTransactionEvent implements AccountUpdateTransactionEvent {
     required TResult Function(
             AccountModel account, TransactionModel transaction)
         addTransaction,
-    required TResult Function(
-            AccountModel account, TransactionModel transaction)
+    required TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)
         updateTransaction,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
         removeTransaction,
   }) {
-    return updateTransaction(account, transaction);
+    return updateTransaction(account, newAccount, transaction);
   }
 
   @override
@@ -882,12 +912,13 @@ class _$AccountUpdateTransactionEvent implements AccountUpdateTransactionEvent {
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult? Function(AccountModel account, TransactionModel transaction)?
+    TResult? Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
   }) {
-    return updateTransaction?.call(account, transaction);
+    return updateTransaction?.call(account, newAccount, transaction);
   }
 
   @override
@@ -898,14 +929,15 @@ class _$AccountUpdateTransactionEvent implements AccountUpdateTransactionEvent {
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult Function(AccountModel account, TransactionModel transaction)?
+    TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
     required TResult orElse(),
   }) {
     if (updateTransaction != null) {
-      return updateTransaction(account, transaction);
+      return updateTransaction(account, newAccount, transaction);
     }
     return orElse();
   }
@@ -958,33 +990,37 @@ class _$AccountUpdateTransactionEvent implements AccountUpdateTransactionEvent {
 
 abstract class AccountUpdateTransactionEvent implements AccountEvent {
   const factory AccountUpdateTransactionEvent(
-          final AccountModel account, final TransactionModel transaction) =
-      _$AccountUpdateTransactionEvent;
+      final AccountModel account,
+      final AccountModel? newAccount,
+      final TransactionModel transaction) = _$AccountUpdateTransactionEventImpl;
 
   AccountModel get account;
+  AccountModel? get newAccount;
   TransactionModel get transaction;
   @JsonKey(ignore: true)
-  _$$AccountUpdateTransactionEventCopyWith<_$AccountUpdateTransactionEvent>
+  _$$AccountUpdateTransactionEventImplCopyWith<
+          _$AccountUpdateTransactionEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$AccountRemoveTransactionEventCopyWith<$Res> {
-  factory _$$AccountRemoveTransactionEventCopyWith(
-          _$AccountRemoveTransactionEvent value,
-          $Res Function(_$AccountRemoveTransactionEvent) then) =
-      __$$AccountRemoveTransactionEventCopyWithImpl<$Res>;
+abstract class _$$AccountRemoveTransactionEventImplCopyWith<$Res> {
+  factory _$$AccountRemoveTransactionEventImplCopyWith(
+          _$AccountRemoveTransactionEventImpl value,
+          $Res Function(_$AccountRemoveTransactionEventImpl) then) =
+      __$$AccountRemoveTransactionEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({AccountModel account, TransactionModel transaction});
 }
 
 /// @nodoc
-class __$$AccountRemoveTransactionEventCopyWithImpl<$Res>
-    extends _$AccountEventCopyWithImpl<$Res, _$AccountRemoveTransactionEvent>
-    implements _$$AccountRemoveTransactionEventCopyWith<$Res> {
-  __$$AccountRemoveTransactionEventCopyWithImpl(
-      _$AccountRemoveTransactionEvent _value,
-      $Res Function(_$AccountRemoveTransactionEvent) _then)
+class __$$AccountRemoveTransactionEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res,
+        _$AccountRemoveTransactionEventImpl>
+    implements _$$AccountRemoveTransactionEventImplCopyWith<$Res> {
+  __$$AccountRemoveTransactionEventImplCopyWithImpl(
+      _$AccountRemoveTransactionEventImpl _value,
+      $Res Function(_$AccountRemoveTransactionEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -993,7 +1029,7 @@ class __$$AccountRemoveTransactionEventCopyWithImpl<$Res>
     Object? account = null,
     Object? transaction = null,
   }) {
-    return _then(_$AccountRemoveTransactionEvent(
+    return _then(_$AccountRemoveTransactionEventImpl(
       null == account
           ? _value.account
           : account // ignore: cast_nullable_to_non_nullable
@@ -1008,8 +1044,9 @@ class __$$AccountRemoveTransactionEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AccountRemoveTransactionEvent implements AccountRemoveTransactionEvent {
-  const _$AccountRemoveTransactionEvent(this.account, this.transaction);
+class _$AccountRemoveTransactionEventImpl
+    implements AccountRemoveTransactionEvent {
+  const _$AccountRemoveTransactionEventImpl(this.account, this.transaction);
 
   @override
   final AccountModel account;
@@ -1025,7 +1062,7 @@ class _$AccountRemoveTransactionEvent implements AccountRemoveTransactionEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AccountRemoveTransactionEvent &&
+            other is _$AccountRemoveTransactionEventImpl &&
             (identical(other.account, account) || other.account == account) &&
             (identical(other.transaction, transaction) ||
                 other.transaction == transaction));
@@ -1037,9 +1074,10 @@ class _$AccountRemoveTransactionEvent implements AccountRemoveTransactionEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AccountRemoveTransactionEventCopyWith<_$AccountRemoveTransactionEvent>
-      get copyWith => __$$AccountRemoveTransactionEventCopyWithImpl<
-          _$AccountRemoveTransactionEvent>(this, _$identity);
+  _$$AccountRemoveTransactionEventImplCopyWith<
+          _$AccountRemoveTransactionEventImpl>
+      get copyWith => __$$AccountRemoveTransactionEventImplCopyWithImpl<
+          _$AccountRemoveTransactionEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1050,8 +1088,8 @@ class _$AccountRemoveTransactionEvent implements AccountRemoveTransactionEvent {
     required TResult Function(
             AccountModel account, TransactionModel transaction)
         addTransaction,
-    required TResult Function(
-            AccountModel account, TransactionModel transaction)
+    required TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)
         updateTransaction,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -1068,7 +1106,8 @@ class _$AccountRemoveTransactionEvent implements AccountRemoveTransactionEvent {
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult? Function(AccountModel account, TransactionModel transaction)?
+    TResult? Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
@@ -1084,7 +1123,8 @@ class _$AccountRemoveTransactionEvent implements AccountRemoveTransactionEvent {
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
-    TResult Function(AccountModel account, TransactionModel transaction)?
+    TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
         updateTransaction,
     TResult Function(AccountModel account, TransactionModel transaction)?
         removeTransaction,
@@ -1145,11 +1185,12 @@ class _$AccountRemoveTransactionEvent implements AccountRemoveTransactionEvent {
 abstract class AccountRemoveTransactionEvent implements AccountEvent {
   const factory AccountRemoveTransactionEvent(
           final AccountModel account, final TransactionModel transaction) =
-      _$AccountRemoveTransactionEvent;
+      _$AccountRemoveTransactionEventImpl;
 
   AccountModel get account;
   TransactionModel get transaction;
   @JsonKey(ignore: true)
-  _$$AccountRemoveTransactionEventCopyWith<_$AccountRemoveTransactionEvent>
+  _$$AccountRemoveTransactionEventImplCopyWith<
+          _$AccountRemoveTransactionEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

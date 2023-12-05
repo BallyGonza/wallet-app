@@ -120,25 +120,27 @@ class _$CreditCardEventCopyWithImpl<$Res, $Val extends CreditCardEvent>
 }
 
 /// @nodoc
-abstract class _$$CreditCardInitialEventCopyWith<$Res> {
-  factory _$$CreditCardInitialEventCopyWith(_$CreditCardInitialEvent value,
-          $Res Function(_$CreditCardInitialEvent) then) =
-      __$$CreditCardInitialEventCopyWithImpl<$Res>;
+abstract class _$$CreditCardInitialEventImplCopyWith<$Res> {
+  factory _$$CreditCardInitialEventImplCopyWith(
+          _$CreditCardInitialEventImpl value,
+          $Res Function(_$CreditCardInitialEventImpl) then) =
+      __$$CreditCardInitialEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CreditCardInitialEventCopyWithImpl<$Res>
-    extends _$CreditCardEventCopyWithImpl<$Res, _$CreditCardInitialEvent>
-    implements _$$CreditCardInitialEventCopyWith<$Res> {
-  __$$CreditCardInitialEventCopyWithImpl(_$CreditCardInitialEvent _value,
-      $Res Function(_$CreditCardInitialEvent) _then)
+class __$$CreditCardInitialEventImplCopyWithImpl<$Res>
+    extends _$CreditCardEventCopyWithImpl<$Res, _$CreditCardInitialEventImpl>
+    implements _$$CreditCardInitialEventImplCopyWith<$Res> {
+  __$$CreditCardInitialEventImplCopyWithImpl(
+      _$CreditCardInitialEventImpl _value,
+      $Res Function(_$CreditCardInitialEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$CreditCardInitialEvent implements CreditCardInitialEvent {
-  const _$CreditCardInitialEvent();
+class _$CreditCardInitialEventImpl implements CreditCardInitialEvent {
+  const _$CreditCardInitialEventImpl();
 
   @override
   String toString() {
@@ -148,7 +150,8 @@ class _$CreditCardInitialEvent implements CreditCardInitialEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CreditCardInitialEvent);
+        (other.runtimeType == runtimeType &&
+            other is _$CreditCardInitialEventImpl);
   }
 
   @override
@@ -263,24 +266,24 @@ class _$CreditCardInitialEvent implements CreditCardInitialEvent {
 }
 
 abstract class CreditCardInitialEvent implements CreditCardEvent {
-  const factory CreditCardInitialEvent() = _$CreditCardInitialEvent;
+  const factory CreditCardInitialEvent() = _$CreditCardInitialEventImpl;
 }
 
 /// @nodoc
-abstract class _$$CreditCardAddEventCopyWith<$Res> {
-  factory _$$CreditCardAddEventCopyWith(_$CreditCardAddEvent value,
-          $Res Function(_$CreditCardAddEvent) then) =
-      __$$CreditCardAddEventCopyWithImpl<$Res>;
+abstract class _$$CreditCardAddEventImplCopyWith<$Res> {
+  factory _$$CreditCardAddEventImplCopyWith(_$CreditCardAddEventImpl value,
+          $Res Function(_$CreditCardAddEventImpl) then) =
+      __$$CreditCardAddEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({CreditCardModel creditCard});
 }
 
 /// @nodoc
-class __$$CreditCardAddEventCopyWithImpl<$Res>
-    extends _$CreditCardEventCopyWithImpl<$Res, _$CreditCardAddEvent>
-    implements _$$CreditCardAddEventCopyWith<$Res> {
-  __$$CreditCardAddEventCopyWithImpl(
-      _$CreditCardAddEvent _value, $Res Function(_$CreditCardAddEvent) _then)
+class __$$CreditCardAddEventImplCopyWithImpl<$Res>
+    extends _$CreditCardEventCopyWithImpl<$Res, _$CreditCardAddEventImpl>
+    implements _$$CreditCardAddEventImplCopyWith<$Res> {
+  __$$CreditCardAddEventImplCopyWithImpl(_$CreditCardAddEventImpl _value,
+      $Res Function(_$CreditCardAddEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -288,7 +291,7 @@ class __$$CreditCardAddEventCopyWithImpl<$Res>
   $Res call({
     Object? creditCard = null,
   }) {
-    return _then(_$CreditCardAddEvent(
+    return _then(_$CreditCardAddEventImpl(
       null == creditCard
           ? _value.creditCard
           : creditCard // ignore: cast_nullable_to_non_nullable
@@ -299,8 +302,8 @@ class __$$CreditCardAddEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreditCardAddEvent implements CreditCardAddEvent {
-  const _$CreditCardAddEvent(this.creditCard);
+class _$CreditCardAddEventImpl implements CreditCardAddEvent {
+  const _$CreditCardAddEventImpl(this.creditCard);
 
   @override
   final CreditCardModel creditCard;
@@ -314,7 +317,7 @@ class _$CreditCardAddEvent implements CreditCardAddEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreditCardAddEvent &&
+            other is _$CreditCardAddEventImpl &&
             (identical(other.creditCard, creditCard) ||
                 other.creditCard == creditCard));
   }
@@ -325,8 +328,8 @@ class _$CreditCardAddEvent implements CreditCardAddEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreditCardAddEventCopyWith<_$CreditCardAddEvent> get copyWith =>
-      __$$CreditCardAddEventCopyWithImpl<_$CreditCardAddEvent>(
+  _$$CreditCardAddEventImplCopyWith<_$CreditCardAddEventImpl> get copyWith =>
+      __$$CreditCardAddEventImplCopyWithImpl<_$CreditCardAddEventImpl>(
           this, _$identity);
 
   @override
@@ -439,29 +442,30 @@ class _$CreditCardAddEvent implements CreditCardAddEvent {
 
 abstract class CreditCardAddEvent implements CreditCardEvent {
   const factory CreditCardAddEvent(final CreditCardModel creditCard) =
-      _$CreditCardAddEvent;
+      _$CreditCardAddEventImpl;
 
   CreditCardModel get creditCard;
   @JsonKey(ignore: true)
-  _$$CreditCardAddEventCopyWith<_$CreditCardAddEvent> get copyWith =>
+  _$$CreditCardAddEventImplCopyWith<_$CreditCardAddEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CreditCardRemoveEventCopyWith<$Res> {
-  factory _$$CreditCardRemoveEventCopyWith(_$CreditCardRemoveEvent value,
-          $Res Function(_$CreditCardRemoveEvent) then) =
-      __$$CreditCardRemoveEventCopyWithImpl<$Res>;
+abstract class _$$CreditCardRemoveEventImplCopyWith<$Res> {
+  factory _$$CreditCardRemoveEventImplCopyWith(
+          _$CreditCardRemoveEventImpl value,
+          $Res Function(_$CreditCardRemoveEventImpl) then) =
+      __$$CreditCardRemoveEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({CreditCardModel creditCard});
 }
 
 /// @nodoc
-class __$$CreditCardRemoveEventCopyWithImpl<$Res>
-    extends _$CreditCardEventCopyWithImpl<$Res, _$CreditCardRemoveEvent>
-    implements _$$CreditCardRemoveEventCopyWith<$Res> {
-  __$$CreditCardRemoveEventCopyWithImpl(_$CreditCardRemoveEvent _value,
-      $Res Function(_$CreditCardRemoveEvent) _then)
+class __$$CreditCardRemoveEventImplCopyWithImpl<$Res>
+    extends _$CreditCardEventCopyWithImpl<$Res, _$CreditCardRemoveEventImpl>
+    implements _$$CreditCardRemoveEventImplCopyWith<$Res> {
+  __$$CreditCardRemoveEventImplCopyWithImpl(_$CreditCardRemoveEventImpl _value,
+      $Res Function(_$CreditCardRemoveEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -469,7 +473,7 @@ class __$$CreditCardRemoveEventCopyWithImpl<$Res>
   $Res call({
     Object? creditCard = null,
   }) {
-    return _then(_$CreditCardRemoveEvent(
+    return _then(_$CreditCardRemoveEventImpl(
       null == creditCard
           ? _value.creditCard
           : creditCard // ignore: cast_nullable_to_non_nullable
@@ -480,8 +484,8 @@ class __$$CreditCardRemoveEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreditCardRemoveEvent implements CreditCardRemoveEvent {
-  const _$CreditCardRemoveEvent(this.creditCard);
+class _$CreditCardRemoveEventImpl implements CreditCardRemoveEvent {
+  const _$CreditCardRemoveEventImpl(this.creditCard);
 
   @override
   final CreditCardModel creditCard;
@@ -495,7 +499,7 @@ class _$CreditCardRemoveEvent implements CreditCardRemoveEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreditCardRemoveEvent &&
+            other is _$CreditCardRemoveEventImpl &&
             (identical(other.creditCard, creditCard) ||
                 other.creditCard == creditCard));
   }
@@ -506,9 +510,9 @@ class _$CreditCardRemoveEvent implements CreditCardRemoveEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreditCardRemoveEventCopyWith<_$CreditCardRemoveEvent> get copyWith =>
-      __$$CreditCardRemoveEventCopyWithImpl<_$CreditCardRemoveEvent>(
-          this, _$identity);
+  _$$CreditCardRemoveEventImplCopyWith<_$CreditCardRemoveEventImpl>
+      get copyWith => __$$CreditCardRemoveEventImplCopyWithImpl<
+          _$CreditCardRemoveEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -620,20 +624,20 @@ class _$CreditCardRemoveEvent implements CreditCardRemoveEvent {
 
 abstract class CreditCardRemoveEvent implements CreditCardEvent {
   const factory CreditCardRemoveEvent(final CreditCardModel creditCard) =
-      _$CreditCardRemoveEvent;
+      _$CreditCardRemoveEventImpl;
 
   CreditCardModel get creditCard;
   @JsonKey(ignore: true)
-  _$$CreditCardRemoveEventCopyWith<_$CreditCardRemoveEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CreditCardRemoveEventImplCopyWith<_$CreditCardRemoveEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CreditCardAddTransactionEventCopyWith<$Res> {
-  factory _$$CreditCardAddTransactionEventCopyWith(
-          _$CreditCardAddTransactionEvent value,
-          $Res Function(_$CreditCardAddTransactionEvent) then) =
-      __$$CreditCardAddTransactionEventCopyWithImpl<$Res>;
+abstract class _$$CreditCardAddTransactionEventImplCopyWith<$Res> {
+  factory _$$CreditCardAddTransactionEventImplCopyWith(
+          _$CreditCardAddTransactionEventImpl value,
+          $Res Function(_$CreditCardAddTransactionEventImpl) then) =
+      __$$CreditCardAddTransactionEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {CreditCardModel creditCard,
@@ -641,12 +645,13 @@ abstract class _$$CreditCardAddTransactionEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CreditCardAddTransactionEventCopyWithImpl<$Res>
-    extends _$CreditCardEventCopyWithImpl<$Res, _$CreditCardAddTransactionEvent>
-    implements _$$CreditCardAddTransactionEventCopyWith<$Res> {
-  __$$CreditCardAddTransactionEventCopyWithImpl(
-      _$CreditCardAddTransactionEvent _value,
-      $Res Function(_$CreditCardAddTransactionEvent) _then)
+class __$$CreditCardAddTransactionEventImplCopyWithImpl<$Res>
+    extends _$CreditCardEventCopyWithImpl<$Res,
+        _$CreditCardAddTransactionEventImpl>
+    implements _$$CreditCardAddTransactionEventImplCopyWith<$Res> {
+  __$$CreditCardAddTransactionEventImplCopyWithImpl(
+      _$CreditCardAddTransactionEventImpl _value,
+      $Res Function(_$CreditCardAddTransactionEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -655,7 +660,7 @@ class __$$CreditCardAddTransactionEventCopyWithImpl<$Res>
     Object? creditCard = null,
     Object? creditCardTransaction = null,
   }) {
-    return _then(_$CreditCardAddTransactionEvent(
+    return _then(_$CreditCardAddTransactionEventImpl(
       null == creditCard
           ? _value.creditCard
           : creditCard // ignore: cast_nullable_to_non_nullable
@@ -670,8 +675,9 @@ class __$$CreditCardAddTransactionEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreditCardAddTransactionEvent implements CreditCardAddTransactionEvent {
-  const _$CreditCardAddTransactionEvent(
+class _$CreditCardAddTransactionEventImpl
+    implements CreditCardAddTransactionEvent {
+  const _$CreditCardAddTransactionEventImpl(
       this.creditCard, this.creditCardTransaction);
 
   @override
@@ -688,7 +694,7 @@ class _$CreditCardAddTransactionEvent implements CreditCardAddTransactionEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreditCardAddTransactionEvent &&
+            other is _$CreditCardAddTransactionEventImpl &&
             (identical(other.creditCard, creditCard) ||
                 other.creditCard == creditCard) &&
             (identical(other.creditCardTransaction, creditCardTransaction) ||
@@ -702,9 +708,10 @@ class _$CreditCardAddTransactionEvent implements CreditCardAddTransactionEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreditCardAddTransactionEventCopyWith<_$CreditCardAddTransactionEvent>
-      get copyWith => __$$CreditCardAddTransactionEventCopyWithImpl<
-          _$CreditCardAddTransactionEvent>(this, _$identity);
+  _$$CreditCardAddTransactionEventImplCopyWith<
+          _$CreditCardAddTransactionEventImpl>
+      get copyWith => __$$CreditCardAddTransactionEventImplCopyWithImpl<
+          _$CreditCardAddTransactionEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -817,21 +824,22 @@ class _$CreditCardAddTransactionEvent implements CreditCardAddTransactionEvent {
 abstract class CreditCardAddTransactionEvent implements CreditCardEvent {
   const factory CreditCardAddTransactionEvent(final CreditCardModel creditCard,
           final CreditCardTransactionModel creditCardTransaction) =
-      _$CreditCardAddTransactionEvent;
+      _$CreditCardAddTransactionEventImpl;
 
   CreditCardModel get creditCard;
   CreditCardTransactionModel get creditCardTransaction;
   @JsonKey(ignore: true)
-  _$$CreditCardAddTransactionEventCopyWith<_$CreditCardAddTransactionEvent>
+  _$$CreditCardAddTransactionEventImplCopyWith<
+          _$CreditCardAddTransactionEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CreditCardRemoveTransactionEventCopyWith<$Res> {
-  factory _$$CreditCardRemoveTransactionEventCopyWith(
-          _$CreditCardRemoveTransactionEvent value,
-          $Res Function(_$CreditCardRemoveTransactionEvent) then) =
-      __$$CreditCardRemoveTransactionEventCopyWithImpl<$Res>;
+abstract class _$$CreditCardRemoveTransactionEventImplCopyWith<$Res> {
+  factory _$$CreditCardRemoveTransactionEventImplCopyWith(
+          _$CreditCardRemoveTransactionEventImpl value,
+          $Res Function(_$CreditCardRemoveTransactionEventImpl) then) =
+      __$$CreditCardRemoveTransactionEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {CreditCardModel creditCard,
@@ -839,13 +847,13 @@ abstract class _$$CreditCardRemoveTransactionEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CreditCardRemoveTransactionEventCopyWithImpl<$Res>
+class __$$CreditCardRemoveTransactionEventImplCopyWithImpl<$Res>
     extends _$CreditCardEventCopyWithImpl<$Res,
-        _$CreditCardRemoveTransactionEvent>
-    implements _$$CreditCardRemoveTransactionEventCopyWith<$Res> {
-  __$$CreditCardRemoveTransactionEventCopyWithImpl(
-      _$CreditCardRemoveTransactionEvent _value,
-      $Res Function(_$CreditCardRemoveTransactionEvent) _then)
+        _$CreditCardRemoveTransactionEventImpl>
+    implements _$$CreditCardRemoveTransactionEventImplCopyWith<$Res> {
+  __$$CreditCardRemoveTransactionEventImplCopyWithImpl(
+      _$CreditCardRemoveTransactionEventImpl _value,
+      $Res Function(_$CreditCardRemoveTransactionEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -854,7 +862,7 @@ class __$$CreditCardRemoveTransactionEventCopyWithImpl<$Res>
     Object? creditCard = null,
     Object? creditCardTransaction = null,
   }) {
-    return _then(_$CreditCardRemoveTransactionEvent(
+    return _then(_$CreditCardRemoveTransactionEventImpl(
       null == creditCard
           ? _value.creditCard
           : creditCard // ignore: cast_nullable_to_non_nullable
@@ -869,9 +877,9 @@ class __$$CreditCardRemoveTransactionEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreditCardRemoveTransactionEvent
+class _$CreditCardRemoveTransactionEventImpl
     implements CreditCardRemoveTransactionEvent {
-  const _$CreditCardRemoveTransactionEvent(
+  const _$CreditCardRemoveTransactionEventImpl(
       this.creditCard, this.creditCardTransaction);
 
   @override
@@ -888,7 +896,7 @@ class _$CreditCardRemoveTransactionEvent
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreditCardRemoveTransactionEvent &&
+            other is _$CreditCardRemoveTransactionEventImpl &&
             (identical(other.creditCard, creditCard) ||
                 other.creditCard == creditCard) &&
             (identical(other.creditCardTransaction, creditCardTransaction) ||
@@ -902,10 +910,10 @@ class _$CreditCardRemoveTransactionEvent
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreditCardRemoveTransactionEventCopyWith<
-          _$CreditCardRemoveTransactionEvent>
-      get copyWith => __$$CreditCardRemoveTransactionEventCopyWithImpl<
-          _$CreditCardRemoveTransactionEvent>(this, _$identity);
+  _$$CreditCardRemoveTransactionEventImplCopyWith<
+          _$CreditCardRemoveTransactionEventImpl>
+      get copyWith => __$$CreditCardRemoveTransactionEventImplCopyWithImpl<
+          _$CreditCardRemoveTransactionEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1019,31 +1027,32 @@ abstract class CreditCardRemoveTransactionEvent implements CreditCardEvent {
   const factory CreditCardRemoveTransactionEvent(
           final CreditCardModel creditCard,
           final CreditCardTransactionModel creditCardTransaction) =
-      _$CreditCardRemoveTransactionEvent;
+      _$CreditCardRemoveTransactionEventImpl;
 
   CreditCardModel get creditCard;
   CreditCardTransactionModel get creditCardTransaction;
   @JsonKey(ignore: true)
-  _$$CreditCardRemoveTransactionEventCopyWith<
-          _$CreditCardRemoveTransactionEvent>
+  _$$CreditCardRemoveTransactionEventImplCopyWith<
+          _$CreditCardRemoveTransactionEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CreditCardUpdateEventCopyWith<$Res> {
-  factory _$$CreditCardUpdateEventCopyWith(_$CreditCardUpdateEvent value,
-          $Res Function(_$CreditCardUpdateEvent) then) =
-      __$$CreditCardUpdateEventCopyWithImpl<$Res>;
+abstract class _$$CreditCardUpdateEventImplCopyWith<$Res> {
+  factory _$$CreditCardUpdateEventImplCopyWith(
+          _$CreditCardUpdateEventImpl value,
+          $Res Function(_$CreditCardUpdateEventImpl) then) =
+      __$$CreditCardUpdateEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({CreditCardModel creditCard});
 }
 
 /// @nodoc
-class __$$CreditCardUpdateEventCopyWithImpl<$Res>
-    extends _$CreditCardEventCopyWithImpl<$Res, _$CreditCardUpdateEvent>
-    implements _$$CreditCardUpdateEventCopyWith<$Res> {
-  __$$CreditCardUpdateEventCopyWithImpl(_$CreditCardUpdateEvent _value,
-      $Res Function(_$CreditCardUpdateEvent) _then)
+class __$$CreditCardUpdateEventImplCopyWithImpl<$Res>
+    extends _$CreditCardEventCopyWithImpl<$Res, _$CreditCardUpdateEventImpl>
+    implements _$$CreditCardUpdateEventImplCopyWith<$Res> {
+  __$$CreditCardUpdateEventImplCopyWithImpl(_$CreditCardUpdateEventImpl _value,
+      $Res Function(_$CreditCardUpdateEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1051,7 +1060,7 @@ class __$$CreditCardUpdateEventCopyWithImpl<$Res>
   $Res call({
     Object? creditCard = null,
   }) {
-    return _then(_$CreditCardUpdateEvent(
+    return _then(_$CreditCardUpdateEventImpl(
       null == creditCard
           ? _value.creditCard
           : creditCard // ignore: cast_nullable_to_non_nullable
@@ -1062,8 +1071,8 @@ class __$$CreditCardUpdateEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreditCardUpdateEvent implements CreditCardUpdateEvent {
-  const _$CreditCardUpdateEvent(this.creditCard);
+class _$CreditCardUpdateEventImpl implements CreditCardUpdateEvent {
+  const _$CreditCardUpdateEventImpl(this.creditCard);
 
   @override
   final CreditCardModel creditCard;
@@ -1077,7 +1086,7 @@ class _$CreditCardUpdateEvent implements CreditCardUpdateEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreditCardUpdateEvent &&
+            other is _$CreditCardUpdateEventImpl &&
             (identical(other.creditCard, creditCard) ||
                 other.creditCard == creditCard));
   }
@@ -1088,9 +1097,9 @@ class _$CreditCardUpdateEvent implements CreditCardUpdateEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreditCardUpdateEventCopyWith<_$CreditCardUpdateEvent> get copyWith =>
-      __$$CreditCardUpdateEventCopyWithImpl<_$CreditCardUpdateEvent>(
-          this, _$identity);
+  _$$CreditCardUpdateEventImplCopyWith<_$CreditCardUpdateEventImpl>
+      get copyWith => __$$CreditCardUpdateEventImplCopyWithImpl<
+          _$CreditCardUpdateEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1202,29 +1211,29 @@ class _$CreditCardUpdateEvent implements CreditCardUpdateEvent {
 
 abstract class CreditCardUpdateEvent implements CreditCardEvent {
   const factory CreditCardUpdateEvent(final CreditCardModel creditCard) =
-      _$CreditCardUpdateEvent;
+      _$CreditCardUpdateEventImpl;
 
   CreditCardModel get creditCard;
   @JsonKey(ignore: true)
-  _$$CreditCardUpdateEventCopyWith<_$CreditCardUpdateEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CreditCardUpdateEventImplCopyWith<_$CreditCardUpdateEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CreditCardPayEventCopyWith<$Res> {
-  factory _$$CreditCardPayEventCopyWith(_$CreditCardPayEvent value,
-          $Res Function(_$CreditCardPayEvent) then) =
-      __$$CreditCardPayEventCopyWithImpl<$Res>;
+abstract class _$$CreditCardPayEventImplCopyWith<$Res> {
+  factory _$$CreditCardPayEventImplCopyWith(_$CreditCardPayEventImpl value,
+          $Res Function(_$CreditCardPayEventImpl) then) =
+      __$$CreditCardPayEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({CreditCardModel creditCard, DateTime date});
 }
 
 /// @nodoc
-class __$$CreditCardPayEventCopyWithImpl<$Res>
-    extends _$CreditCardEventCopyWithImpl<$Res, _$CreditCardPayEvent>
-    implements _$$CreditCardPayEventCopyWith<$Res> {
-  __$$CreditCardPayEventCopyWithImpl(
-      _$CreditCardPayEvent _value, $Res Function(_$CreditCardPayEvent) _then)
+class __$$CreditCardPayEventImplCopyWithImpl<$Res>
+    extends _$CreditCardEventCopyWithImpl<$Res, _$CreditCardPayEventImpl>
+    implements _$$CreditCardPayEventImplCopyWith<$Res> {
+  __$$CreditCardPayEventImplCopyWithImpl(_$CreditCardPayEventImpl _value,
+      $Res Function(_$CreditCardPayEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1233,7 +1242,7 @@ class __$$CreditCardPayEventCopyWithImpl<$Res>
     Object? creditCard = null,
     Object? date = null,
   }) {
-    return _then(_$CreditCardPayEvent(
+    return _then(_$CreditCardPayEventImpl(
       null == creditCard
           ? _value.creditCard
           : creditCard // ignore: cast_nullable_to_non_nullable
@@ -1248,8 +1257,8 @@ class __$$CreditCardPayEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreditCardPayEvent implements CreditCardPayEvent {
-  const _$CreditCardPayEvent(this.creditCard, this.date);
+class _$CreditCardPayEventImpl implements CreditCardPayEvent {
+  const _$CreditCardPayEventImpl(this.creditCard, this.date);
 
   @override
   final CreditCardModel creditCard;
@@ -1265,7 +1274,7 @@ class _$CreditCardPayEvent implements CreditCardPayEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreditCardPayEvent &&
+            other is _$CreditCardPayEventImpl &&
             (identical(other.creditCard, creditCard) ||
                 other.creditCard == creditCard) &&
             (identical(other.date, date) || other.date == date));
@@ -1277,8 +1286,8 @@ class _$CreditCardPayEvent implements CreditCardPayEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreditCardPayEventCopyWith<_$CreditCardPayEvent> get copyWith =>
-      __$$CreditCardPayEventCopyWithImpl<_$CreditCardPayEvent>(
+  _$$CreditCardPayEventImplCopyWith<_$CreditCardPayEventImpl> get copyWith =>
+      __$$CreditCardPayEventImplCopyWithImpl<_$CreditCardPayEventImpl>(
           this, _$identity);
 
   @override
@@ -1392,11 +1401,11 @@ class _$CreditCardPayEvent implements CreditCardPayEvent {
 abstract class CreditCardPayEvent implements CreditCardEvent {
   const factory CreditCardPayEvent(
           final CreditCardModel creditCard, final DateTime date) =
-      _$CreditCardPayEvent;
+      _$CreditCardPayEventImpl;
 
   CreditCardModel get creditCard;
   DateTime get date;
   @JsonKey(ignore: true)
-  _$$CreditCardPayEventCopyWith<_$CreditCardPayEvent> get copyWith =>
+  _$$CreditCardPayEventImplCopyWith<_$CreditCardPayEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

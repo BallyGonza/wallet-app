@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_dynamic_calls
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wallet_app/data/data.dart';
@@ -128,6 +130,7 @@ class _CategoryListItemState extends State<CategoryListItem>
                           final subCategory =
                               widget.category.subCategories[index];
                           return InkWell(
+                            enableFeedback: false,
                             onTap: () {
                               widget.onSubCategoryTap(index);
                             },

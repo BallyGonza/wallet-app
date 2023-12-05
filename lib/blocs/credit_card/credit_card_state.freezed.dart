@@ -81,25 +81,25 @@ class _$CreditCardStateCopyWithImpl<$Res, $Val extends CreditCardState>
 }
 
 /// @nodoc
-abstract class _$$CreditCardInitialCopyWith<$Res> {
-  factory _$$CreditCardInitialCopyWith(
-          _$CreditCardInitial value, $Res Function(_$CreditCardInitial) then) =
-      __$$CreditCardInitialCopyWithImpl<$Res>;
+abstract class _$$CreditCardInitialImplCopyWith<$Res> {
+  factory _$$CreditCardInitialImplCopyWith(_$CreditCardInitialImpl value,
+          $Res Function(_$CreditCardInitialImpl) then) =
+      __$$CreditCardInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CreditCardInitialCopyWithImpl<$Res>
-    extends _$CreditCardStateCopyWithImpl<$Res, _$CreditCardInitial>
-    implements _$$CreditCardInitialCopyWith<$Res> {
-  __$$CreditCardInitialCopyWithImpl(
-      _$CreditCardInitial _value, $Res Function(_$CreditCardInitial) _then)
+class __$$CreditCardInitialImplCopyWithImpl<$Res>
+    extends _$CreditCardStateCopyWithImpl<$Res, _$CreditCardInitialImpl>
+    implements _$$CreditCardInitialImplCopyWith<$Res> {
+  __$$CreditCardInitialImplCopyWithImpl(_$CreditCardInitialImpl _value,
+      $Res Function(_$CreditCardInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$CreditCardInitial implements CreditCardInitial {
-  const _$CreditCardInitial();
+class _$CreditCardInitialImpl implements CreditCardInitial {
+  const _$CreditCardInitialImpl();
 
   @override
   String toString() {
@@ -109,7 +109,7 @@ class _$CreditCardInitial implements CreditCardInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CreditCardInitial);
+        (other.runtimeType == runtimeType && other is _$CreditCardInitialImpl);
   }
 
   @override
@@ -185,29 +185,29 @@ class _$CreditCardInitial implements CreditCardInitial {
 }
 
 abstract class CreditCardInitial implements CreditCardState {
-  const factory CreditCardInitial() = _$CreditCardInitial;
+  const factory CreditCardInitial() = _$CreditCardInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$CreditCardLoadingCopyWith<$Res> {
-  factory _$$CreditCardLoadingCopyWith(
-          _$CreditCardLoading value, $Res Function(_$CreditCardLoading) then) =
-      __$$CreditCardLoadingCopyWithImpl<$Res>;
+abstract class _$$CreditCardLoadingImplCopyWith<$Res> {
+  factory _$$CreditCardLoadingImplCopyWith(_$CreditCardLoadingImpl value,
+          $Res Function(_$CreditCardLoadingImpl) then) =
+      __$$CreditCardLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CreditCardLoadingCopyWithImpl<$Res>
-    extends _$CreditCardStateCopyWithImpl<$Res, _$CreditCardLoading>
-    implements _$$CreditCardLoadingCopyWith<$Res> {
-  __$$CreditCardLoadingCopyWithImpl(
-      _$CreditCardLoading _value, $Res Function(_$CreditCardLoading) _then)
+class __$$CreditCardLoadingImplCopyWithImpl<$Res>
+    extends _$CreditCardStateCopyWithImpl<$Res, _$CreditCardLoadingImpl>
+    implements _$$CreditCardLoadingImplCopyWith<$Res> {
+  __$$CreditCardLoadingImplCopyWithImpl(_$CreditCardLoadingImpl _value,
+      $Res Function(_$CreditCardLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$CreditCardLoading implements CreditCardLoading {
-  const _$CreditCardLoading();
+class _$CreditCardLoadingImpl implements CreditCardLoading {
+  const _$CreditCardLoadingImpl();
 
   @override
   String toString() {
@@ -217,7 +217,7 @@ class _$CreditCardLoading implements CreditCardLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CreditCardLoading);
+        (other.runtimeType == runtimeType && other is _$CreditCardLoadingImpl);
   }
 
   @override
@@ -293,24 +293,24 @@ class _$CreditCardLoading implements CreditCardLoading {
 }
 
 abstract class CreditCardLoading implements CreditCardState {
-  const factory CreditCardLoading() = _$CreditCardLoading;
+  const factory CreditCardLoading() = _$CreditCardLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$CreditCardUpdatedCopyWith<$Res> {
-  factory _$$CreditCardUpdatedCopyWith(
-          _$CreditCardUpdated value, $Res Function(_$CreditCardUpdated) then) =
-      __$$CreditCardUpdatedCopyWithImpl<$Res>;
+abstract class _$$CreditCardUpdatedImplCopyWith<$Res> {
+  factory _$$CreditCardUpdatedImplCopyWith(_$CreditCardUpdatedImpl value,
+          $Res Function(_$CreditCardUpdatedImpl) then) =
+      __$$CreditCardUpdatedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<CreditCardModel> creditCards});
 }
 
 /// @nodoc
-class __$$CreditCardUpdatedCopyWithImpl<$Res>
-    extends _$CreditCardStateCopyWithImpl<$Res, _$CreditCardUpdated>
-    implements _$$CreditCardUpdatedCopyWith<$Res> {
-  __$$CreditCardUpdatedCopyWithImpl(
-      _$CreditCardUpdated _value, $Res Function(_$CreditCardUpdated) _then)
+class __$$CreditCardUpdatedImplCopyWithImpl<$Res>
+    extends _$CreditCardStateCopyWithImpl<$Res, _$CreditCardUpdatedImpl>
+    implements _$$CreditCardUpdatedImplCopyWith<$Res> {
+  __$$CreditCardUpdatedImplCopyWithImpl(_$CreditCardUpdatedImpl _value,
+      $Res Function(_$CreditCardUpdatedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -318,7 +318,7 @@ class __$$CreditCardUpdatedCopyWithImpl<$Res>
   $Res call({
     Object? creditCards = null,
   }) {
-    return _then(_$CreditCardUpdated(
+    return _then(_$CreditCardUpdatedImpl(
       null == creditCards
           ? _value._creditCards
           : creditCards // ignore: cast_nullable_to_non_nullable
@@ -329,8 +329,8 @@ class __$$CreditCardUpdatedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreditCardUpdated implements CreditCardUpdated {
-  const _$CreditCardUpdated(final List<CreditCardModel> creditCards)
+class _$CreditCardUpdatedImpl implements CreditCardUpdated {
+  const _$CreditCardUpdatedImpl(final List<CreditCardModel> creditCards)
       : _creditCards = creditCards;
 
   final List<CreditCardModel> _creditCards;
@@ -350,7 +350,7 @@ class _$CreditCardUpdated implements CreditCardUpdated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreditCardUpdated &&
+            other is _$CreditCardUpdatedImpl &&
             const DeepCollectionEquality()
                 .equals(other._creditCards, _creditCards));
   }
@@ -362,8 +362,9 @@ class _$CreditCardUpdated implements CreditCardUpdated {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreditCardUpdatedCopyWith<_$CreditCardUpdated> get copyWith =>
-      __$$CreditCardUpdatedCopyWithImpl<_$CreditCardUpdated>(this, _$identity);
+  _$$CreditCardUpdatedImplCopyWith<_$CreditCardUpdatedImpl> get copyWith =>
+      __$$CreditCardUpdatedImplCopyWithImpl<_$CreditCardUpdatedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -436,10 +437,10 @@ class _$CreditCardUpdated implements CreditCardUpdated {
 
 abstract class CreditCardUpdated implements CreditCardState {
   const factory CreditCardUpdated(final List<CreditCardModel> creditCards) =
-      _$CreditCardUpdated;
+      _$CreditCardUpdatedImpl;
 
   List<CreditCardModel> get creditCards;
   @JsonKey(ignore: true)
-  _$$CreditCardUpdatedCopyWith<_$CreditCardUpdated> get copyWith =>
+  _$$CreditCardUpdatedImplCopyWith<_$CreditCardUpdatedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

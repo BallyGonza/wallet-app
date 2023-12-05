@@ -68,25 +68,25 @@ class _$UserEventCopyWithImpl<$Res, $Val extends UserEvent>
 }
 
 /// @nodoc
-abstract class _$$UserInitialEventCopyWith<$Res> {
-  factory _$$UserInitialEventCopyWith(
-          _$UserInitialEvent value, $Res Function(_$UserInitialEvent) then) =
-      __$$UserInitialEventCopyWithImpl<$Res>;
+abstract class _$$UserInitialEventImplCopyWith<$Res> {
+  factory _$$UserInitialEventImplCopyWith(_$UserInitialEventImpl value,
+          $Res Function(_$UserInitialEventImpl) then) =
+      __$$UserInitialEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UserInitialEventCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$UserInitialEvent>
-    implements _$$UserInitialEventCopyWith<$Res> {
-  __$$UserInitialEventCopyWithImpl(
-      _$UserInitialEvent _value, $Res Function(_$UserInitialEvent) _then)
+class __$$UserInitialEventImplCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$UserInitialEventImpl>
+    implements _$$UserInitialEventImplCopyWith<$Res> {
+  __$$UserInitialEventImplCopyWithImpl(_$UserInitialEventImpl _value,
+      $Res Function(_$UserInitialEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$UserInitialEvent implements UserInitialEvent {
-  const _$UserInitialEvent();
+class _$UserInitialEventImpl implements UserInitialEvent {
+  const _$UserInitialEventImpl();
 
   @override
   String toString() {
@@ -96,7 +96,7 @@ class _$UserInitialEvent implements UserInitialEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UserInitialEvent);
+        (other.runtimeType == runtimeType && other is _$UserInitialEventImpl);
   }
 
   @override
@@ -160,5 +160,5 @@ class _$UserInitialEvent implements UserInitialEvent {
 }
 
 abstract class UserInitialEvent implements UserEvent {
-  const factory UserInitialEvent() = _$UserInitialEvent;
+  const factory UserInitialEvent() = _$UserInitialEventImpl;
 }

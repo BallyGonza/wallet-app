@@ -63,7 +63,11 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     emit(const AccountState.loading());
-    await accountRepository.updateTransaction(event.account, event.transaction);
+    await accountRepository.updateTransaction(
+      event.account,
+      event.newAccount,
+      event.transaction,
+    );
     accounts = await accountRepository.getAccounts();
     emit(AccountState.loaded(accounts));
   }

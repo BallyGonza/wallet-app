@@ -21,6 +21,14 @@ class UserRepository {
     await box.put(user.id, user);
   }
 
+  // update incomeCategories
+  Future<void> updateCategories(UserModel user) async {
+    user
+      ..incomeCategories = defaultIncomeCategories
+      ..expenseCategories = defaultExpenseCategories;
+    await saveUser(user);
+  }
+
   double getBalance(List<AccountModel> accounts, DateTime date) {
     var total = 0.0;
     for (final account in accounts) {
@@ -28,8 +36,7 @@ class UserRepository {
         if (transaction.date.month <= date.month &&
             transaction.date.year <= date.year &&
             transaction.category.name != 'Transfer in' &&
-            transaction.category.name != 'Transfer out' &&
-            transaction.category.name != 'Ahorros') {
+            transaction.category.name != 'Transfer out') {
           if (transaction.category.isIncome) {
             total += transaction.amount;
           } else {

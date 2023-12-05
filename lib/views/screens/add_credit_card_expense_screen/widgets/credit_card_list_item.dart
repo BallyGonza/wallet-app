@@ -18,7 +18,7 @@ class CreditCardListItem extends StatelessWidget {
       ),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: Color(creditCard.institution.backgroundColor),
+          backgroundColor: Color(creditCard.cardType.backgroundColor),
           radius: 18,
           child: Image(
             image: AssetImage(creditCard.cardType.logo),

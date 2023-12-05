@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -95,65 +97,66 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
     BuildContext context,
   ) {
     return Expanded(
-      child: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              color: colorCards,
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),
-              ),
-            ),
-            child: creditCardExpenses.isEmpty
-                ? _emptyExpenses()
-                : _expenses(creditCardExpenses, context),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: colorCards,
+          borderRadius: BorderRadius.all(
+            Radius.circular(20),
           ),
-          Positioned(
-            top: MediaQuery.of(context).size.height * 0.55,
-            right: 20,
-            child: Opacity(
-              opacity: 0.2,
-              child: Image.asset(
-                widget.creditCard.cardType.logo,
-                height: 50,
-                width: 50,
-                color: widget.creditCard.cardType.name == 'Visa'
-                    ? Colors.white
-                    : null,
-              ),
-            ),
-          ),
-        ],
+        ),
+        child: _expenses(creditCardExpenses, context),
       ),
     );
   }
 
-  ListView _expenses(
+  Stack _expenses(
     List<CreditCardTransactionModel> creditCardExpenses,
     BuildContext context,
   ) {
-    return ListView(
-      children: List.generate(
-        creditCardExpenses.length,
-        (index) {
-          final creditCardExpense = creditCardExpenses[index];
-          return CreditCardExpenseListItem(
-            date: widget.date,
-            transaction: creditCardExpense,
-            onPressDelete: () {
-              setState(() {
-                context.read<CreditCardBloc>().add(
-                      CreditCardEvent.removeTransaction(
-                        widget.creditCard,
-                        creditCardExpense,
-                      ),
-                    );
-              });
-              Navigator.of(context).pop();
-            },
-          );
-        },
-      ),
+    return Stack(
+      children: [
+        Positioned(
+          top: MediaQuery.of(context).size.height * 0.50,
+          right: 20,
+          child: Opacity(
+            opacity: 0.2,
+            child: Image.asset(
+              widget.creditCard.cardType.logo,
+              height: 50,
+              width: 50,
+              color: widget.creditCard.cardType.name == 'Visa'
+                  ? Colors.white
+                  : null,
+            ),
+          ),
+        ),
+        if (creditCardExpenses.isEmpty)
+          _emptyExpenses()
+        else
+          ListView(
+            children: List.generate(
+              creditCardExpenses.length,
+              (index) {
+                final creditCardExpense = creditCardExpenses[index];
+                return CreditCardExpenseListItem(
+                  date: widget.date,
+                  transaction: creditCardExpense,
+                  onPressDelete: () {
+                    setState(() {
+                      context.read<CreditCardBloc>().add(
+                            CreditCardEvent.removeTransaction(
+                              widget.creditCard,
+                              creditCardExpense,
+                            ),
+                          );
+                    });
+                    Navigator.of(context).pop();
+                  },
+                );
+              },
+            ),
+          ),
+      ],
     );
   }
 
@@ -201,7 +204,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
       elevation: 0,
       title: Container(
         decoration: BoxDecoration(
-          color: Color(widget.creditCard.institution.logoColor!),
+          color: Color(widget.creditCard.institution.logoColor),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Padding(
@@ -356,7 +359,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
             ),
           ),
           elevation: 0,
-          backgroundColor: Color(widget.creditCard.institution.logoColor!),
+          backgroundColor: Color(widget.creditCard.institution.logoColor),
         ),
         onPressed: () {
           setState(() {

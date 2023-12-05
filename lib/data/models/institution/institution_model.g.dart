@@ -21,17 +21,18 @@ class InstitutionModelAdapter extends TypeAdapter<InstitutionModel> {
       name: fields[1] as String,
       logo: fields[2] as String,
       backgroundColor: fields[3] as int,
-      logoColor: fields[4] as int?,
+      logoColor: fields[4] as int,
       textColor: fields[5] as int?,
       visaCardColor: fields[6] as int?,
       masterCardColor: fields[7] as int?,
+      americianExpressColor: fields[8] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, InstitutionModel obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -47,7 +48,9 @@ class InstitutionModelAdapter extends TypeAdapter<InstitutionModel> {
       ..writeByte(6)
       ..write(obj.visaCardColor)
       ..writeByte(7)
-      ..write(obj.masterCardColor);
+      ..write(obj.masterCardColor)
+      ..writeByte(8)
+      ..write(obj.americianExpressColor);
   }
 
   @override

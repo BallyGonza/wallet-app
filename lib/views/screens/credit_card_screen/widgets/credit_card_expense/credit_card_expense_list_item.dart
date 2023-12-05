@@ -25,6 +25,7 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
     final currentCuota =
         (widget.transaction.date.month - widget.date.month).abs();
     return InkWell(
+      enableFeedback: false,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
@@ -116,6 +117,7 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
       onTap: () {
         FocusScope.of(context).unfocus();
         showModalBottomSheet<Padding>(
+          isScrollControlled: true,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30),

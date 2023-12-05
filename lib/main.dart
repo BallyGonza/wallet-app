@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/number_symbols.dart';
@@ -9,6 +10,8 @@ import 'package:wallet_app/theme.dart';
 import 'package:wallet_app/views/views.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   const argentina = NumberSymbols(
     NAME: 'es_AR',
     DECIMAL_SEP: ',',
@@ -38,8 +41,6 @@ Future<void> main() async {
     ..registerAdapter(InstitutionModelAdapter())
     ..registerAdapter(TransactionModelAdapter())
     ..registerAdapter(UserModelAdapter());
-
-  WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter();
   await Hive.openBox<UserModel>('users_box');
@@ -75,8 +76,13 @@ class MyApp extends StatelessWidget {
           return state.maybeWhen(
             orElse: () => const Center(child: CircularProgressIndicator()),
             loaded: (user) {
-              return HomeScreen(
-                user: user,
+              return AnnotatedRegion<SystemUiOverlayStyle>(
+                value: const SystemUiOverlayStyle(
+                  systemNavigationBarColor: Colors.transparent,
+                ),
+                child: HomeScreen(
+                  user: user,
+                ),
               );
             },
           );

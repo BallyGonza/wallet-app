@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -56,59 +58,60 @@ class _AccountScreenState extends State<AccountScreen> {
 
   Expanded _listOfTransactions(BuildContext context) {
     return Expanded(
-      child: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              color: colorCards,
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: colorCards,
+          borderRadius: BorderRadius.all(
+            Radius.circular(20),
+          ),
+        ),
+        child: Stack(
+          children: [
+            Positioned(
+              top: MediaQuery.of(context).size.height * 0.66,
+              right: 20,
+              child: Opacity(
+                opacity: 0.2,
+                child: Image.asset(
+                  widget.account.institution.logo,
+                  height: 50,
+                  width: 50,
+                  color: widget.account.institution.name == 'Efectivo' ||
+                          widget.account.institution.name == 'Ahorros'
+                      ? Colors.green
+                      : null,
+                ),
               ),
             ),
-            child: transactions.isEmpty
-                ? const Center(
-                    child: Text(
-                      'No transactions yet',
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
-                    ),
-                  )
-                : ListView(
-                    children: List.generate(
-                      transactions.length,
-                      (index) {
-                        final transaction = transactions[index];
-                        return TransactionListItem(
-                          user: widget.user,
-                          transaction: transaction,
-                        );
-                      },
-                    ),
-                  ),
-          ),
-          Positioned(
-            top: MediaQuery.of(context).size.height * 0.64,
-            right: 20,
-            child: Opacity(
-              opacity: 0.2,
-              child: Image.asset(
-                widget.account.institution.logo,
-                height: 50,
-                width: 50,
-                color: widget.account.institution.name == 'Efectivo' ||
-                        widget.account.institution.name == 'Ahorros'
-                    ? Colors.green
-                    : null,
+            if (transactions.isEmpty)
+              const Center(
+                child: Text(
+                  'No transactions yet',
+                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+              )
+            else
+              ListView(
+                children: List.generate(
+                  transactions.length,
+                  (index) {
+                    final transaction = transactions[index];
+                    return TransactionListItem(
+                      user: widget.user,
+                      transaction: transaction,
+                    );
+                  },
+                ),
               ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Container _resume(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.12,
+      height: MediaQuery.of(context).size.height * 0.14,
       decoration: const BoxDecoration(
         color: Colors.transparent,
         borderRadius: BorderRadius.only(
@@ -166,9 +169,7 @@ class _AccountScreenState extends State<AccountScreen> {
           ),
         ),
         trailing: Text(
-          widget.account.name == 'Ahorros'
-              ? dolar.format(amount)
-              : arg.format(amount),
+          arg.format(amount),
           style: TextStyle(
             fontSize: 16,
             color: Color(color),
@@ -184,7 +185,7 @@ class _AccountScreenState extends State<AccountScreen> {
       elevation: 0,
       title: Container(
         decoration: BoxDecoration(
-          color: Color(widget.account.institution.logoColor!),
+          color: Color(widget.account.institution.logoColor),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Padding(

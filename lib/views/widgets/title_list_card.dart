@@ -11,7 +11,7 @@ class TitleListCard extends StatelessWidget {
 
   final String title;
   final Widget widget;
-  final Function onTap;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,7 @@ class TitleListCard extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       elevation: 0,
                     ),
-                    onPressed: () => onTap(),
+                    onPressed: onTap,
                     child: const FaIcon(
                       FontAwesomeIcons.plus,
                       color: Colors.grey,

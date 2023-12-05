@@ -42,10 +42,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
           icon: FaIcon(FontAwesomeIcons.list, size: 20),
           label: 'Transactions',
         ),
-        BottomNavigationBarItem(
-          icon: FaIcon(FontAwesomeIcons.chartBar, size: 20),
-          label: 'Statistics',
-        ),
+        // BottomNavigationBarItem(
+        //   icon: FaIcon(FontAwesomeIcons.chartBar, size: 20),
+        //   label: 'Statistics',
+        // ),
       ],
     );
   }

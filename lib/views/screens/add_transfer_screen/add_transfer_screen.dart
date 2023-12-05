@@ -1,6 +1,5 @@
 // ignore_for_file: inference_failure_on_function_return_type
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -152,6 +151,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           showModalBottomSheet<Padding>(
+                            isScrollControlled: true,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -166,9 +166,11 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                                 child: SizedBox(
                                   height: widget.user.accounts.length * 80.0,
                                   child: ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
                                     itemCount: widget.user.accounts.length,
                                     itemBuilder: (context, index) {
                                       return InkWell(
+                                        enableFeedback: false,
                                         onTap: () {
                                           setState(() {
                                             _fromSelectedAccount =
@@ -234,6 +236,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           showModalBottomSheet<Padding>(
+                            isScrollControlled: true,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -248,9 +251,11 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                                 child: SizedBox(
                                   height: widget.user.accounts.length * 80.0,
                                   child: ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
                                     itemCount: widget.user.accounts.length,
                                     itemBuilder: (context, index) {
                                       return InkWell(
+                                        enableFeedback: false,
                                         onTap: () {
                                           setState(() {
                                             _toSelectedAccount =
@@ -294,36 +299,22 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                           size: 12,
                         ),
                         onTap: () {
-                          showCupertinoModalPopup<SizedBox>(
+                          FocusScope.of(context).unfocus();
+                          showDatePicker(
                             context: context,
-                            builder: (context) {
-                              return SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.3,
-                                child: CupertinoTheme(
-                                  data: const CupertinoThemeData(
-                                    textTheme: CupertinoTextThemeData(
-                                      dateTimePickerTextStyle: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  child: CupertinoDatePicker(
-                                    dateOrder: DatePickerDateOrder.dmy,
-                                    backgroundColor: colorCards,
-                                    initialDateTime: DateTime.now(),
-                                    onDateTimeChanged: (value) {
-                                      setState(() {
-                                        _selectedDate =
-                                            dateFormat.format(value);
-                                        _selectedDateTime = value;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              );
-                            },
-                          );
+                            initialDate: DateTime.now(),
+                            lastDate: DateTime.now(),
+                            firstDate: DateTime.now().subtract(
+                              const Duration(days: 365),
+                            ),
+                          ).then((value) {
+                            if (value != null) {
+                              setState(() {
+                                _selectedDate = dateFormat.format(value);
+                                _selectedDateTime = value;
+                              });
+                            }
+                          });
                         },
                       ),
                       WalletListTile(
@@ -385,7 +376,8 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          Container(
+            margin: const EdgeInsets.only(bottom: 16),
             width: MediaQuery.of(context).size.width - 32,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(

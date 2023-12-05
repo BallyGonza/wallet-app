@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable, inference_failure_on_function_return_type
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -110,6 +109,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
                           ),
+                          autofocus: true,
                           style: TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
@@ -159,7 +159,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           ),
                         ),
                         trailing: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.4,
+                          width: MediaQuery.of(context).size.width * 0.5,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -183,6 +183,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           showModalBottomSheet<Padding>(
+                            isScrollControlled: true,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -195,8 +196,12 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                               return Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: SizedBox(
-                                  height: widget._categories.length * 85.0,
+                                  height: widget._title == 'Ingreso'
+                                      ? MediaQuery.of(context).size.height *
+                                          0.65
+                                      : widget._categories.length * 65,
                                   child: ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
                                     itemCount: widget._categories.length,
                                     itemBuilder: (context, index) {
                                       return CategoryListItem(
@@ -271,6 +276,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         onTap: () {
                           FocusScope.of(context).unfocus();
                           showModalBottomSheet<Padding>(
+                            isScrollControlled: true,
                             shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
@@ -283,11 +289,13 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                               return Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: SizedBox(
-                                  height: widget.user.accounts.length * 80.0,
+                                  height: widget.user.accounts.length * 65.0,
                                   child: ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
                                     itemCount: widget.user.accounts.length,
                                     itemBuilder: (context, index) {
                                       return InkWell(
+                                        enableFeedback: false,
                                         onTap: () {
                                           setState(() {
                                             widget.selectedAccount =
@@ -331,37 +339,22 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           size: 12,
                         ),
                         onTap: () {
-                          // cupertinoDatePicker
-                          showCupertinoModalPopup<CupertinoDatePicker>(
+                          FocusScope.of(context).unfocus();
+                          showDatePicker(
                             context: context,
-                            builder: (context) {
-                              return SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.3,
-                                child: CupertinoTheme(
-                                  data: const CupertinoThemeData(
-                                    textTheme: CupertinoTextThemeData(
-                                      dateTimePickerTextStyle: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  child: CupertinoDatePicker(
-                                    dateOrder: DatePickerDateOrder.dmy,
-                                    backgroundColor: colorCards,
-                                    initialDateTime: DateTime.now(),
-                                    onDateTimeChanged: (value) {
-                                      setState(() {
-                                        _selectedDate =
-                                            dateFormat.format(value);
-                                        _selectedDateTime = value;
-                                      });
-                                    },
-                                  ),
-                                ),
-                              );
-                            },
-                          );
+                            initialDate: DateTime.now(),
+                            lastDate: DateTime.now(),
+                            firstDate: DateTime.now().subtract(
+                              const Duration(days: 365),
+                            ),
+                          ).then((value) {
+                            if (value != null) {
+                              setState(() {
+                                _selectedDate = dateFormat.format(value);
+                                _selectedDateTime = value;
+                              });
+                            }
+                          });
                         },
                       ),
                       WalletListTile(
@@ -372,7 +365,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             color: Colors.grey,
                           ),
                         ),
-                        content: TextFormField(
+                        content: TextField(
                           textCapitalization: TextCapitalization.sentences,
                           controller: _noteController,
                           cursorColor: Colors.grey,
@@ -384,6 +377,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           ),
                           keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.multiline,
+                          onEditingComplete: () {
+                            FocusScope.of(context).unfocus();
+                          },
                         ),
                       ),
                     ],
@@ -404,8 +400,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          Container(
             width: MediaQuery.of(context).size.width - 32,
+            margin: const EdgeInsets.only(bottom: 16),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
