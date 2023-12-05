@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/number_symbols.dart';
@@ -75,8 +76,13 @@ class MyApp extends StatelessWidget {
           return state.maybeWhen(
             orElse: () => const Center(child: CircularProgressIndicator()),
             loaded: (user) {
-              return HomeScreen(
-                user: user,
+              return AnnotatedRegion<SystemUiOverlayStyle>(
+                value: const SystemUiOverlayStyle(
+                  systemNavigationBarColor: Colors.transparent,
+                ),
+                child: HomeScreen(
+                  user: user,
+                ),
               );
             },
           );

@@ -48,12 +48,16 @@ ThemeData walletAppTheme = ThemeData(
   ),
   scaffoldBackgroundColor: appBackgroundColor,
   datePickerTheme: const DatePickerThemeData(
-    rangePickerSurfaceTintColor: appBackgroundColor,
-    backgroundColor: appBackgroundColor,
-    surfaceTintColor: appBackgroundColor,
-    dayStyle: TextStyle(
-      color: Colors.white,
+    todayBackgroundColor: MaterialStatePropertyAll(appBackgroundColor),
+    confirmButtonStyle: ButtonStyle(
+      foregroundColor: MaterialStatePropertyAll(appBackgroundColor),
     ),
+    cancelButtonStyle: ButtonStyle(
+      foregroundColor: MaterialStatePropertyAll(appBackgroundColor),
+    ),
+    rangePickerSurfaceTintColor: Colors.white,
+    backgroundColor: Colors.white,
+    surfaceTintColor: Colors.white,
   ),
   cardTheme: const CardTheme(
     surfaceTintColor: appBackgroundColor,

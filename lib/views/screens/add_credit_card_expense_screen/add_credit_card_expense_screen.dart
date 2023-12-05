@@ -7,7 +7,6 @@ import 'package:intl/intl.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_credit_card_expense_screen/widgets/credit_card_list_item.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
-import 'package:wallet_app/views/views.dart';
 
 class AddCreditCardExpenseScreen extends StatefulWidget {
   AddCreditCardExpenseScreen({
@@ -348,43 +347,22 @@ class _AddCreditCardExpenseScreenState
                           size: 12,
                         ),
                         onTap: () {
-                          showModalBottomSheet<SizedBox>(
+                          FocusScope.of(context).unfocus();
+                          showDatePicker(
                             context: context,
-                            builder: (context) {
-                              return SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.4,
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.3,
-                                      child: CalendarDatePicker(
-                                        initialDate: DateTime.now(),
-                                        firstDate: DateTime(2000),
-                                        lastDate: DateTime(2050),
-                                        onDateChanged: (DateTime value) {
-                                          setState(() {
-                                            _selectedDate =
-                                                dateFormat.format(value);
-                                            _selectedDateTime = value;
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                    ActionButton(
-                                      color: Colors.blue,
-                                      text: 'Save',
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          );
+                            initialDate: DateTime.now(),
+                            lastDate: DateTime.now(),
+                            firstDate: DateTime.now().subtract(
+                              const Duration(days: 365),
+                            ),
+                          ).then((value) {
+                            if (value != null) {
+                              setState(() {
+                                _selectedDate = dateFormat.format(value);
+                                _selectedDateTime = value;
+                              });
+                            }
+                          });
                         },
                       ),
                       WalletListTile(

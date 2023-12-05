@@ -248,46 +248,25 @@ class _TransactionListItemState extends State<TransactionListItem> {
                     description: dateFormat.format(widget.transaction.date),
                     transaction: widget.transaction,
                     onTap: () {
-                      showModalBottomSheet<SizedBox>(
+                      FocusScope.of(context).unfocus();
+                      showDatePicker(
                         context: context,
-                        builder: (context) {
-                          return SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.4,
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.3,
-                                  child: CalendarDatePicker(
-                                    currentDate: widget.transaction.date,
-                                    initialDate: widget.transaction.date,
-                                    firstDate: DateTime(2000),
-                                    lastDate: DateTime(2050),
-                                    onDateChanged: (DateTime newDate) {
-                                      context.read<AccountBloc>().add(
-                                            AccountEvent.updateTransaction(
-                                              account!,
-                                              null,
-                                              widget.transaction.copyWith(
-                                                date: newDate,
-                                              ),
-                                            ),
-                                          );
-                                    },
-                                  ),
+                        initialDate: DateTime.now(),
+                        lastDate: DateTime.now(),
+                        firstDate: DateTime.now().subtract(
+                          const Duration(days: 365),
+                        ),
+                      ).then((value) {
+                        context.read<AccountBloc>().add(
+                              AccountEvent.updateTransaction(
+                                account!,
+                                null,
+                                widget.transaction.copyWith(
+                                  date: value,
                                 ),
-                                ActionButton(
-                                  color: Colors.blue,
-                                  text: 'Save',
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      );
+                              ),
+                            );
+                      });
                     },
                   ),
                   DescriptionItem(
