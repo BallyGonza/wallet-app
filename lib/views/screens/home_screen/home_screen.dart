@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: walletAppTheme.scaffoldBackgroundColor,
       bottomNavigationBar: _bottomNavBar(),
       floatingActionButton: _dialButton(context),
-      appBar: _appBar(),
+      appBar: currentIndex == 2 ? null : _appBar(),
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
@@ -48,6 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           TransactionsScreen(
             date: selectedDate,
+            user: widget.user,
+          ),
+          SearchScreen(
             user: widget.user,
           ),
         ],

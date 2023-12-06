@@ -76,6 +76,13 @@ class AccountRepository {
   }
 
   List<TransactionModel> getAllTransactions(
+    UserModel user,
+  ) {
+    return user.accounts.expand((account) => account.transactions).toList()
+      ..sort((a, b) => b.date.compareTo(a.date));
+  }
+
+  List<TransactionModel> getAllTransactionsByDate(
     List<AccountModel> accounts,
     DateTime date,
   ) {
