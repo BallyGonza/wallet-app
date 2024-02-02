@@ -21,6 +21,7 @@ mixin _$AccountState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<AccountModel> accounts) loaded,
+    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$AccountState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<AccountModel> accounts)? loaded,
+    TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$AccountState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<AccountModel> accounts)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$AccountState {
     required TResult Function(AccountInitial value) initial,
     required TResult Function(AccountLoading value) loading,
     required TResult Function(AccountUpdated value) loaded,
+    required TResult Function(AccountError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$AccountState {
     TResult? Function(AccountInitial value)? initial,
     TResult? Function(AccountLoading value)? loading,
     TResult? Function(AccountUpdated value)? loaded,
+    TResult? Function(AccountError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$AccountState {
     TResult Function(AccountInitial value)? initial,
     TResult Function(AccountLoading value)? loading,
     TResult Function(AccountUpdated value)? loaded,
+    TResult Function(AccountError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -121,6 +127,7 @@ class _$AccountInitialImpl implements AccountInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<AccountModel> accounts) loaded,
+    required TResult Function(String error) error,
   }) {
     return initial();
   }
@@ -131,6 +138,7 @@ class _$AccountInitialImpl implements AccountInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<AccountModel> accounts)? loaded,
+    TResult? Function(String error)? error,
   }) {
     return initial?.call();
   }
@@ -141,6 +149,7 @@ class _$AccountInitialImpl implements AccountInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<AccountModel> accounts)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -155,6 +164,7 @@ class _$AccountInitialImpl implements AccountInitial {
     required TResult Function(AccountInitial value) initial,
     required TResult Function(AccountLoading value) loading,
     required TResult Function(AccountUpdated value) loaded,
+    required TResult Function(AccountError value) error,
   }) {
     return initial(this);
   }
@@ -165,6 +175,7 @@ class _$AccountInitialImpl implements AccountInitial {
     TResult? Function(AccountInitial value)? initial,
     TResult? Function(AccountLoading value)? loading,
     TResult? Function(AccountUpdated value)? loaded,
+    TResult? Function(AccountError value)? error,
   }) {
     return initial?.call(this);
   }
@@ -175,6 +186,7 @@ class _$AccountInitialImpl implements AccountInitial {
     TResult Function(AccountInitial value)? initial,
     TResult Function(AccountLoading value)? loading,
     TResult Function(AccountUpdated value)? loaded,
+    TResult Function(AccountError value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -229,6 +241,7 @@ class _$AccountLoadingImpl implements AccountLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<AccountModel> accounts) loaded,
+    required TResult Function(String error) error,
   }) {
     return loading();
   }
@@ -239,6 +252,7 @@ class _$AccountLoadingImpl implements AccountLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<AccountModel> accounts)? loaded,
+    TResult? Function(String error)? error,
   }) {
     return loading?.call();
   }
@@ -249,6 +263,7 @@ class _$AccountLoadingImpl implements AccountLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<AccountModel> accounts)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -263,6 +278,7 @@ class _$AccountLoadingImpl implements AccountLoading {
     required TResult Function(AccountInitial value) initial,
     required TResult Function(AccountLoading value) loading,
     required TResult Function(AccountUpdated value) loaded,
+    required TResult Function(AccountError value) error,
   }) {
     return loading(this);
   }
@@ -273,6 +289,7 @@ class _$AccountLoadingImpl implements AccountLoading {
     TResult? Function(AccountInitial value)? initial,
     TResult? Function(AccountLoading value)? loading,
     TResult? Function(AccountUpdated value)? loaded,
+    TResult? Function(AccountError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -283,6 +300,7 @@ class _$AccountLoadingImpl implements AccountLoading {
     TResult Function(AccountInitial value)? initial,
     TResult Function(AccountLoading value)? loading,
     TResult Function(AccountUpdated value)? loaded,
+    TResult Function(AccountError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -371,6 +389,7 @@ class _$AccountUpdatedImpl implements AccountUpdated {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<AccountModel> accounts) loaded,
+    required TResult Function(String error) error,
   }) {
     return loaded(accounts);
   }
@@ -381,6 +400,7 @@ class _$AccountUpdatedImpl implements AccountUpdated {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<AccountModel> accounts)? loaded,
+    TResult? Function(String error)? error,
   }) {
     return loaded?.call(accounts);
   }
@@ -391,6 +411,7 @@ class _$AccountUpdatedImpl implements AccountUpdated {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<AccountModel> accounts)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -405,6 +426,7 @@ class _$AccountUpdatedImpl implements AccountUpdated {
     required TResult Function(AccountInitial value) initial,
     required TResult Function(AccountLoading value) loading,
     required TResult Function(AccountUpdated value) loaded,
+    required TResult Function(AccountError value) error,
   }) {
     return loaded(this);
   }
@@ -415,6 +437,7 @@ class _$AccountUpdatedImpl implements AccountUpdated {
     TResult? Function(AccountInitial value)? initial,
     TResult? Function(AccountLoading value)? loading,
     TResult? Function(AccountUpdated value)? loaded,
+    TResult? Function(AccountError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -425,6 +448,7 @@ class _$AccountUpdatedImpl implements AccountUpdated {
     TResult Function(AccountInitial value)? initial,
     TResult Function(AccountLoading value)? loading,
     TResult Function(AccountUpdated value)? loaded,
+    TResult Function(AccountError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -441,5 +465,150 @@ abstract class AccountUpdated implements AccountState {
   List<AccountModel> get accounts;
   @JsonKey(ignore: true)
   _$$AccountUpdatedImplCopyWith<_$AccountUpdatedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AccountErrorImplCopyWith<$Res> {
+  factory _$$AccountErrorImplCopyWith(
+          _$AccountErrorImpl value, $Res Function(_$AccountErrorImpl) then) =
+      __$$AccountErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$AccountErrorImplCopyWithImpl<$Res>
+    extends _$AccountStateCopyWithImpl<$Res, _$AccountErrorImpl>
+    implements _$$AccountErrorImplCopyWith<$Res> {
+  __$$AccountErrorImplCopyWithImpl(
+      _$AccountErrorImpl _value, $Res Function(_$AccountErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$AccountErrorImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AccountErrorImpl implements AccountError {
+  const _$AccountErrorImpl(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'AccountState.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AccountErrorImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AccountErrorImplCopyWith<_$AccountErrorImpl> get copyWith =>
+      __$$AccountErrorImplCopyWithImpl<_$AccountErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<AccountModel> accounts) loaded,
+    required TResult Function(String error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<AccountModel> accounts)? loaded,
+    TResult? Function(String error)? error,
+  }) {
+    return error?.call(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<AccountModel> accounts)? loaded,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AccountInitial value) initial,
+    required TResult Function(AccountLoading value) loading,
+    required TResult Function(AccountUpdated value) loaded,
+    required TResult Function(AccountError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AccountInitial value)? initial,
+    TResult? Function(AccountLoading value)? loading,
+    TResult? Function(AccountUpdated value)? loaded,
+    TResult? Function(AccountError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AccountInitial value)? initial,
+    TResult Function(AccountLoading value)? loading,
+    TResult Function(AccountUpdated value)? loaded,
+    TResult Function(AccountError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AccountError implements AccountState {
+  const factory AccountError(final String error) = _$AccountErrorImpl;
+
+  String get error;
+  @JsonKey(ignore: true)
+  _$$AccountErrorImplCopyWith<_$AccountErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

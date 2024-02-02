@@ -4,7 +4,8 @@ import 'package:wallet_app/blocs/account/account_state.dart';
 import 'package:wallet_app/data/data.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
-  AccountBloc() : super(const AccountState.initial()) {
+  AccountBloc({required this.accountRepository})
+      : super(const AccountState.initial()) {
     on<AccountInitialEvent>(_onInit);
     on<AccountAddEvent>(_onAdd);
     on<AccountRemoveEvent>(_onRemove);
@@ -15,7 +16,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     add(const AccountEvent.init());
   }
 
-  final AccountRepository accountRepository = AccountRepository();
+  final AccountRepository accountRepository;
 
   late List<AccountModel> accounts;
 

@@ -7,7 +7,7 @@ part 'credit_card_state.freezed.dart';
 class CreditCardState with _$CreditCardState {
   const factory CreditCardState.initial() = CreditCardInitial;
   const factory CreditCardState.loading() = CreditCardLoading;
-  const factory CreditCardState.loaded(
-    List<CreditCardModel> creditCards,
-  ) = CreditCardUpdated;
+  const factory CreditCardState.loaded(List<CreditCardModel> creditCards) =
+      CreditCardUpdated;
+  const factory CreditCardState.error(String error) = CreditCardError;
 }

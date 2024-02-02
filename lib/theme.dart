@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:wallet_app/data/data.dart';
 
 ThemeData walletAppTheme = ThemeData(
+  useMaterial3: false,
   primaryColor: Colors.white,
   primaryColorLight: Colors.white,
   primaryColorDark: Colors.white,

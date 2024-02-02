@@ -21,6 +21,7 @@ mixin _$CreditCardState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<CreditCardModel> creditCards) loaded,
+    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$CreditCardState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<CreditCardModel> creditCards)? loaded,
+    TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$CreditCardState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<CreditCardModel> creditCards)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$CreditCardState {
     required TResult Function(CreditCardInitial value) initial,
     required TResult Function(CreditCardLoading value) loading,
     required TResult Function(CreditCardUpdated value) loaded,
+    required TResult Function(CreditCardError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$CreditCardState {
     TResult? Function(CreditCardInitial value)? initial,
     TResult? Function(CreditCardLoading value)? loading,
     TResult? Function(CreditCardUpdated value)? loaded,
+    TResult? Function(CreditCardError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$CreditCardState {
     TResult Function(CreditCardInitial value)? initial,
     TResult Function(CreditCardLoading value)? loading,
     TResult Function(CreditCardUpdated value)? loaded,
+    TResult Function(CreditCardError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -121,6 +127,7 @@ class _$CreditCardInitialImpl implements CreditCardInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<CreditCardModel> creditCards) loaded,
+    required TResult Function(String error) error,
   }) {
     return initial();
   }
@@ -131,6 +138,7 @@ class _$CreditCardInitialImpl implements CreditCardInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<CreditCardModel> creditCards)? loaded,
+    TResult? Function(String error)? error,
   }) {
     return initial?.call();
   }
@@ -141,6 +149,7 @@ class _$CreditCardInitialImpl implements CreditCardInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<CreditCardModel> creditCards)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -155,6 +164,7 @@ class _$CreditCardInitialImpl implements CreditCardInitial {
     required TResult Function(CreditCardInitial value) initial,
     required TResult Function(CreditCardLoading value) loading,
     required TResult Function(CreditCardUpdated value) loaded,
+    required TResult Function(CreditCardError value) error,
   }) {
     return initial(this);
   }
@@ -165,6 +175,7 @@ class _$CreditCardInitialImpl implements CreditCardInitial {
     TResult? Function(CreditCardInitial value)? initial,
     TResult? Function(CreditCardLoading value)? loading,
     TResult? Function(CreditCardUpdated value)? loaded,
+    TResult? Function(CreditCardError value)? error,
   }) {
     return initial?.call(this);
   }
@@ -175,6 +186,7 @@ class _$CreditCardInitialImpl implements CreditCardInitial {
     TResult Function(CreditCardInitial value)? initial,
     TResult Function(CreditCardLoading value)? loading,
     TResult Function(CreditCardUpdated value)? loaded,
+    TResult Function(CreditCardError value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -229,6 +241,7 @@ class _$CreditCardLoadingImpl implements CreditCardLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<CreditCardModel> creditCards) loaded,
+    required TResult Function(String error) error,
   }) {
     return loading();
   }
@@ -239,6 +252,7 @@ class _$CreditCardLoadingImpl implements CreditCardLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<CreditCardModel> creditCards)? loaded,
+    TResult? Function(String error)? error,
   }) {
     return loading?.call();
   }
@@ -249,6 +263,7 @@ class _$CreditCardLoadingImpl implements CreditCardLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<CreditCardModel> creditCards)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -263,6 +278,7 @@ class _$CreditCardLoadingImpl implements CreditCardLoading {
     required TResult Function(CreditCardInitial value) initial,
     required TResult Function(CreditCardLoading value) loading,
     required TResult Function(CreditCardUpdated value) loaded,
+    required TResult Function(CreditCardError value) error,
   }) {
     return loading(this);
   }
@@ -273,6 +289,7 @@ class _$CreditCardLoadingImpl implements CreditCardLoading {
     TResult? Function(CreditCardInitial value)? initial,
     TResult? Function(CreditCardLoading value)? loading,
     TResult? Function(CreditCardUpdated value)? loaded,
+    TResult? Function(CreditCardError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -283,6 +300,7 @@ class _$CreditCardLoadingImpl implements CreditCardLoading {
     TResult Function(CreditCardInitial value)? initial,
     TResult Function(CreditCardLoading value)? loading,
     TResult Function(CreditCardUpdated value)? loaded,
+    TResult Function(CreditCardError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -372,6 +390,7 @@ class _$CreditCardUpdatedImpl implements CreditCardUpdated {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<CreditCardModel> creditCards) loaded,
+    required TResult Function(String error) error,
   }) {
     return loaded(creditCards);
   }
@@ -382,6 +401,7 @@ class _$CreditCardUpdatedImpl implements CreditCardUpdated {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<CreditCardModel> creditCards)? loaded,
+    TResult? Function(String error)? error,
   }) {
     return loaded?.call(creditCards);
   }
@@ -392,6 +412,7 @@ class _$CreditCardUpdatedImpl implements CreditCardUpdated {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<CreditCardModel> creditCards)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -406,6 +427,7 @@ class _$CreditCardUpdatedImpl implements CreditCardUpdated {
     required TResult Function(CreditCardInitial value) initial,
     required TResult Function(CreditCardLoading value) loading,
     required TResult Function(CreditCardUpdated value) loaded,
+    required TResult Function(CreditCardError value) error,
   }) {
     return loaded(this);
   }
@@ -416,6 +438,7 @@ class _$CreditCardUpdatedImpl implements CreditCardUpdated {
     TResult? Function(CreditCardInitial value)? initial,
     TResult? Function(CreditCardLoading value)? loading,
     TResult? Function(CreditCardUpdated value)? loaded,
+    TResult? Function(CreditCardError value)? error,
   }) {
     return loaded?.call(this);
   }
@@ -426,6 +449,7 @@ class _$CreditCardUpdatedImpl implements CreditCardUpdated {
     TResult Function(CreditCardInitial value)? initial,
     TResult Function(CreditCardLoading value)? loading,
     TResult Function(CreditCardUpdated value)? loaded,
+    TResult Function(CreditCardError value)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -442,5 +466,151 @@ abstract class CreditCardUpdated implements CreditCardState {
   List<CreditCardModel> get creditCards;
   @JsonKey(ignore: true)
   _$$CreditCardUpdatedImplCopyWith<_$CreditCardUpdatedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CreditCardErrorImplCopyWith<$Res> {
+  factory _$$CreditCardErrorImplCopyWith(_$CreditCardErrorImpl value,
+          $Res Function(_$CreditCardErrorImpl) then) =
+      __$$CreditCardErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String error});
+}
+
+/// @nodoc
+class __$$CreditCardErrorImplCopyWithImpl<$Res>
+    extends _$CreditCardStateCopyWithImpl<$Res, _$CreditCardErrorImpl>
+    implements _$$CreditCardErrorImplCopyWith<$Res> {
+  __$$CreditCardErrorImplCopyWithImpl(
+      _$CreditCardErrorImpl _value, $Res Function(_$CreditCardErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = null,
+  }) {
+    return _then(_$CreditCardErrorImpl(
+      null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreditCardErrorImpl implements CreditCardError {
+  const _$CreditCardErrorImpl(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'CreditCardState.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreditCardErrorImpl &&
+            (identical(other.error, error) || other.error == error));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, error);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreditCardErrorImplCopyWith<_$CreditCardErrorImpl> get copyWith =>
+      __$$CreditCardErrorImplCopyWithImpl<_$CreditCardErrorImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<CreditCardModel> creditCards) loaded,
+    required TResult Function(String error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<CreditCardModel> creditCards)? loaded,
+    TResult? Function(String error)? error,
+  }) {
+    return error?.call(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<CreditCardModel> creditCards)? loaded,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(CreditCardInitial value) initial,
+    required TResult Function(CreditCardLoading value) loading,
+    required TResult Function(CreditCardUpdated value) loaded,
+    required TResult Function(CreditCardError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(CreditCardInitial value)? initial,
+    TResult? Function(CreditCardLoading value)? loading,
+    TResult? Function(CreditCardUpdated value)? loaded,
+    TResult? Function(CreditCardError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(CreditCardInitial value)? initial,
+    TResult Function(CreditCardLoading value)? loading,
+    TResult Function(CreditCardUpdated value)? loaded,
+    TResult Function(CreditCardError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CreditCardError implements CreditCardState {
+  const factory CreditCardError(final String error) = _$CreditCardErrorImpl;
+
+  String get error;
+  @JsonKey(ignore: true)
+  _$$CreditCardErrorImplCopyWith<_$CreditCardErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
