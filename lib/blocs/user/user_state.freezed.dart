@@ -45,7 +45,7 @@ mixin _$UserState {
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
-    required TResult Function(UserUpdated value) loaded,
+    required TResult Function(UserLoaded value) loaded,
     required TResult Function(UserError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,7 +53,7 @@ mixin _$UserState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitial value)? initial,
     TResult? Function(UserLoading value)? loading,
-    TResult? Function(UserUpdated value)? loaded,
+    TResult? Function(UserLoaded value)? loaded,
     TResult? Function(UserError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ mixin _$UserState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
-    TResult Function(UserUpdated value)? loaded,
+    TResult Function(UserLoaded value)? loaded,
     TResult Function(UserError value)? error,
     required TResult orElse(),
   }) =>
@@ -162,7 +162,7 @@ class _$UserInitialImpl implements UserInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
-    required TResult Function(UserUpdated value) loaded,
+    required TResult Function(UserLoaded value) loaded,
     required TResult Function(UserError value) error,
   }) {
     return initial(this);
@@ -173,7 +173,7 @@ class _$UserInitialImpl implements UserInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitial value)? initial,
     TResult? Function(UserLoading value)? loading,
-    TResult? Function(UserUpdated value)? loaded,
+    TResult? Function(UserLoaded value)? loaded,
     TResult? Function(UserError value)? error,
   }) {
     return initial?.call(this);
@@ -184,7 +184,7 @@ class _$UserInitialImpl implements UserInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
-    TResult Function(UserUpdated value)? loaded,
+    TResult Function(UserLoaded value)? loaded,
     TResult Function(UserError value)? error,
     required TResult orElse(),
   }) {
@@ -276,7 +276,7 @@ class _$UserLoadingImpl implements UserLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
-    required TResult Function(UserUpdated value) loaded,
+    required TResult Function(UserLoaded value) loaded,
     required TResult Function(UserError value) error,
   }) {
     return loading(this);
@@ -287,7 +287,7 @@ class _$UserLoadingImpl implements UserLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitial value)? initial,
     TResult? Function(UserLoading value)? loading,
-    TResult? Function(UserUpdated value)? loaded,
+    TResult? Function(UserLoaded value)? loaded,
     TResult? Function(UserError value)? error,
   }) {
     return loading?.call(this);
@@ -298,7 +298,7 @@ class _$UserLoadingImpl implements UserLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
-    TResult Function(UserUpdated value)? loaded,
+    TResult Function(UserLoaded value)? loaded,
     TResult Function(UserError value)? error,
     required TResult orElse(),
   }) {
@@ -314,20 +314,20 @@ abstract class UserLoading implements UserState {
 }
 
 /// @nodoc
-abstract class _$$UserUpdatedImplCopyWith<$Res> {
-  factory _$$UserUpdatedImplCopyWith(
-          _$UserUpdatedImpl value, $Res Function(_$UserUpdatedImpl) then) =
-      __$$UserUpdatedImplCopyWithImpl<$Res>;
+abstract class _$$UserLoadedImplCopyWith<$Res> {
+  factory _$$UserLoadedImplCopyWith(
+          _$UserLoadedImpl value, $Res Function(_$UserLoadedImpl) then) =
+      __$$UserLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserModel user});
 }
 
 /// @nodoc
-class __$$UserUpdatedImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$UserUpdatedImpl>
-    implements _$$UserUpdatedImplCopyWith<$Res> {
-  __$$UserUpdatedImplCopyWithImpl(
-      _$UserUpdatedImpl _value, $Res Function(_$UserUpdatedImpl) _then)
+class __$$UserLoadedImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserLoadedImpl>
+    implements _$$UserLoadedImplCopyWith<$Res> {
+  __$$UserLoadedImplCopyWithImpl(
+      _$UserLoadedImpl _value, $Res Function(_$UserLoadedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -335,7 +335,7 @@ class __$$UserUpdatedImplCopyWithImpl<$Res>
   $Res call({
     Object? user = null,
   }) {
-    return _then(_$UserUpdatedImpl(
+    return _then(_$UserLoadedImpl(
       null == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
@@ -346,8 +346,8 @@ class __$$UserUpdatedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UserUpdatedImpl implements UserUpdated {
-  const _$UserUpdatedImpl(this.user);
+class _$UserLoadedImpl implements UserLoaded {
+  const _$UserLoadedImpl(this.user);
 
   @override
   final UserModel user;
@@ -361,7 +361,7 @@ class _$UserUpdatedImpl implements UserUpdated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UserUpdatedImpl &&
+            other is _$UserLoadedImpl &&
             (identical(other.user, user) || other.user == user));
   }
 
@@ -371,8 +371,8 @@ class _$UserUpdatedImpl implements UserUpdated {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UserUpdatedImplCopyWith<_$UserUpdatedImpl> get copyWith =>
-      __$$UserUpdatedImplCopyWithImpl<_$UserUpdatedImpl>(this, _$identity);
+  _$$UserLoadedImplCopyWith<_$UserLoadedImpl> get copyWith =>
+      __$$UserLoadedImplCopyWithImpl<_$UserLoadedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -416,7 +416,7 @@ class _$UserUpdatedImpl implements UserUpdated {
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
-    required TResult Function(UserUpdated value) loaded,
+    required TResult Function(UserLoaded value) loaded,
     required TResult Function(UserError value) error,
   }) {
     return loaded(this);
@@ -427,7 +427,7 @@ class _$UserUpdatedImpl implements UserUpdated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitial value)? initial,
     TResult? Function(UserLoading value)? loading,
-    TResult? Function(UserUpdated value)? loaded,
+    TResult? Function(UserLoaded value)? loaded,
     TResult? Function(UserError value)? error,
   }) {
     return loaded?.call(this);
@@ -438,7 +438,7 @@ class _$UserUpdatedImpl implements UserUpdated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
-    TResult Function(UserUpdated value)? loaded,
+    TResult Function(UserLoaded value)? loaded,
     TResult Function(UserError value)? error,
     required TResult orElse(),
   }) {
@@ -449,12 +449,12 @@ class _$UserUpdatedImpl implements UserUpdated {
   }
 }
 
-abstract class UserUpdated implements UserState {
-  const factory UserUpdated(final UserModel user) = _$UserUpdatedImpl;
+abstract class UserLoaded implements UserState {
+  const factory UserLoaded(final UserModel user) = _$UserLoadedImpl;
 
   UserModel get user;
   @JsonKey(ignore: true)
-  _$$UserUpdatedImplCopyWith<_$UserUpdatedImpl> get copyWith =>
+  _$$UserLoadedImplCopyWith<_$UserLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -561,7 +561,7 @@ class _$UserErrorImpl implements UserError {
   TResult map<TResult extends Object?>({
     required TResult Function(UserInitial value) initial,
     required TResult Function(UserLoading value) loading,
-    required TResult Function(UserUpdated value) loaded,
+    required TResult Function(UserLoaded value) loaded,
     required TResult Function(UserError value) error,
   }) {
     return error(this);
@@ -572,7 +572,7 @@ class _$UserErrorImpl implements UserError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UserInitial value)? initial,
     TResult? Function(UserLoading value)? loading,
-    TResult? Function(UserUpdated value)? loaded,
+    TResult? Function(UserLoaded value)? loaded,
     TResult? Function(UserError value)? error,
   }) {
     return error?.call(this);
@@ -583,7 +583,7 @@ class _$UserErrorImpl implements UserError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UserInitial value)? initial,
     TResult Function(UserLoading value)? loading,
-    TResult Function(UserUpdated value)? loaded,
+    TResult Function(UserLoaded value)? loaded,
     TResult Function(UserError value)? error,
     required TResult orElse(),
   }) {

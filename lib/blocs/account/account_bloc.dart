@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wallet_app/blocs/account/account_event.dart';
-import 'package:wallet_app/blocs/account/account_state.dart';
+import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
@@ -17,7 +16,6 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   }
 
   final AccountRepository accountRepository;
-
   late List<AccountModel> accounts;
 
   Future<void> _onInit(
@@ -25,8 +23,12 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     emit(const AccountState.loading());
-    accounts = await accountRepository.getAccounts();
-    emit(AccountState.loaded(accounts));
+    try {
+      accounts = await accountRepository.getAccounts();
+      emit(AccountState.loaded(accounts));
+    } catch (e) {
+      emit(AccountState.error(e.toString()));
+    }
   }
 
   Future<void> _onAdd(
@@ -34,9 +36,13 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     emit(const AccountState.loading());
-    await accountRepository.addAccount(event.account);
-    accounts = await accountRepository.getAccounts();
-    emit(AccountState.loaded(accounts));
+    try {
+      await accountRepository.addAccount(event.account);
+      accounts = await accountRepository.getAccounts();
+      emit(AccountState.loaded(accounts));
+    } catch (e) {
+      emit(AccountState.error(e.toString()));
+    }
   }
 
   Future<void> _onRemove(
@@ -44,9 +50,13 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     emit(const AccountState.loading());
-    await accountRepository.removeAccount(event.account);
-    accounts = await accountRepository.getAccounts();
-    emit(AccountState.loaded(accounts));
+    try {
+      await accountRepository.removeAccount(event.account);
+      accounts = await accountRepository.getAccounts();
+      emit(AccountState.loaded(accounts));
+    } catch (e) {
+      emit(AccountState.error(e.toString()));
+    }
   }
 
   Future<void> _onAddTransaction(
@@ -54,9 +64,13 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     emit(const AccountState.loading());
-    await accountRepository.addTransaction(event.account, event.transaction);
-    accounts = await accountRepository.getAccounts();
-    emit(AccountState.loaded(accounts));
+    try {
+      await accountRepository.addTransaction(event.account, event.transaction);
+      accounts = await accountRepository.getAccounts();
+      emit(AccountState.loaded(accounts));
+    } catch (e) {
+      emit(AccountState.error(e.toString()));
+    }
   }
 
   Future<void> _onUpdateTransaction(
@@ -64,13 +78,17 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     emit(const AccountState.loading());
-    await accountRepository.updateTransaction(
-      event.account,
-      event.newAccount,
-      event.transaction,
-    );
-    accounts = await accountRepository.getAccounts();
-    emit(AccountState.loaded(accounts));
+    try {
+      await accountRepository.updateTransaction(
+        event.account,
+        event.newAccount,
+        event.transaction,
+      );
+      accounts = await accountRepository.getAccounts();
+      emit(AccountState.loaded(accounts));
+    } catch (e) {
+      emit(AccountState.error(e.toString()));
+    }
   }
 
   Future<void> _onRemoveTransaction(
@@ -78,8 +96,15 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     Emitter<AccountState> emit,
   ) async {
     emit(const AccountState.loading());
-    await accountRepository.removeTransaction(event.account, event.transaction);
-    accounts = await accountRepository.getAccounts();
-    emit(AccountState.loaded(accounts));
+    try {
+      await accountRepository.removeTransaction(
+        event.account,
+        event.transaction,
+      );
+      accounts = await accountRepository.getAccounts();
+      emit(AccountState.loaded(accounts));
+    } catch (e) {
+      emit(AccountState.error(e.toString()));
+    }
   }
 }

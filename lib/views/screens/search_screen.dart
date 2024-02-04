@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
-
 import 'package:wallet_app/views/views.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -16,74 +17,80 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final accountRepository = AccountRepository();
-  late List<TransactionModel> transactions;
 
   @override
   void initState() {
+    context.read<SearchBarBloc>().add(
+          const SearchBarEvent.init(),
+        );
     super.initState();
-    transactions = accountRepository.getAllTransactions(
-      widget.user,
-    );
   }
 
   @override
   Widget build(BuildContext context) {
     final searchController = TextEditingController();
 
-    return Scaffold(
-      appBar: AppBar(
-        title: SearchBar(
-          surfaceTintColor: MaterialStateColor.resolveWith(
-            (states) => Colors.transparent,
-          ),
-          hintText: 'Search',
-          controller: searchController,
-          onTap: () {
-            setState(() {
-              transactions = accountRepository.getAllTransactions(
-                widget.user,
+    return SafeArea(
+      child: BlocBuilder<SearchBarBloc, SearchBarState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            orElse: () {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
-            });
-          },
-          onSubmitted: (value) {
-            setState(() {
-              transactions = transactions
-                  .where(
-                    (element) => element.category.name
-                        .toLowerCase()
-                        .contains(value.toLowerCase()),
-                  )
-                  .toList();
-            });
-          },
-        ),
-      ),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.75,
-        child: transactions.isEmpty
-            ? const Center(
+            },
+            error: (message) {
+              return Center(
                 child: Text(
-                  'No transactions found.',
-                  style: TextStyle(
+                  message,
+                  style: const TextStyle(
                     fontSize: 16,
-                    color: Colors.grey,
-                    fontStyle: FontStyle.italic,
+                    color: Colors.red,
                   ),
                 ),
-              )
-            : ListView.separated(
-                separatorBuilder: (context, index) => Container(
-                  height: 0.1,
-                  color: Colors.grey,
+              );
+            },
+            loaded: (loadedTransactions) {
+              return DecoratedBox(
+                decoration: const BoxDecoration(
+                  color: colorCards,
                 ),
-                itemCount: transactions.length,
-                itemBuilder: (context, index) {
-                  return TransactionListItem(
-                    transaction: transactions[index],
-                    user: widget.user,
-                  );
-                },
-              ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      height: 60,
+                      child: SearchBar(
+                        surfaceTintColor: MaterialStateColor.resolveWith(
+                          (states) => colorCards,
+                        ),
+                        hintText: 'Search',
+                        controller: searchController,
+                        onChanged: (value) {
+                          context.read<SearchBarBloc>().add(
+                                SearchBarSearchEvent(value),
+                              );
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: loadedTransactions.length,
+                        itemBuilder: (context, index) {
+                          return TransactionListItem(
+                            user: widget.user,
+                            transaction: loadedTransactions[index],
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }

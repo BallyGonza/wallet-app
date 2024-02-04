@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wallet_app/blocs/user/user_event.dart';
-import 'package:wallet_app/blocs/user/user_state.dart';
+import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 
 /// [UserBloc] is responsible for managing user related states.
@@ -10,7 +9,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     add(const UserEvent.init());
   }
   final UserRepository userRepository;
-
   late UserModel user;
 
   /// Fetches user data and updates categories when [UserInitialEvent] is added.

@@ -23,6 +23,10 @@ Future<void> main() async {
           create: (context) =>
               CreditCardBloc(creditCardRepository: CreditCardRepository()),
         ),
+        BlocProvider(
+          create: (context) =>
+              SearchBarBloc(accountRepository: AccountRepository()),
+        ),
       ],
       child: const App(),
     ),
