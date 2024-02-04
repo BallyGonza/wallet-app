@@ -75,7 +75,27 @@ class AccountRepository {
     await _userRepository.saveUser(user);
   }
 
-  List<TransactionModel> getAllTransactions(
+  Future<List<TransactionModel>> getAllTransactions() async {
+    final user = await _userRepository.getUser();
+    return user.accounts.expand((account) => account.transactions).toList()
+      ..sort((a, b) => b.date.compareTo(a.date));
+  }
+
+  // Filter transactions by name
+  List<TransactionModel> filterTransactionsByName({
+    required String name,
+    required List<TransactionModel> transactions,
+  }) {
+    return transactions
+        .where(
+          (transaction) => transaction.category.name
+              .toLowerCase()
+              .contains(name.toLowerCase()),
+        )
+        .toList();
+  }
+
+  List<TransactionModel> getAllTransactionsByDate(
     List<AccountModel> accounts,
     DateTime date,
   ) {

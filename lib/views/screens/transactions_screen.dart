@@ -32,7 +32,7 @@ class TransactionsScreen extends StatelessWidget {
               orElse: () => const Center(child: CircularProgressIndicator()),
               loaded: (accounts) {
                 final transactions =
-                    accountRepository.getAllTransactions(accounts, date);
+                    accountRepository.getAllTransactionsByDate(accounts, date);
                 return transactions.isEmpty
                     ? const Center(
                         child: Text(

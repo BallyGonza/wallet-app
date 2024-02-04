@@ -23,31 +23,33 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final PageController _pageController = PageController();
-  DateTime selectedDate = DateTime.now();
-  bool _yearMode = false;
-  int currentIndex = 0;
+  DateTime _selectedDate = DateTime.now();
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: walletAppTheme.scaffoldBackgroundColor,
-      bottomNavigationBar: _bottomNavBar(),
-      floatingActionButton: _dialButton(context),
-      appBar: _appBar(),
+      bottomNavigationBar: _buildBottomNavBar(),
+      floatingActionButton: _buildDialButton(context),
+      appBar: _currentIndex == 2 ? null : _buildAppBar(),
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
           setState(() {
-            currentIndex = index;
+            _currentIndex = index;
           });
         },
         children: [
           WalletScreen(
             user: widget.user,
-            date: selectedDate,
+            date: _selectedDate,
           ),
           TransactionsScreen(
-            date: selectedDate,
+            date: _selectedDate,
+            user: widget.user,
+          ),
+          SearchScreen(
             user: widget.user,
           ),
         ],
@@ -55,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  AppBar _appBar() {
+  AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: walletAppTheme.scaffoldBackgroundColor,
       elevation: 0,
@@ -70,18 +72,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onPressed: () {
               setState(() {
-                _yearMode
-                    ? selectedDate = selectedDate.subtract(
-                        const Duration(days: 365),
-                      )
-                    : selectedDate = selectedDate.subtract(
-                        const Duration(
-                          days: 30,
-                          hours: 23,
-                          minutes: 59,
-                          seconds: 59,
-                        ),
-                      );
+                _selectedDate = _selectedDate.subtract(
+                  const Duration(
+                    days: 30,
+                    hours: 23,
+                    minutes: 59,
+                    seconds: 59,
+                  ),
+                );
               });
             },
             child: const Icon(
@@ -90,31 +88,15 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.grey,
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                _yearMode = !_yearMode;
-              });
-            },
-            child: _yearMode
-                ? Text(
-                    selectedDate.year.toString(),
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                : Text(
-                    selectedDate.year == DateTime.now().year
-                        ? DateFormat('MMMM').format(selectedDate)
-                        : DateFormat('MMMM yyyy').format(selectedDate),
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+          Text(
+            _selectedDate.year == DateTime.now().year
+                ? DateFormat('MMMM').format(_selectedDate)
+                : DateFormat('MMMM yyyy').format(_selectedDate),
+            style: const TextStyle(
+              color: Colors.grey,
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -124,13 +106,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onPressed: () {
               setState(() {
-                _yearMode
-                    ? selectedDate = selectedDate.add(
-                        const Duration(days: 365),
-                      )
-                    : selectedDate = selectedDate.add(
-                        const Duration(days: 30),
-                      );
+                _selectedDate = _selectedDate.add(
+                  const Duration(days: 30),
+                );
               });
             },
             child: const Icon(
@@ -144,12 +122,12 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  BottomNavBar _bottomNavBar() {
+  BottomNavBar _buildBottomNavBar() {
     return BottomNavBar(
-      currentIndex: currentIndex,
+      currentIndex: _currentIndex,
       onTap: (index) {
         setState(() {
-          currentIndex = index;
+          _currentIndex = index;
           _pageController.animateToPage(
             index,
             duration: const Duration(milliseconds: 300),
@@ -160,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  SpeedDial _dialButton(BuildContext context) {
+  SpeedDial _buildDialButton(BuildContext context) {
     return SpeedDial(
       elevation: 0,
       overlayOpacity: 0,

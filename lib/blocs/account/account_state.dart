@@ -7,7 +7,7 @@ part 'account_state.freezed.dart';
 class AccountState with _$AccountState {
   const factory AccountState.initial() = AccountInitial;
   const factory AccountState.loading() = AccountLoading;
-  const factory AccountState.loaded(
-    List<AccountModel> accounts,
-  ) = AccountUpdated;
+  const factory AccountState.loaded(List<AccountModel> accounts) =
+      AccountUpdated;
+  const factory AccountState.error(String error) = AccountError;
 }
