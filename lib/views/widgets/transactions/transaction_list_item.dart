@@ -50,7 +50,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
     return InkWell(
       enableFeedback: false,
       onTap: () {
-        showModalBottomSheet<Padding>(
+        showModalBottomSheet<Container>(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               top: Radius.circular(20),
@@ -59,8 +59,9 @@ class _TransactionListItemState extends State<TransactionListItem> {
           backgroundColor: appBackgroundColor,
           context: context,
           builder: (context) {
-            return Padding(
+            return Container(
               padding: const EdgeInsets.all(8),
+              height: MediaQuery.of(context).size.height * 0.5,
               child: Column(
                 children: [
                   DescriptionItem(
