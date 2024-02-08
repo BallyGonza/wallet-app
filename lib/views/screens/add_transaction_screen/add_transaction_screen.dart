@@ -13,7 +13,7 @@ class AddTransactionScreen extends StatefulWidget {
     required this.onPressed,
     super.key,
   })  : _title = 'Ingreso',
-        _color = incomeColor!,
+        _color = incomeColor,
         _categories = user.incomeCategories;
 
   AddTransactionScreen.expense({
@@ -22,7 +22,7 @@ class AddTransactionScreen extends StatefulWidget {
     required this.onPressed,
     super.key,
   })  : _title = 'Egreso',
-        _color = expenseColor!,
+        _color = expenseColor,
         _categories = user.expenseCategories;
 
   final UserModel user;

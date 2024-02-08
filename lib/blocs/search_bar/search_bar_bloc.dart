@@ -4,13 +4,13 @@ import 'package:wallet_app/data/data.dart';
 
 /// [SearchBarBloc] is responsible for managing user related states.
 class SearchBarBloc extends Bloc<SearchBarEvent, SearchBarState> {
-  SearchBarBloc({required this.accountRepository})
+  SearchBarBloc({required this.transactionRepository})
       : super(const SearchBarState.initial()) {
     on<SearchBarInitialEvent>(_onInit);
     on<SearchBarSearchEvent>(_onSearch);
     add(const SearchBarEvent.init());
   }
-  final AccountRepository accountRepository;
+  final TransactionRepository transactionRepository;
   late List<TransactionModel> transactions;
   List<TransactionModel> filteredTransactions = [];
 
@@ -22,7 +22,7 @@ class SearchBarBloc extends Bloc<SearchBarEvent, SearchBarState> {
   ) async {
     emit(const SearchBarState.loading());
     try {
-      transactions = await accountRepository.getAllTransactions();
+      transactions = await transactionRepository.getTransactions();
       emit(SearchBarState.loaded(transactions));
     } catch (e) {
       emit(SearchBarState.error(e.toString()));
@@ -31,14 +31,13 @@ class SearchBarBloc extends Bloc<SearchBarEvent, SearchBarState> {
 
   /// Filters transactions based on the search query when [SearchBarSearchEvent]
   /// is added.
-
   Future<void> _onSearch(
     SearchBarSearchEvent event,
     Emitter<SearchBarState> emit,
   ) async {
     emit(const SearchBarState.loading());
     try {
-      filteredTransactions = accountRepository.filterTransactionsByName(
+      filteredTransactions = transactionRepository.filterTransactionsByName(
         transactions: transactions,
         name: event.name,
       );

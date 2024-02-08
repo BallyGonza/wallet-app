@@ -37,13 +37,13 @@ final prexColor = const Color(0xFF5C19AD).value;
 final galiciaColor = const Color(0xFFED5013).value;
 
 // income color
-final incomeColor = Colors.green[300];
+const incomeColor = Colors.green;
 
 // expense color
-final expenseColor = Colors.red[300];
+const expenseColor = Colors.red;
 
 // transfer color
-final transferColor = Colors.blue[300];
+const transferColor = Colors.blue;
 
 // theme colors
 final primaryColor = Colors.indigo[300];

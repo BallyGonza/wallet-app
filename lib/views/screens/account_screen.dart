@@ -24,8 +24,16 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  final AccountRepository accountRepository = AccountRepository();
+  late TransactionRepository transactionRepository;
+  late AccountRepository accountRepository;
   List<TransactionModel> transactions = [];
+
+  @override
+  void initState() {
+    transactionRepository = context.read<TransactionRepository>();
+    accountRepository = context.read<AccountRepository>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +45,8 @@ class _AccountScreenState extends State<AccountScreen> {
             return state.maybeWhen(
               orElse: () => const Center(child: CircularProgressIndicator()),
               loaded: (accounts) {
-                transactions = accountRepository.getTransactionsByAccount(
+                transactions = transactionRepository.getTransactionsByAccount(
                   widget.account,
-                  widget.user,
                   widget.date,
                 );
                 return Column(
@@ -124,31 +131,37 @@ class _AccountScreenState extends State<AccountScreen> {
           _resumeItem(
             'Ingreso',
             accountRepository.getTotalIncomesByAccount(
-              widget.account,
-              widget.date,
+              account: widget.account,
+              date: widget.date,
             ),
-            incomeColor!.value,
+            incomeColor.value,
           ),
           _resumeItem(
             'Gasto',
             accountRepository.getTotalExpensesByAccount(
-              widget.account,
-              widget.date,
+              account: widget.account,
+              date: widget.date,
             ),
-            expenseColor!.value,
+            expenseColor.value,
           ),
           _resumeItem(
             'Saldo',
-            accountRepository.getBalanceOfAccount(widget.account, widget.date),
-            accountRepository.getBalanceOfAccount(widget.account, widget.date) >
+            accountRepository.getBalanceOfAccount(
+              account: widget.account,
+              date: widget.date,
+            ),
+            accountRepository.getBalanceOfAccount(
+                      account: widget.account,
+                      date: widget.date,
+                    ) >
                     0
-                ? incomeColor!.value
+                ? incomeColor.value
                 : accountRepository.getBalanceOfAccount(
-                          widget.account,
-                          widget.date,
+                          account: widget.account,
+                          date: widget.date,
                         ) <
                         0
-                    ? expenseColor!.value
+                    ? expenseColor.value
                     : Colors.grey.value,
           ),
         ],
@@ -220,7 +233,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       ),
                       ActionButton(
                         text: 'Add income',
-                        color: Color(incomeColor!.value),
+                        color: Color(incomeColor.value),
                         onPressed: () {
                           Navigator.pop(context);
                           Navigator.of(context).push(
@@ -245,7 +258,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       ),
                       ActionButton(
                         text: 'Add expense',
-                        color: Color(expenseColor!.value),
+                        color: Color(expenseColor.value),
                         onPressed: () {
                           Navigator.pop(context);
                           Navigator.of(context).push(

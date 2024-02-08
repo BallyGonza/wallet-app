@@ -26,15 +26,17 @@ class _TransactionListItemState extends State<TransactionListItem> {
   late TextEditingController amountController;
   late TextEditingController noteController;
   late AccountRepository accountRepository;
+  late TransactionRepository transactionRepository;
   late AccountModel? account;
   late CategoryModel selectedCategory;
   late bool isIncome;
 
   @override
   void initState() {
-    accountRepository = AccountRepository();
-    account = accountRepository.getAccountOfTransaction(
-      widget.user,
+    accountRepository = context.read<AccountRepository>();
+    transactionRepository = context.read<TransactionRepository>();
+    account = transactionRepository.getAccountOfTransaction(
+      widget.user.accounts,
       widget.transaction,
     );
     amountController =
@@ -73,82 +75,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                     description: widget.transaction.category.name,
                     transaction: widget.transaction,
                     onTap: () {
-                      showModalBottomSheet<Padding>(
-                        isScrollControlled: true,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30),
-                          ),
-                        ),
-                        backgroundColor: colorCards,
-                        context: context,
-                        builder: (context) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: SizedBox(
-                              height: isIncome
-                                  ? defaultIncomeCategories.length * 200
-                                  : defaultExpenseCategories.length * 60,
-                              child: ListView.builder(
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: isIncome
-                                    ? defaultIncomeCategories.length
-                                    : defaultExpenseCategories.length,
-                                itemBuilder: (context, index) {
-                                  return CategoryListItem(
-                                    onCategoryTap: () {
-                                      setState(() {
-                                        context.read<AccountBloc>().add(
-                                              AccountEvent.updateTransaction(
-                                                account!,
-                                                null,
-                                                widget.transaction.copyWith(
-                                                  category: isIncome
-                                                      ? defaultIncomeCategories[
-                                                          index]
-                                                      : defaultExpenseCategories[
-                                                          index],
-                                                ),
-                                              ),
-                                            );
-                                      });
-                                      Navigator.pop(context);
-                                      Navigator.pop(context);
-                                    },
-                                    onSubCategoryTap: (int subIndex) {
-                                      setState(() {
-                                        context.read<AccountBloc>().add(
-                                              AccountEvent.updateTransaction(
-                                                account!,
-                                                null,
-                                                widget.transaction.copyWith(
-                                                  category: isIncome
-                                                      ? defaultIncomeCategories[
-                                                                  index]
-                                                              .subCategories[
-                                                          subIndex]
-                                                      : defaultExpenseCategories[
-                                                                  index]
-                                                              .subCategories[
-                                                          subIndex],
-                                                ),
-                                              ),
-                                            );
-                                      });
-                                      Navigator.pop(context);
-                                      Navigator.pop(context);
-                                    },
-                                    category: isIncome
-                                        ? defaultIncomeCategories[index]
-                                        : defaultExpenseCategories[index],
-                                  );
-                                },
-                              ),
-                            ),
-                          );
-                        },
-                      );
+                      showCategoryModal(context);
                     },
                   ),
                   DescriptionItem(
@@ -158,54 +85,12 @@ class _TransactionListItemState extends State<TransactionListItem> {
                     description: account!.name,
                     transaction: widget.transaction,
                     onTap: () {
-                      showModalBottomSheet<Padding>(
-                        isScrollControlled: true,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(30),
-                            topRight: Radius.circular(30),
-                          ),
-                        ),
-                        backgroundColor: colorCards,
-                        context: context,
-                        builder: (context) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: SizedBox(
-                              height: widget.user.accounts.length * 80,
-                              child: ListView.builder(
-                                physics: const BouncingScrollPhysics(),
-                                itemCount: widget.user.accounts.length,
-                                itemBuilder: (context, index) {
-                                  return InkWell(
-                                    onTap: () {
-                                      setState(() {
-                                        context.read<AccountBloc>().add(
-                                              AccountEvent.updateTransaction(
-                                                account!,
-                                                widget.user.accounts[index],
-                                                widget.transaction,
-                                              ),
-                                            );
-                                      });
-                                      Navigator.pop(context);
-                                      Navigator.pop(context);
-                                    },
-                                    child: AccountListItem(
-                                      account: widget.user.accounts[index],
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                          );
-                        },
-                      );
+                      showAccountModal(context);
                     },
                   ),
                   DescriptionItem(
                     title: 'Amount',
-                    icon: 'assets/icons/coin.png',
+                    icon: AppImages.coin,
                     backgroundColor: yellow,
                     description: arg.format(widget.transaction.amount),
                     descriptionColor: widget.transaction.category.isIncome
@@ -213,123 +98,44 @@ class _TransactionListItemState extends State<TransactionListItem> {
                         : expenseColor,
                     transaction: widget.transaction,
                     onTap: () {
-                      showDialog<WalletAlertDialog>(
-                        context: context,
-                        builder: (_) => WalletAlertDialog(
-                          title: 'Editar monto',
-                          content: WalletDialogTextField(
-                            hint: 'Amount',
-                            controller: amountController..text,
-                          ),
-                          primaryActionTitle: 'Save',
-                          onPressed: () {
-                            setState(() {
-                              context.read<AccountBloc>().add(
-                                    AccountEvent.updateTransaction(
-                                      account!,
-                                      null,
-                                      widget.transaction.copyWith(
-                                        amount: double.parse(
-                                          amountController.text
-                                              .replaceAll(',', '.'),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                            });
-                          },
-                        ),
-                      );
+                      showEditAmountDialog(context);
                     },
                   ),
                   DescriptionItem(
                     title: 'Date',
-                    icon: 'assets/icons/calendar.png',
+                    icon: AppImages.calendar,
                     backgroundColor: white,
                     description: dateFormat.format(widget.transaction.date),
                     transaction: widget.transaction,
                     onTap: () {
-                      FocusScope.of(context).unfocus();
-                      showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        lastDate: DateTime.now(),
-                        firstDate: DateTime.now().subtract(
-                          const Duration(days: 365),
-                        ),
-                      ).then((value) {
-                        context.read<AccountBloc>().add(
-                              AccountEvent.updateTransaction(
-                                account!,
-                                null,
-                                widget.transaction.copyWith(
-                                  date: value,
-                                ),
-                              ),
-                            );
-                      });
+                      showModifyDatePicker(context);
                     },
                   ),
                   DescriptionItem(
                     title: 'Note',
-                    icon: 'assets/icons/pencil.png',
+                    icon: AppImages.pencil,
                     backgroundColor: white,
                     description: widget.transaction.note.isEmpty
                         ? 'None'
                         : widget.transaction.note,
                     transaction: widget.transaction,
                     onTap: () {
-                      showDialog<WalletAlertDialog>(
-                        context: context,
-                        builder: (_) => WalletAlertDialog(
-                          title: 'Editar nota',
-                          content: WalletDialogTextField(
-                            hint: 'Note',
-                            controller: noteController..text,
-                          ),
-                          primaryActionTitle: 'Save',
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                            setState(() {
-                              context.read<AccountBloc>().add(
-                                    AccountEvent.updateTransaction(
-                                      account!,
-                                      null,
-                                      widget.transaction.copyWith(
-                                        note: noteController.text,
-                                      ),
-                                    ),
-                                  );
-                            });
-                          },
-                        ),
-                      );
+                      showModifyNoteDialog(context);
                     },
                   ),
                   const Spacer(),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        backgroundColor: Colors.red,
-                      ),
-                      onPressed: () {
-                        context.read<AccountBloc>().add(
-                              AccountEvent.removeTransaction(
-                                account!,
-                                widget.transaction,
-                              ),
-                            );
-                        Navigator.pop(context);
-                      },
-                      child: const Text(
-                        'Delete',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
+                  ActionButton(
+                    text: 'Delete',
+                    onPressed: () {
+                      context.read<AccountBloc>().add(
+                            AccountEvent.removeTransaction(
+                              account!,
+                              widget.transaction,
+                            ),
+                          );
+                      Navigator.pop(context);
+                    },
+                    color: Colors.red,
                   ),
                   const SizedBox(height: 20),
                 ],
@@ -439,6 +245,204 @@ class _TransactionListItemState extends State<TransactionListItem> {
           ],
         ),
       ),
+    );
+  }
+
+  void showModifyNoteDialog(BuildContext context) {
+    showDialog<WalletAlertDialog>(
+      context: context,
+      builder: (_) => WalletAlertDialog(
+        title: 'Editar nota',
+        content: WalletDialogTextField(
+          hint: 'Note',
+          controller: noteController..text,
+        ),
+        primaryActionTitle: 'Save',
+        onPressed: () {
+          Navigator.of(context).pop();
+          setState(() {
+            context.read<AccountBloc>().add(
+                  AccountEvent.updateTransaction(
+                    account!,
+                    null,
+                    widget.transaction.copyWith(
+                      note: noteController.text,
+                    ),
+                  ),
+                );
+          });
+        },
+      ),
+    );
+  }
+
+  void showModifyDatePicker(BuildContext context) {
+    FocusScope.of(context).unfocus();
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      lastDate: DateTime.now(),
+      firstDate: DateTime.now().subtract(
+        const Duration(days: 365),
+      ),
+    ).then((value) {
+      context.read<AccountBloc>().add(
+            AccountEvent.updateTransaction(
+              account!,
+              null,
+              widget.transaction.copyWith(
+                date: value,
+              ),
+            ),
+          );
+    });
+  }
+
+  Future<WalletAlertDialog?> showEditAmountDialog(BuildContext context) {
+    return showDialog<WalletAlertDialog>(
+      context: context,
+      builder: (_) => WalletAlertDialog(
+        title: 'Editar monto',
+        content: WalletDialogTextField(
+          hint: 'Amount',
+          controller: amountController..text,
+        ),
+        primaryActionTitle: 'Save',
+        onPressed: () {
+          setState(() {
+            context.read<AccountBloc>().add(
+                  AccountEvent.updateTransaction(
+                    account!,
+                    null,
+                    widget.transaction.copyWith(
+                      amount: double.parse(
+                        amountController.text.replaceAll(',', '.'),
+                      ),
+                    ),
+                  ),
+                );
+          });
+        },
+      ),
+    );
+  }
+
+  Future<Padding?> showAccountModal(BuildContext context) {
+    return showModalBottomSheet<Padding>(
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+      ),
+      backgroundColor: colorCards,
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(8),
+          child: SizedBox(
+            height: widget.user.accounts.length * 80,
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: widget.user.accounts.length,
+              itemBuilder: (context, index) {
+                return InkWell(
+                  onTap: () {
+                    setState(() {
+                      context.read<AccountBloc>().add(
+                            AccountEvent.updateTransaction(
+                              account!,
+                              widget.user.accounts[index],
+                              widget.transaction,
+                            ),
+                          );
+                    });
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                  child: AccountListItem(
+                    account: widget.user.accounts[index],
+                  ),
+                );
+              },
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<Padding?> showCategoryModal(BuildContext context) {
+    return showModalBottomSheet<Padding>(
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+      ),
+      backgroundColor: colorCards,
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(8),
+          child: SizedBox(
+            height: isIncome
+                ? defaultIncomeCategories.length * 200
+                : defaultExpenseCategories.length * 60,
+            child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              itemCount: isIncome
+                  ? defaultIncomeCategories.length
+                  : defaultExpenseCategories.length,
+              itemBuilder: (context, index) {
+                return CategoryListItem(
+                  onCategoryTap: () {
+                    setState(() {
+                      context.read<AccountBloc>().add(
+                            AccountEvent.updateTransaction(
+                              account!,
+                              null,
+                              widget.transaction.copyWith(
+                                category: isIncome
+                                    ? defaultIncomeCategories[index]
+                                    : defaultExpenseCategories[index],
+                              ),
+                            ),
+                          );
+                    });
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                  onSubCategoryTap: (int subIndex) {
+                    setState(() {
+                      context.read<AccountBloc>().add(
+                            AccountEvent.updateTransaction(
+                              account!,
+                              null,
+                              widget.transaction.copyWith(
+                                category: isIncome
+                                    ? defaultIncomeCategories[index]
+                                        .subCategories[subIndex]
+                                    : defaultExpenseCategories[index]
+                                        .subCategories[subIndex],
+                              ),
+                            ),
+                          );
+                    });
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  },
+                  category: isIncome
+                      ? defaultIncomeCategories[index]
+                      : defaultExpenseCategories[index],
+                );
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }

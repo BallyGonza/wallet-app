@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
@@ -19,10 +20,17 @@ class AccountItem extends StatefulWidget {
 }
 
 class _AccountItemState extends State<AccountItem> {
+  late AccountRepository accountRepository;
+  late double balance;
+
+  @override
+  void initState() {
+    accountRepository = context.read<AccountRepository>();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final accountRepository = AccountRepository();
-
     return InkWell(
       enableFeedback: false,
       onTap: () {
@@ -61,21 +69,21 @@ class _AccountItemState extends State<AccountItem> {
         subtitle: Text(
           arg.format(
             accountRepository.getBalanceOfAccount(
-              widget.account,
-              widget.date,
+              account: widget.account,
+              date: widget.date,
             ),
           ),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: accountRepository.getBalanceOfAccount(
-                      widget.account,
-                      widget.date,
+                      account: widget.account,
+                      date: widget.date,
                     ) >
                     0
                 ? Colors.green
                 : accountRepository.getBalanceOfAccount(
-                          widget.account,
-                          widget.date,
+                          account: widget.account,
+                          date: widget.date,
                         ) <
                         0
                     ? Colors.red

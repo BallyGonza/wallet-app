@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
 
 class AccountListItem extends StatefulWidget {
@@ -14,10 +15,11 @@ class AccountListItem extends StatefulWidget {
 }
 
 class _AccountListItemState extends State<AccountListItem> {
-  UserRepository userRepository = UserRepository();
+  late UserRepository userRepository;
 
   @override
   void initState() {
+    userRepository = context.read<UserRepository>();
     super.initState();
   }
 

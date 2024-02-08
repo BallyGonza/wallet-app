@@ -1,29 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
 
 import 'package:wallet_app/views/screens/statistics_screen/widgets/widgets.dart';
 
-class IncomesScreen extends StatelessWidget {
+class IncomesScreen extends StatefulWidget {
   const IncomesScreen({
     required this.user,
     required this.date,
-    required this.yearMode,
     super.key,
   });
 
   final UserModel user;
   final DateTime date;
-  final bool yearMode;
+
+  @override
+  State<IncomesScreen> createState() => _IncomesScreenState();
+}
+
+class _IncomesScreenState extends State<IncomesScreen> {
+  late UserRepository userRepository;
+  late List<CategoryModel> categories;
+  late double total;
+
+  @override
+  void initState() {
+    userRepository = context.read<UserRepository>();
+    total = userRepository.getTotalIncome(widget.user, widget.date);
+    categories = widget.user.incomeCategories;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final userRepository = UserRepository();
-    final categories = user.incomeCategories;
-    double total;
-    if (yearMode) {
-      total = userRepository.getTotalIncomeByYear(user, date);
-    } else {
-      total = userRepository.getTotalIncome(user, date);
-    }
     return Scaffold(
       appBar: AppBar(
         title: const Text('Incomes'),
@@ -68,10 +77,9 @@ class IncomesScreen extends StatelessWidget {
               itemCount: categories.length,
               itemBuilder: (context, index) {
                 return IncomeItem(
-                  user: user,
+                  user: widget.user,
                   income: categories[index],
-                  date: date,
-                  yearMode: yearMode,
+                  date: widget.date,
                 );
               },
             ),

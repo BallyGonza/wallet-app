@@ -23,7 +23,14 @@ class TransactionsList extends StatefulWidget {
 }
 
 class _TransactionsListState extends State<TransactionsList> {
-  final AccountRepository accountRepository = AccountRepository();
+  late TransactionRepository transactionRepository;
+
+  @override
+  void initState() {
+    transactionRepository = context.read<TransactionRepository>();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AccountBloc, AccountState>(
@@ -31,7 +38,7 @@ class _TransactionsListState extends State<TransactionsList> {
         return state.maybeWhen(
           orElse: () => const SizedBox.shrink(),
           loaded: (accounts) {
-            final transactions = accountRepository.getTransactionsByDay(
+            final transactions = transactionRepository.getTransactionsByDay(
               accounts,
               widget.date,
               widget.day,
@@ -69,7 +76,7 @@ class _TransactionsListState extends State<TransactionsList> {
                             const Spacer(),
                             Text(
                               arg.format(
-                                accountRepository.getTotalIncomeByDay(
+                                transactionRepository.getTotalIncomeByDay(
                                   transactions,
                                   widget.date,
                                   widget.day,
@@ -84,7 +91,7 @@ class _TransactionsListState extends State<TransactionsList> {
                             const SizedBox(width: 10),
                             Text(
                               arg.format(
-                                accountRepository.getTotalExpensesByDay(
+                                transactionRepository.getTotalExpensesByDay(
                                   transactions,
                                   widget.date,
                                   widget.day,

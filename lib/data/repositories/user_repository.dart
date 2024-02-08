@@ -29,7 +29,10 @@ class UserRepository {
     await saveUser(user);
   }
 
-  double getBalance(List<AccountModel> accounts, DateTime date) {
+  double getBalance({
+    required List<AccountModel> accounts,
+    required DateTime date,
+  }) {
     var total = 0.0;
     for (final account in accounts) {
       for (final transaction in account.transactions) {

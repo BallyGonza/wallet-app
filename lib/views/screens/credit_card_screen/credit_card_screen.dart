@@ -25,14 +25,21 @@ class CreditCardScreen extends StatefulWidget {
 }
 
 class _CreditCardScreenState extends State<CreditCardScreen> {
+  late CreditCardRepository creditCardRepository;
+  late List<CreditCardTransactionModel> creditCardExpenses;
+
   @override
-  Widget build(BuildContext context) {
-    final creditCardRepository = CreditCardRepository();
-    final creditCardExpenses = creditCardRepository.getTransactionsByCreditCard(
+  void initState() {
+    creditCardRepository = context.read<CreditCardRepository>();
+    creditCardExpenses = creditCardRepository.getTransactionsByCreditCard(
       widget.creditCard,
       widget.date,
     );
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar:
           _bottomNavBar(context, creditCardRepository, creditCardExpenses),
@@ -239,7 +246,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                       ),
                       ActionButton(
                         text: 'Add expense',
-                        color: Color(expenseColor!.value),
+                        color: Color(expenseColor.value),
                         onPressed: () {
                           Navigator.of(context).pop();
                           setState(() {

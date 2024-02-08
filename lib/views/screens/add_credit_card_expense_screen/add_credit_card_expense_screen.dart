@@ -40,7 +40,6 @@ class _AddCreditCardExpenseScreenState
   @override
   void initState() {
     _selectedCategory = defaultExpenseCategories[0];
-
     super.initState();
   }
 

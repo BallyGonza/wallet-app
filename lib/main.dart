@@ -10,25 +10,47 @@ Future<void> main() async {
   LocalizationService().setupLocalization();
 
   runApp(
-    MultiBlocProvider(
+    MultiRepositoryProvider(
       providers: [
-        BlocProvider(
-          create: (context) => UserBloc(userRepository: UserRepository()),
+        RepositoryProvider<UserRepository>(
+          create: (context) => UserRepository(),
         ),
-        BlocProvider(
-          create: (context) =>
-              AccountBloc(accountRepository: AccountRepository()),
+        RepositoryProvider<AccountRepository>(
+          create: (context) => AccountRepository(),
         ),
-        BlocProvider(
-          create: (context) =>
-              CreditCardBloc(creditCardRepository: CreditCardRepository()),
+        RepositoryProvider<TransactionRepository>(
+          create: (context) => TransactionRepository(),
         ),
-        BlocProvider(
-          create: (context) =>
-              SearchBarBloc(accountRepository: AccountRepository()),
+        RepositoryProvider<CreditCardRepository>(
+          create: (context) => CreditCardRepository(),
         ),
       ],
-      child: const App(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => UserBloc(
+              userRepository: context.read<UserRepository>(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => AccountBloc(
+              accountRepository: context.read<AccountRepository>(),
+              transactionRepository: context.read<TransactionRepository>(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => CreditCardBloc(
+              creditCardRepository: context.read<CreditCardRepository>(),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => SearchBarBloc(
+              transactionRepository: context.read<TransactionRepository>(),
+            ),
+          ),
+        ],
+        child: const App(),
+      ),
     ),
   );
 }
