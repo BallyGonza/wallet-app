@@ -54,7 +54,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                 children: [
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         r'$',
                         style: TextStyle(
                           fontSize: 20,
@@ -66,7 +66,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                         width: MediaQuery.of(context).size.width - 100,
                         child: TextFormField(
                           showCursor: false,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: '0,00',
                             hintStyle: TextStyle(
@@ -80,7 +80,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                           keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
                           ),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
                             color: transferColor,
@@ -126,25 +126,27 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                             color: Colors.grey,
                           ),
                         ),
-                        trailing: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                        subtitle: Text.rich(
+                          TextSpan(
+                            text: _fromSelectedAccount.name,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.grey,
+                            ),
                             children: [
-                              Text(
-                                _fromSelectedAccount.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              const FaIcon(
-                                FontAwesomeIcons.chevronRight,
-                                color: Colors.grey,
-                                size: 12,
-                              ),
+                              if (_fromSelectedAccount.description != null)
+                                TextSpan(
+                                  text:
+                                      ' / ${_fromSelectedAccount.description}',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.grey,
+                                  ),
+                                )
+                              else
+                                const TextSpan(),
                             ],
                           ),
                         ),
@@ -211,25 +213,26 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                             color: Colors.grey,
                           ),
                         ),
-                        trailing: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                        subtitle: Text.rich(
+                          TextSpan(
+                            text: _toSelectedAccount.name,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.grey,
+                            ),
                             children: [
-                              Text(
-                                _toSelectedAccount.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              const FaIcon(
-                                FontAwesomeIcons.chevronRight,
-                                color: Colors.grey,
-                                size: 12,
-                              ),
+                              if (_toSelectedAccount.description != null)
+                                TextSpan(
+                                  text: ' / ${_toSelectedAccount.description}',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.grey,
+                                  ),
+                                )
+                              else
+                                const TextSpan(),
                             ],
                           ),
                         ),
@@ -276,27 +279,20 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                         },
                       ),
                       WalletListTile(
-                        leading: const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: FaIcon(
+                        leading: CircleAvatar(
+                          backgroundColor: primaryColor,
+                          child: const FaIcon(
                             FontAwesomeIcons.calendar,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                        content: Text(
+                          _selectedDate,
+                          style: const TextStyle(
                             color: Colors.grey,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        content: Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: Text(
-                            _selectedDate,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        trailing: const FaIcon(
-                          FontAwesomeIcons.chevronRight,
-                          color: Colors.grey,
-                          size: 12,
                         ),
                         onTap: () {
                           FocusScope.of(context).unfocus();
@@ -318,13 +314,15 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                         },
                       ),
                       WalletListTile(
-                        leading: const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: FaIcon(
+                        leading: CircleAvatar(
+                          backgroundColor: primaryColor,
+                          child: const FaIcon(
                             FontAwesomeIcons.fileSignature,
-                            color: Colors.grey,
+                            color: Colors.white,
+                            size: 20,
                           ),
                         ),
+                        trailing: const SizedBox.shrink(),
                         content: TextFormField(
                           textCapitalization: TextCapitalization.sentences,
                           controller: _noteController,

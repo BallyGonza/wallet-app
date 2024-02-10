@@ -91,7 +91,7 @@ InstitutionModel visaInstitution = InstitutionModel(
 
 InstitutionModel mastercardInstitution = InstitutionModel(
   id: 6,
-  name: 'Mastercard',
+  name: 'Master Card',
   logo: 'assets/icons/institutions/mastercard.png',
   backgroundColor: white,
   logoColor: red,
@@ -111,7 +111,8 @@ InstitutionModel galiciaInstitution = InstitutionModel(
   logo: 'assets/icons/institutions/galicia.png',
   backgroundColor: galiciaColor,
   visaCardColor: orange,
-  americianExpressColor: silver,
+  masterCardColor: orange,
+  americianExpressColor: orange,
   logoColor: galiciaColor,
 );
 

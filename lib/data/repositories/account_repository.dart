@@ -13,7 +13,7 @@ class AccountRepository {
   }
 
   Future<List<AccountModel>> getAccounts() async {
-    final user = await _getUser();
+    final user = await _userRepository.getUser();
     return user.accounts;
   }
 
@@ -29,6 +29,18 @@ class AccountRepository {
   Future<void> removeAccount(AccountModel account) async {
     final user = await _getUser();
     user.accounts.remove(account);
+    await _userRepository.saveUser(user);
+    _cachedUser = null;
+  }
+
+  // Update account from user
+  Future<void> updateAccount(
+    AccountModel account,
+    AccountModel newAccount,
+  ) async {
+    final user = await _getUser();
+    final index = user.accounts.indexOf(account);
+    user.accounts[index] = newAccount;
     await _userRepository.saveUser(user);
     _cachedUser = null;
   }

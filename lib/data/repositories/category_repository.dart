@@ -14,8 +14,9 @@ List<CategoryModel> defaultExpenseCategories = [
   shopping,
   services,
   education,
-  creditCard,
   church,
+  vacations,
+  creditCard,
   savings,
 ];
 
@@ -552,5 +553,14 @@ CategoryModel interest = CategoryModel(
   icon: 'assets/icons/categories/interest.png',
   isIncome: true,
   backgroundColor: green,
+  subCategories: [],
+);
+
+CategoryModel vacations = CategoryModel(
+  id: 54,
+  name: 'Vacaciones',
+  icon: 'assets/icons/categories/plane.png',
+  isIncome: false,
+  backgroundColor: white,
   subCategories: [],
 );

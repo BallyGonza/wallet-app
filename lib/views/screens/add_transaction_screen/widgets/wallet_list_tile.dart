@@ -4,39 +4,32 @@ class WalletListTile extends StatelessWidget {
   const WalletListTile({
     required this.content,
     this.leading,
-    this.trailing,
+    this.subtitle,
     this.onTap,
+    this.trailing,
     super.key,
   });
 
   final Widget content;
   final Widget? leading;
+  final Widget? subtitle;
   final Widget? trailing;
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        InkWell(
-          enableFeedback: false,
-          onTap: onTap ?? () {},
-          child: SizedBox(
-            height: 50,
-            width: double.infinity,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                if (leading != null) leading!,
-                const SizedBox(width: 10),
-                Expanded(child: content),
-                if (trailing != null) trailing!,
-              ],
-            ),
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: leading,
+      title: content,
+      subtitle: subtitle,
+      onTap: onTap,
+      trailing: trailing ??
+          const Icon(
+            Icons.arrow_forward_ios,
+            color: Colors.grey,
+            size: 16,
           ),
-        ),
-        const Divider(color: Colors.grey, thickness: 0.1),
-      ],
     );
   }
 }

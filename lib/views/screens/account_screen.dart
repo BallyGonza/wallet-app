@@ -24,6 +24,7 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+  final descriptionController = TextEditingController();
   late TransactionRepository transactionRepository;
   late AccountRepository accountRepository;
   List<TransactionModel> transactions = [];
@@ -203,9 +204,29 @@ class _AccountScreenState extends State<AccountScreen> {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Text(
-            widget.account.name,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          child: Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: widget.account.institution.name,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                if (widget.account.description != null)
+                  TextSpan(
+                    text: ' / ${widget.account.description}',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  )
+                else
+                  const TextSpan(),
+              ],
+            ),
           ),
         ),
       ),
@@ -215,7 +236,7 @@ class _AccountScreenState extends State<AccountScreen> {
             showModalBottomSheet<SizedBox>(
               backgroundColor: appBackgroundColor,
               constraints: const BoxConstraints(
-                maxHeight: 200,
+                maxHeight: 250,
               ),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(
@@ -280,6 +301,36 @@ class _AccountScreenState extends State<AccountScreen> {
                             ),
                           );
                         },
+                      ),
+                      ActionButton(
+                        text: 'Add description',
+                        onPressed: () {
+                          Navigator.pop(context);
+                          showDialog<WalletAlertDialog>(
+                            context: context,
+                            builder: (_) => WalletAlertDialog(
+                              title: 'Add description',
+                              content: WalletDialogTextField(
+                                controller: descriptionController,
+                                hint: 'Description',
+                              ),
+                              primaryActionTitle: 'Save',
+                              onPressed: () {
+                                context.read<AccountBloc>().add(
+                                      AccountEvent.update(
+                                        widget.account,
+                                        widget.account.copyWith(
+                                          description:
+                                              descriptionController.text,
+                                        ),
+                                      ),
+                                    );
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          );
+                        },
+                        color: Colors.purple,
                       ),
                       ActionButton(
                         text: 'Eliminar',

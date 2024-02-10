@@ -173,7 +173,7 @@ class _ExpenseItemState extends State<ExpenseItem>
                                   subCategory,
                                 ),
                               ),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: expenseColor,
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,

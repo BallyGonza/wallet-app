@@ -58,13 +58,30 @@ class _AccountItemState extends State<AccountItem> {
             width: 25,
           ),
         ),
-        title: Text(
-          widget.account.name,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
+        title: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              widget.account.name,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            if (widget.account.description != null) ...[
+              const SizedBox(width: 4),
+              Text(
+                widget.account.description!,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ],
+          ],
         ),
         subtitle: Text(
           arg.format(

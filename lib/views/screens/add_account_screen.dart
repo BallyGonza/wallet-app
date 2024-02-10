@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wallet_app/blocs/blocs.dart';
-
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
 import 'package:wallet_app/views/views.dart';
@@ -82,26 +80,12 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                           color: Colors.grey,
                         ),
                       ),
-                      trailing: SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              _selectedInstitution.name,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            const FaIcon(
-                              FontAwesomeIcons.chevronRight,
-                              color: Colors.grey,
-                              size: 12,
-                            ),
-                          ],
+                      subtitle: Text(
+                        _selectedInstitution.name,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.grey,
                         ),
                       ),
                       onTap: () {
@@ -178,24 +162,9 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
-                backgroundColor: widget.user.accounts.any(
-                  (element) => element.institution == _selectedInstitution,
-                )
-                    ? Colors.grey
-                    : primaryColor,
+                backgroundColor: primaryColor,
               ),
               onPressed: () {
-                if (widget.user.accounts.any(
-                  (element) => element.institution == _selectedInstitution,
-                )) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('La cuenta que intenta crear ya existe'),
-                    ),
-                  );
-                  return;
-                }
-
                 final account = AccountModel(
                   id: DateTime.now().millisecondsSinceEpoch,
                   institution: _selectedInstitution,

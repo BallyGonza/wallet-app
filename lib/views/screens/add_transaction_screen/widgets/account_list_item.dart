@@ -50,6 +50,16 @@ class _AccountListItemState extends State<AccountListItem> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        subtitle: widget.account.description != null
+            ? Text(
+                widget.account.description!,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                  fontWeight: FontWeight.normal,
+                ),
+              )
+            : null,
       ),
     );
   }

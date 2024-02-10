@@ -20,6 +20,8 @@ mixin _$AccountEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(AccountModel account) add,
+    required TResult Function(AccountModel account, AccountModel newAccount)
+        update,
     required TResult Function(AccountModel account) remove,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -36,6 +38,7 @@ mixin _$AccountEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(AccountModel account)? add,
+    TResult? Function(AccountModel account, AccountModel newAccount)? update,
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -50,6 +53,7 @@ mixin _$AccountEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(AccountModel account)? add,
+    TResult Function(AccountModel account, AccountModel newAccount)? update,
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -65,6 +69,7 @@ mixin _$AccountEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AccountInitialEvent value) init,
     required TResult Function(AccountAddEvent value) add,
+    required TResult Function(AccountUpdateEvent value) update,
     required TResult Function(AccountRemoveEvent value) remove,
     required TResult Function(AccountAddTransactionEvent value) addTransaction,
     required TResult Function(AccountUpdateTransactionEvent value)
@@ -77,6 +82,7 @@ mixin _$AccountEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AccountInitialEvent value)? init,
     TResult? Function(AccountAddEvent value)? add,
+    TResult? Function(AccountUpdateEvent value)? update,
     TResult? Function(AccountRemoveEvent value)? remove,
     TResult? Function(AccountAddTransactionEvent value)? addTransaction,
     TResult? Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -87,6 +93,7 @@ mixin _$AccountEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AccountInitialEvent value)? init,
     TResult Function(AccountAddEvent value)? add,
+    TResult Function(AccountUpdateEvent value)? update,
     TResult Function(AccountRemoveEvent value)? remove,
     TResult Function(AccountAddTransactionEvent value)? addTransaction,
     TResult Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -155,6 +162,8 @@ class _$AccountInitialEventImpl implements AccountInitialEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(AccountModel account) add,
+    required TResult Function(AccountModel account, AccountModel newAccount)
+        update,
     required TResult Function(AccountModel account) remove,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -174,6 +183,7 @@ class _$AccountInitialEventImpl implements AccountInitialEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(AccountModel account)? add,
+    TResult? Function(AccountModel account, AccountModel newAccount)? update,
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -191,6 +201,7 @@ class _$AccountInitialEventImpl implements AccountInitialEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(AccountModel account)? add,
+    TResult Function(AccountModel account, AccountModel newAccount)? update,
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -212,6 +223,7 @@ class _$AccountInitialEventImpl implements AccountInitialEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AccountInitialEvent value) init,
     required TResult Function(AccountAddEvent value) add,
+    required TResult Function(AccountUpdateEvent value) update,
     required TResult Function(AccountRemoveEvent value) remove,
     required TResult Function(AccountAddTransactionEvent value) addTransaction,
     required TResult Function(AccountUpdateTransactionEvent value)
@@ -227,6 +239,7 @@ class _$AccountInitialEventImpl implements AccountInitialEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AccountInitialEvent value)? init,
     TResult? Function(AccountAddEvent value)? add,
+    TResult? Function(AccountUpdateEvent value)? update,
     TResult? Function(AccountRemoveEvent value)? remove,
     TResult? Function(AccountAddTransactionEvent value)? addTransaction,
     TResult? Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -240,6 +253,7 @@ class _$AccountInitialEventImpl implements AccountInitialEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AccountInitialEvent value)? init,
     TResult Function(AccountAddEvent value)? add,
+    TResult Function(AccountUpdateEvent value)? update,
     TResult Function(AccountRemoveEvent value)? remove,
     TResult Function(AccountAddTransactionEvent value)? addTransaction,
     TResult Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -324,6 +338,8 @@ class _$AccountAddEventImpl implements AccountAddEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(AccountModel account) add,
+    required TResult Function(AccountModel account, AccountModel newAccount)
+        update,
     required TResult Function(AccountModel account) remove,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -343,6 +359,7 @@ class _$AccountAddEventImpl implements AccountAddEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(AccountModel account)? add,
+    TResult? Function(AccountModel account, AccountModel newAccount)? update,
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -360,6 +377,7 @@ class _$AccountAddEventImpl implements AccountAddEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(AccountModel account)? add,
+    TResult Function(AccountModel account, AccountModel newAccount)? update,
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -381,6 +399,7 @@ class _$AccountAddEventImpl implements AccountAddEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AccountInitialEvent value) init,
     required TResult Function(AccountAddEvent value) add,
+    required TResult Function(AccountUpdateEvent value) update,
     required TResult Function(AccountRemoveEvent value) remove,
     required TResult Function(AccountAddTransactionEvent value) addTransaction,
     required TResult Function(AccountUpdateTransactionEvent value)
@@ -396,6 +415,7 @@ class _$AccountAddEventImpl implements AccountAddEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AccountInitialEvent value)? init,
     TResult? Function(AccountAddEvent value)? add,
+    TResult? Function(AccountUpdateEvent value)? update,
     TResult? Function(AccountRemoveEvent value)? remove,
     TResult? Function(AccountAddTransactionEvent value)? addTransaction,
     TResult? Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -409,6 +429,7 @@ class _$AccountAddEventImpl implements AccountAddEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AccountInitialEvent value)? init,
     TResult Function(AccountAddEvent value)? add,
+    TResult Function(AccountUpdateEvent value)? update,
     TResult Function(AccountRemoveEvent value)? remove,
     TResult Function(AccountAddTransactionEvent value)? addTransaction,
     TResult Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -429,6 +450,199 @@ abstract class AccountAddEvent implements AccountEvent {
   AccountModel get account;
   @JsonKey(ignore: true)
   _$$AccountAddEventImplCopyWith<_$AccountAddEventImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AccountUpdateEventImplCopyWith<$Res> {
+  factory _$$AccountUpdateEventImplCopyWith(_$AccountUpdateEventImpl value,
+          $Res Function(_$AccountUpdateEventImpl) then) =
+      __$$AccountUpdateEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AccountModel account, AccountModel newAccount});
+}
+
+/// @nodoc
+class __$$AccountUpdateEventImplCopyWithImpl<$Res>
+    extends _$AccountEventCopyWithImpl<$Res, _$AccountUpdateEventImpl>
+    implements _$$AccountUpdateEventImplCopyWith<$Res> {
+  __$$AccountUpdateEventImplCopyWithImpl(_$AccountUpdateEventImpl _value,
+      $Res Function(_$AccountUpdateEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? account = null,
+    Object? newAccount = null,
+  }) {
+    return _then(_$AccountUpdateEventImpl(
+      null == account
+          ? _value.account
+          : account // ignore: cast_nullable_to_non_nullable
+              as AccountModel,
+      null == newAccount
+          ? _value.newAccount
+          : newAccount // ignore: cast_nullable_to_non_nullable
+              as AccountModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AccountUpdateEventImpl implements AccountUpdateEvent {
+  const _$AccountUpdateEventImpl(this.account, this.newAccount);
+
+  @override
+  final AccountModel account;
+  @override
+  final AccountModel newAccount;
+
+  @override
+  String toString() {
+    return 'AccountEvent.update(account: $account, newAccount: $newAccount)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AccountUpdateEventImpl &&
+            (identical(other.account, account) || other.account == account) &&
+            (identical(other.newAccount, newAccount) ||
+                other.newAccount == newAccount));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, account, newAccount);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AccountUpdateEventImplCopyWith<_$AccountUpdateEventImpl> get copyWith =>
+      __$$AccountUpdateEventImplCopyWithImpl<_$AccountUpdateEventImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(AccountModel account) add,
+    required TResult Function(AccountModel account, AccountModel newAccount)
+        update,
+    required TResult Function(AccountModel account) remove,
+    required TResult Function(
+            AccountModel account, TransactionModel transaction)
+        addTransaction,
+    required TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)
+        updateTransaction,
+    required TResult Function(
+            AccountModel account, TransactionModel transaction)
+        removeTransaction,
+  }) {
+    return update(account, newAccount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(AccountModel account)? add,
+    TResult? Function(AccountModel account, AccountModel newAccount)? update,
+    TResult? Function(AccountModel account)? remove,
+    TResult? Function(AccountModel account, TransactionModel transaction)?
+        addTransaction,
+    TResult? Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
+        updateTransaction,
+    TResult? Function(AccountModel account, TransactionModel transaction)?
+        removeTransaction,
+  }) {
+    return update?.call(account, newAccount);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(AccountModel account)? add,
+    TResult Function(AccountModel account, AccountModel newAccount)? update,
+    TResult Function(AccountModel account)? remove,
+    TResult Function(AccountModel account, TransactionModel transaction)?
+        addTransaction,
+    TResult Function(AccountModel account, AccountModel? newAccount,
+            TransactionModel transaction)?
+        updateTransaction,
+    TResult Function(AccountModel account, TransactionModel transaction)?
+        removeTransaction,
+    required TResult orElse(),
+  }) {
+    if (update != null) {
+      return update(account, newAccount);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AccountInitialEvent value) init,
+    required TResult Function(AccountAddEvent value) add,
+    required TResult Function(AccountUpdateEvent value) update,
+    required TResult Function(AccountRemoveEvent value) remove,
+    required TResult Function(AccountAddTransactionEvent value) addTransaction,
+    required TResult Function(AccountUpdateTransactionEvent value)
+        updateTransaction,
+    required TResult Function(AccountRemoveTransactionEvent value)
+        removeTransaction,
+  }) {
+    return update(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AccountInitialEvent value)? init,
+    TResult? Function(AccountAddEvent value)? add,
+    TResult? Function(AccountUpdateEvent value)? update,
+    TResult? Function(AccountRemoveEvent value)? remove,
+    TResult? Function(AccountAddTransactionEvent value)? addTransaction,
+    TResult? Function(AccountUpdateTransactionEvent value)? updateTransaction,
+    TResult? Function(AccountRemoveTransactionEvent value)? removeTransaction,
+  }) {
+    return update?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AccountInitialEvent value)? init,
+    TResult Function(AccountAddEvent value)? add,
+    TResult Function(AccountUpdateEvent value)? update,
+    TResult Function(AccountRemoveEvent value)? remove,
+    TResult Function(AccountAddTransactionEvent value)? addTransaction,
+    TResult Function(AccountUpdateTransactionEvent value)? updateTransaction,
+    TResult Function(AccountRemoveTransactionEvent value)? removeTransaction,
+    required TResult orElse(),
+  }) {
+    if (update != null) {
+      return update(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AccountUpdateEvent implements AccountEvent {
+  const factory AccountUpdateEvent(
+          final AccountModel account, final AccountModel newAccount) =
+      _$AccountUpdateEventImpl;
+
+  AccountModel get account;
+  AccountModel get newAccount;
+  @JsonKey(ignore: true)
+  _$$AccountUpdateEventImplCopyWith<_$AccountUpdateEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -499,6 +713,8 @@ class _$AccountRemoveEventImpl implements AccountRemoveEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(AccountModel account) add,
+    required TResult Function(AccountModel account, AccountModel newAccount)
+        update,
     required TResult Function(AccountModel account) remove,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -518,6 +734,7 @@ class _$AccountRemoveEventImpl implements AccountRemoveEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(AccountModel account)? add,
+    TResult? Function(AccountModel account, AccountModel newAccount)? update,
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -535,6 +752,7 @@ class _$AccountRemoveEventImpl implements AccountRemoveEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(AccountModel account)? add,
+    TResult Function(AccountModel account, AccountModel newAccount)? update,
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -556,6 +774,7 @@ class _$AccountRemoveEventImpl implements AccountRemoveEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AccountInitialEvent value) init,
     required TResult Function(AccountAddEvent value) add,
+    required TResult Function(AccountUpdateEvent value) update,
     required TResult Function(AccountRemoveEvent value) remove,
     required TResult Function(AccountAddTransactionEvent value) addTransaction,
     required TResult Function(AccountUpdateTransactionEvent value)
@@ -571,6 +790,7 @@ class _$AccountRemoveEventImpl implements AccountRemoveEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AccountInitialEvent value)? init,
     TResult? Function(AccountAddEvent value)? add,
+    TResult? Function(AccountUpdateEvent value)? update,
     TResult? Function(AccountRemoveEvent value)? remove,
     TResult? Function(AccountAddTransactionEvent value)? addTransaction,
     TResult? Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -584,6 +804,7 @@ class _$AccountRemoveEventImpl implements AccountRemoveEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AccountInitialEvent value)? init,
     TResult Function(AccountAddEvent value)? add,
+    TResult Function(AccountUpdateEvent value)? update,
     TResult Function(AccountRemoveEvent value)? remove,
     TResult Function(AccountAddTransactionEvent value)? addTransaction,
     TResult Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -685,6 +906,8 @@ class _$AccountAddTransactionEventImpl implements AccountAddTransactionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(AccountModel account) add,
+    required TResult Function(AccountModel account, AccountModel newAccount)
+        update,
     required TResult Function(AccountModel account) remove,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -704,6 +927,7 @@ class _$AccountAddTransactionEventImpl implements AccountAddTransactionEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(AccountModel account)? add,
+    TResult? Function(AccountModel account, AccountModel newAccount)? update,
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -721,6 +945,7 @@ class _$AccountAddTransactionEventImpl implements AccountAddTransactionEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(AccountModel account)? add,
+    TResult Function(AccountModel account, AccountModel newAccount)? update,
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -742,6 +967,7 @@ class _$AccountAddTransactionEventImpl implements AccountAddTransactionEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(AccountInitialEvent value) init,
     required TResult Function(AccountAddEvent value) add,
+    required TResult Function(AccountUpdateEvent value) update,
     required TResult Function(AccountRemoveEvent value) remove,
     required TResult Function(AccountAddTransactionEvent value) addTransaction,
     required TResult Function(AccountUpdateTransactionEvent value)
@@ -757,6 +983,7 @@ class _$AccountAddTransactionEventImpl implements AccountAddTransactionEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AccountInitialEvent value)? init,
     TResult? Function(AccountAddEvent value)? add,
+    TResult? Function(AccountUpdateEvent value)? update,
     TResult? Function(AccountRemoveEvent value)? remove,
     TResult? Function(AccountAddTransactionEvent value)? addTransaction,
     TResult? Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -770,6 +997,7 @@ class _$AccountAddTransactionEventImpl implements AccountAddTransactionEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AccountInitialEvent value)? init,
     TResult Function(AccountAddEvent value)? add,
+    TResult Function(AccountUpdateEvent value)? update,
     TResult Function(AccountRemoveEvent value)? remove,
     TResult Function(AccountAddTransactionEvent value)? addTransaction,
     TResult Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -890,6 +1118,8 @@ class _$AccountUpdateTransactionEventImpl
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(AccountModel account) add,
+    required TResult Function(AccountModel account, AccountModel newAccount)
+        update,
     required TResult Function(AccountModel account) remove,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -909,6 +1139,7 @@ class _$AccountUpdateTransactionEventImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(AccountModel account)? add,
+    TResult? Function(AccountModel account, AccountModel newAccount)? update,
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -926,6 +1157,7 @@ class _$AccountUpdateTransactionEventImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(AccountModel account)? add,
+    TResult Function(AccountModel account, AccountModel newAccount)? update,
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -947,6 +1179,7 @@ class _$AccountUpdateTransactionEventImpl
   TResult map<TResult extends Object?>({
     required TResult Function(AccountInitialEvent value) init,
     required TResult Function(AccountAddEvent value) add,
+    required TResult Function(AccountUpdateEvent value) update,
     required TResult Function(AccountRemoveEvent value) remove,
     required TResult Function(AccountAddTransactionEvent value) addTransaction,
     required TResult Function(AccountUpdateTransactionEvent value)
@@ -962,6 +1195,7 @@ class _$AccountUpdateTransactionEventImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AccountInitialEvent value)? init,
     TResult? Function(AccountAddEvent value)? add,
+    TResult? Function(AccountUpdateEvent value)? update,
     TResult? Function(AccountRemoveEvent value)? remove,
     TResult? Function(AccountAddTransactionEvent value)? addTransaction,
     TResult? Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -975,6 +1209,7 @@ class _$AccountUpdateTransactionEventImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AccountInitialEvent value)? init,
     TResult Function(AccountAddEvent value)? add,
+    TResult Function(AccountUpdateEvent value)? update,
     TResult Function(AccountRemoveEvent value)? remove,
     TResult Function(AccountAddTransactionEvent value)? addTransaction,
     TResult Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -1084,6 +1319,8 @@ class _$AccountRemoveTransactionEventImpl
   TResult when<TResult extends Object?>({
     required TResult Function() init,
     required TResult Function(AccountModel account) add,
+    required TResult Function(AccountModel account, AccountModel newAccount)
+        update,
     required TResult Function(AccountModel account) remove,
     required TResult Function(
             AccountModel account, TransactionModel transaction)
@@ -1103,6 +1340,7 @@ class _$AccountRemoveTransactionEventImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
     TResult? Function(AccountModel account)? add,
+    TResult? Function(AccountModel account, AccountModel newAccount)? update,
     TResult? Function(AccountModel account)? remove,
     TResult? Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -1120,6 +1358,7 @@ class _$AccountRemoveTransactionEventImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
     TResult Function(AccountModel account)? add,
+    TResult Function(AccountModel account, AccountModel newAccount)? update,
     TResult Function(AccountModel account)? remove,
     TResult Function(AccountModel account, TransactionModel transaction)?
         addTransaction,
@@ -1141,6 +1380,7 @@ class _$AccountRemoveTransactionEventImpl
   TResult map<TResult extends Object?>({
     required TResult Function(AccountInitialEvent value) init,
     required TResult Function(AccountAddEvent value) add,
+    required TResult Function(AccountUpdateEvent value) update,
     required TResult Function(AccountRemoveEvent value) remove,
     required TResult Function(AccountAddTransactionEvent value) addTransaction,
     required TResult Function(AccountUpdateTransactionEvent value)
@@ -1156,6 +1396,7 @@ class _$AccountRemoveTransactionEventImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AccountInitialEvent value)? init,
     TResult? Function(AccountAddEvent value)? add,
+    TResult? Function(AccountUpdateEvent value)? update,
     TResult? Function(AccountRemoveEvent value)? remove,
     TResult? Function(AccountAddTransactionEvent value)? addTransaction,
     TResult? Function(AccountUpdateTransactionEvent value)? updateTransaction,
@@ -1169,6 +1410,7 @@ class _$AccountRemoveTransactionEventImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AccountInitialEvent value)? init,
     TResult Function(AccountAddEvent value)? add,
+    TResult Function(AccountUpdateEvent value)? update,
     TResult Function(AccountRemoveEvent value)? remove,
     TResult Function(AccountAddTransactionEvent value)? addTransaction,
     TResult Function(AccountUpdateTransactionEvent value)? updateTransaction,

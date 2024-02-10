@@ -10,6 +10,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     on<AccountInitialEvent>(_onInit);
     on<AccountAddEvent>(_onAdd);
     on<AccountRemoveEvent>(_onRemove);
+    on<AccountUpdateEvent>(_onUpdate);
     on<AccountAddTransactionEvent>(_onAddTransaction);
     on<AccountUpdateTransactionEvent>(_onUpdateTransaction);
     on<AccountRemoveTransactionEvent>(_onRemoveTransaction);
@@ -41,6 +42,26 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     emit(const AccountState.loading());
     try {
       await accountRepository.addAccount(event.account);
+      accounts = await accountRepository.getAccounts();
+      emit(AccountState.loaded(accounts));
+    } catch (e) {
+      emit(AccountState.error(e.toString()));
+    }
+  }
+
+  Future<void> _onUpdate(
+    AccountUpdateEvent event,
+    Emitter<AccountState> emit,
+  ) async {
+    emit(const AccountState.loading());
+    try {
+      final newAccount = event.account.copyWith(
+        description: event.newAccount.description,
+      );
+      await accountRepository.updateAccount(
+        event.account,
+        newAccount,
+      );
       accounts = await accountRepository.getAccounts();
       emit(AccountState.loaded(accounts));
     } catch (e) {

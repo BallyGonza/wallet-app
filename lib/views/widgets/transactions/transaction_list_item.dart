@@ -49,202 +49,223 @@ class _TransactionListItemState extends State<TransactionListItem> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      enableFeedback: false,
-      onTap: () {
-        showModalBottomSheet<Container>(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(20),
-            ),
-          ),
-          backgroundColor: appBackgroundColor,
-          context: context,
-          builder: (context) {
-            return Container(
-              padding: const EdgeInsets.all(8),
-              height: MediaQuery.of(context).size.height * 0.5,
-              child: Column(
-                children: [
-                  DescriptionItem(
-                    title: 'Category',
-                    icon: widget.transaction.category.icon,
-                    iconColor: widget.transaction.category.iconColor,
-                    backgroundColor:
-                        widget.transaction.category.backgroundColor,
-                    description: widget.transaction.category.name,
-                    transaction: widget.transaction,
-                    onTap: () {
-                      showCategoryModal(context);
-                    },
-                  ),
-                  DescriptionItem(
-                    title: 'Account',
-                    icon: account!.institution.logo,
-                    backgroundColor: account!.institution.backgroundColor,
-                    description: account!.name,
-                    transaction: widget.transaction,
-                    onTap: () {
-                      showAccountModal(context);
-                    },
-                  ),
-                  DescriptionItem(
-                    title: 'Amount',
-                    icon: AppImages.coin,
-                    backgroundColor: yellow,
-                    description: arg.format(widget.transaction.amount),
-                    descriptionColor: widget.transaction.category.isIncome
-                        ? incomeColor
-                        : expenseColor,
-                    transaction: widget.transaction,
-                    onTap: () {
-                      showEditAmountDialog(context);
-                    },
-                  ),
-                  DescriptionItem(
-                    title: 'Date',
-                    icon: AppImages.calendar,
-                    backgroundColor: white,
-                    description: dateFormat.format(widget.transaction.date),
-                    transaction: widget.transaction,
-                    onTap: () {
-                      showModifyDatePicker(context);
-                    },
-                  ),
-                  DescriptionItem(
-                    title: 'Note',
-                    icon: AppImages.pencil,
-                    backgroundColor: white,
-                    description: widget.transaction.note.isEmpty
-                        ? 'None'
-                        : widget.transaction.note,
-                    transaction: widget.transaction,
-                    onTap: () {
-                      showModifyNoteDialog(context);
-                    },
-                  ),
-                  const Spacer(),
-                  ActionButton(
-                    text: 'Delete',
-                    onPressed: () {
-                      context.read<AccountBloc>().add(
-                            AccountEvent.removeTransaction(
-                              account!,
-                              widget.transaction,
-                            ),
-                          );
-                      Navigator.pop(context);
-                    },
-                    color: Colors.red,
-                  ),
-                  const SizedBox(height: 20),
-                ],
+    return BlocBuilder<AccountBloc, AccountState>(
+      builder: (context, state) {
+        account = transactionRepository.getAccountOfTransaction(
+          widget.user.accounts,
+          widget.transaction,
+        );
+        amountController =
+            TextEditingController(text: widget.transaction.amount.toString());
+        noteController = TextEditingController(text: widget.transaction.note);
+        selectedCategory = widget.transaction.category;
+        isIncome = widget.transaction.category.isIncome;
+        return InkWell(
+          enableFeedback: false,
+          onTap: () {
+            showModalBottomSheet<Container>(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(20),
+                ),
               ),
+              backgroundColor: appBackgroundColor,
+              context: context,
+              builder: (context) {
+                return Container(
+                  padding: const EdgeInsets.all(8),
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: Column(
+                    children: [
+                      DescriptionItem(
+                        title: 'Category',
+                        icon: widget.transaction.category.icon,
+                        iconColor: widget.transaction.category.iconColor,
+                        backgroundColor:
+                            widget.transaction.category.backgroundColor,
+                        description: widget.transaction.category.name,
+                        transaction: widget.transaction,
+                        onTap: () {
+                          showCategoryModal(context);
+                        },
+                      ),
+                      DescriptionItem(
+                        title: 'Account',
+                        icon: transactionRepository
+                            .getAccountOfTransaction(
+                              widget.user.accounts,
+                              widget.transaction,
+                            )!
+                            .institution
+                            .logo,
+                        backgroundColor: account!.institution.backgroundColor,
+                        description: account!.name,
+                        transaction: widget.transaction,
+                        onTap: () {
+                          showAccountModal(context);
+                        },
+                      ),
+                      DescriptionItem(
+                        title: 'Amount',
+                        icon: AppImages.coin,
+                        backgroundColor: yellow,
+                        description: arg.format(widget.transaction.amount),
+                        descriptionColor: widget.transaction.category.isIncome
+                            ? incomeColor
+                            : expenseColor,
+                        transaction: widget.transaction,
+                        onTap: () {
+                          showEditAmountDialog(context);
+                        },
+                      ),
+                      DescriptionItem(
+                        title: 'Date',
+                        icon: AppImages.calendar,
+                        backgroundColor: white,
+                        description: dateFormat.format(widget.transaction.date),
+                        transaction: widget.transaction,
+                        onTap: () {
+                          showModifyDatePicker(context);
+                        },
+                      ),
+                      DescriptionItem(
+                        title: 'Note',
+                        icon: AppImages.pencil,
+                        backgroundColor: white,
+                        description: widget.transaction.note.isEmpty
+                            ? 'None'
+                            : widget.transaction.note,
+                        transaction: widget.transaction,
+                        onTap: () {
+                          showModifyNoteDialog(context);
+                        },
+                      ),
+                      const Spacer(),
+                      ActionButton(
+                        text: 'Delete',
+                        onPressed: () {
+                          context.read<AccountBloc>().add(
+                                AccountEvent.removeTransaction(
+                                  account!,
+                                  widget.transaction,
+                                ),
+                              );
+                          Navigator.pop(context);
+                        },
+                        color: Colors.red,
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ),
+                );
+              },
             );
           },
-        );
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Row(
-          children: [
-            CircleAvatar(
-              backgroundColor:
-                  Color(widget.transaction.category.backgroundColor),
-              child: Image(
-                image: AssetImage(widget.transaction.category.icon),
-                height: 25,
-                width: 25,
-                color: widget.transaction.category.iconColor == null
-                    ? null
-                    : Color(widget.transaction.category.iconColor!),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Row(
               children: [
-                Text.rich(
-                  TextSpan(
-                    text: widget.transaction.category.name,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    children: [
-                      const WidgetSpan(
-                        child: Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-                          child: FaIcon(
-                            FontAwesomeIcons.arrowRight,
-                            size: 10,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
+                CircleAvatar(
+                  backgroundColor:
+                      Color(widget.transaction.category.backgroundColor),
+                  child: Image(
+                    image: AssetImage(widget.transaction.category.icon),
+                    height: 25,
+                    width: 25,
+                    color: widget.transaction.category.iconColor == null
+                        ? null
+                        : Color(widget.transaction.category.iconColor!),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text.rich(
                       TextSpan(
-                        text: account!.name,
+                        text: widget.transaction.category.name,
                         style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
+                          color: Colors.white,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
+                        children: [
+                          const WidgetSpan(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 5,
+                                vertical: 1,
+                              ),
+                              child: FaIcon(
+                                FontAwesomeIcons.arrowRight,
+                                size: 10,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                          TextSpan(
+                            text: account!.name,
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    if (widget.transaction.note == '')
+                      const SizedBox.shrink()
+                    else
+                      Column(
+                        children: [
+                          const SizedBox(height: 1),
+                          Text(
+                            widget.transaction.note,
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                          const SizedBox(height: 1),
+                        ],
+                      ),
+                  ],
                 ),
-                if (widget.transaction.note == '')
-                  const SizedBox.shrink()
-                else
-                  Column(
-                    children: [
-                      const SizedBox(height: 1),
-                      Text(
-                        widget.transaction.note,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                          fontWeight: FontWeight.normal,
-                          fontStyle: FontStyle.italic,
-                        ),
+                const Spacer(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      arg.format(widget.transaction.amount),
+                      style: TextStyle(
+                        color: widget.transaction.category.isIncome
+                            ? Colors.green
+                            : Colors.red,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
                       ),
-                      const SizedBox(height: 1),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    Text(
+                      dateFormat.format(widget.transaction.date),
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 9,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
-            const Spacer(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  arg.format(widget.transaction.amount),
-                  style: TextStyle(
-                    color: widget.transaction.category.isIncome
-                        ? Colors.green
-                        : Colors.red,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  height: 3,
-                ),
-                Text(
-                  dateFormat.format(widget.transaction.date),
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 9,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 

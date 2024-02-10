@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable, inference_failure_on_function_return_type
+// ignore_for_file: must_be_immutable, inference_failure_on_function_return_type, lines_longer_than_80_chars
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -158,26 +158,12 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             color: Colors.grey,
                           ),
                         ),
-                        trailing: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                _selectedCategory.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              const FaIcon(
-                                FontAwesomeIcons.chevronRight,
-                                color: Colors.grey,
-                                size: 12,
-                              ),
-                            ],
+                        subtitle: Text(
+                          _selectedCategory.name,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey,
                           ),
                         ),
                         onTap: () {
@@ -251,25 +237,29 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             color: Colors.grey,
                           ),
                         ),
-                        trailing: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                        subtitle: Text.rich(
+                          TextSpan(
+                            text: widget.selectedAccount.name,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                              color: Colors.grey,
+                            ),
                             children: [
-                              Text(
-                                widget.selectedAccount.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              const FaIcon(
-                                FontAwesomeIcons.chevronRight,
-                                color: Colors.grey,
-                                size: 12,
-                              ),
+                              if (widget.selectedAccount.description != null)
+                                TextSpan(
+                                  text:
+                                      ' / ${widget.selectedAccount.description}',
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.grey,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                )
+                              else
+                                const TextSpan(),
                             ],
                           ),
                         ),
@@ -289,7 +279,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                               return Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: SizedBox(
-                                  height: widget.user.accounts.length * 65.0,
+                                  height: widget.user.accounts.length * 85.0,
                                   child: ListView.builder(
                                     physics: const BouncingScrollPhysics(),
                                     itemCount: widget.user.accounts.length,
@@ -316,27 +306,20 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         },
                       ),
                       WalletListTile(
-                        leading: const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: FaIcon(
+                        leading: CircleAvatar(
+                          backgroundColor: primaryColor,
+                          child: const FaIcon(
                             FontAwesomeIcons.calendar,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                        content: Text(
+                          _selectedDate,
+                          style: const TextStyle(
                             color: Colors.grey,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        content: Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: Text(
-                            _selectedDate,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        trailing: const FaIcon(
-                          FontAwesomeIcons.chevronRight,
-                          color: Colors.grey,
-                          size: 12,
                         ),
                         onTap: () {
                           FocusScope.of(context).unfocus();
@@ -358,13 +341,15 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         },
                       ),
                       WalletListTile(
-                        leading: const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: FaIcon(
+                        leading: CircleAvatar(
+                          backgroundColor: primaryColor,
+                          child: const FaIcon(
                             FontAwesomeIcons.fileSignature,
-                            color: Colors.grey,
+                            color: Colors.white,
+                            size: 20,
                           ),
                         ),
+                        trailing: const SizedBox.shrink(),
                         content: TextField(
                           textCapitalization: TextCapitalization.sentences,
                           controller: _noteController,
