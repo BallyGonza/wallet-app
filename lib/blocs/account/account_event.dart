@@ -9,6 +9,10 @@ class AccountEvent with _$AccountEvent {
   const factory AccountEvent.add(
     AccountModel account,
   ) = AccountAddEvent;
+  const factory AccountEvent.update(
+    AccountModel account,
+    AccountModel newAccount,
+  ) = AccountUpdateEvent;
   const factory AccountEvent.remove(
     AccountModel account,
   ) = AccountRemoveEvent;

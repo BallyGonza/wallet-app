@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
-class CreditCardItem extends StatelessWidget {
+class CreditCardItem extends StatefulWidget {
   const CreditCardItem({
     required this.creditCard,
     required this.user,
@@ -15,17 +16,29 @@ class CreditCardItem extends StatelessWidget {
   final DateTime date;
 
   @override
+  State<CreditCardItem> createState() => _CreditCardItemState();
+}
+
+class _CreditCardItemState extends State<CreditCardItem> {
+  late CreditCardRepository creditCardRepository;
+
+  @override
+  void initState() {
+    creditCardRepository = context.read<CreditCardRepository>();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final creditCardRepository = CreditCardRepository();
     return InkWell(
       enableFeedback: false,
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute<CreditCardScreen>(
             builder: (_) => CreditCardScreen(
-              user: user,
-              creditCard: creditCard,
-              date: date,
+              user: widget.user,
+              creditCard: widget.creditCard,
+              date: widget.date,
             ),
           ),
         );
@@ -35,11 +48,9 @@ class CreditCardItem extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
-          color: creditCard.cardType.name == 'Visa'
-              ? Color(creditCard.institution.visaCardColor!)
-              : creditCard.cardType.name == 'American Express'
-                  ? Color(creditCard.institution.americianExpressColor!)
-                  : Color(creditCard.institution.masterCardColor!),
+          color: widget.creditCard.cardType.name == 'Visa'
+              ? Color(widget.creditCard.institution.visaCardColor!)
+              : Color(widget.creditCard.institution.masterCardColor!),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
@@ -49,18 +60,18 @@ class CreditCardItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image(
-                  image: AssetImage(creditCard.institution.logo),
+                  image: AssetImage(widget.creditCard.institution.icon),
                   height: 50,
                   width: 50,
-                  color: creditCard.institution.name == 'BBVA'
+                  color: widget.creditCard.institution.name == 'BBVA'
                       ? Colors.white
                       : null,
                 ),
                 Text(
                   arg.format(
                     creditCardRepository.getTotalOfCreditCard(
-                      creditCard,
-                      date,
+                      widget.creditCard,
+                      widget.date,
                     ),
                   ),
                   style: const TextStyle(
@@ -74,7 +85,7 @@ class CreditCardItem extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                '**** **** **** ${creditCard.number}',
+                '**** **** **** ${widget.creditCard.number}',
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.normal,
@@ -86,7 +97,7 @@ class CreditCardItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  creditCard.name,
+                  widget.creditCard.name,
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.normal,
@@ -94,11 +105,10 @@ class CreditCardItem extends StatelessWidget {
                   ),
                 ),
                 Image(
-                  image: AssetImage(creditCard.cardType.logo),
+                  image: AssetImage(widget.creditCard.cardType.logo),
                   height: 50,
                   width: 50,
-                  color:
-                      creditCard.cardType.name == 'Visa' ? Colors.white : null,
+                  color: Colors.white,
                 ),
               ],
             ),

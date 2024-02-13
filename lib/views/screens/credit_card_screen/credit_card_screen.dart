@@ -25,14 +25,21 @@ class CreditCardScreen extends StatefulWidget {
 }
 
 class _CreditCardScreenState extends State<CreditCardScreen> {
+  late CreditCardRepository creditCardRepository;
+  late List<CreditCardTransactionModel> creditCardExpenses;
+
   @override
-  Widget build(BuildContext context) {
-    final creditCardRepository = CreditCardRepository();
-    final creditCardExpenses = creditCardRepository.getTransactionsByCreditCard(
+  void initState() {
+    creditCardRepository = context.read<CreditCardRepository>();
+    creditCardExpenses = creditCardRepository.getTransactionsByCreditCard(
       widget.creditCard,
       widget.date,
     );
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar:
           _bottomNavBar(context, creditCardRepository, creditCardExpenses),
@@ -116,7 +123,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
     return Stack(
       children: [
         Positioned(
-          top: MediaQuery.of(context).size.height * 0.50,
+          top: MediaQuery.of(context).size.height * 0.58,
           right: 20,
           child: Opacity(
             opacity: 0.2,
@@ -124,9 +131,6 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
               widget.creditCard.cardType.logo,
               height: 50,
               width: 50,
-              color: widget.creditCard.cardType.name == 'Visa'
-                  ? Colors.white
-                  : null,
             ),
           ),
         ),
@@ -189,7 +193,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
             widget.date,
           ),
         ),
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 16,
           color: expenseColor,
           fontWeight: FontWeight.bold,
@@ -239,7 +243,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                       ),
                       ActionButton(
                         text: 'Add expense',
-                        color: Color(expenseColor!.value),
+                        color: Color(expenseColor.value),
                         onPressed: () {
                           Navigator.of(context).pop();
                           setState(() {
@@ -282,7 +286,6 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                               ),
                               primaryActionTitle: 'Save',
                               onPressed: () {
-                                Navigator.of(context).pop();
                                 setState(() {
                                   context.read<CreditCardBloc>().add(
                                         CreditCardEvent.update(
@@ -326,7 +329,6 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                                         widget.creditCard,
                                       ),
                                     );
-                                Navigator.of(context).pop();
                               },
                             ),
                           );
@@ -384,12 +386,19 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                                     element.name == 'Tarjeta de Credito',
                               )
                               .subCategories[0]
-                          : widget.user.expenseCategories
-                              .firstWhere(
-                                (element) =>
-                                    element.name == 'Tarjeta de Credito',
-                              )
-                              .subCategories[1],
+                          : widget.creditCard.cardType.name == 'Master Card'
+                              ? widget.user.expenseCategories
+                                  .firstWhere(
+                                    (element) =>
+                                        element.name == 'Tarjeta de Credito',
+                                  )
+                                  .subCategories[1]
+                              : widget.user.expenseCategories
+                                  .firstWhere(
+                                    (element) =>
+                                        element.name == 'Tarjeta de Credito',
+                                  )
+                                  .subCategories[2],
                     ),
                   ),
                 );

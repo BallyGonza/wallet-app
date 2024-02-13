@@ -23,7 +23,7 @@ final lightBlue = const Color(0xFFADD8E6).value;
 final lightGreen = const Color(0xFF90EE90).value;
 final lightGrey = const Color(0xFFD3D3D3).value;
 final lightYellow = const Color(0xFFFFFFE0).value;
-final lightOrange = const Color(0xFFFFE4B5).value;
+final lightOrange = const Color.fromARGB(255, 232, 182, 96).value;
 final lightPink = const Color(0xFFFFB6C1).value;
 final lightTurquoise = const Color(0xFFE0FFFF).value;
 final lightViolet = const Color(0xFFEE82EE).value;
@@ -34,16 +34,17 @@ final bbvaColor = const Color(0xFF004891).value;
 final naranjaColor = const Color(0xFFE67E22).value;
 final mercadoPagoColor = const Color(0xFF009FE2).value;
 final prexColor = const Color(0xFF5C19AD).value;
+final amexColor = const Color(0xFF016FD2).value;
 final galiciaColor = const Color(0xFFED5013).value;
 
 // income color
-final incomeColor = Colors.green[300];
+const incomeColor = Colors.green;
 
 // expense color
-final expenseColor = Colors.red[300];
+const expenseColor = Colors.red;
 
 // transfer color
-final transferColor = Colors.blue[300];
+const transferColor = Colors.blue;
 
 // theme colors
 final primaryColor = Colors.indigo[300];

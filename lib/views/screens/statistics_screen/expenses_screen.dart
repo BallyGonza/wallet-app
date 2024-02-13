@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
 
 import 'package:wallet_app/views/screens/statistics_screen/widgets/expenses_item.dart';
 
-class ExpensesScreen extends StatelessWidget {
+class ExpensesScreen extends StatefulWidget {
   const ExpensesScreen({
     required this.user,
     required this.date,
@@ -14,16 +15,26 @@ class ExpensesScreen extends StatelessWidget {
   final UserModel user;
   final DateTime date;
   final bool yearMode;
+
+  @override
+  State<ExpensesScreen> createState() => _ExpensesScreenState();
+}
+
+class _ExpensesScreenState extends State<ExpensesScreen> {
+  late UserRepository userRepository;
+  late List<CategoryModel> categories;
+  late double total;
+
+  @override
+  void initState() {
+    userRepository = context.read<UserRepository>();
+    categories = widget.user.expenseCategories;
+    total = userRepository.getTotalExpense(widget.user, widget.date);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final userRepository = UserRepository();
-    final categories = user.expenseCategories;
-    double total;
-    if (yearMode) {
-      total = userRepository.getTotalExpenseByYear(user, date);
-    } else {
-      total = userRepository.getTotalExpense(user, date);
-    }
     return Scaffold(
       appBar: AppBar(
         title: const Text('Expenses'),
@@ -68,9 +79,9 @@ class ExpensesScreen extends StatelessWidget {
               itemCount: categories.length,
               itemBuilder: (context, index) {
                 return ExpenseItem(
-                  user: user,
+                  user: widget.user,
                   expense: categories[index],
-                  date: date,
+                  date: widget.date,
                 );
               },
             ),

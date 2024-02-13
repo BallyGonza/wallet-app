@@ -9,6 +9,7 @@ class AccountModel extends HiveObject {
     required this.id,
     required this.name,
     required this.institution,
+    this.description,
   });
 
   @HiveField(0)
@@ -18,5 +19,22 @@ class AccountModel extends HiveObject {
   @HiveField(2)
   InstitutionModel institution;
   @HiveField(3)
+  String? description;
+  @HiveField(4)
   List<TransactionModel> transactions = [];
+
+  AccountModel copyWith({
+    int? id,
+    String? name,
+    InstitutionModel? institution,
+    String? description,
+    List<TransactionModel>? transactions,
+  }) {
+    return AccountModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      institution: institution ?? this.institution,
+      description: description ?? this.description,
+    )..transactions = transactions ?? this.transactions;
+  }
 }

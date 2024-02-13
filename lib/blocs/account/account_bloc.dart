@@ -3,11 +3,14 @@ import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
-  AccountBloc({required this.accountRepository})
-      : super(const AccountState.initial()) {
+  AccountBloc({
+    required this.accountRepository,
+    required this.transactionRepository,
+  }) : super(const AccountState.initial()) {
     on<AccountInitialEvent>(_onInit);
     on<AccountAddEvent>(_onAdd);
     on<AccountRemoveEvent>(_onRemove);
+    on<AccountUpdateEvent>(_onUpdate);
     on<AccountAddTransactionEvent>(_onAddTransaction);
     on<AccountUpdateTransactionEvent>(_onUpdateTransaction);
     on<AccountRemoveTransactionEvent>(_onRemoveTransaction);
@@ -16,6 +19,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   }
 
   final AccountRepository accountRepository;
+  final TransactionRepository transactionRepository;
   late List<AccountModel> accounts;
 
   Future<void> _onInit(
@@ -45,6 +49,26 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     }
   }
 
+  Future<void> _onUpdate(
+    AccountUpdateEvent event,
+    Emitter<AccountState> emit,
+  ) async {
+    emit(const AccountState.loading());
+    try {
+      final newAccount = event.account.copyWith(
+        description: event.newAccount.description,
+      );
+      await accountRepository.updateAccount(
+        event.account,
+        newAccount,
+      );
+      accounts = await accountRepository.getAccounts();
+      emit(AccountState.loaded(accounts));
+    } catch (e) {
+      emit(AccountState.error(e.toString()));
+    }
+  }
+
   Future<void> _onRemove(
     AccountRemoveEvent event,
     Emitter<AccountState> emit,
@@ -65,7 +89,10 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   ) async {
     emit(const AccountState.loading());
     try {
-      await accountRepository.addTransaction(event.account, event.transaction);
+      await transactionRepository.addTransaction(
+        event.account,
+        event.transaction,
+      );
       accounts = await accountRepository.getAccounts();
       emit(AccountState.loaded(accounts));
     } catch (e) {
@@ -79,7 +106,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   ) async {
     emit(const AccountState.loading());
     try {
-      await accountRepository.updateTransaction(
+      await transactionRepository.updateTransaction(
         event.account,
         event.newAccount,
         event.transaction,
@@ -97,7 +124,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   ) async {
     emit(const AccountState.loading());
     try {
-      await accountRepository.removeTransaction(
+      await transactionRepository.removeTransaction(
         event.account,
         event.transaction,
       );

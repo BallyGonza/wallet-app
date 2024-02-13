@@ -40,7 +40,6 @@ class _AddCreditCardExpenseScreenState
   @override
   void initState() {
     _selectedCategory = defaultExpenseCategories[0];
-
     super.initState();
   }
 
@@ -74,7 +73,7 @@ class _AddCreditCardExpenseScreenState
                 children: [
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         r'$',
                         style: TextStyle(
                           fontSize: 20,
@@ -86,7 +85,7 @@ class _AddCreditCardExpenseScreenState
                         width: MediaQuery.of(context).size.width - 100,
                         child: TextFormField(
                           showCursor: false,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: '0,00',
                             hintStyle: TextStyle(
@@ -100,7 +99,7 @@ class _AddCreditCardExpenseScreenState
                           keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
                           ),
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
                             color: expenseColor,
@@ -146,26 +145,12 @@ class _AddCreditCardExpenseScreenState
                             color: Colors.grey,
                           ),
                         ),
-                        trailing: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                widget.selectedCreditCard.institution.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              const FaIcon(
-                                FontAwesomeIcons.chevronRight,
-                                color: Colors.grey,
-                                size: 12,
-                              ),
-                            ],
+                        subtitle: Text(
+                          widget.selectedCreditCard.institution.name,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey,
                           ),
                         ),
                         onTap: () {
@@ -241,26 +226,12 @@ class _AddCreditCardExpenseScreenState
                             color: Colors.grey,
                           ),
                         ),
-                        trailing: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                _selectedCategory.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              const FaIcon(
-                                FontAwesomeIcons.chevronRight,
-                                color: Colors.grey,
-                                size: 12,
-                              ),
-                            ],
+                        subtitle: Text(
+                          _selectedCategory.name,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey,
                           ),
                         ),
                         onTap: () {
@@ -324,27 +295,20 @@ class _AddCreditCardExpenseScreenState
                         },
                       ),
                       WalletListTile(
-                        leading: const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: FaIcon(
+                        leading: CircleAvatar(
+                          backgroundColor: primaryColor,
+                          child: const FaIcon(
                             FontAwesomeIcons.calendar,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                        content: Text(
+                          _selectedDate,
+                          style: const TextStyle(
                             color: Colors.grey,
+                            fontWeight: FontWeight.bold,
                           ),
-                        ),
-                        content: Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: Text(
-                            _selectedDate,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        trailing: const FaIcon(
-                          FontAwesomeIcons.chevronRight,
-                          color: Colors.grey,
-                          size: 12,
                         ),
                         onTap: () {
                           FocusScope.of(context).unfocus();
@@ -366,27 +330,21 @@ class _AddCreditCardExpenseScreenState
                         },
                       ),
                       WalletListTile(
-                        leading: const Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 10),
-                              child: FaIcon(
-                                FontAwesomeIcons.repeat,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            SizedBox(width: 10),
-                            Text(
-                              'Recurrente',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
+                        leading: CircleAvatar(
+                          backgroundColor: primaryColor,
+                          child: const FaIcon(
+                            FontAwesomeIcons.repeat,
+                            color: Colors.white,
+                            size: 20,
+                          ),
                         ),
-                        content: const SizedBox.shrink(),
+                        content: const Text(
+                          'Recurrente',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                         trailing: CupertinoSwitch(
                           value: _isRecurrent,
                           onChanged: (value) {
@@ -398,14 +356,19 @@ class _AddCreditCardExpenseScreenState
                       ),
                       if (_isRecurrent == false)
                         WalletListTile(
-                          leading: const Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: FaIcon(
+                          leading: CircleAvatar(
+                            backgroundColor: primaryColor,
+                            child: const FaIcon(
                               FontAwesomeIcons.list,
-                              color: Colors.grey,
+                              color: Colors.white,
+                              size: 20,
                             ),
                           ),
                           content: DropdownButtonFormField(
+                            icon: const Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.grey,
+                            ),
                             decoration: const InputDecoration(
                               border: InputBorder.none,
                               hintStyle: TextStyle(
@@ -505,15 +468,17 @@ class _AddCreditCardExpenseScreenState
                               });
                             },
                           ),
+                          trailing: const SizedBox.shrink(),
                         )
                       else
                         const SizedBox.shrink(),
                       WalletListTile(
-                        leading: const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: FaIcon(
+                        leading: CircleAvatar(
+                          backgroundColor: primaryColor,
+                          child: const FaIcon(
                             FontAwesomeIcons.fileSignature,
-                            color: Colors.grey,
+                            color: Colors.white,
+                            size: 20,
                           ),
                         ),
                         content: TextFormField(
@@ -529,6 +494,7 @@ class _AddCreditCardExpenseScreenState
                           keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.multiline,
                         ),
+                        trailing: const SizedBox.shrink(),
                       ),
                     ],
                   ),

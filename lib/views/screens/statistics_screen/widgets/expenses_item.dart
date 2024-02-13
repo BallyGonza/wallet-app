@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:wallet_app/data/data.dart';
@@ -23,10 +24,11 @@ class _ExpenseItemState extends State<ExpenseItem>
     with TickerProviderStateMixin {
   bool isExpanded = false;
   late AnimationController _controller;
-  final UserRepository userRepository = UserRepository();
+  late UserRepository userRepository;
 
   @override
   void initState() {
+    userRepository = context.read<UserRepository>();
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 300),
@@ -171,7 +173,7 @@ class _ExpenseItemState extends State<ExpenseItem>
                                   subCategory,
                                 ),
                               ),
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: expenseColor,
                                 fontSize: 14,
                                 fontWeight: FontWeight.normal,

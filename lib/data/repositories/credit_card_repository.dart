@@ -1,42 +1,49 @@
 // ignore_for_file: cascade_invocations
 
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:wallet_app/data/data.dart';
 
 class CreditCardRepository {
   CreditCardRepository();
 
-  final Box<UserModel> box = Hive.box<UserModel>('users_box');
-
   final UserRepository userRepository = UserRepository();
+  UserModel? _cachedUser;
+
+  // Get user
+  Future<UserModel> _getUser() async {
+    _cachedUser ??= await userRepository.getUser();
+    return _cachedUser!;
+  }
 
   // Get all credit cards
   Future<List<CreditCardModel>> getCreditCards() async {
-    final user = await userRepository.getUser();
+    final user = await _getUser();
     return user.creditCards;
   }
 
   // Add a credit card
   Future<void> addCreditCard(CreditCardModel creditCard) async {
-    final user = await userRepository.getUser();
+    final user = await _getUser();
     user.creditCards.add(creditCard);
     await userRepository.saveUser(user);
+    _cachedUser = null;
   }
 
   // Remove a credit card
   Future<void> removeCreditCard(CreditCardModel creditCard) async {
-    final user = await userRepository.getUser();
+    final user = await _getUser();
     user.creditCards.remove(creditCard);
     await userRepository.saveUser(user);
+    _cachedUser = null;
   }
 
   // Update a credit card
   Future<void> updateCreditCard(CreditCardModel creditCard) async {
-    final user = await userRepository.getUser();
+    final user = await _getUser();
     user.creditCards
         .firstWhere((element) => element.id == creditCard.id)
         .update(creditCard);
     await userRepository.saveUser(user);
+    _cachedUser = null;
   }
 
   // Add a transaction to a credit card
@@ -44,12 +51,13 @@ class CreditCardRepository {
     CreditCardModel creditCard,
     CreditCardTransactionModel creditCardTransaction,
   ) async {
-    final user = await userRepository.getUser();
+    final user = await _getUser();
     user.creditCards
         .firstWhere((element) => element.id == creditCard.id)
         .expenses
         .add(creditCardTransaction);
     await userRepository.saveUser(user);
+    _cachedUser = null;
   }
 
   // Remove a transaction from a credit card
@@ -57,12 +65,13 @@ class CreditCardRepository {
     CreditCardModel creditCard,
     CreditCardTransactionModel creditCardTransaction,
   ) async {
-    final user = await userRepository.getUser();
+    final user = await _getUser();
     user.creditCards
         .firstWhere((element) => element.id == creditCard.id)
         .expenses
         .remove(creditCardTransaction);
     await userRepository.saveUser(user);
+    _cachedUser = null;
   }
 
   // Get total of credit card by date

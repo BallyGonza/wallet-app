@@ -4,7 +4,7 @@ import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
-class TransactionsScreen extends StatelessWidget {
+class TransactionsScreen extends StatefulWidget {
   const TransactionsScreen({
     required this.date,
     required this.user,
@@ -15,8 +15,20 @@ class TransactionsScreen extends StatelessWidget {
   final UserModel user;
 
   @override
+  State<TransactionsScreen> createState() => _TransactionsScreenState();
+}
+
+class _TransactionsScreenState extends State<TransactionsScreen> {
+  late TransactionRepository transactionRepository;
+
+  @override
+  void initState() {
+    transactionRepository = context.read<TransactionRepository>();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final accountRepository = AccountRepository();
     return SafeArea(
       child: Container(
         decoration: const BoxDecoration(
@@ -31,8 +43,8 @@ class TransactionsScreen extends StatelessWidget {
             return state.maybeWhen(
               orElse: () => const Center(child: CircularProgressIndicator()),
               loaded: (accounts) {
-                final transactions =
-                    accountRepository.getAllTransactionsByDate(accounts, date);
+                final transactions = transactionRepository
+                    .getAllTransactionsByDate(accounts, widget.date);
                 return transactions.isEmpty
                     ? const Center(
                         child: Text(
@@ -45,8 +57,8 @@ class TransactionsScreen extends StatelessWidget {
                         itemCount: 31,
                         itemBuilder: (context, index) {
                           return TransactionsList(
-                            user: user,
-                            date: date,
+                            user: widget.user,
+                            date: widget.date,
                             day: 31 - index,
                           );
                         },

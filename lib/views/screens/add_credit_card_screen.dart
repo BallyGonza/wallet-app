@@ -77,7 +77,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                               Color(_selectedInstitution.backgroundColor),
                           child: Image(
                             image: AssetImage(
-                              _selectedInstitution.logo,
+                              _selectedInstitution.icon,
                             ),
                             height: 25,
                             width: 25,
@@ -91,26 +91,12 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                             color: Colors.grey,
                           ),
                         ),
-                        trailing: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                _selectedInstitution.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              const FaIcon(
-                                FontAwesomeIcons.chevronRight,
-                                color: Colors.grey,
-                                size: 12,
-                              ),
-                            ],
+                        subtitle: Text(
+                          _selectedInstitution.name,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey,
                           ),
                         ),
                         onTap: () {
@@ -175,7 +161,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                               Color(_selectedCardType.backgroundColor),
                           child: Image(
                             image: AssetImage(
-                              _selectedCardType.logo,
+                              _selectedCardType.icon,
                             ),
                             height: 25,
                             width: 25,
@@ -189,26 +175,12 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                             color: Colors.grey,
                           ),
                         ),
-                        trailing: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                _selectedCardType.name,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                              const SizedBox(width: 10),
-                              const FaIcon(
-                                FontAwesomeIcons.chevronRight,
-                                color: Colors.grey,
-                                size: 12,
-                              ),
-                            ],
+                        subtitle: Text(
+                          _selectedCardType.name,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.grey,
                           ),
                         ),
                         onTap: () {
@@ -265,11 +237,12 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                         },
                       ),
                       WalletListTile(
-                        leading: const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: FaIcon(
+                        leading: CircleAvatar(
+                          backgroundColor: primaryColor,
+                          child: const FaIcon(
                             FontAwesomeIcons.fileSignature,
-                            color: Colors.grey,
+                            color: Colors.white,
+                            size: 20,
                           ),
                         ),
                         content: TextFormField(
@@ -285,13 +258,15 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                           keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.multiline,
                         ),
+                        trailing: const SizedBox.shrink(),
                       ),
                       WalletListTile(
-                        leading: const Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: FaIcon(
+                        leading: CircleAvatar(
+                          backgroundColor: primaryColor,
+                          child: const FaIcon(
                             FontAwesomeIcons.creditCard,
-                            color: Colors.grey,
+                            color: Colors.white,
+                            size: 20,
                           ),
                         ),
                         content: TextFormField(
@@ -308,6 +283,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                             decimal: true,
                           ),
                         ),
+                        trailing: const SizedBox.shrink(),
                       ),
                     ],
                   ),

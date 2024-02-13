@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
 
 class AccountListItem extends StatefulWidget {
@@ -14,10 +15,11 @@ class AccountListItem extends StatefulWidget {
 }
 
 class _AccountListItemState extends State<AccountListItem> {
-  UserRepository userRepository = UserRepository();
+  late UserRepository userRepository;
 
   @override
   void initState() {
+    userRepository = context.read<UserRepository>();
     super.initState();
   }
 
@@ -34,7 +36,7 @@ class _AccountListItemState extends State<AccountListItem> {
           radius: 18,
           child: Image(
             image: AssetImage(
-              widget.account.institution.logo,
+              widget.account.institution.icon,
             ),
             height: 25,
             width: 25,
@@ -48,6 +50,16 @@ class _AccountListItemState extends State<AccountListItem> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        subtitle: widget.account.description != null
+            ? Text(
+                widget.account.description!,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                  fontWeight: FontWeight.normal,
+                ),
+              )
+            : null,
       ),
     );
   }

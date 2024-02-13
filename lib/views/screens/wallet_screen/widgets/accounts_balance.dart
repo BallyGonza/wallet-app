@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
 
-class AccountsBalance extends StatelessWidget {
+class AccountsBalance extends StatefulWidget {
   const AccountsBalance({
     required this.accounts,
     required this.date,
@@ -12,8 +13,20 @@ class AccountsBalance extends StatelessWidget {
   final DateTime date;
 
   @override
+  State<AccountsBalance> createState() => _AccountsBalanceState();
+}
+
+class _AccountsBalanceState extends State<AccountsBalance> {
+  late UserRepository userRepository;
+
+  @override
+  void initState() {
+    userRepository = context.read<UserRepository>();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final userRepository = UserRepository();
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: Column(
@@ -30,7 +43,12 @@ class AccountsBalance extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Text(
-                arg.format(userRepository.getBalance(accounts, date)),
+                arg.format(
+                  userRepository.getBalance(
+                    accounts: widget.accounts,
+                    date: widget.date,
+                  ),
+                ),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 30,

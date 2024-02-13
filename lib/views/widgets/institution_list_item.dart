@@ -1,25 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:wallet_app/data/data.dart';
 
-class InstitutionListItem extends StatefulWidget {
+class InstitutionListItem extends StatelessWidget {
   const InstitutionListItem({
     required this.institution,
     super.key,
   });
 
   final InstitutionModel institution;
-
-  @override
-  State<InstitutionListItem> createState() => _InstitutionListItemState();
-}
-
-class _InstitutionListItemState extends State<InstitutionListItem> {
-  UserRepository userRepository = UserRepository();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +19,16 @@ class _InstitutionListItemState extends State<InstitutionListItem> {
       ),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: Color(widget.institution.backgroundColor),
+          backgroundColor: Color(institution.backgroundColor),
           radius: 18,
           child: Image(
-            image: AssetImage(widget.institution.logo),
+            image: AssetImage(institution.icon),
             height: 25,
             width: 25,
           ),
         ),
         title: Text(
-          widget.institution.name,
+          institution.name,
           style: const TextStyle(
             color: Colors.white,
             fontSize: 16,

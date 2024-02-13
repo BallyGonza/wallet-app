@@ -16,6 +16,7 @@ List<InstitutionModel> defaultInstitutions = [
   hsbcInstitution,
   naranjaXInstitution,
   bbvaInstitution,
+  pago24Institution,
   savingsInstitution,
 ];
 
@@ -35,7 +36,8 @@ List<InstitutionModel> defaultCardTypes = [
 InstitutionModel wallet = InstitutionModel(
   id: 0,
   name: 'Efectivo',
-  logo: 'assets/icons/institutions/money.png',
+  icon: 'assets/icons/institutions/money/money_icon.png',
+  logo: 'assets/icons/institutions/money/money_icon.png',
   backgroundColor: green,
   logoColor: green,
   textColor: white,
@@ -44,7 +46,8 @@ InstitutionModel wallet = InstitutionModel(
 InstitutionModel hsbcInstitution = InstitutionModel(
   id: 1,
   name: 'HSBC',
-  logo: 'assets/icons/institutions/hsbc.png',
+  icon: 'assets/icons/institutions/hsbc/hsbc_icon.png',
+  logo: 'assets/icons/institutions/hsbc/hsbc_logo.png',
   backgroundColor: white,
   logoColor: hsbcColor,
   textColor: white,
@@ -55,7 +58,8 @@ InstitutionModel hsbcInstitution = InstitutionModel(
 InstitutionModel bbvaInstitution = InstitutionModel(
   id: 2,
   name: 'BBVA',
-  logo: 'assets/icons/institutions/bbva.png',
+  icon: 'assets/icons/institutions/bbva/bbva_icon.png',
+  logo: 'assets/icons/institutions/bbva/bbva_logo.png',
   backgroundColor: white,
   logoColor: bbvaColor,
   textColor: white,
@@ -66,7 +70,8 @@ InstitutionModel bbvaInstitution = InstitutionModel(
 InstitutionModel mercadoPagoInstitution = InstitutionModel(
   id: 3,
   name: 'Mercado Pago',
-  logo: 'assets/icons/institutions/mercado_pago.png',
+  icon: 'assets/icons/institutions/mercado_pago/mercado_pago_icon.png',
+  logo: 'assets/icons/institutions/mercado_pago/mercado_pago_logo.png',
   backgroundColor: white,
   logoColor: mercadoPagoColor,
   textColor: white,
@@ -75,7 +80,8 @@ InstitutionModel mercadoPagoInstitution = InstitutionModel(
 InstitutionModel savingsInstitution = InstitutionModel(
   id: 4,
   name: 'Ahorros',
-  logo: 'assets/icons/institutions/savings.png',
+  icon: 'assets/icons/institutions/savings/savings_icon.png',
+  logo: 'assets/icons/institutions/savings/savings_icon.png',
   backgroundColor: green,
   logoColor: green,
   textColor: white,
@@ -84,15 +90,17 @@ InstitutionModel savingsInstitution = InstitutionModel(
 InstitutionModel visaInstitution = InstitutionModel(
   id: 5,
   name: 'Visa',
-  logo: 'assets/icons/institutions/visa.png',
+  icon: 'assets/icons/institutions/visa/visa_icon.png',
+  logo: 'assets/icons/institutions/visa/visa_logo.png',
   backgroundColor: white,
   logoColor: blue,
 );
 
 InstitutionModel mastercardInstitution = InstitutionModel(
   id: 6,
-  name: 'Mastercard',
-  logo: 'assets/icons/institutions/mastercard.png',
+  name: 'Master Card',
+  icon: 'assets/icons/institutions/master_card/master_card_icon.png',
+  logo: 'assets/icons/institutions/master_card/master_card_logo.png',
   backgroundColor: white,
   logoColor: red,
 );
@@ -100,7 +108,8 @@ InstitutionModel mastercardInstitution = InstitutionModel(
 InstitutionModel naranjaXInstitution = InstitutionModel(
   id: 7,
   name: 'Naranja X',
-  logo: 'assets/icons/institutions/naranja.png',
+  icon: 'assets/icons/institutions/naranja_x/naranja_x_icon.png',
+  logo: 'assets/icons/institutions/naranja_x/naranja_x_logo.png',
   backgroundColor: white,
   logoColor: naranjaColor,
 );
@@ -108,17 +117,20 @@ InstitutionModel naranjaXInstitution = InstitutionModel(
 InstitutionModel galiciaInstitution = InstitutionModel(
   id: 7,
   name: 'Galicia',
-  logo: 'assets/icons/institutions/galicia.png',
+  icon: 'assets/icons/institutions/galicia/galicia_icon.png',
+  logo: 'assets/icons/institutions/galicia/galicia_logo.png',
   backgroundColor: galiciaColor,
   visaCardColor: orange,
-  americianExpressColor: silver,
+  masterCardColor: orange,
+  americianExpressColor: orange,
   logoColor: galiciaColor,
 );
 
 InstitutionModel prexInstitution = InstitutionModel(
   id: 8,
   name: 'Prex',
-  logo: 'assets/icons/institutions/prex.png',
+  icon: 'assets/icons/institutions/prex/prex_icon.png',
+  logo: 'assets/icons/institutions/prex/prex_logo.png',
   backgroundColor: prexColor,
   logoColor: prexColor,
 );
@@ -126,7 +138,17 @@ InstitutionModel prexInstitution = InstitutionModel(
 InstitutionModel americanExpressInstitution = InstitutionModel(
   id: 9,
   name: 'American Express',
-  logo: 'assets/icons/institutions/american.png',
-  backgroundColor: white,
+  icon: 'assets/icons/institutions/american_express/american_express_icon.png',
+  logo: 'assets/icons/institutions/american_express/american_express_logo.png',
+  backgroundColor: amexColor,
   logoColor: blue,
+);
+
+InstitutionModel pago24Institution = InstitutionModel(
+  id: 10,
+  name: 'Pago 24',
+  icon: 'assets/icons/institutions/pago_24/pago_24_icon.png',
+  logo: 'assets/icons/institutions/pago_24/pago_24_logo.png',
+  backgroundColor: white,
+  logoColor: amexColor,
 );

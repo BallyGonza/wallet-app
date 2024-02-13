@@ -16,10 +16,11 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  final accountRepository = AccountRepository();
+  late AccountRepository accountRepository;
 
   @override
   void initState() {
+    accountRepository = context.read<AccountRepository>();
     context.read<SearchBarBloc>().add(
           const SearchBarEvent.init(),
         );

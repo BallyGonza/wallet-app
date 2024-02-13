@@ -24,8 +24,17 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  final AccountRepository accountRepository = AccountRepository();
+  final descriptionController = TextEditingController();
+  late TransactionRepository transactionRepository;
+  late AccountRepository accountRepository;
   List<TransactionModel> transactions = [];
+
+  @override
+  void initState() {
+    transactionRepository = context.read<TransactionRepository>();
+    accountRepository = context.read<AccountRepository>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +46,8 @@ class _AccountScreenState extends State<AccountScreen> {
             return state.maybeWhen(
               orElse: () => const Center(child: CircularProgressIndicator()),
               loaded: (accounts) {
-                transactions = accountRepository.getTransactionsByAccount(
+                transactions = transactionRepository.getTransactionsByAccount(
                   widget.account,
-                  widget.user,
                   widget.date,
                 );
                 return Column(
@@ -124,31 +132,37 @@ class _AccountScreenState extends State<AccountScreen> {
           _resumeItem(
             'Ingreso',
             accountRepository.getTotalIncomesByAccount(
-              widget.account,
-              widget.date,
+              account: widget.account,
+              date: widget.date,
             ),
-            incomeColor!.value,
+            incomeColor.value,
           ),
           _resumeItem(
             'Gasto',
             accountRepository.getTotalExpensesByAccount(
-              widget.account,
-              widget.date,
+              account: widget.account,
+              date: widget.date,
             ),
-            expenseColor!.value,
+            expenseColor.value,
           ),
           _resumeItem(
             'Saldo',
-            accountRepository.getBalanceOfAccount(widget.account, widget.date),
-            accountRepository.getBalanceOfAccount(widget.account, widget.date) >
+            accountRepository.getBalanceOfAccount(
+              account: widget.account,
+              date: widget.date,
+            ),
+            accountRepository.getBalanceOfAccount(
+                      account: widget.account,
+                      date: widget.date,
+                    ) >
                     0
-                ? incomeColor!.value
+                ? incomeColor.value
                 : accountRepository.getBalanceOfAccount(
-                          widget.account,
-                          widget.date,
+                          account: widget.account,
+                          date: widget.date,
                         ) <
                         0
-                    ? expenseColor!.value
+                    ? expenseColor.value
                     : Colors.grey.value,
           ),
         ],
@@ -169,7 +183,9 @@ class _AccountScreenState extends State<AccountScreen> {
           ),
         ),
         trailing: Text(
-          arg.format(amount),
+          widget.account.name == 'Ahorros'
+              ? dolar.format(amount)
+              : arg.format(amount),
           style: TextStyle(
             fontSize: 16,
             color: Color(color),
@@ -190,9 +206,29 @@ class _AccountScreenState extends State<AccountScreen> {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Text(
-            widget.account.name,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          child: Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text: widget.account.institution.name,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                if (widget.account.description != null)
+                  TextSpan(
+                    text: ' / ${widget.account.description}',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  )
+                else
+                  const TextSpan(),
+              ],
+            ),
           ),
         ),
       ),
@@ -202,7 +238,7 @@ class _AccountScreenState extends State<AccountScreen> {
             showModalBottomSheet<SizedBox>(
               backgroundColor: appBackgroundColor,
               constraints: const BoxConstraints(
-                maxHeight: 200,
+                maxHeight: 250,
               ),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(
@@ -220,7 +256,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       ),
                       ActionButton(
                         text: 'Add income',
-                        color: Color(incomeColor!.value),
+                        color: Color(incomeColor.value),
                         onPressed: () {
                           Navigator.pop(context);
                           Navigator.of(context).push(
@@ -245,7 +281,7 @@ class _AccountScreenState extends State<AccountScreen> {
                       ),
                       ActionButton(
                         text: 'Add expense',
-                        color: Color(expenseColor!.value),
+                        color: Color(expenseColor.value),
                         onPressed: () {
                           Navigator.pop(context);
                           Navigator.of(context).push(
@@ -267,6 +303,36 @@ class _AccountScreenState extends State<AccountScreen> {
                             ),
                           );
                         },
+                      ),
+                      ActionButton(
+                        text: 'Add description',
+                        onPressed: () {
+                          Navigator.pop(context);
+                          showDialog<WalletAlertDialog>(
+                            context: context,
+                            builder: (_) => WalletAlertDialog(
+                              title: 'Add description',
+                              content: WalletDialogTextField(
+                                controller: descriptionController,
+                                hint: 'Description',
+                              ),
+                              primaryActionTitle: 'Save',
+                              onPressed: () {
+                                context.read<AccountBloc>().add(
+                                      AccountEvent.update(
+                                        widget.account,
+                                        widget.account.copyWith(
+                                          description:
+                                              descriptionController.text,
+                                        ),
+                                      ),
+                                    );
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          );
+                        },
+                        color: Colors.purple,
                       ),
                       ActionButton(
                         text: 'Eliminar',

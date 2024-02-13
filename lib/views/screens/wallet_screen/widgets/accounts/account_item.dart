@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
@@ -19,10 +20,17 @@ class AccountItem extends StatefulWidget {
 }
 
 class _AccountItemState extends State<AccountItem> {
+  late AccountRepository accountRepository;
+  late double balance;
+
+  @override
+  void initState() {
+    accountRepository = context.read<AccountRepository>();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final accountRepository = AccountRepository();
-
     return InkWell(
       enableFeedback: false,
       onTap: () {
@@ -44,38 +52,62 @@ class _AccountItemState extends State<AccountItem> {
           radius: 18,
           child: Image(
             image: AssetImage(
-              widget.account.institution.logo,
+              widget.account.institution.icon,
             ),
             height: 25,
             width: 25,
           ),
         ),
-        title: Text(
-          widget.account.name,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
+        title: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              widget.account.name,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            if (widget.account.description != null) ...[
+              const SizedBox(width: 4),
+              Text(
+                widget.account.description!,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ],
+          ],
         ),
         subtitle: Text(
-          arg.format(
-            accountRepository.getBalanceOfAccount(
-              widget.account,
-              widget.date,
-            ),
-          ),
+          widget.account.name == 'Ahorros'
+              ? dolar.format(
+                  accountRepository.getBalanceOfAccount(
+                    account: widget.account,
+                    date: widget.date,
+                  ),
+                )
+              : arg.format(
+                  accountRepository.getBalanceOfAccount(
+                    account: widget.account,
+                    date: widget.date,
+                  ),
+                ),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: accountRepository.getBalanceOfAccount(
-                      widget.account,
-                      widget.date,
+                      account: widget.account,
+                      date: widget.date,
                     ) >
                     0
                 ? Colors.green
                 : accountRepository.getBalanceOfAccount(
-                          widget.account,
-                          widget.date,
+                          account: widget.account,
+                          date: widget.date,
                         ) <
                         0
                     ? Colors.red

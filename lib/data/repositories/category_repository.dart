@@ -3,7 +3,7 @@ import 'package:wallet_app/data/data.dart';
 List<CategoryModel> defaultIncomeCategories = [
   income,
   replenishment,
-  // savingsCategory,
+  savingsCategory,
 ];
 List<CategoryModel> defaultExpenseCategories = [
   others,
@@ -14,8 +14,9 @@ List<CategoryModel> defaultExpenseCategories = [
   shopping,
   services,
   education,
-  creditCard,
   church,
+  vacations,
+  creditCard,
   savings,
 ];
 
@@ -60,12 +61,12 @@ CategoryModel afip = CategoryModel(
 
 CategoryModel savingsCategory = CategoryModel(
   id: 4,
-  name: 'Savings',
+  name: 'Ahorros',
   icon: 'assets/icons/categories/savings.png',
-  isIncome: true,
   backgroundColor: green,
+  isIncome: true,
   iconColor: black,
-  subCategories: [],
+  subCategories: [dollars],
 );
 
 CategoryModel food = CategoryModel(
@@ -502,7 +503,7 @@ CategoryModel education = CategoryModel(
   name: 'Educacion',
   icon: 'assets/icons/categories/education.png',
   isIncome: false,
-  backgroundColor: lightOrange,
+  backgroundColor: lightBlue,
   iconColor: black,
   subCategories: [],
 );
@@ -529,10 +530,10 @@ CategoryModel church = CategoryModel(
 
 CategoryModel gaming = CategoryModel(
   id: 51,
-  name: 'gaming',
+  name: 'Gaming',
   icon: 'assets/icons/categories/gaming.png',
   isIncome: false,
-  backgroundColor: white,
+  backgroundColor: yellow,
   iconColor: black,
   subCategories: [],
 );
@@ -540,7 +541,7 @@ CategoryModel gaming = CategoryModel(
 CategoryModel americanExpress = CategoryModel(
   id: 52,
   name: 'American Express',
-  icon: 'assets/icons/institutions/american.png',
+  icon: 'assets/icons/institutions/american_express/american_express_icon.png',
   isIncome: false,
   backgroundColor: white,
   subCategories: [],
@@ -550,6 +551,24 @@ CategoryModel interest = CategoryModel(
   id: 53,
   name: 'Int. Cta. Remunerada',
   icon: 'assets/icons/categories/interest.png',
+  isIncome: true,
+  backgroundColor: green,
+  subCategories: [],
+);
+
+CategoryModel vacations = CategoryModel(
+  id: 54,
+  name: 'Vacaciones',
+  icon: 'assets/icons/categories/plane.png',
+  isIncome: false,
+  backgroundColor: lightOrange,
+  subCategories: [],
+);
+
+CategoryModel dollars = CategoryModel(
+  id: 55,
+  name: 'Dolares',
+  icon: 'assets/icons/categories/money.png',
   isIncome: true,
   backgroundColor: green,
   subCategories: [],

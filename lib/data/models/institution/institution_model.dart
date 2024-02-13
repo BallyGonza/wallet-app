@@ -7,6 +7,7 @@ class InstitutionModel extends HiveObject {
   InstitutionModel({
     required this.id,
     required this.name,
+    required this.icon,
     required this.logo,
     required this.backgroundColor,
     required this.logoColor,
@@ -21,17 +22,19 @@ class InstitutionModel extends HiveObject {
   @HiveField(1)
   String name;
   @HiveField(2)
-  String logo;
+  String icon;
   @HiveField(3)
-  int backgroundColor;
+  String logo;
   @HiveField(4)
-  int logoColor;
+  int backgroundColor;
   @HiveField(5)
-  int? textColor;
+  int logoColor;
   @HiveField(6)
-  int? visaCardColor;
+  int? textColor;
   @HiveField(7)
-  int? masterCardColor;
+  int? visaCardColor;
   @HiveField(8)
+  int? masterCardColor;
+  @HiveField(9)
   int? americianExpressColor;
 }
