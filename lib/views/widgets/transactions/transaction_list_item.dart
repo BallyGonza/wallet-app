@@ -109,7 +109,10 @@ class _TransactionListItemState extends State<TransactionListItem> {
                         title: 'Amount',
                         icon: AppImages.coin,
                         backgroundColor: yellow,
-                        description: arg.format(widget.transaction.amount),
+                        description:
+                            widget.transaction.category.name == 'Dolares'
+                                ? dolar.format(widget.transaction.amount)
+                                : arg.format(widget.transaction.amount),
                         descriptionColor: widget.transaction.category.isIncome
                             ? incomeColor
                             : expenseColor,
@@ -211,6 +214,19 @@ class _TransactionListItemState extends State<TransactionListItem> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          if (account!.description != null)
+                            TextSpan(
+                              text: ' / ${account!.description}',
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontSize: 12,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.normal,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            )
+                          else
+                            const TextSpan(),
                         ],
                       ),
                     ),
@@ -239,7 +255,9 @@ class _TransactionListItemState extends State<TransactionListItem> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      arg.format(widget.transaction.amount),
+                      widget.transaction.category.name == 'Dolares'
+                          ? dolar.format(widget.transaction.amount)
+                          : arg.format(widget.transaction.amount),
                       style: TextStyle(
                         color: widget.transaction.category.isIncome
                             ? Colors.green

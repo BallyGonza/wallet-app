@@ -131,9 +131,6 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
               widget.creditCard.cardType.logo,
               height: 50,
               width: 50,
-              color: widget.creditCard.cardType.name == 'Visa'
-                  ? Colors.white
-                  : null,
             ),
           ),
         ),

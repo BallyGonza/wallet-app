@@ -52,7 +52,7 @@ class _AccountItemState extends State<AccountItem> {
           radius: 18,
           child: Image(
             image: AssetImage(
-              widget.account.institution.logo,
+              widget.account.institution.icon,
             ),
             height: 25,
             width: 25,
@@ -84,12 +84,19 @@ class _AccountItemState extends State<AccountItem> {
           ],
         ),
         subtitle: Text(
-          arg.format(
-            accountRepository.getBalanceOfAccount(
-              account: widget.account,
-              date: widget.date,
-            ),
-          ),
+          widget.account.name == 'Ahorros'
+              ? dolar.format(
+                  accountRepository.getBalanceOfAccount(
+                    account: widget.account,
+                    date: widget.date,
+                  ),
+                )
+              : arg.format(
+                  accountRepository.getBalanceOfAccount(
+                    account: widget.account,
+                    date: widget.date,
+                  ),
+                ),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: accountRepository.getBalanceOfAccount(

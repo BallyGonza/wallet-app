@@ -36,7 +36,7 @@ class _AccountListItemState extends State<AccountListItem> {
           radius: 18,
           child: Image(
             image: AssetImage(
-              widget.account.institution.logo,
+              widget.account.institution.icon,
             ),
             height: 25,
             width: 25,

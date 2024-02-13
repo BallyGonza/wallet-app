@@ -50,9 +50,7 @@ class _CreditCardItemState extends State<CreditCardItem> {
         decoration: BoxDecoration(
           color: widget.creditCard.cardType.name == 'Visa'
               ? Color(widget.creditCard.institution.visaCardColor!)
-              : widget.creditCard.cardType.name == 'American Express'
-                  ? Color(widget.creditCard.institution.americianExpressColor!)
-                  : Color(widget.creditCard.institution.masterCardColor!),
+              : Color(widget.creditCard.institution.masterCardColor!),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
@@ -62,7 +60,7 @@ class _CreditCardItemState extends State<CreditCardItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image(
-                  image: AssetImage(widget.creditCard.institution.logo),
+                  image: AssetImage(widget.creditCard.institution.icon),
                   height: 50,
                   width: 50,
                   color: widget.creditCard.institution.name == 'BBVA'
@@ -110,9 +108,7 @@ class _CreditCardItemState extends State<CreditCardItem> {
                   image: AssetImage(widget.creditCard.cardType.logo),
                   height: 50,
                   width: 50,
-                  color: widget.creditCard.cardType.name == 'Visa'
-                      ? Colors.white
-                      : null,
+                  color: Colors.white,
                 ),
               ],
             ),

@@ -142,3 +142,9 @@ final AccountModel savingsAccount = AccountModel(
   name: 'Ahorros',
   institution: savingsInstitution,
 );
+
+final AccountModel pago24 = AccountModel(
+  id: 8,
+  name: 'Pago24',
+  institution: pago24Institution,
+);

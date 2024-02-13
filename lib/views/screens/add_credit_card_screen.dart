@@ -77,7 +77,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                               Color(_selectedInstitution.backgroundColor),
                           child: Image(
                             image: AssetImage(
-                              _selectedInstitution.logo,
+                              _selectedInstitution.icon,
                             ),
                             height: 25,
                             width: 25,
@@ -161,7 +161,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                               Color(_selectedCardType.backgroundColor),
                           child: Image(
                             image: AssetImage(
-                              _selectedCardType.logo,
+                              _selectedCardType.icon,
                             ),
                             height: 25,
                             width: 25,

@@ -22,7 +22,7 @@ class AccountListItem extends StatelessWidget {
           radius: 18,
           child: Image(
             image: AssetImage(
-              account.institution.logo,
+              account.institution.icon,
             ),
             height: 25,
             width: 25,
@@ -36,6 +36,17 @@ class AccountListItem extends StatelessWidget {
             fontWeight: FontWeight.normal,
           ),
         ),
+        subtitle: account.description != null
+            ? Text(
+                account.description!,
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                  fontStyle: FontStyle.italic,
+                ),
+              )
+            : null,
       ),
     );
   }

@@ -112,7 +112,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                           ),
                           child: Image(
                             image: AssetImage(
-                              _fromSelectedAccount.institution.logo,
+                              _fromSelectedAccount.institution.icon,
                             ),
                             height: 25,
                             width: 25,
@@ -199,7 +199,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                           ),
                           child: Image(
                             image: AssetImage(
-                              _toSelectedAccount.institution.logo,
+                              _toSelectedAccount.institution.icon,
                             ),
                             height: 25,
                             width: 25,

@@ -19,37 +19,40 @@ class InstitutionModelAdapter extends TypeAdapter<InstitutionModel> {
     return InstitutionModel(
       id: fields[0] as int,
       name: fields[1] as String,
-      logo: fields[2] as String,
-      backgroundColor: fields[3] as int,
-      logoColor: fields[4] as int,
-      textColor: fields[5] as int?,
-      visaCardColor: fields[6] as int?,
-      masterCardColor: fields[7] as int?,
-      americianExpressColor: fields[8] as int?,
+      icon: fields[2] as String,
+      logo: fields[3] as String,
+      backgroundColor: fields[4] as int,
+      logoColor: fields[5] as int,
+      textColor: fields[6] as int?,
+      visaCardColor: fields[7] as int?,
+      masterCardColor: fields[8] as int?,
+      americianExpressColor: fields[9] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, InstitutionModel obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.logo)
+      ..write(obj.icon)
       ..writeByte(3)
-      ..write(obj.backgroundColor)
+      ..write(obj.logo)
       ..writeByte(4)
-      ..write(obj.logoColor)
+      ..write(obj.backgroundColor)
       ..writeByte(5)
-      ..write(obj.textColor)
+      ..write(obj.logoColor)
       ..writeByte(6)
-      ..write(obj.visaCardColor)
+      ..write(obj.textColor)
       ..writeByte(7)
-      ..write(obj.masterCardColor)
+      ..write(obj.visaCardColor)
       ..writeByte(8)
+      ..write(obj.masterCardColor)
+      ..writeByte(9)
       ..write(obj.americianExpressColor);
   }
 

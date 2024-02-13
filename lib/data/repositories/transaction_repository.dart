@@ -138,6 +138,7 @@ class TransactionRepository {
               transaction.date.day == day &&
               transaction.date.month == date.month &&
               transaction.date.year == date.year &&
+              transaction.category.name != 'Dolares' &&
               transaction.category.name != 'Ahorros' &&
               transaction.category.name != 'Transfer in',
         )
@@ -159,6 +160,7 @@ class TransactionRepository {
         total += transaction.amount;
       }
     }
+
     return total;
   }
 

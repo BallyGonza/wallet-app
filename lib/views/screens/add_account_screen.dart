@@ -67,7 +67,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                         backgroundColor:
                             Color(_selectedInstitution.backgroundColor),
                         child: Image(
-                          image: AssetImage(_selectedInstitution.logo),
+                          image: AssetImage(_selectedInstitution.icon),
                           height: 25,
                           width: 25,
                         ),

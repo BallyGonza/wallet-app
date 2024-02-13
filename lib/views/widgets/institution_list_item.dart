@@ -22,7 +22,7 @@ class InstitutionListItem extends StatelessWidget {
           backgroundColor: Color(institution.backgroundColor),
           radius: 18,
           child: Image(
-            image: AssetImage(institution.logo),
+            image: AssetImage(institution.icon),
             height: 25,
             width: 25,
           ),

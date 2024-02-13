@@ -223,7 +223,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           ),
                           child: Image(
                             image: AssetImage(
-                              widget.selectedAccount.institution.logo,
+                              widget.selectedAccount.institution.icon,
                             ),
                             height: 25,
                             width: 25,
