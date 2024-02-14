@@ -36,6 +36,8 @@ final mercadoPagoColor = const Color(0xFF009FE2).value;
 final prexColor = const Color(0xFF5C19AD).value;
 final amexColor = const Color(0xFF016FD2).value;
 final galiciaColor = const Color(0xFFED5013).value;
+final nubizColor = const Color(0xFFFD4C47).value;
+final pedidosYaColor = const Color(0xFFFF0251).value;
 
 // income color
 const incomeColor = Colors.green;

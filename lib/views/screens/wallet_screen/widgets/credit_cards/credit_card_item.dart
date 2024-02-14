@@ -60,7 +60,7 @@ class _CreditCardItemState extends State<CreditCardItem> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Image(
-                  image: AssetImage(widget.creditCard.institution.icon),
+                  image: AssetImage(widget.creditCard.institution.logo),
                   height: 50,
                   width: 50,
                   color: widget.creditCard.institution.name == 'BBVA'

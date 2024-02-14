@@ -131,7 +131,7 @@ class _AddCreditCardExpenseScreenState
                           ),
                           child: Image(
                             image: AssetImage(
-                              widget.selectedCreditCard.cardType.logo,
+                              widget.selectedCreditCard.cardType.icon,
                             ),
                             height: 25,
                             width: 25,

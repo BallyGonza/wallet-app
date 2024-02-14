@@ -73,33 +73,14 @@ class _AccountScreenState extends State<AccountScreen> {
             Radius.circular(20),
           ),
         ),
-        child: Stack(
-          children: [
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.65,
-              right: 20,
-              child: Opacity(
-                opacity: 0.2,
-                child: Image.asset(
-                  widget.account.institution.logo,
-                  height: 70,
-                  width: 70,
-                  color: widget.account.institution.name == 'Efectivo' ||
-                          widget.account.institution.name == 'Ahorros'
-                      ? Colors.green
-                      : null,
-                ),
-              ),
-            ),
-            if (transactions.isEmpty)
-              const Center(
+        child: transactions.isEmpty
+            ? const Center(
                 child: Text(
                   'No transactions yet',
                   style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
               )
-            else
-              ListView(
+            : ListView(
                 children: List.generate(
                   transactions.length,
                   (index) {
@@ -111,8 +92,6 @@ class _AccountScreenState extends State<AccountScreen> {
                   },
                 ),
               ),
-          ],
-        ),
       ),
     );
   }

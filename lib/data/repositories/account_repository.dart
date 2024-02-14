@@ -148,3 +148,15 @@ final AccountModel pago24 = AccountModel(
   name: 'Pago24',
   institution: pago24Institution,
 );
+
+final AccountModel pedidosYa = AccountModel(
+  id: 9,
+  name: 'PedidosYa',
+  institution: pago24Institution,
+);
+
+final AccountModel nubiz = AccountModel(
+  id: 10,
+  name: 'Nubiz',
+  institution: pago24Institution,
+);

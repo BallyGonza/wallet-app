@@ -130,19 +130,6 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
   ) {
     return Stack(
       children: [
-        Positioned(
-          top: MediaQuery.of(context).size.height * 0.57,
-          right: 20,
-          child: Opacity(
-            opacity: 0.2,
-            child: Image.asset(
-              widget.creditCard.cardType.logo,
-              height: 60,
-              width: 60,
-              color: Colors.white,
-            ),
-          ),
-        ),
         if (creditCardExpenses.isEmpty)
           _emptyExpenses()
         else

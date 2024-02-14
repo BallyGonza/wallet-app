@@ -242,7 +242,16 @@ CategoryModel services = CategoryModel(
   isIncome: false,
   backgroundColor: blue,
   iconColor: white,
-  subCategories: [movistar, personal, prime, netflix, disneyplus, spotify],
+  subCategories: [
+    movistar,
+    personal,
+    prime,
+    netflix,
+    disneyplus,
+    spotify,
+    google,
+    apple,
+  ],
 );
 
 CategoryModel movistar = CategoryModel(
@@ -386,7 +395,7 @@ CategoryModel shopping = CategoryModel(
   isIncome: false,
   backgroundColor: yellow,
   iconColor: black,
-  subCategories: [clothes, electro, gaming, home, gifts, pets],
+  subCategories: [clothes, electro, gaming, playStation, home, gifts, pets],
 );
 
 CategoryModel clothes = CategoryModel(
@@ -543,7 +552,7 @@ CategoryModel americanExpress = CategoryModel(
   name: 'American Express',
   icon: 'assets/icons/institutions/american_express/american_express_icon.png',
   isIncome: false,
-  backgroundColor: white,
+  backgroundColor: amexColor,
   subCategories: [],
 );
 
@@ -571,5 +580,32 @@ CategoryModel dollars = CategoryModel(
   icon: 'assets/icons/categories/money.png',
   isIncome: true,
   backgroundColor: green,
+  subCategories: [],
+);
+
+CategoryModel google = CategoryModel(
+  id: 55,
+  name: 'Google',
+  icon: 'assets/icons/categories/google.png',
+  isIncome: false,
+  backgroundColor: white,
+  subCategories: [],
+);
+
+CategoryModel apple = CategoryModel(
+  id: 56,
+  name: 'Apple',
+  icon: 'assets/icons/categories/apple.png',
+  isIncome: false,
+  backgroundColor: white,
+  subCategories: [],
+);
+
+CategoryModel playStation = CategoryModel(
+  id: 57,
+  name: 'PlayStation',
+  icon: 'assets/icons/categories/playstation.png',
+  isIncome: false,
+  backgroundColor: white,
   subCategories: [],
 );

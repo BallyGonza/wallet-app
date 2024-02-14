@@ -21,7 +21,7 @@ class CreditCardListItem extends StatelessWidget {
           backgroundColor: Color(creditCard.cardType.backgroundColor),
           radius: 18,
           child: Image(
-            image: AssetImage(creditCard.cardType.logo),
+            image: AssetImage(creditCard.cardType.icon),
             height: 25,
             width: 25,
           ),
