@@ -40,62 +40,70 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar:
-          _bottomNavBar(context, creditCardRepository, creditCardExpenses),
-      appBar: _appBar(context),
-      body: SafeArea(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 30,
-              child: ListTile(
-                title: const Text(
-                  'Owner',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
+    return BlocBuilder<CreditCardBloc, CreditCardState>(
+      builder: (context, state) {
+        creditCardExpenses = creditCardRepository.getTransactionsByCreditCard(
+          widget.creditCard,
+          widget.date,
+        );
+        return Scaffold(
+          bottomNavigationBar:
+              _bottomNavBar(context, creditCardRepository, creditCardExpenses),
+          appBar: _appBar(context),
+          body: SafeArea(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 30,
+                  child: ListTile(
+                    title: const Text(
+                      'Owner',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    trailing: Text(
+                      widget.creditCard.name,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
                   ),
                 ),
-                trailing: Text(
-                  widget.creditCard.name,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
+                SizedBox(
+                  height: 50,
+                  child: ListTile(
+                    title: const Text(
+                      'Card number',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    trailing: Text(
+                      '**** **** **** ${widget.creditCard.number}',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                _expensesList(creditCardExpenses, context),
+                _totalExpenses(creditCardRepository, creditCardExpenses),
+              ],
             ),
-            SizedBox(
-              height: 50,
-              child: ListTile(
-                title: const Text(
-                  'Card number',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                trailing: Text(
-                  '**** **** **** ${widget.creditCard.number}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-              ),
-            ),
-            _expensesList(creditCardExpenses, context),
-            _totalExpenses(creditCardRepository, creditCardExpenses),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -123,14 +131,15 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
     return Stack(
       children: [
         Positioned(
-          top: MediaQuery.of(context).size.height * 0.58,
+          top: MediaQuery.of(context).size.height * 0.57,
           right: 20,
           child: Opacity(
             opacity: 0.2,
             child: Image.asset(
               widget.creditCard.cardType.logo,
-              height: 50,
-              width: 50,
+              height: 60,
+              width: 60,
+              color: Colors.white,
             ),
           ),
         ),
@@ -309,19 +318,19 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                         },
                       ),
                       ActionButton(
-                        text: 'Eliminar',
+                        text: 'Delete',
                         color: Colors.red,
                         onPressed: () {
                           Navigator.of(context).pop();
                           showDialog<WalletAlertDialog>(
                             context: context,
                             builder: (_) => WalletAlertDialog(
-                              title: 'Eliminar tarjeta',
+                              title: 'Delete card',
                               content: const Text(
-                                '¿Estás seguro que deseas eliminar esta tarjeta?',
+                                'Are you sure you want to delete this card?',
                                 style: TextStyle(color: Colors.white),
                               ),
-                              primaryActionTitle: 'Eliminar',
+                              primaryActionTitle: 'Delete',
                               onPressed: () {
                                 Navigator.of(context).pop();
                                 context.read<CreditCardBloc>().add(
@@ -409,7 +418,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
           });
         },
         child: const Text(
-          'Pagar',
+          'Pay',
           style: TextStyle(
             fontSize: 16,
             color: Colors.white,

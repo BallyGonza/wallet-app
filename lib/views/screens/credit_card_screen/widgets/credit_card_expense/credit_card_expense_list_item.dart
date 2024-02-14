@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/views/views.dart';
 
 class CreditCardExpenseListItem extends StatefulWidget {
   const CreditCardExpenseListItem({
@@ -127,67 +128,63 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
           backgroundColor: colorCards,
           context: context,
           builder: (context) {
-            return Padding(
-              padding: const EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  DescriptionItem(
-                    title: 'Categoria',
-                    icon: widget.transaction.category.icon,
-                    iconColor: widget.transaction.category.iconColor,
-                    backgroundColor:
-                        widget.transaction.category.backgroundColor,
-                    description: widget.transaction.category.name,
-                    transaction: widget.transaction,
-                    onTap: () {},
-                  ),
-                  DescriptionItem(
-                    title: 'Monto',
-                    icon: 'assets/icons/coin.png',
-                    backgroundColor: yellow,
-                    description: arg.format(widget.transaction.amount),
-                    descriptionColor: widget.transaction.category.isIncome
-                        ? incomeColor
-                        : expenseColor,
-                    transaction: widget.transaction,
-                    onTap: () {},
-                  ),
-                  DescriptionItem(
-                    title: 'Fecha',
-                    icon: 'assets/icons/calendar.png',
-                    backgroundColor: white,
-                    description: dateFormat.format(widget.transaction.date),
-                    transaction: widget.transaction,
-                    onTap: () {},
-                  ),
-                  DescriptionItem(
-                    title: 'Note',
-                    icon: 'assets/icons/pencil.png',
-                    backgroundColor: white,
-                    description: widget.transaction.note.isEmpty
-                        ? 'None'
-                        : widget.transaction.note,
-                    transaction: widget.transaction,
-                    onTap: () {},
-                  ),
-                  const Spacer(),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        backgroundColor: expenseColor,
-                      ),
-                      onPressed: widget.onPressDelete,
-                      child: const Text(
-                        'Delete',
-                        style: TextStyle(fontSize: 16),
-                      ),
+            return SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  children: [
+                    DescriptionItem(
+                      title: 'Categoria',
+                      icon: widget.transaction.category.icon,
+                      iconColor: widget.transaction.category.iconColor,
+                      backgroundColor:
+                          widget.transaction.category.backgroundColor,
+                      description: widget.transaction.category.name,
+                      transaction: widget.transaction,
+                      onTap: () {},
                     ),
-                  ),
-                ],
+                    DescriptionItem(
+                      title: 'Monto',
+                      icon: 'assets/icons/coin.png',
+                      backgroundColor: yellow,
+                      description: arg.format(widget.transaction.amount),
+                      descriptionColor: widget.transaction.category.isIncome
+                          ? incomeColor
+                          : expenseColor,
+                      transaction: widget.transaction,
+                      onTap: () {},
+                    ),
+                    DescriptionItem(
+                      title: 'Fecha',
+                      icon: 'assets/icons/calendar.png',
+                      backgroundColor: white,
+                      description: dateFormat.format(widget.transaction.date),
+                      transaction: widget.transaction,
+                      onTap: () {},
+                    ),
+                    DescriptionItem(
+                      title: 'Note',
+                      icon: 'assets/icons/pencil.png',
+                      backgroundColor: white,
+                      description: widget.transaction.note.isEmpty
+                          ? 'None'
+                          : widget.transaction.note,
+                      transaction: widget.transaction,
+                      onTap: () {},
+                    ),
+                    const Spacer(),
+                    ActionButton(
+                      text: 'Delete',
+                      onPressed: () {
+                        setState(() {
+                          widget.onPressDelete();
+                        });
+                      },
+                      color: Colors.red,
+                    ),
+                  ],
+                ),
               ),
             );
           },

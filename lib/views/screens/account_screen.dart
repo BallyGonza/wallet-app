@@ -76,14 +76,14 @@ class _AccountScreenState extends State<AccountScreen> {
         child: Stack(
           children: [
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.66,
+              top: MediaQuery.of(context).size.height * 0.65,
               right: 20,
               child: Opacity(
                 opacity: 0.2,
                 child: Image.asset(
                   widget.account.institution.logo,
-                  height: 50,
-                  width: 50,
+                  height: 70,
+                  width: 70,
                   color: widget.account.institution.name == 'Efectivo' ||
                           widget.account.institution.name == 'Ahorros'
                       ? Colors.green
@@ -335,19 +335,19 @@ class _AccountScreenState extends State<AccountScreen> {
                         color: Colors.purple,
                       ),
                       ActionButton(
-                        text: 'Eliminar',
+                        text: 'Delete',
                         color: Colors.red,
                         onPressed: () {
                           Navigator.of(context).pop();
                           showDialog<WalletAlertDialog>(
                             context: context,
                             builder: (_) => WalletAlertDialog(
-                              title: 'Eliminar cuenta',
+                              title: 'Delete account',
                               content: const Text(
-                                '¿Estás seguro que deseas eliminar esta cuenta?',
+                                'Are you sure you want to delete this account?',
                                 style: TextStyle(color: Colors.white),
                               ),
-                              primaryActionTitle: 'Eliminar',
+                              primaryActionTitle: 'Delete',
                               onPressed: () {
                                 setState(() {
                                   context.read<AccountBloc>().add(
