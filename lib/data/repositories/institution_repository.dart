@@ -16,6 +16,9 @@ List<InstitutionModel> defaultInstitutions = [
   hsbcInstitution,
   naranjaXInstitution,
   bbvaInstitution,
+  santanderInstitution,
+  provinciaInstitution,
+  nacionInstitution,
   pago24Institution,
   pedidosYaInstitution,
   nubizInstitution,
@@ -27,6 +30,9 @@ List<InstitutionModel> defaultBankInstitutions = [
   hsbcInstitution,
   naranjaXInstitution,
   galiciaInstitution,
+  santanderInstitution,
+  provinciaInstitution,
+  nacionInstitution,
 ];
 
 List<InstitutionModel> defaultCardTypes = [
@@ -117,7 +123,7 @@ InstitutionModel naranjaXInstitution = InstitutionModel(
 );
 
 InstitutionModel galiciaInstitution = InstitutionModel(
-  id: 7,
+  id: 8,
   name: 'Galicia',
   icon: 'assets/icons/institutions/galicia/galicia_icon.png',
   logo: 'assets/icons/institutions/galicia/galicia_logo.png',
@@ -129,7 +135,7 @@ InstitutionModel galiciaInstitution = InstitutionModel(
 );
 
 InstitutionModel prexInstitution = InstitutionModel(
-  id: 8,
+  id: 9,
   name: 'Prex',
   icon: 'assets/icons/institutions/prex/prex_icon.png',
   logo: 'assets/icons/institutions/prex/prex_logo.png',
@@ -138,7 +144,7 @@ InstitutionModel prexInstitution = InstitutionModel(
 );
 
 InstitutionModel americanExpressInstitution = InstitutionModel(
-  id: 9,
+  id: 10,
   name: 'American Express',
   icon: 'assets/icons/institutions/american_express/american_express_icon.png',
   logo: 'assets/icons/institutions/american_express/american_express_logo.png',
@@ -147,7 +153,7 @@ InstitutionModel americanExpressInstitution = InstitutionModel(
 );
 
 InstitutionModel pago24Institution = InstitutionModel(
-  id: 10,
+  id: 11,
   name: 'Pago 24',
   icon: 'assets/icons/institutions/pago_24/pago_24_icon.png',
   logo: 'assets/icons/institutions/pago_24/pago_24_logo.png',
@@ -156,7 +162,7 @@ InstitutionModel pago24Institution = InstitutionModel(
 );
 
 InstitutionModel pedidosYaInstitution = InstitutionModel(
-  id: 11,
+  id: 12,
   name: 'Pedidos Ya',
   icon: 'assets/icons/institutions/pedidos_ya/pedidos_ya_icon.png',
   logo: 'assets/icons/institutions/pedidos_ya/pedidos_ya_logo.png',
@@ -165,10 +171,37 @@ InstitutionModel pedidosYaInstitution = InstitutionModel(
 );
 
 InstitutionModel nubizInstitution = InstitutionModel(
-  id: 12,
+  id: 13,
   name: 'Nubiz',
   icon: 'assets/icons/institutions/nubiz/nubiz_icon.png',
   logo: 'assets/icons/institutions/nubiz/nubiz_logo.png',
   backgroundColor: nubizColor,
   logoColor: nubizColor,
+);
+
+InstitutionModel santanderInstitution = InstitutionModel(
+  id: 14,
+  name: 'Santander',
+  icon: 'assets/icons/institutions/santander/santander_icon.png',
+  logo: 'assets/icons/institutions/santander/santander_logo.png',
+  backgroundColor: white,
+  logoColor: red,
+);
+
+InstitutionModel provinciaInstitution = InstitutionModel(
+  id: 15,
+  name: 'Provincia',
+  icon: 'assets/icons/institutions/provincia/provincia_icon.png',
+  logo: 'assets/icons/institutions/provincia/provincia_logo.png',
+  backgroundColor: white,
+  logoColor: green,
+);
+
+InstitutionModel nacionInstitution = InstitutionModel(
+  id: 16,
+  name: 'Nación',
+  icon: 'assets/icons/institutions/nacion/nacion_icon.png',
+  logo: 'assets/icons/institutions/nacion/nacion_logo.png',
+  backgroundColor: white,
+  logoColor: blue,
 );

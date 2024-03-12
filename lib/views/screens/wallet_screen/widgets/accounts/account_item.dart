@@ -72,11 +72,11 @@ class _AccountItemState extends State<AccountItem> {
             if (widget.account.description != null) ...[
               const SizedBox(width: 4),
               Text(
-                widget.account.description!,
+                '- ${widget.account.description!}',
                 style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 12,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.normal,
                   fontStyle: FontStyle.italic,
                 ),
               ),

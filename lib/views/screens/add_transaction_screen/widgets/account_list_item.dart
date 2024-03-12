@@ -16,10 +16,17 @@ class AccountListItem extends StatefulWidget {
 
 class _AccountListItemState extends State<AccountListItem> {
   late UserRepository userRepository;
+  late AccountRepository accountRepository;
+  late double balance;
 
   @override
   void initState() {
     userRepository = context.read<UserRepository>();
+    accountRepository = context.read<AccountRepository>();
+    balance = accountRepository.getBalanceOfAccount(
+      account: widget.account,
+      date: DateTime.now(),
+    );
     super.initState();
   }
 
@@ -42,24 +49,37 @@ class _AccountListItemState extends State<AccountListItem> {
             width: 25,
           ),
         ),
-        title: Text(
-          widget.account.name,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
+        title: Text.rich(
+          TextSpan(
+            text: widget.account.name,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+              fontSize: 14,
+            ),
+            children: [
+              if (widget.account.description == null)
+                const TextSpan(text: '')
+              else
+                TextSpan(
+                  text: ' - ${widget.account.description}',
+                  style: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.grey,
+                    fontSize: 14,
+                  ),
+                ),
+            ],
           ),
         ),
-        subtitle: widget.account.description != null
-            ? Text(
-                widget.account.description!,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12,
-                  fontWeight: FontWeight.normal,
-                ),
-              )
-            : null,
+        subtitle: Text(
+          arg.format(balance),
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 14,
+          ),
+        ),
       ),
     );
   }

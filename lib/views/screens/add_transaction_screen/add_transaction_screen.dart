@@ -182,10 +182,8 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                               return Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: SizedBox(
-                                  height: widget._title == 'Ingreso'
-                                      ? MediaQuery.of(context).size.height *
-                                          0.65
-                                      : widget._categories.length * 65,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.6,
                                   child: ListView.builder(
                                     physics: const BouncingScrollPhysics(),
                                     itemCount: widget._categories.length,
@@ -279,7 +277,8 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                               return Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: SizedBox(
-                                  height: widget.user.accounts.length * 85.0,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.6,
                                   child: ListView.builder(
                                     physics: const BouncingScrollPhysics(),
                                     itemCount: widget.user.accounts.length,

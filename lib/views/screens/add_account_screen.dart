@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
-import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
 import 'package:wallet_app/views/views.dart';
 
 class AddAccountScreen extends StatefulWidget {
@@ -47,140 +46,59 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
         ),
       ),
       bottomNavigationBar: _saveButton(context),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                color: colorCards,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+      body: Padding(
+        padding: const EdgeInsets.all(8),
+        child: ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          itemCount: defaultInstitutions.length,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                setState(() {
+                  _selectedInstitution = defaultInstitutions[index];
+                });
+              },
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color:
+                        _selectedInstitution.id == defaultInstitutions[index].id
+                            ? primaryColor!
+                            : Colors.transparent,
+                    width: 2,
+                  ),
+                ),
+                child: InstitutionListItem(
+                  institution: defaultInstitutions[index],
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: ListView(
-                  children: [
-                    WalletListTile(
-                      leading: CircleAvatar(
-                        backgroundColor:
-                            Color(_selectedInstitution.backgroundColor),
-                        child: Image(
-                          image: AssetImage(_selectedInstitution.icon),
-                          height: 25,
-                          width: 25,
-                        ),
-                      ),
-                      content: const Text(
-                        'Cuenta',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      subtitle: Text(
-                        _selectedInstitution.name,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.grey,
-                        ),
-                      ),
-                      onTap: () {
-                        FocusScope.of(context).unfocus();
-                        showModalBottomSheet<Padding>(
-                          isScrollControlled: true,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
-                            ),
-                          ),
-                          backgroundColor: colorCards,
-                          context: context,
-                          builder: (context) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: SizedBox(
-                                height: defaultInstitutions.length * 70,
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: ListView.builder(
-                                        physics: const BouncingScrollPhysics(),
-                                        itemCount: defaultInstitutions.length,
-                                        itemBuilder: (context, index) {
-                                          return InkWell(
-                                            enableFeedback: false,
-                                            onTap: () {
-                                              setState(() {
-                                                _selectedInstitution =
-                                                    defaultInstitutions[index];
-                                              });
-                                              Navigator.pop(context);
-                                            },
-                                            child: InstitutionListItem(
-                                              institution:
-                                                  defaultInstitutions[index],
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
+            );
+          },
+        ),
       ),
     );
   }
 
   BottomAppBar _saveButton(BuildContext context) {
     return BottomAppBar(
-      elevation: 0,
       color: colorCards,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(bottom: 16),
-            width: MediaQuery.of(context).size.width - 32,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                backgroundColor: primaryColor,
-              ),
-              onPressed: () {
-                final account = AccountModel(
-                  id: DateTime.now().millisecondsSinceEpoch,
-                  institution: _selectedInstitution,
-                  name: _selectedInstitution.name,
-                );
-                context.read<AccountBloc>().add(AccountEvent.add(account));
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        child: ActionButton(
+          color: primaryColor!,
+          onPressed: () {
+            final account = AccountModel(
+              id: DateTime.now().millisecondsSinceEpoch,
+              institution: _selectedInstitution,
+              name: _selectedInstitution.name,
+            );
+            context.read<AccountBloc>().add(AccountEvent.add(account));
 
-                Navigator.pop(context);
-              },
-              child: const Text(
-                'Save',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-        ],
+            Navigator.pop(context);
+          },
+          text: 'Save',
+        ),
       ),
     );
   }

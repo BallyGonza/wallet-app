@@ -166,7 +166,8 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                               return Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: SizedBox(
-                                  height: widget.user.accounts.length * 80.0,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.6,
                                   child: ListView.builder(
                                     physics: const BouncingScrollPhysics(),
                                     itemCount: widget.user.accounts.length,
@@ -252,7 +253,8 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                               return Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: SizedBox(
-                                  height: widget.user.accounts.length * 80.0,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.6,
                                   child: ListView.builder(
                                     physics: const BouncingScrollPhysics(),
                                     itemCount: widget.user.accounts.length,

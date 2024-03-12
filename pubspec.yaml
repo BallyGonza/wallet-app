@@ -90,6 +90,9 @@ flutter:
     - assets/icons/institutions/visa/
     - assets/icons/institutions/nubiz/
     - assets/icons/institutions/pedidos_ya/
+    - assets/icons/institutions/santander/
+    - assets/icons/institutions/provincia/
+    - assets/icons/institutions/nacion/
     - assets/images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

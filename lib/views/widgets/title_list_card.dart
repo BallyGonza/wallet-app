@@ -44,6 +44,7 @@ class TitleListCard extends StatelessWidget {
                   width: 30,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      enableFeedback: false,
                       alignment: Alignment.centerLeft,
                       backgroundColor: Colors.transparent,
                       elevation: 0,
