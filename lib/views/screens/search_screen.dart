@@ -29,8 +29,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final searchController = TextEditingController();
-
     return SafeArea(
       child: BlocBuilder<SearchBarBloc, SearchBarState>(
         builder: (context, state) {
@@ -58,22 +56,6 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 child: Column(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      height: 60,
-                      child: SearchBar(
-                        surfaceTintColor: MaterialStateColor.resolveWith(
-                          (states) => colorCards,
-                        ),
-                        hintText: 'Search',
-                        controller: searchController,
-                        onChanged: (value) {
-                          context.read<SearchBarBloc>().add(
-                                SearchBarSearchEvent(value),
-                              );
-                        },
-                      ),
-                    ),
                     Expanded(
                       child: ListView.builder(
                         physics: const BouncingScrollPhysics(),

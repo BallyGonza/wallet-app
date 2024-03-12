@@ -49,8 +49,12 @@ class _CreditCardItemState extends State<CreditCardItem> {
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
           color: widget.creditCard.cardType.name == 'Visa'
-              ? Color(widget.creditCard.institution.visaCardColor!)
-              : Color(widget.creditCard.institution.masterCardColor!),
+              ? Color(
+                  widget.creditCard.institution.visaCardColor ?? 0xFF000000,
+                )
+              : Color(
+                  widget.creditCard.institution.masterCardColor ?? 0xFF000000,
+                ),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Column(

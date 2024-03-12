@@ -23,6 +23,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final PageController _pageController = PageController();
+  final TextEditingController searchController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
   int _currentIndex = 0;
 
@@ -32,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: walletAppTheme.scaffoldBackgroundColor,
       bottomNavigationBar: _buildBottomNavBar(),
       floatingActionButton: _buildDialButton(context),
-      appBar: _currentIndex == 2 ? null : _buildAppBar(),
+      appBar: _currentIndex == 2 ? _searchBar() : _buildAppBar(),
       body: PageView(
         controller: _pageController,
         onPageChanged: (index) {
@@ -118,6 +119,27 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  AppBar _searchBar() {
+    return AppBar(
+      title: Container(
+        padding: const EdgeInsets.all(10),
+        height: 60,
+        child: SearchBar(
+          surfaceTintColor: MaterialStateColor.resolveWith(
+            (states) => colorCards,
+          ),
+          hintText: 'Search',
+          controller: searchController,
+          onChanged: (value) {
+            context.read<SearchBarBloc>().add(
+                  SearchBarSearchEvent(value),
+                );
+          },
+        ),
       ),
     );
   }

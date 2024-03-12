@@ -115,7 +115,8 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                               return Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: SizedBox(
-                                  height: defaultBankInstitutions.length * 90,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.6,
                                   child: Column(
                                     children: [
                                       Expanded(
@@ -199,7 +200,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                               return Padding(
                                 padding: const EdgeInsets.all(8),
                                 child: SizedBox(
-                                  height: defaultCardTypes.length * 90,
+                                  height: defaultCardTypes.length * 70,
                                   child: Column(
                                     children: [
                                       Expanded(
