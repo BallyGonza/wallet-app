@@ -12,7 +12,7 @@ part of 'credit_card_event.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CreditCardEvent {
@@ -148,7 +148,7 @@ class _$CreditCardInitialEventImpl implements CreditCardInitialEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreditCardInitialEventImpl);
@@ -314,7 +314,7 @@ class _$CreditCardAddEventImpl implements CreditCardAddEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreditCardAddEventImpl &&
@@ -496,7 +496,7 @@ class _$CreditCardRemoveEventImpl implements CreditCardRemoveEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreditCardRemoveEventImpl &&
@@ -691,7 +691,7 @@ class _$CreditCardAddTransactionEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreditCardAddTransactionEventImpl &&
@@ -893,7 +893,7 @@ class _$CreditCardRemoveTransactionEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreditCardRemoveTransactionEventImpl &&
@@ -1083,7 +1083,7 @@ class _$CreditCardUpdateEventImpl implements CreditCardUpdateEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreditCardUpdateEventImpl &&
@@ -1271,7 +1271,7 @@ class _$CreditCardPayEventImpl implements CreditCardPayEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreditCardPayEventImpl &&
