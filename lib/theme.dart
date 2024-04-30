@@ -8,6 +8,7 @@ ThemeData walletAppTheme = ThemeData(
   primaryColorLight: Colors.white,
   primaryColorDark: Colors.white,
   colorScheme: const ColorScheme.light(),
+  fontFamily: GoogleFonts.mavenPro().fontFamily,
   textTheme: GoogleFonts.mavenProTextTheme(
     const TextTheme(
       displaySmall: TextStyle(
