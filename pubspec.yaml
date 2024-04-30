@@ -104,8 +104,8 @@ flutter:
   fonts:
     - family: Maven Pro
       fonts:
-        - asset: fonts/MavenPro-Regular.ttf
-        - asset: fonts/MavenPro-Bold.ttf
+        - asset: assets/fonts/MavenPro-Regular.ttf
+        - asset: assets/fonts/MavenPro-Bold.ttf
           weight: 700
   #         style: italic
   #   - family: Trajan Pro
