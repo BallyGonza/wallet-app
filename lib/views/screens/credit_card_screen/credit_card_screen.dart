@@ -114,7 +114,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
     return Expanded(
       child: Container(
         decoration: const BoxDecoration(
-          color: colorCards,
+          color: secondaryColor,
           borderRadius: BorderRadius.all(
             Radius.circular(20),
           ),
@@ -219,7 +219,7 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
         IconButton(
           onPressed: () {
             showModalBottomSheet<SizedBox>(
-              backgroundColor: appBackgroundColor,
+              backgroundColor: primaryColor,
               constraints: const BoxConstraints(
                 maxHeight: 180,
               ),

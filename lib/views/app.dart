@@ -26,14 +26,12 @@ class HomeBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // BlocBuilder is used to build the UI based on UserBloc state
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
         return state.maybeWhen(
           orElse: () => const Center(child: CircularProgressIndicator()),
           error: (message) => Center(child: Text(message)),
           loaded: (user) {
-            // AnnotatedRegion is used to change the system UI overlay style
             return AnnotatedRegion<SystemUiOverlayStyle>(
               value: const SystemUiOverlayStyle(
                 systemNavigationBarColor: Colors.transparent,

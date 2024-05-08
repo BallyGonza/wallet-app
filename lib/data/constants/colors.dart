@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-const appBackgroundColor = Color(0xff18171E);
-const colorCards = Color(0xff1C1C1E);
+const primaryColor = Color(0xff18171E);
+const secondaryColor = Color(0xff1C1C1E);
+final accentColor = Colors.indigo[300];
 
 // colors
 final green = const Color(0xFF159F48).value;
@@ -47,6 +48,3 @@ const expenseColor = Colors.red;
 
 // transfer color
 const transferColor = Colors.blue;
-
-// theme colors
-final primaryColor = Colors.indigo[300];

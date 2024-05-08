@@ -125,7 +125,7 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
               topRight: Radius.circular(30),
             ),
           ),
-          backgroundColor: colorCards,
+          backgroundColor: secondaryColor,
           context: context,
           builder: (context) {
             return SizedBox(

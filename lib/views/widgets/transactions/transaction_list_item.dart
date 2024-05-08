@@ -69,7 +69,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                   top: Radius.circular(20),
                 ),
               ),
-              backgroundColor: appBackgroundColor,
+              backgroundColor: primaryColor,
               context: context,
               builder: (context) {
                 return Container(
@@ -375,7 +375,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
           topRight: Radius.circular(30),
         ),
       ),
-      backgroundColor: colorCards,
+      backgroundColor: secondaryColor,
       context: context,
       builder: (context) {
         return Padding(
@@ -421,7 +421,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
           topRight: Radius.circular(30),
         ),
       ),
-      backgroundColor: colorCards,
+      backgroundColor: secondaryColor,
       context: context,
       builder: (context) {
         return Padding(

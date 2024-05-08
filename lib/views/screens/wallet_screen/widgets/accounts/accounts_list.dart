@@ -24,7 +24,7 @@ class AccountsList extends StatelessWidget {
           loaded: (accounts) => Container(
             height: accounts.isEmpty ? 100 : accounts.length * 73.0,
             decoration: const BoxDecoration(
-              color: colorCards,
+              color: secondaryColor,
               borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
             child: accounts.isEmpty

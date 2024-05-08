@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wallet_app/data/constants/constants.dart';
 import 'package:wallet_app/data/data.dart';
 
 ThemeData walletAppTheme = ThemeData(
-  useMaterial3: false,
-  primaryColor: Colors.white,
-  primaryColorLight: Colors.white,
-  primaryColorDark: Colors.white,
-  colorScheme: const ColorScheme.light(),
+  scaffoldBackgroundColor: primaryColor,
+  colorScheme: ColorScheme.fromSeed(seedColor: primaryColor).copyWith(
+    primary: primaryColor,
+    secondary: secondaryColor,
+    surfaceTint: primaryColor,
+  ),
+  primaryColor: primaryColor,
   fontFamily: 'Maven Pro',
   textTheme: GoogleFonts.mavenProTextTheme(
     const TextTheme(
@@ -16,58 +19,29 @@ ThemeData walletAppTheme = ThemeData(
       ),
     ),
   ),
-  buttonTheme: const ButtonThemeData(
-    colorScheme: ColorScheme.light(
-      primary: Colors.white,
-    ),
-  ),
-  dialogTheme: const DialogTheme(
-    backgroundColor: appBackgroundColor,
-    surfaceTintColor: appBackgroundColor,
-    titleTextStyle: TextStyle(
-      color: Colors.white,
-    ),
-  ),
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.white,
-      foregroundColor: Colors.white,
-      textStyle: const TextStyle(
-        color: Colors.white,
-      ),
-    ),
-  ),
   appBarTheme: const AppBarTheme(
-    color: appBackgroundColor,
+    backgroundColor: primaryColor,
     titleTextStyle: TextStyle(
       color: Colors.white,
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Maven Pro',
     ),
     centerTitle: true,
-    elevation: 0,
     iconTheme: IconThemeData(
       color: Colors.white,
     ),
   ),
-  scaffoldBackgroundColor: appBackgroundColor,
-  datePickerTheme: const DatePickerThemeData(
-    todayBackgroundColor: MaterialStatePropertyAll(appBackgroundColor),
-    confirmButtonStyle: ButtonStyle(
-      foregroundColor: MaterialStatePropertyAll(appBackgroundColor),
-    ),
-    cancelButtonStyle: ButtonStyle(
-      foregroundColor: MaterialStatePropertyAll(appBackgroundColor),
-    ),
-    rangePickerSurfaceTintColor: Colors.white,
-    backgroundColor: Colors.white,
-    surfaceTintColor: Colors.white,
+  floatingActionButtonTheme: FloatingActionButtonThemeData(
+    backgroundColor: accentColor,
   ),
-  cardTheme: const CardTheme(
-    surfaceTintColor: appBackgroundColor,
-    color: appBackgroundColor,
+  dividerTheme: const DividerThemeData(
+    color: Colors.transparent,
+    thickness: 0.5,
   ),
-  bottomSheetTheme: const BottomSheetThemeData(
-    surfaceTintColor: appBackgroundColor,
-    backgroundColor: appBackgroundColor,
-    modalBackgroundColor: appBackgroundColor,
+  bottomAppBarTheme: const BottomAppBarTheme(
+    elevation: 0,
+    color: secondaryColor,
   ),
+  cardColor: Colors.transparent,
 );

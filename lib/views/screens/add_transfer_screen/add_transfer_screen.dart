@@ -95,7 +95,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                  color: colorCards,
+                  color: secondaryColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
@@ -160,7 +160,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                                 topRight: Radius.circular(30),
                               ),
                             ),
-                            backgroundColor: colorCards,
+                            backgroundColor: secondaryColor,
                             context: context,
                             builder: (context) {
                               return Padding(
@@ -247,7 +247,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                                 topRight: Radius.circular(30),
                               ),
                             ),
-                            backgroundColor: colorCards,
+                            backgroundColor: secondaryColor,
                             context: context,
                             builder: (context) {
                               return Padding(
@@ -372,7 +372,7 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
   BottomAppBar _saveButton(BuildContext context) {
     return BottomAppBar(
       elevation: 0,
-      color: colorCards,
+      color: secondaryColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

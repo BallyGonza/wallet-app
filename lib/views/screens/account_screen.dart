@@ -67,8 +67,9 @@ class _AccountScreenState extends State<AccountScreen> {
   Expanded _listOfTransactions(BuildContext context) {
     return Expanded(
       child: Container(
+        margin: const EdgeInsets.only(left: 10, right: 10),
         decoration: const BoxDecoration(
-          color: colorCards,
+          color: secondaryColor,
           borderRadius: BorderRadius.all(
             Radius.circular(20),
           ),
@@ -215,7 +216,7 @@ class _AccountScreenState extends State<AccountScreen> {
         IconButton(
           onPressed: () {
             showModalBottomSheet<SizedBox>(
-              backgroundColor: appBackgroundColor,
+              backgroundColor: primaryColor,
               constraints: const BoxConstraints(
                 maxHeight: 250,
               ),
@@ -311,7 +312,7 @@ class _AccountScreenState extends State<AccountScreen> {
                             ),
                           );
                         },
-                        color: Colors.purple,
+                        color: accentColor!,
                       ),
                       ActionButton(
                         text: 'Delete',

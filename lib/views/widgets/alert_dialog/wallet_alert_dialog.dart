@@ -19,7 +19,7 @@ class WalletAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      backgroundColor: appBackgroundColor,
+      backgroundColor: primaryColor,
       title: Text(
         title,
         style: const TextStyle(

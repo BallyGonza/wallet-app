@@ -19,30 +19,29 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      elevation: 1,
-      currentIndex: widget.currentIndex,
-      onTap: (index) {
+    return NavigationBar(
+      selectedIndex: widget.currentIndex,
+      onDestinationSelected: (index) {
         setState(() {
           widget.onTap(index);
         });
       },
-      backgroundColor: colorCards,
-      selectedItemColor: Colors.white,
-      unselectedItemColor: Colors.grey,
-      items: const [
-        BottomNavigationBarItem(
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+      indicatorColor: accentColor,
+      backgroundColor: secondaryColor,
+      destinations: const [
+        NavigationDestination(
           icon: FaIcon(
             FontAwesomeIcons.wallet,
             size: 20,
           ),
           label: 'Wallet',
         ),
-        BottomNavigationBarItem(
+        NavigationDestination(
           icon: FaIcon(FontAwesomeIcons.list, size: 20),
           label: 'Transactions',
         ),
-        BottomNavigationBarItem(
+        NavigationDestination(
           icon: FaIcon(FontAwesomeIcons.magnifyingGlass, size: 20),
           label: 'Search',
         ),

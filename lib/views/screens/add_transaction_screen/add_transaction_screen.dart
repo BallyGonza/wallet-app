@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transaction_screen/widgets/widgets.dart';
+import 'package:wallet_app/views/views.dart';
 
 class AddTransactionScreen extends StatefulWidget {
   AddTransactionScreen.income({
@@ -125,7 +126,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                  color: colorCards,
+                  color: secondaryColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
@@ -176,7 +177,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                 topRight: Radius.circular(30),
                               ),
                             ),
-                            backgroundColor: colorCards,
+                            backgroundColor: secondaryColor,
                             context: context,
                             builder: (context) {
                               return Padding(
@@ -271,7 +272,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                                 topRight: Radius.circular(30),
                               ),
                             ),
-                            backgroundColor: colorCards,
+                            backgroundColor: secondaryColor,
                             context: context,
                             builder: (context) {
                               return Padding(
@@ -380,52 +381,39 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   BottomAppBar _saveButton(BuildContext context) {
     return BottomAppBar(
       elevation: 0,
-      color: colorCards,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width - 32,
-            margin: const EdgeInsets.only(bottom: 16),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                backgroundColor: widget._color,
+      padding: const EdgeInsets.all(16),
+      color: secondaryColor,
+      child: ActionButton(
+        color: widget._color,
+        onPressed: () {
+          if (_amountController.text == '') {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Please enter an amount'),
               ),
-              onPressed: () {
-                if (_amountController.text == '') {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Please enter an amount'),
-                    ),
-                  );
-                  return;
-                }
+            );
+            return;
+          }
 
-                final amount = double.parse(
-                  _amountController.text.replaceAll(RegExp('[,]'), '.'),
-                );
-                arg.format(amount);
-                final transaction = TransactionModel(
-                  id: DateTime.now().millisecondsSinceEpoch,
-                  note: _noteController.text,
-                  amount: amount,
-                  category: _selectedCategory,
-                  date: _selectedDateTime,
-                );
-                widget.onPressed(
-                  widget.selectedAccount,
-                  transaction,
-                );
+          final amount = double.parse(
+            _amountController.text.replaceAll(RegExp('[,]'), '.'),
+          );
+          arg.format(amount);
+          final transaction = TransactionModel(
+            id: DateTime.now().millisecondsSinceEpoch,
+            note: _noteController.text,
+            amount: amount,
+            category: _selectedCategory,
+            date: _selectedDateTime,
+          );
+          widget.onPressed(
+            widget.selectedAccount,
+            transaction,
+          );
 
-                Navigator.pop(context);
-              },
-              child: const Text('Save', style: TextStyle(fontSize: 16)),
-            ),
-          ),
-        ],
+          Navigator.pop(context);
+        },
+        text: 'Save',
       ),
     );
   }

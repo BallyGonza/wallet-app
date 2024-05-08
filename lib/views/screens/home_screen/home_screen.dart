@@ -129,9 +129,6 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(10),
         height: 60,
         child: SearchBar(
-          surfaceTintColor: MaterialStateColor.resolveWith(
-            (states) => colorCards,
-          ),
           hintText: 'Search',
           controller: searchController,
           onChanged: (value) {
@@ -162,9 +159,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   SpeedDial _buildDialButton(BuildContext context) {
     return SpeedDial(
-      elevation: 0,
-      overlayOpacity: 0,
-      backgroundColor: primaryColor,
+      overlayColor: Colors.black.withOpacity(0.5),
+      backgroundColor: accentColor,
       activeIcon: Icons.close,
       spacing: 3,
       direction: SpeedDialDirection.left,
@@ -346,7 +342,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
       child: const FaIcon(
         FontAwesomeIcons.plus,
-        color: Colors.white,
       ),
     );
   }

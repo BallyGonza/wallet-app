@@ -18,13 +18,12 @@ class TitleListCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Row(
-              children: [
-                Text(
+          Row(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(left: 5),
+                child: Text(
                   title,
                   style: const TextStyle(
                     color: Colors.grey,
@@ -32,33 +31,17 @@ class TitleListCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Spacer(),
-                Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                  ),
-                  height: 20,
-                  width: 30,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      enableFeedback: false,
-                      alignment: Alignment.centerLeft,
-                      backgroundColor: Colors.transparent,
-                      elevation: 0,
-                    ),
-                    onPressed: onTap,
-                    child: const FaIcon(
-                      FontAwesomeIcons.plus,
-                      color: Colors.grey,
-                      size: 15,
-                    ),
-                  ),
+              ),
+              const Spacer(),
+              IconButton(
+                onPressed: onTap,
+                icon: const FaIcon(
+                  FontAwesomeIcons.plus,
+                  color: Colors.grey,
+                  size: 15,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           widget,
         ],

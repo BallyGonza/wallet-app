@@ -31,7 +31,7 @@ class CreditCardList extends StatelessWidget {
                       ? Container(
                           height: 100,
                           decoration: const BoxDecoration(
-                            color: colorCards,
+                            color: secondaryColor,
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
                           child: const Center(
@@ -45,7 +45,9 @@ class CreditCardList extends StatelessWidget {
                             ),
                           ),
                         )
-                      : ListView.builder(
+                      : ListView.separated(
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(width: 20),
                           physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemCount: creditCards.length,

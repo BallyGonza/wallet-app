@@ -79,7 +79,7 @@ class _WalletScreenState extends State<WalletScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Container(
         decoration: const BoxDecoration(
-          color: colorCards,
+          color: secondaryColor,
           borderRadius: BorderRadius.all(
             Radius.circular(20),
           ),

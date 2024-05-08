@@ -31,11 +31,11 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
+        margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
         decoration: const BoxDecoration(
-          color: colorCards,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
+          color: secondaryColor,
+          borderRadius: BorderRadius.all(
+            Radius.circular(20),
           ),
         ),
         child: BlocBuilder<AccountBloc, AccountState>(

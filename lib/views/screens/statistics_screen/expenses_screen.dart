@@ -42,7 +42,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       bottomNavigationBar: Container(
         height: MediaQuery.of(context).size.height * 0.1,
         decoration: const BoxDecoration(
-          color: colorCards,
+          color: secondaryColor,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),

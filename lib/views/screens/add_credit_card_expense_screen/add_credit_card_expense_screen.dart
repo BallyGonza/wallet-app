@@ -114,7 +114,7 @@ class _AddCreditCardExpenseScreenState
             Expanded(
               child: Container(
                 decoration: const BoxDecoration(
-                  color: colorCards,
+                  color: secondaryColor,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
@@ -162,7 +162,7 @@ class _AddCreditCardExpenseScreenState
                               return Container(
                                 height: widget.user.creditCards.length * 120,
                                 decoration: const BoxDecoration(
-                                  color: colorCards,
+                                  color: secondaryColor,
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(30),
                                     topRight: Radius.circular(30),
@@ -243,7 +243,7 @@ class _AddCreditCardExpenseScreenState
                               return Container(
                                 height: defaultExpenseCategories.length * 90,
                                 decoration: const BoxDecoration(
-                                  color: colorCards,
+                                  color: secondaryColor,
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(30),
                                     topRight: Radius.circular(30),
@@ -510,7 +510,7 @@ class _AddCreditCardExpenseScreenState
   BottomAppBar _saveButton(BuildContext context) {
     return BottomAppBar(
       elevation: 0,
-      color: colorCards,
+      color: secondaryColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

@@ -50,9 +50,18 @@ class _SearchScreenState extends State<SearchScreen> {
               );
             },
             loaded: (loadedTransactions) {
-              return DecoratedBox(
+              return Container(
+                margin: const EdgeInsets.only(
+                  left: 10,
+                  right: 10,
+                  bottom: 10,
+                  top: 1,
+                ),
                 decoration: const BoxDecoration(
-                  color: colorCards,
+                  color: secondaryColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
                 ),
                 child: Column(
                   children: [
