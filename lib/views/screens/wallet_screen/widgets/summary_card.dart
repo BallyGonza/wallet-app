@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/views/screens/wallet_screen/widgets/widgets.dart';
 
 class SummaryCard extends StatelessWidget {
   SummaryCard.income({
@@ -58,13 +59,10 @@ class SummaryCard extends StatelessWidget {
               const SizedBox(
                 height: 1,
               ),
-              Text(
-                arg.format(amount),
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  color: color,
-                ),
+              Number(
+                number: amount,
+                size: 16,
+                color: color,
               ),
             ],
           ),

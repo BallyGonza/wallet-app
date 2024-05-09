@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/views/screens/wallet_screen/widgets/widgets.dart';
 
 class AccountsBalance extends StatefulWidget {
   const AccountsBalance({
@@ -42,17 +43,11 @@ class _AccountsBalanceState extends State<AccountsBalance> {
           SizedBox(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
-              child: Text(
-                arg.format(
-                  userRepository.getBalance(
-                    accounts: widget.accounts,
-                    date: widget.date,
-                  ),
-                ),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
+              child: Number(
+                size: 30,
+                number: userRepository.getBalance(
+                  accounts: widget.accounts,
+                  date: widget.date,
                 ),
               ),
             ),

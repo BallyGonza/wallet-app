@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/views/screens/wallet_screen/widgets/widgets.dart';
 import 'package:wallet_app/views/views.dart';
 
 class AccountItem extends StatefulWidget {
@@ -83,35 +84,11 @@ class _AccountItemState extends State<AccountItem> {
             ],
           ],
         ),
-        subtitle: Text(
-          widget.account.name == 'Ahorros'
-              ? dolar.format(
-                  accountRepository.getBalanceOfAccount(
-                    account: widget.account,
-                    date: widget.date,
-                  ),
-                )
-              : arg.format(
-                  accountRepository.getBalanceOfAccount(
-                    account: widget.account,
-                    date: widget.date,
-                  ),
-                ),
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: accountRepository.getBalanceOfAccount(
-                      account: widget.account,
-                      date: widget.date,
-                    ) >
-                    0
-                ? Colors.green
-                : accountRepository.getBalanceOfAccount(
-                          account: widget.account,
-                          date: widget.date,
-                        ) <
-                        0
-                    ? Colors.red
-                    : Colors.grey,
+        subtitle: Number(
+          size: 14,
+          number: accountRepository.getBalanceOfAccount(
+            account: widget.account,
+            date: widget.date,
           ),
         ),
         trailing: const Icon(
