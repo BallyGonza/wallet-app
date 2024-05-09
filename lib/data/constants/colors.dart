@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const primaryColor = Color(0xff18171E);
 const secondaryColor = Color(0xff1C1C1E);
-final accentColor = Colors.indigo[300];
+const accentColor = Color(0xff7AB2B2);
 
 // colors
 final green = const Color(0xFF159F48).value;
