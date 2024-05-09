@@ -32,7 +32,7 @@ ThemeData walletAppTheme = ThemeData(
       color: Colors.white,
     ),
   ),
-  floatingActionButtonTheme: FloatingActionButtonThemeData(
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
     backgroundColor: accentColor,
   ),
   dividerTheme: const DividerThemeData(

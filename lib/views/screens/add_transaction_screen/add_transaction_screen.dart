@@ -306,9 +306,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         },
                       ),
                       WalletListTile(
-                        leading: CircleAvatar(
+                        leading: const CircleAvatar(
                           backgroundColor: primaryColor,
-                          child: const FaIcon(
+                          child: FaIcon(
                             FontAwesomeIcons.calendar,
                             color: Colors.white,
                             size: 20,
@@ -341,9 +341,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                         },
                       ),
                       WalletListTile(
-                        leading: CircleAvatar(
+                        leading: const CircleAvatar(
                           backgroundColor: primaryColor,
-                          child: const FaIcon(
+                          child: FaIcon(
                             FontAwesomeIcons.fileSignature,
                             color: Colors.white,
                             size: 20,

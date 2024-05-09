@@ -286,7 +286,7 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
       color: primaryColor,
       padding: const EdgeInsets.all(16),
       child: ActionButton(
-        color: accentColor!,
+        color: accentColor,
         onPressed: () {
           if (_noteController.text == '' || _numberController.text == '') {
             ScaffoldMessenger.of(context).showSnackBar(

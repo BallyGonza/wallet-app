@@ -312,7 +312,7 @@ class _AccountScreenState extends State<AccountScreen> {
                             ),
                           );
                         },
-                        color: accentColor!,
+                        color: accentColor,
                       ),
                       ActionButton(
                         text: 'Delete',

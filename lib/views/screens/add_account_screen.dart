@@ -76,7 +76,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
       padding: const EdgeInsets.all(16),
       color: primaryColor,
       child: ActionButton(
-        color: accentColor!,
+        color: accentColor,
         onPressed: () {
           final account = AccountModel(
             id: DateTime.now().millisecondsSinceEpoch,
