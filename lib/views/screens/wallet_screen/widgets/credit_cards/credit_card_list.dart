@@ -47,7 +47,7 @@ class CreditCardList extends StatelessWidget {
                         )
                       : ListView.separated(
                           separatorBuilder: (context, index) =>
-                              const SizedBox(width: 20),
+                              const SizedBox(width: 10),
                           physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemCount: creditCards.length,

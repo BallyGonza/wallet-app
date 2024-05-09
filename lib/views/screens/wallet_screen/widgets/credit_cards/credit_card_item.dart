@@ -31,50 +31,42 @@ class _CreditCardItemState extends State<CreditCardItem> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      enableFeedback: false,
       onTap: () {
-        Navigator.of(context).push(
+        Navigator.push(
+          context,
           MaterialPageRoute<CreditCardScreen>(
-            builder: (_) => CreditCardScreen(
-              user: widget.user,
+            builder: (context) => CreditCardScreen(
               creditCard: widget.creditCard,
+              user: widget.user,
               date: widget.date,
             ),
           ),
         );
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 10,
+      child: Card(
+        elevation: 5,
+        color: Color(widget.creditCard.institution.logoColor).withOpacity(0.8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
         ),
-        decoration: BoxDecoration(
-          color: widget.creditCard.cardType.name == 'Visa'
-              ? Color(
-                  widget.creditCard.institution.visaCardColor ?? 0xFF000000,
-                )
-              : Color(
-                  widget.creditCard.institution.masterCardColor ?? 0xFF000000,
-                ),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.86,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image(
-                    image: AssetImage(widget.creditCard.institution.logo),
-                    height: 50,
-                    width: 50,
-                    color: widget.creditCard.institution.name == 'BBVA'
-                        ? Colors.white
-                        : null,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+          child: SizedBox(
+            width: 270,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor:
+                        Color(widget.creditCard.institution.backgroundColor),
+                    child: Image.asset(
+                      widget.creditCard.institution.icon,
+                      width: 30,
+                      height: 30,
+                    ),
                   ),
-                  Text(
+                  trailing: Text(
                     arg.format(
                       creditCardRepository.getTotalOfCreditCard(
                         widget.creditCard,
@@ -82,44 +74,30 @@ class _CreditCardItemState extends State<CreditCardItem> {
                       ),
                     ),
                     style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
                       color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ),
-                ],
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  '**** **** **** ${widget.creditCard.number}',
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.white,
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    widget.creditCard.name,
+                ListTile(
+                  leading: Text(
+                    '**** **** **** ${widget.creditCard.number}',
                     style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.normal,
                       color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Image(
-                    image: AssetImage(widget.creditCard.cardType.logo),
-                    height: 50,
-                    width: 50,
+                  trailing: Image.asset(
+                    widget.creditCard.cardType.icon,
                     color: Colors.white,
+                    width: 30,
+                    height: 30,
                   ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
