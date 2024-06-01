@@ -60,8 +60,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
         noteController = TextEditingController(text: widget.transaction.note);
         selectedCategory = widget.transaction.category;
         isIncome = widget.transaction.category.isIncome;
-        return InkWell(
-          enableFeedback: false,
+        return GestureDetector(
           onTap: () {
             showModalBottomSheet<Container>(
               shape: const RoundedRectangleBorder(
@@ -97,7 +96,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                               widget.transaction,
                             )!
                             .institution
-                            .logo,
+                            .icon,
                         backgroundColor: account!.institution.backgroundColor,
                         description: account!.name,
                         transaction: widget.transaction,
@@ -164,120 +163,102 @@ class _TransactionListItemState extends State<TransactionListItem> {
               },
             );
           },
-          child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: Row(
-              children: [
-                CircleAvatar(
-                  backgroundColor:
-                      Color(widget.transaction.category.backgroundColor),
-                  child: Image(
-                    image: AssetImage(widget.transaction.category.icon),
-                    height: 25,
-                    width: 25,
-                    color: widget.transaction.category.iconColor == null
-                        ? null
-                        : Color(widget.transaction.category.iconColor!),
+          child: ListTile(
+            leading: CircleAvatar(
+              backgroundColor:
+                  Color(widget.transaction.category.backgroundColor),
+              child: Image(
+                image: AssetImage(widget.transaction.category.icon),
+                height: 25,
+                width: 25,
+                color: widget.transaction.category.iconColor == null
+                    ? null
+                    : Color(widget.transaction.category.iconColor!),
+              ),
+            ),
+            title: Text.rich(
+              TextSpan(
+                text: widget.transaction.category.name,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+                children: [
+                  const WidgetSpan(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 5,
+                        vertical: 1,
+                      ),
+                      child: FaIcon(
+                        FontAwesomeIcons.arrowRight,
+                        size: 10,
+                        color: Colors.grey,
+                      ),
+                    ),
                   ),
-                ),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text.rich(
-                      TextSpan(
-                        text: widget.transaction.category.name,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        children: [
-                          const WidgetSpan(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 5,
-                                vertical: 1,
-                              ),
-                              child: FaIcon(
-                                FontAwesomeIcons.arrowRight,
-                                size: 10,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
-                          TextSpan(
-                            text: account!.name,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          if (account!.description != null)
-                            TextSpan(
-                              text: ' / ${account!.description}',
-                              style: const TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
-                                fontStyle: FontStyle.italic,
-                                fontWeight: FontWeight.normal,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            )
-                          else
-                            const TextSpan(),
-                        ],
-                      ),
+                  TextSpan(
+                    text: account!.name,
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
                     ),
-                    if (widget.transaction.note == '')
-                      const SizedBox.shrink()
-                    else
-                      Column(
-                        children: [
-                          const SizedBox(height: 1),
-                          Text(
-                            widget.transaction.note,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
-                              fontStyle: FontStyle.italic,
-                            ),
-                          ),
-                          const SizedBox(height: 1),
-                        ],
-                      ),
-                  ],
-                ),
-                const Spacer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      widget.transaction.category.name == 'Dolares'
-                          ? dolar.format(widget.transaction.amount)
-                          : arg.format(widget.transaction.amount),
-                      style: TextStyle(
-                        color: widget.transaction.category.isIncome
-                            ? Colors.green
-                            : Colors.red,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 3,
-                    ),
-                    Text(
-                      dateFormat.format(widget.transaction.date),
+                  ),
+                  if (account!.description != null)
+                    TextSpan(
+                      text: ' / ${account!.description}',
                       style: const TextStyle(
                         color: Colors.grey,
-                        fontSize: 9,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.normal,
+                        overflow: TextOverflow.ellipsis,
                       ),
+                    )
+                  else
+                    const TextSpan(),
+                ],
+              ),
+            ),
+            subtitle: widget.transaction.note == ''
+                ? const SizedBox.shrink()
+                : Text(
+                    widget.transaction.note,
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.italic,
                     ),
-                  ],
+                  ),
+            trailing: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  widget.transaction.category.name == 'Dolares'
+                      ? dolar.format(widget.transaction.amount)
+                      : arg.format(widget.transaction.amount),
+                  style: TextStyle(
+                    color: widget.transaction.category.isIncome
+                        ? Colors.green
+                        : Colors.red,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 3,
+                ),
+                Text(
+                  dateFormat.format(widget.transaction.date),
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 9,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
@@ -320,7 +301,9 @@ class _TransactionListItemState extends State<TransactionListItem> {
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      lastDate: DateTime.now(),
+      lastDate: DateTime.now().add(
+        const Duration(days: 365),
+      ),
       firstDate: DateTime.now().subtract(
         const Duration(days: 365),
       ),
@@ -511,47 +494,35 @@ class DescriptionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      enableFeedback: false,
       onTap: () {
         onTap?.call();
       },
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  backgroundColor: Color(backgroundColor),
-                  child: Image(
-                    image: AssetImage(icon),
-                    height: 25,
-                    width: 25,
-                    color: iconColor != null ? Color(iconColor!) : null,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            Text(
-              description,
-              style: TextStyle(
-                color: descriptionColor ?? Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.normal,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-          ],
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Color(backgroundColor),
+          child: Image(
+            image: AssetImage(icon),
+            height: 25,
+            width: 25,
+            color: iconColor != null ? Color(iconColor!) : null,
+          ),
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        trailing: Text(
+          description,
+          style: TextStyle(
+            color: descriptionColor ?? Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.normal,
+            fontStyle: FontStyle.italic,
+          ),
         ),
       ),
     );

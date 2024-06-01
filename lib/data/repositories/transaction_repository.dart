@@ -6,6 +6,11 @@ class TransactionRepository {
   final UserRepository _userRepository = UserRepository();
   UserModel? _cachedUser;
 
+  static const String dolares = 'Dolares';
+  static const String ahorros = 'Ahorros';
+  static const String transferIn = 'Transfer in';
+  static const String transferOut = 'Transfer out';
+
   Future<UserModel> _getUser() async {
     _cachedUser ??= await _userRepository.getUser();
     return _cachedUser!;
@@ -35,30 +40,9 @@ class TransactionRepository {
   ) async {
     final user = await _getUser();
     if (newAccount != null) {
-      user.accounts
-          .firstWhere((a) => a.id == account.id)
-          .transactions
-          .remove(transaction);
-      user.accounts
-          .firstWhere((a) => a.id == newAccount.id)
-          .transactions
-          .add(transaction);
-      await _userRepository.saveUser(user);
-      _cachedUser = null;
-      return;
-    }
-    for (final accountToUpdate in user.accounts) {
-      if (accountToUpdate.id == account.id) {
-        for (final transactionToUpdate in accountToUpdate.transactions) {
-          if (transactionToUpdate.id == transaction.id) {
-            transactionToUpdate
-              ..amount = transaction.amount
-              ..category = transaction.category
-              ..date = transaction.date
-              ..note = transaction.note;
-          }
-        }
-      }
+      _moveTransaction(user, account, newAccount, transaction);
+    } else {
+      _updateTransactionInSameAccount(user, account, transaction);
     }
     await _userRepository.saveUser(user);
     _cachedUser = null;
@@ -69,41 +53,27 @@ class TransactionRepository {
     TransactionModel transaction,
   ) async {
     final user = await _getUser();
-    for (final accountToUpdate in user.accounts) {
-      if (accountToUpdate.id == account.id) {
-        accountToUpdate.transactions.remove(transaction);
-      }
-    }
+    final accountToUpdate = user.accounts.firstWhere((a) => a.id == account.id);
+    accountToUpdate.transactions.remove(transaction);
     await _userRepository.saveUser(user);
     _cachedUser = null;
   }
 
-  // Filter transactions by name
   List<TransactionModel> filterTransactionsByName({
     required String name,
     required List<TransactionModel> transactions,
   }) {
-    return transactions
-        .where(
-          (transaction) => transaction.category.name
-              .toLowerCase()
-              .contains(name.toLowerCase()),
-        )
-        .toList();
+    final query = name.toLowerCase();
+    return transactions.where((transaction) {
+      return transaction.category.name.toLowerCase().contains(query);
+    }).toList();
   }
 
   List<TransactionModel> getAllTransactionsByDate(
     List<AccountModel> accounts,
     DateTime date,
   ) {
-    return accounts
-        .expand((account) => account.transactions)
-        .where(
-          (transaction) =>
-              transaction.date.month == date.month &&
-              transaction.date.year == date.year,
-        )
-        .toList();
+    return _filterTransactionsByDate(accounts, date);
   }
 
   List<TransactionModel> getTransactionsByDay(
@@ -111,19 +81,9 @@ class TransactionRepository {
     DateTime date,
     int day,
   ) {
-    final transactions = <TransactionModel>[];
-    for (final account in accounts) {
-      transactions.addAll(account.transactions);
-    }
-    transactions.sort((a, b) => a.date.compareTo(b.date));
-    return transactions
-        .where(
-          (transaction) =>
-              transaction.date.day == day &&
-              transaction.date.month == date.month &&
-              transaction.date.year == date.year,
-        )
-        .toList();
+    return _filterTransactionsByDate(accounts, date).where((transaction) {
+      return transaction.date.day == day;
+    }).toList();
   }
 
   double getTotalIncomeByDay(
@@ -131,18 +91,7 @@ class TransactionRepository {
     DateTime date,
     int day,
   ) {
-    return transactions
-        .where(
-          (transaction) =>
-              transaction.category.isIncome &&
-              transaction.date.day == day &&
-              transaction.date.month == date.month &&
-              transaction.date.year == date.year &&
-              transaction.category.name != 'Dolares' &&
-              transaction.category.name != 'Ahorros' &&
-              transaction.category.name != 'Transfer in',
-        )
-        .fold(0, (total, transaction) => total + transaction.amount);
+    return _calculateTotalByDay(transactions, date, day, isIncome: true);
   }
 
   double getTotalExpensesByDay(
@@ -150,45 +99,23 @@ class TransactionRepository {
     DateTime date,
     int day,
   ) {
-    var total = 0.0;
-    for (final transaction in transactions) {
-      if (!transaction.category.isIncome &&
-          transaction.date.day == day &&
-          transaction.date.month == date.month &&
-          transaction.date.year == date.year &&
-          transaction.category.name != 'Transfer out') {
-        total += transaction.amount;
-      }
-    }
-
-    return total;
+    return _calculateTotalByDay(transactions, date, day, isIncome: false);
   }
 
-  // Get the account of a transaction
   AccountModel? getAccountOfTransaction(
     List<AccountModel> accounts,
     TransactionModel transaction,
   ) {
-    for (final account in accounts) {
-      if (account.transactions.contains(transaction)) {
-        return account;
-      }
-    }
-    return null;
+    return accounts.firstWhere((account) {
+      return account.transactions.contains(transaction);
+    });
   }
 
-  // Get the transactions of an account by date
   List<TransactionModel> getTransactionsByAccount(
     AccountModel account,
     DateTime date,
   ) {
-    return account.transactions
-        .where(
-          (transaction) =>
-              transaction.date.month == date.month &&
-              transaction.date.year == date.year,
-        )
-        .toList()
+    return _filterTransactionsByDate([account], date)
       ..sort((a, b) => b.date.compareTo(a.date));
   }
 
@@ -196,15 +123,11 @@ class TransactionRepository {
     DateTime date,
     List<TransactionModel> transactions,
   ) {
-    final filteredTransactions = <TransactionModel>[];
-    for (final transaction in transactions) {
-      if (transaction.date.month == date.month &&
-          transaction.date.year == date.year) {
-        filteredTransactions.add(transaction);
-      }
-    }
-    filteredTransactions.sort((a, b) => b.date.compareTo(a.date));
-    return filteredTransactions;
+    return transactions.where((transaction) {
+      return transaction.date.month == date.month &&
+          transaction.date.year == date.year;
+    }).toList()
+      ..sort((a, b) => b.date.compareTo(a.date));
   }
 
   List<TransactionModel> getTransactionsByCategory(
@@ -212,17 +135,11 @@ class TransactionRepository {
     List<TransactionModel> transactions,
     DateTime date,
   ) {
-    return transactions.fold<List<TransactionModel>>(
-      [],
-      (filteredTransactions, transaction) {
-        if (transaction.category.id == category.id &&
-            transaction.date.month == date.month &&
-            transaction.date.year == date.year) {
-          filteredTransactions.add(transaction);
-        }
-        return filteredTransactions;
-      },
-    );
+    return transactions.where((transaction) {
+      return transaction.category.id == category.id &&
+          transaction.date.month == date.month &&
+          transaction.date.year == date.year;
+    }).toList();
   }
 
   List<TransactionModel> getTransactionsByInstitution(
@@ -230,21 +147,70 @@ class TransactionRepository {
     UserModel user,
     DateTime date,
   ) {
-    return user.accounts
-        .fold<List<TransactionModel>>(
-          [],
-          (institutionTransactions, account) {
-            if (account.institution.id == institution.id) {
-              institutionTransactions.addAll(account.transactions);
-            }
-            return institutionTransactions;
-          },
-        )
-        .where(
-          (transaction) =>
-              transaction.date.month == date.month &&
-              transaction.date.year == date.year,
-        )
-        .toList();
+    return user.accounts.where((account) {
+      return account.institution.id == institution.id;
+    }).expand((account) {
+      return account.transactions;
+    }).where((transaction) {
+      return transaction.date.month == date.month &&
+          transaction.date.year == date.year;
+    }).toList();
+  }
+
+  List<TransactionModel> _filterTransactionsByDate(
+    List<AccountModel> accounts,
+    DateTime date,
+  ) {
+    return accounts.expand((account) {
+      return account.transactions;
+    }).where((transaction) {
+      return transaction.date.month == date.month &&
+          transaction.date.year == date.year;
+    }).toList();
+  }
+
+  void _moveTransaction(
+    UserModel user,
+    AccountModel oldAccount,
+    AccountModel newAccount,
+    TransactionModel transaction,
+  ) {
+    user.accounts
+        .firstWhere((a) => a.id == oldAccount.id)
+        .transactions
+        .remove(transaction);
+    user.accounts
+        .firstWhere((a) => a.id == newAccount.id)
+        .transactions
+        .add(transaction);
+  }
+
+  void _updateTransactionInSameAccount(
+    UserModel user,
+    AccountModel account,
+    TransactionModel transaction,
+  ) {
+    final accountToUpdate = user.accounts.firstWhere((a) => a.id == account.id);
+    accountToUpdate.transactions.firstWhere((t) => t.id == transaction.id)
+      ..amount = transaction.amount
+      ..category = transaction.category
+      ..date = transaction.date
+      ..note = transaction.note;
+  }
+
+  double _calculateTotalByDay(
+    List<TransactionModel> transactions,
+    DateTime date,
+    int day, {
+    required bool isIncome,
+  }) {
+    return transactions.where((transaction) {
+      return transaction.category.isIncome == isIncome &&
+          transaction.date.day == day &&
+          transaction.date.month == date.month &&
+          transaction.date.year == date.year &&
+          ![dolares, ahorros, transferIn, transferOut]
+              .contains(transaction.category.name);
+    }).fold(0, (total, transaction) => total + transaction.amount);
   }
 }

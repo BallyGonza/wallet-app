@@ -6,6 +6,7 @@ import 'package:wallet_app/services/services.dart';
 import 'package:wallet_app/views/views.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await HiveService.initializeHive();
   LocalizationService().setupLocalization();
 

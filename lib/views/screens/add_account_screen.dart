@@ -35,38 +35,23 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
         ),
       ),
       bottomNavigationBar: _saveButton(context),
-      body: SafeArea(
-        child: Expanded(
-          child: Container(
-            margin: const EdgeInsets.only(left: 10, right: 10),
-            padding: const EdgeInsets.all(10),
-            decoration: const BoxDecoration(
-              color: secondaryColor,
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),
-              ),
+      body: ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        itemCount: defaultInstitutions.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                _selectedInstitution = defaultInstitutions[index];
+              });
+            },
+            child: InstitutionListItem(
+              color: primaryColor,
+              selected: _selectedInstitution == defaultInstitutions[index],
+              institution: defaultInstitutions[index],
             ),
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemCount: defaultInstitutions.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _selectedInstitution = defaultInstitutions[index];
-                    });
-                  },
-                  child: InstitutionListItem(
-                    color: primaryColor,
-                    selected:
-                        _selectedInstitution == defaultInstitutions[index],
-                    institution: defaultInstitutions[index],
-                  ),
-                );
-              },
-            ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

@@ -1,5 +1,3 @@
-// ignore_for_file: cascade_invocations
-
 import 'package:wallet_app/data/data.dart';
 
 class CreditCardRepository {
@@ -24,16 +22,14 @@ class CreditCardRepository {
   Future<void> addCreditCard(CreditCardModel creditCard) async {
     final user = await _getUser();
     user.creditCards.add(creditCard);
-    await userRepository.saveUser(user);
-    _cachedUser = null;
+    await _saveUserAndClearCache(user);
   }
 
   // Remove a credit card
   Future<void> removeCreditCard(CreditCardModel creditCard) async {
     final user = await _getUser();
     user.creditCards.remove(creditCard);
-    await userRepository.saveUser(user);
-    _cachedUser = null;
+    await _saveUserAndClearCache(user);
   }
 
   // Update a credit card
@@ -42,8 +38,7 @@ class CreditCardRepository {
     user.creditCards
         .firstWhere((element) => element.id == creditCard.id)
         .update(creditCard);
-    await userRepository.saveUser(user);
-    _cachedUser = null;
+    await _saveUserAndClearCache(user);
   }
 
   // Add a transaction to a credit card
@@ -56,8 +51,7 @@ class CreditCardRepository {
         .firstWhere((element) => element.id == creditCard.id)
         .expenses
         .add(creditCardTransaction);
-    await userRepository.saveUser(user);
-    _cachedUser = null;
+    await _saveUserAndClearCache(user);
   }
 
   // Remove a transaction from a credit card
@@ -70,8 +64,7 @@ class CreditCardRepository {
         .firstWhere((element) => element.id == creditCard.id)
         .expenses
         .remove(creditCardTransaction);
-    await userRepository.saveUser(user);
-    _cachedUser = null;
+    await _saveUserAndClearCache(user);
   }
 
   // Get total of credit card by date
@@ -79,11 +72,9 @@ class CreditCardRepository {
     CreditCardModel creditCard,
     DateTime date,
   ) {
-    var total = 0.0;
-    for (final transaction in creditCard.expenses) {
-      total += transaction.amount / transaction.cuotas;
-    }
-    return total;
+    return creditCard.expenses.fold(0, (total, transaction) {
+      return total + transaction.amount / transaction.cuotas;
+    });
   }
 
   // Get transactions by credit card
@@ -91,25 +82,32 @@ class CreditCardRepository {
     CreditCardModel creditCard,
     DateTime date,
   ) {
-    var creditCardExpenses = creditCard.expenses;
-    creditCardExpenses.sort((a, b) => b.date.compareTo(a.date));
-    return creditCardExpenses = creditCardExpenses
-        .where(
-          (element) =>
-              element.cuotas >=
-              (element.date.difference(date).inDays / 30).round().abs(),
-        )
-        .toList();
+    final sortedExpenses =
+        List<CreditCardTransactionModel>.from(creditCard.expenses)
+          ..sort((a, b) => b.date.compareTo(a.date));
+
+    return sortedExpenses.where((element) {
+      final monthsDifference =
+          (element.date.difference(date).inDays / 30).round().abs();
+      return element.cuotas >= monthsDifference;
+    }).toList();
   }
 
   // Pay a credit card
   Future<void> pay(CreditCardModel creditCard, DateTime date) async {
-    final user = await userRepository.getUser();
-    final cuota = (date.month - creditCard.expenses.first.date.month).abs();
+    final user = await _getUser();
+    final monthsDifference =
+        (date.month - creditCard.expenses.first.date.month).abs();
     user.creditCards
         .firstWhere((element) => element.id == creditCard.id)
         .expenses
-        .removeWhere((element) => element.cuotas <= cuota);
+        .removeWhere((element) => element.cuotas <= monthsDifference);
+    await _saveUserAndClearCache(user);
+  }
+
+  // Save user and clear cache
+  Future<void> _saveUserAndClearCache(UserModel user) async {
     await userRepository.saveUser(user);
+    _cachedUser = null;
   }
 }

@@ -32,8 +32,7 @@ class _AccountItemState extends State<AccountItem> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      enableFeedback: false,
+    return GestureDetector(
       onTap: () {
         setState(() {
           Navigator.of(context).push(

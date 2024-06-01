@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-
 import 'package:wallet_app/data/data.dart';
 
 class InstitutionListItem extends StatelessWidget {
   const InstitutionListItem({
     required this.institution,
+    super.key,
     this.selected = false,
     this.color = secondaryColor,
-    super.key,
   });
 
   final InstitutionModel institution;
@@ -25,8 +24,8 @@ class InstitutionListItem extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: Color(institution.backgroundColor),
           radius: 18,
-          child: Image(
-            image: AssetImage(institution.icon),
+          child: Image.asset(
+            institution.icon,
             height: 25,
             width: 25,
           ),

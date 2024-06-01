@@ -90,57 +90,14 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                           color: Colors.grey,
                         ),
                       ),
-                      onTap: () {
-                        FocusScope.of(context).unfocus();
-                        showModalBottomSheet<Padding>(
-                          isScrollControlled: true,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
-                            ),
-                          ),
-                          backgroundColor: secondaryColor,
-                          context: context,
-                          builder: (context) {
-                            return Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: SizedBox(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.6,
-                                child: Expanded(
-                                  child: ListView.builder(
-                                    physics: const BouncingScrollPhysics(),
-                                    itemCount: defaultBankInstitutions.length,
-                                    itemBuilder: (context, index) {
-                                      return GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            _selectedInstitution =
-                                                defaultBankInstitutions[index];
-                                          });
-                                          Navigator.pop(context);
-                                        },
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            vertical: 4,
-                                            horizontal: 8,
-                                          ),
-                                          child: InstitutionListItem(
-                                            color: primaryColor,
-                                            institution:
-                                                defaultBankInstitutions[index],
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        );
-                      },
+                      onTap: () => CustomModalBottomSheet.pickBank(
+                        context,
+                        (institution) {
+                          setState(() {
+                            _selectedInstitution = institution;
+                          });
+                        },
+                      ),
                     ),
                     WalletListTile(
                       leading: CircleAvatar(
@@ -186,35 +143,26 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
                             return Padding(
                               padding: const EdgeInsets.all(8),
                               child: SizedBox(
-                                height: defaultCardTypes.length * 70,
-                                child: Expanded(
-                                  child: ListView.builder(
-                                    physics: const BouncingScrollPhysics(),
-                                    itemCount: defaultCardTypes.length,
-                                    itemBuilder: (context, index) {
-                                      return InkWell(
-                                        enableFeedback: false,
-                                        onTap: () {
-                                          setState(() {
-                                            _selectedCardType =
-                                                defaultCardTypes[index];
-                                          });
-                                          Navigator.pop(context);
-                                        },
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            vertical: 4,
-                                            horizontal: 8,
-                                          ),
-                                          child: InstitutionListItem(
-                                            color: primaryColor,
-                                            institution:
-                                                defaultCardTypes[index],
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
+                                height: defaultCardTypes.length * 80,
+                                child: ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  itemCount: defaultCardTypes.length,
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      enableFeedback: false,
+                                      onTap: () {
+                                        setState(() {
+                                          _selectedCardType =
+                                              defaultCardTypes[index];
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                      child: InstitutionListItem(
+                                        color: primaryColor,
+                                        institution: defaultCardTypes[index],
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
                             );
