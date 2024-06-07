@@ -221,43 +221,38 @@ class _AccountScreenState extends State<AccountScreen> {
   void _showActions(BuildContext context) {
     showModalBottomSheet<SizedBox>(
       backgroundColor: primaryColor,
-      constraints: const BoxConstraints(
-        maxHeight: 250,
-      ),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20),
-        ),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       context: context,
       builder: (_) {
         return SizedBox(
+          height: MediaQuery.of(context).size.height * 0.34,
           width: double.infinity,
           child: Column(
             children: [
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               ActionButton(
-                text: 'Add income',
+                text: 'Agregar ingreso',
                 color: Color(incomeColor.value),
                 onPressed: () => _handleAddIncome(context),
               ),
               ActionButton(
-                text: 'Add expense',
+                text: 'Agregar gasto',
                 color: Color(expenseColor.value),
                 onPressed: () => _handleAddExpense(context),
               ),
               ActionButton(
-                text: 'Add description',
+                text: 'Agregar descripción',
                 onPressed: () => _handleAddDescription(context),
                 color: accentColor,
               ),
               ActionButton(
-                text: 'Delete',
+                text: 'Eliminar',
                 color: Colors.red,
                 onPressed: () => _handleDelete(context),
               ),
+              const SizedBox(height: 10),
             ],
           ),
         );

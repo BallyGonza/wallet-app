@@ -253,7 +253,6 @@ class _AddCreditCardScreenState extends State<AddCreditCardScreen> {
             expenses: [],
           );
           context.read<CreditCardBloc>().add(CreditCardEvent.add(creditCard));
-
           Navigator.pop(context);
         },
         text: 'Save',

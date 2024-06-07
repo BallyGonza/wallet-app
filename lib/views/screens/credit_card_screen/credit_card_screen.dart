@@ -236,7 +236,6 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                         text: 'Add expense',
                         color: Color(expenseColor.value),
                         onPressed: () {
-                          Navigator.of(context).pop();
                           setState(() {
                             Navigator.of(context).push(
                               MaterialPageRoute<AddCreditCardExpenseScreen>(
@@ -266,7 +265,6 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                         text: 'Editar',
                         color: Colors.blue,
                         onPressed: () {
-                          Navigator.of(context).pop();
                           showDialog<void>(
                             context: context,
                             builder: (_) => CustomAlertDialog(
@@ -304,7 +302,6 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                         text: 'Delete',
                         color: Colors.red,
                         onPressed: () {
-                          Navigator.of(context).pop();
                           showDialog<void>(
                             context: context,
                             builder: (_) => CustomAlertDialog(

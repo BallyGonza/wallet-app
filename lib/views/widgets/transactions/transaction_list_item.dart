@@ -57,20 +57,18 @@ class _TransactionListItemState extends State<TransactionListItem> {
         noteController = TextEditingController(text: widget.transaction.note);
         selectedCategory = widget.transaction.category;
         isIncome = widget.transaction.category.isIncome;
-        return GestureDetector(
+        return InkWell(
           onTap: () {
             showModalBottomSheet<Container>(
               shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(20),
-                ),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
               ),
               backgroundColor: primaryColor,
               context: context,
               builder: (context) {
                 return Container(
                   padding: const EdgeInsets.all(8),
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.45,
                   child: Column(
                     children: [
                       DescriptionItem(
@@ -143,13 +141,13 @@ class _TransactionListItemState extends State<TransactionListItem> {
                       ActionButton(
                         text: 'Delete',
                         onPressed: () {
+                          Navigator.pop(context);
                           context.read<AccountBloc>().add(
                                 AccountEvent.removeTransaction(
                                   account!,
                                   widget.transaction,
                                 ),
                               );
-                          Navigator.pop(context);
                         },
                         color: Colors.red,
                       ),
@@ -199,19 +197,17 @@ class _TransactionListItemState extends State<TransactionListItem> {
                 ),
               ],
             ),
-            title: Expanded(
-              child: Row(
-                children: [
-                  Text(
-                    widget.transaction.category.name,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
+            title: Row(
+              children: [
+                Text(
+                  widget.transaction.category.name,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
             subtitle: widget.transaction.note == ''
                 ? null
@@ -225,7 +221,6 @@ class _TransactionListItemState extends State<TransactionListItem> {
                     ),
                   ),
             trailing: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Number(
@@ -240,13 +235,10 @@ class _TransactionListItemState extends State<TransactionListItem> {
                 const SizedBox(
                   height: 3,
                 ),
-                Text(
-                  dateFormat.format(widget.transaction.date),
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 9,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Date(
+                  date: widget.transaction.date,
+                  bold: true,
+                  size: 9,
                 ),
               ],
             ),
@@ -409,6 +401,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
               itemBuilder: (context, index) {
                 return CategoryListItem(
                   onCategoryTap: () {
+                    Navigator.pop(context);
                     setState(() {
                       context.read<AccountBloc>().add(
                             AccountEvent.updateTransaction(
@@ -422,7 +415,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
                             ),
                           );
                     });
-                    Navigator.pop(context);
+
                     Navigator.pop(context);
                   },
                   onSubCategoryTap: (int subIndex) {
@@ -453,66 +446,6 @@ class _TransactionListItemState extends State<TransactionListItem> {
           ),
         );
       },
-    );
-  }
-}
-
-class DescriptionItem extends StatelessWidget {
-  const DescriptionItem({
-    required this.title,
-    required this.icon,
-    required this.backgroundColor,
-    required this.description,
-    required this.transaction,
-    super.key,
-    this.iconColor,
-    this.descriptionColor,
-    this.onTap,
-  });
-
-  final String title;
-  final String icon;
-  final int? iconColor;
-  final int backgroundColor;
-  final String description;
-  final TransactionModel transaction;
-  final Color? descriptionColor;
-  final void Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        onTap?.call();
-      },
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Color(backgroundColor),
-          child: Image(
-            image: AssetImage(icon),
-            height: 25,
-            width: 25,
-            color: iconColor != null ? Color(iconColor!) : null,
-          ),
-        ),
-        title: Text(
-          title,
-          style: const TextStyle(
-            color: Colors.grey,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        trailing: Text(
-          description,
-          style: TextStyle(
-            color: descriptionColor ?? Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.normal,
-            fontStyle: FontStyle.italic,
-          ),
-        ),
-      ),
     );
   }
 }

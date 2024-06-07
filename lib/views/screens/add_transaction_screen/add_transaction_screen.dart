@@ -245,7 +245,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                               color: Colors.grey,
                             ),
                             children: [
-                              if (widget.selectedAccount.description != null)
+                              if (widget.selectedAccount.description != null &&
+                                  widget
+                                      .selectedAccount.description!.isNotEmpty)
                                 TextSpan(
                                   text:
                                       ' / ${widget.selectedAccount.description}',
@@ -351,8 +353,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
 
   BottomAppBar _saveButton(BuildContext context) {
     return BottomAppBar(
-      elevation: 0,
-      padding: const EdgeInsets.all(16),
       color: secondaryColor,
       child: ActionButton(
         color: widget._color,
@@ -381,7 +381,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
             widget.selectedAccount,
             transaction,
           );
-
           Navigator.pop(context);
         },
         text: 'Save',

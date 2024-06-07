@@ -69,7 +69,6 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
             name: _selectedInstitution.name,
           );
           context.read<AccountBloc>().add(AccountEvent.add(account));
-
           Navigator.pop(context);
         },
         text: 'Save',
