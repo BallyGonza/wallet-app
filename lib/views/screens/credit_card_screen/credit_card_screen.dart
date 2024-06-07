@@ -267,16 +267,16 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                         color: Colors.blue,
                         onPressed: () {
                           Navigator.of(context).pop();
-                          showDialog<WalletAlertDialog>(
+                          showDialog<void>(
                             context: context,
-                            builder: (_) => WalletAlertDialog(
+                            builder: (_) => CustomAlertDialog(
                               title: 'Editar tarjeta',
-                              content: WalletDialogTextField(
+                              content: CustomDialogTextField(
                                 controller: numberCardController,
                                 hint: 'Número de tarjeta',
                               ),
                               primaryActionTitle: 'Save',
-                              onPressed: () {
+                              onPrimaryPressed: () {
                                 setState(() {
                                   context.read<CreditCardBloc>().add(
                                         CreditCardEvent.update(
@@ -285,7 +285,8 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                                             cardType:
                                                 widget.creditCard.cardType,
                                             name: widget.creditCard.name,
-                                            number: numberCardController.text,
+                                            number: numberCardController.text
+                                                .trim(),
                                             institution:
                                                 widget.creditCard.institution,
                                             expenses:
@@ -304,16 +305,16 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                         color: Colors.red,
                         onPressed: () {
                           Navigator.of(context).pop();
-                          showDialog<WalletAlertDialog>(
+                          showDialog<void>(
                             context: context,
-                            builder: (_) => WalletAlertDialog(
+                            builder: (_) => CustomAlertDialog(
                               title: 'Delete card',
                               content: const Text(
                                 'Are you sure you want to delete this card?',
                                 style: TextStyle(color: Colors.white),
                               ),
                               primaryActionTitle: 'Delete',
-                              onPressed: () {
+                              onPrimaryPressed: () {
                                 Navigator.of(context).pop();
                                 context.read<CreditCardBloc>().add(
                                       CreditCardEvent.remove(

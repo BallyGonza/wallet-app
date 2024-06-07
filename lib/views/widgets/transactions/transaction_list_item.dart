@@ -257,16 +257,16 @@ class _TransactionListItemState extends State<TransactionListItem> {
   }
 
   void showModifyNoteDialog(BuildContext context) {
-    showDialog<WalletAlertDialog>(
+    showDialog<void>(
       context: context,
-      builder: (_) => WalletAlertDialog(
+      builder: (_) => CustomAlertDialog(
         title: 'Editar nota',
-        content: WalletDialogTextField(
+        content: CustomDialogTextField(
           hint: 'Note',
-          controller: noteController..text,
+          controller: noteController..text.trim(),
         ),
         primaryActionTitle: 'Save',
-        onPressed: () {
+        onPrimaryPressed: () {
           Navigator.of(context).pop();
           setState(() {
             context.read<AccountBloc>().add(
@@ -308,17 +308,17 @@ class _TransactionListItemState extends State<TransactionListItem> {
     });
   }
 
-  Future<WalletAlertDialog?> showEditAmountDialog(BuildContext context) {
-    return showDialog<WalletAlertDialog>(
+  Future<CustomAlertDialog?> showEditAmountDialog(BuildContext context) {
+    return showDialog<CustomAlertDialog>(
       context: context,
-      builder: (_) => WalletAlertDialog(
+      builder: (_) => CustomAlertDialog(
         title: 'Editar monto',
-        content: WalletDialogTextField(
+        content: CustomDialogTextField(
           hint: 'Amount',
-          controller: amountController..text,
+          controller: amountController..text.trim(),
         ),
         primaryActionTitle: 'Save',
-        onPressed: () {
+        onPrimaryPressed: () {
           setState(() {
             context.read<AccountBloc>().add(
                   AccountEvent.updateTransaction(
