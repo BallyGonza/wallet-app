@@ -96,7 +96,7 @@ class _TransactionsListState extends State<TransactionsList> {
 
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 15,
+        horizontal: 10,
       ),
       child: Row(
         children: [
@@ -112,6 +112,7 @@ class _TransactionsListState extends State<TransactionsList> {
           Number(
             number: totalIncome,
             color: incomeColor,
+            bold: true,
             size: 12,
           ),
           const SizedBox(width: 10),
@@ -119,6 +120,7 @@ class _TransactionsListState extends State<TransactionsList> {
             number: totalExpenses,
             size: 12,
             color: expenseColor,
+            bold: true,
           ),
         ],
       ),

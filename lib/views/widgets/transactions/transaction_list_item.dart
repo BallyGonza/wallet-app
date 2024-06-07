@@ -158,7 +158,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
             );
           },
           child: Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
             child: Row(
               children: [
                 _buildAvatarStack(),
@@ -242,7 +242,6 @@ class _TransactionListItemState extends State<TransactionListItem> {
   Widget _buildTrailingColumn() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
-      mainAxisSize: MainAxisSize.min,
       children: [
         _buildAmountDisplay(),
         const SizedBox(height: 3),
