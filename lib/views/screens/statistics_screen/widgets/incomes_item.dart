@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/views/widgets/number.dart';
 
 class IncomeItem extends StatefulWidget {
   const IncomeItem({
@@ -79,26 +80,22 @@ class _IncomeItemState extends State<IncomeItem> with TickerProviderStateMixin {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text(
-                  arg.format(
-                    userRepository.getTotalByCategoryRecursive(
-                      widget.user,
-                      widget.date,
-                      widget.income,
-                    ),
+                Number(
+                  number: userRepository.getTotalByCategoryRecursive(
+                    widget.user,
+                    widget.date,
+                    widget.income,
                   ),
-                  style: TextStyle(
-                    color: userRepository.getTotalByCategoryRecursive(
-                              widget.user,
-                              widget.date,
-                              widget.income,
-                            ) ==
-                            0
-                        ? Colors.grey
-                        : incomeColor,
-                    fontSize: 14,
-                    fontWeight: FontWeight.normal,
-                  ),
+                  size: 14,
+                  color: userRepository.getTotalByCategoryRecursive(
+                            widget.user,
+                            widget.date,
+                            widget.income,
+                          ) ==
+                          0
+                      ? Colors.grey
+                      : incomeColor,
+                  bold: true,
                 ),
                 const SizedBox(
                   width: 10,
@@ -160,26 +157,22 @@ class _IncomeItemState extends State<IncomeItem> with TickerProviderStateMixin {
                               fontWeight: FontWeight.normal,
                             ),
                           ),
-                          trailing: Text(
-                            arg.format(
-                              userRepository.getTotalByCategory(
-                                widget.user,
-                                widget.date,
-                                subCategory,
-                              ),
+                          trailing: Number(
+                            number: userRepository.getTotalByCategory(
+                              widget.user,
+                              widget.date,
+                              subCategory,
                             ),
-                            style: TextStyle(
-                              color: userRepository.getTotalByCategory(
-                                        widget.user,
-                                        widget.date,
-                                        subCategory,
-                                      ) ==
-                                      0
-                                  ? Colors.grey
-                                  : incomeColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                            ),
+                            size: 14,
+                            color: userRepository.getTotalByCategory(
+                                      widget.user,
+                                      widget.date,
+                                      subCategory,
+                                    ) ==
+                                    0
+                                ? Colors.grey
+                                : incomeColor,
+                            bold: true,
                           ),
                         ),
                       ),

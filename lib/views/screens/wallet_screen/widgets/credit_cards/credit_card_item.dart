@@ -66,18 +66,14 @@ class _CreditCardItemState extends State<CreditCardItem> {
                       height: 30,
                     ),
                   ),
-                  trailing: Text(
-                    arg.format(
-                      creditCardRepository.getTotalOfCreditCard(
-                        widget.creditCard,
-                        widget.date,
-                      ),
+                  trailing: Number(
+                    number: creditCardRepository.getTotalOfCreditCard(
+                      widget.creditCard,
+                      widget.date,
                     ),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    size: 12,
+                    color: Colors.white,
+                    bold: true,
                   ),
                 ),
                 ListTile(

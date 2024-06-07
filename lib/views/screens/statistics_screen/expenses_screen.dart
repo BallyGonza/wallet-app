@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
 
 import 'package:wallet_app/views/screens/statistics_screen/widgets/expenses_item.dart';
+import 'package:wallet_app/views/views.dart';
 
 class ExpensesScreen extends StatefulWidget {
   const ExpensesScreen({
@@ -57,13 +58,11 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
               color: Colors.grey,
             ),
           ),
-          trailing: Text(
-            arg.format(total),
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-              color: Colors.grey,
-            ),
+          trailing: Number(
+            number: total,
+            size: 18,
+            bold: true,
+            color: Colors.grey,
           ),
         ),
       ),

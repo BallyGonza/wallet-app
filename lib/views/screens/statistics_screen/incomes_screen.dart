@@ -4,6 +4,8 @@ import 'package:wallet_app/data/data.dart';
 
 import 'package:wallet_app/views/screens/statistics_screen/widgets/widgets.dart';
 
+import 'package:wallet_app/views/views.dart';
+
 class IncomesScreen extends StatefulWidget {
   const IncomesScreen({
     required this.user,
@@ -55,13 +57,11 @@ class _IncomesScreenState extends State<IncomesScreen> {
               color: Colors.grey,
             ),
           ),
-          trailing: Text(
-            arg.format(total),
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-              color: Colors.grey,
-            ),
+          trailing: Number(
+            number: total,
+            size: 18,
+            color: Colors.grey,
+            bold: true,
           ),
         ),
       ),

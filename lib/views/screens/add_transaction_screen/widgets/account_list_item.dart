@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/views/views.dart';
 
 class AccountListItem extends StatefulWidget {
   const AccountListItem({
@@ -73,12 +74,10 @@ class _AccountListItemState extends State<AccountListItem> {
             ],
           ),
         ),
-        subtitle: Text(
-          arg.format(balance),
-          style: const TextStyle(
-            color: Colors.grey,
-            fontSize: 14,
-          ),
+        subtitle: Number(
+          number: balance,
+          size: 14,
+          color: Colors.grey,
         ),
       ),
     );

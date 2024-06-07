@@ -162,15 +162,11 @@ class _AccountScreenState extends State<AccountScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        trailing: Text(
-          widget.account.name == 'Ahorros'
-              ? dolar.format(amount)
-              : arg.format(amount),
-          style: TextStyle(
-            fontSize: 16,
-            color: Color(color),
-            fontWeight: FontWeight.bold,
-          ),
+        trailing: Number(
+          number: amount,
+          size: 16,
+          bold: true,
+          color: Color(color),
         ),
       ),
     );

@@ -182,18 +182,13 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      trailing: Text(
-        arg.format(
-          creditCardRepository.getTotalOfCreditCard(
-            widget.creditCard,
-            widget.date,
-          ),
+      trailing: Number(
+        number: creditCardRepository.getTotalOfCreditCard(
+          widget.creditCard,
+          widget.date,
         ),
-        style: const TextStyle(
-          fontSize: 16,
-          color: expenseColor,
-          fontWeight: FontWeight.bold,
-        ),
+        size: 16,
+        color: expenseColor,
       ),
     );
   }

@@ -1,8 +1,5 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/screens/add_transfer_screen/widgets/widgets.dart';
@@ -164,66 +161,60 @@ class _TransactionListItemState extends State<TransactionListItem> {
             );
           },
           child: ListTile(
-            leading: CircleAvatar(
-              backgroundColor:
-                  Color(widget.transaction.category.backgroundColor),
-              child: Image(
-                image: AssetImage(widget.transaction.category.icon),
-                height: 25,
-                width: 25,
-                color: widget.transaction.category.iconColor == null
-                    ? null
-                    : Color(widget.transaction.category.iconColor!),
-              ),
-            ),
-            title: Text.rich(
-              TextSpan(
-                text: widget.transaction.category.name,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
+            leading: Stack(
+              alignment: Alignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 20,
+                  backgroundColor:
+                      Color(widget.transaction.category.backgroundColor),
+                  child: Image(
+                    image: AssetImage(widget.transaction.category.icon),
+                    height: 20,
+                    width: 20,
+                    color: widget.transaction.category.iconColor == null
+                        ? null
+                        : Color(widget.transaction.category.iconColor!),
+                  ),
                 ),
-                children: [
-                  const WidgetSpan(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 5,
-                        vertical: 1,
-                      ),
-                      child: FaIcon(
-                        FontAwesomeIcons.arrowRight,
-                        size: 10,
-                        color: Colors.grey,
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(),
+                    ),
+                    child: CircleAvatar(
+                      radius: 8,
+                      backgroundColor:
+                          Color(account!.institution.backgroundColor),
+                      child: Image(
+                        image: AssetImage(account!.institution.icon),
+                        height: 13,
+                        width: 13,
                       ),
                     ),
                   ),
-                  TextSpan(
-                    text: account!.name,
+                ),
+              ],
+            ),
+            title: Expanded(
+              child: Row(
+                children: [
+                  Text(
+                    widget.transaction.category.name,
                     style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12,
+                      color: Colors.white,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  if (account!.description != null)
-                    TextSpan(
-                      text: ' / ${account!.description}',
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.normal,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    )
-                  else
-                    const TextSpan(),
                 ],
               ),
             ),
             subtitle: widget.transaction.note == ''
-                ? const SizedBox.shrink()
+                ? null
                 : Text(
                     widget.transaction.note,
                     style: const TextStyle(
@@ -237,17 +228,14 @@ class _TransactionListItemState extends State<TransactionListItem> {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  widget.transaction.category.name == 'Dolares'
-                      ? dolar.format(widget.transaction.amount)
-                      : arg.format(widget.transaction.amount),
-                  style: TextStyle(
-                    color: widget.transaction.category.isIncome
-                        ? Colors.green
-                        : Colors.red,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Number(
+                  number: widget.transaction.amount,
+                  size: 12,
+                  color: widget.transaction.category.isIncome
+                      ? incomeColor
+                      : expenseColor,
+                  bold: true,
+                  isDolars: widget.transaction.category.name == 'Dolares',
                 ),
                 const SizedBox(
                   height: 3,
@@ -487,8 +475,8 @@ class DescriptionItem extends StatelessWidget {
   final int? iconColor;
   final int backgroundColor;
   final String description;
-  final Color? descriptionColor;
   final TransactionModel transaction;
+  final Color? descriptionColor;
   final void Function()? onTap;
 
   @override
