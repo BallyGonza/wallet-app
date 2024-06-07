@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/data/data.dart';
-import 'package:wallet_app/views/screens/wallet_screen/widgets/widgets.dart';
+import 'package:wallet_app/views/views.dart';
 
 class AccountsBalance extends StatefulWidget {
   const AccountsBalance({

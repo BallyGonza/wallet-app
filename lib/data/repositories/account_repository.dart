@@ -6,14 +6,14 @@ class AccountRepository {
 
   final UserRepository _userRepository = UserRepository();
 
-  // get user
+  // Get user
   Future<UserModel> _getUser() async {
     _cachedUser ??= await _userRepository.getUser();
     return _cachedUser!;
   }
 
   Future<List<AccountModel>> getAccounts() async {
-    final user = await _userRepository.getUser();
+    final user = await _getUser();
     return user.accounts;
   }
 
@@ -21,16 +21,14 @@ class AccountRepository {
   Future<void> addAccount(AccountModel account) async {
     final user = await _getUser();
     user.accounts.add(account);
-    await _userRepository.saveUser(user);
-    _cachedUser = null;
+    await _saveUserAndClearCache(user);
   }
 
   // Remove account from user
   Future<void> removeAccount(AccountModel account) async {
     final user = await _getUser();
     user.accounts.remove(account);
-    await _userRepository.saveUser(user);
-    _cachedUser = null;
+    await _saveUserAndClearCache(user);
   }
 
   // Update account from user
@@ -40,39 +38,32 @@ class AccountRepository {
   ) async {
     final user = await _getUser();
     final index = user.accounts.indexOf(account);
-    user.accounts[index] = newAccount;
-    await _userRepository.saveUser(user);
-    _cachedUser = null;
+    if (index != -1) {
+      user.accounts[index] = newAccount;
+      await _saveUserAndClearCache(user);
+    }
   }
 
   double getTotalIncomesByAccount({
     required AccountModel account,
     required DateTime date,
   }) {
-    var income = 0.0;
-    for (final transaction in account.transactions) {
-      if (transaction.category.isIncome &&
-          transaction.date.month <= date.month &&
-          transaction.date.year <= date.year) {
-        income += transaction.amount;
-      }
-    }
-    return income;
+    return _calculateTotalByAccount(
+      account: account,
+      date: date,
+      isIncome: true,
+    );
   }
 
   double getTotalExpensesByAccount({
     required AccountModel account,
     required DateTime date,
   }) {
-    var expenses = 0.0;
-    for (final transaction in account.transactions) {
-      if (!transaction.category.isIncome &&
-          transaction.date.month <= date.month &&
-          transaction.date.year <= date.year) {
-        expenses += transaction.amount;
-      }
-    }
-    return expenses;
+    return _calculateTotalByAccount(
+      account: account,
+      date: date,
+      isIncome: false,
+    );
   }
 
   double getBalanceOfAccount({
@@ -81,16 +72,45 @@ class AccountRepository {
   }) {
     var balance = 0.0;
     for (final transaction in account.transactions) {
-      if (transaction.date.month <= date.month &&
-          transaction.date.year <= date.year) {
-        if (transaction.category.isIncome) {
-          balance += transaction.amount;
-        } else {
-          balance -= transaction.amount;
-        }
+      if (_isTransactionBeforeOrOnDate(transaction, date)) {
+        balance += transaction.category.isIncome
+            ? transaction.amount
+            : -transaction.amount;
       }
     }
     return balance;
+  }
+
+  // Save user and clear cache
+  Future<void> _saveUserAndClearCache(UserModel user) async {
+    await _userRepository.saveUser(user);
+    _cachedUser = null;
+  }
+
+  // Helper method to calculate total income or expenses
+  double _calculateTotalByAccount({
+    required AccountModel account,
+    required DateTime date,
+    required bool isIncome,
+  }) {
+    var total = 0.0;
+    for (final transaction in account.transactions) {
+      if (transaction.category.isIncome == isIncome &&
+          _isTransactionBeforeOrOnDate(transaction, date)) {
+        total += transaction.amount;
+      }
+    }
+    return total;
+  }
+
+  // Helper method to check if transaction date is before or on the given date
+  bool _isTransactionBeforeOrOnDate(
+    TransactionModel transaction,
+    DateTime date,
+  ) {
+    return transaction.date.year < date.year ||
+        (transaction.date.year == date.year &&
+            transaction.date.month <= date.month);
   }
 }
 

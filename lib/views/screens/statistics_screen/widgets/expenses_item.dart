@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:wallet_app/data/data.dart';
+import 'package:wallet_app/views/views.dart';
 
 class ExpenseItem extends StatefulWidget {
   const ExpenseItem({
@@ -83,26 +84,22 @@ class _ExpenseItemState extends State<ExpenseItem>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    arg.format(
-                      userRepository.getTotalByCategoryRecursive(
-                        widget.user,
-                        widget.date,
-                        widget.expense,
-                      ),
+                  Number(
+                    number: userRepository.getTotalByCategoryRecursive(
+                      widget.user,
+                      widget.date,
+                      widget.expense,
                     ),
-                    style: TextStyle(
-                      color: userRepository.getTotalByCategoryRecursive(
-                                widget.user,
-                                widget.date,
-                                widget.expense,
-                              ) ==
-                              0
-                          ? Colors.grey
-                          : expenseColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
+                    size: 14,
+                    color: userRepository.getTotalByCategoryRecursive(
+                              widget.user,
+                              widget.date,
+                              widget.expense,
+                            ) ==
+                            0
+                        ? Colors.grey
+                        : expenseColor,
+                    bold: true,
                   ),
                   const SizedBox(
                     width: 10,
@@ -165,19 +162,14 @@ class _ExpenseItemState extends State<ExpenseItem>
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
-                            trailing: Text(
-                              arg.format(
-                                userRepository.getTotalByCategory(
-                                  widget.user,
-                                  widget.date,
-                                  subCategory,
-                                ),
+                            trailing: Number(
+                              number: userRepository.getTotalByCategory(
+                                widget.user,
+                                widget.date,
+                                subCategory,
                               ),
-                              style: const TextStyle(
-                                color: expenseColor,
-                                fontSize: 14,
-                                fontWeight: FontWeight.normal,
-                              ),
+                              size: 14,
+                              color: expenseColor,
                             ),
                           ),
                         ),

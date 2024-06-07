@@ -182,18 +182,13 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
           fontWeight: FontWeight.bold,
         ),
       ),
-      trailing: Text(
-        arg.format(
-          creditCardRepository.getTotalOfCreditCard(
-            widget.creditCard,
-            widget.date,
-          ),
+      trailing: Number(
+        number: creditCardRepository.getTotalOfCreditCard(
+          widget.creditCard,
+          widget.date,
         ),
-        style: const TextStyle(
-          fontSize: 16,
-          color: expenseColor,
-          fontWeight: FontWeight.bold,
-        ),
+        size: 16,
+        color: expenseColor,
       ),
     );
   }
@@ -241,7 +236,6 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                         text: 'Add expense',
                         color: Color(expenseColor.value),
                         onPressed: () {
-                          Navigator.of(context).pop();
                           setState(() {
                             Navigator.of(context).push(
                               MaterialPageRoute<AddCreditCardExpenseScreen>(
@@ -271,17 +265,16 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                         text: 'Editar',
                         color: Colors.blue,
                         onPressed: () {
-                          Navigator.of(context).pop();
-                          showDialog<WalletAlertDialog>(
+                          showDialog<void>(
                             context: context,
-                            builder: (_) => WalletAlertDialog(
+                            builder: (_) => CustomAlertDialog(
                               title: 'Editar tarjeta',
-                              content: WalletDialogTextField(
+                              content: CustomDialogTextField(
                                 controller: numberCardController,
                                 hint: 'Número de tarjeta',
                               ),
                               primaryActionTitle: 'Save',
-                              onPressed: () {
+                              onPrimaryPressed: () {
                                 setState(() {
                                   context.read<CreditCardBloc>().add(
                                         CreditCardEvent.update(
@@ -290,7 +283,8 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                                             cardType:
                                                 widget.creditCard.cardType,
                                             name: widget.creditCard.name,
-                                            number: numberCardController.text,
+                                            number: numberCardController.text
+                                                .trim(),
                                             institution:
                                                 widget.creditCard.institution,
                                             expenses:
@@ -308,17 +302,16 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                         text: 'Delete',
                         color: Colors.red,
                         onPressed: () {
-                          Navigator.of(context).pop();
-                          showDialog<WalletAlertDialog>(
+                          showDialog<void>(
                             context: context,
-                            builder: (_) => WalletAlertDialog(
+                            builder: (_) => CustomAlertDialog(
                               title: 'Delete card',
                               content: const Text(
                                 'Are you sure you want to delete this card?',
                                 style: TextStyle(color: Colors.white),
                               ),
                               primaryActionTitle: 'Delete',
-                              onPressed: () {
+                              onPrimaryPressed: () {
                                 Navigator.of(context).pop();
                                 context.read<CreditCardBloc>().add(
                                       CreditCardEvent.remove(

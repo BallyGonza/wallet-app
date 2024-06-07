@@ -163,9 +163,9 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: accentColor,
       activeIcon: Icons.close,
       spacing: 3,
-      direction: SpeedDialDirection.left,
       children: [
         SpeedDialChild(
+          shape: const CircleBorder(),
           child: const FaIcon(
             FontAwesomeIcons.plus,
             color: Colors.white,
@@ -207,6 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
         SpeedDialChild(
+          shape: const CircleBorder(),
           child: const FaIcon(
             FontAwesomeIcons.minus,
             color: Colors.white,
@@ -248,6 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
         SpeedDialChild(
+          shape: const CircleBorder(),
           child: const FaIcon(
             FontAwesomeIcons.arrowRightArrowLeft,
             color: Colors.white,
@@ -299,11 +301,12 @@ class _HomeScreenState extends State<HomeScreen> {
           },
         ),
         SpeedDialChild(
+          shape: const CircleBorder(),
           child: const FaIcon(
             FontAwesomeIcons.creditCard,
             color: Colors.white,
           ),
-          backgroundColor: expenseColor,
+          backgroundColor: accentColor,
           onTap: () {
             if (widget.user.creditCards.isEmpty) {
               ScaffoldMessenger.of(context).showSnackBar(

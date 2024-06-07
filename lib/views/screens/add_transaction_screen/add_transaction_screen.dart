@@ -245,7 +245,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                               color: Colors.grey,
                             ),
                             children: [
-                              if (widget.selectedAccount.description != null)
+                              if (widget.selectedAccount.description != null &&
+                                  widget
+                                      .selectedAccount.description!.isNotEmpty)
                                 TextSpan(
                                   text:
                                       ' / ${widget.selectedAccount.description}',
@@ -263,44 +265,13 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           ),
                         ),
                         onTap: () {
-                          FocusScope.of(context).unfocus();
-                          showModalBottomSheet<Padding>(
-                            isScrollControlled: true,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(30),
-                                topRight: Radius.circular(30),
-                              ),
-                            ),
-                            backgroundColor: secondaryColor,
-                            context: context,
-                            builder: (context) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8),
-                                child: SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.6,
-                                  child: ListView.builder(
-                                    physics: const BouncingScrollPhysics(),
-                                    itemCount: widget.user.accounts.length,
-                                    itemBuilder: (context, index) {
-                                      return InkWell(
-                                        enableFeedback: false,
-                                        onTap: () {
-                                          setState(() {
-                                            widget.selectedAccount =
-                                                widget.user.accounts[index];
-                                          });
-                                          Navigator.pop(context);
-                                        },
-                                        child: AccountListItem(
-                                          account: widget.user.accounts[index],
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              );
+                          CustomModalBottomSheet.pickAccount(
+                            context,
+                            widget.user.accounts,
+                            (account) {
+                              setState(() {
+                                widget.selectedAccount = account;
+                              });
                             },
                           );
                         },
@@ -326,7 +297,9 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           showDatePicker(
                             context: context,
                             initialDate: DateTime.now(),
-                            lastDate: DateTime.now(),
+                            lastDate: DateTime.now().add(
+                              const Duration(days: 365),
+                            ),
                             firstDate: DateTime.now().subtract(
                               const Duration(days: 365),
                             ),
@@ -380,8 +353,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
 
   BottomAppBar _saveButton(BuildContext context) {
     return BottomAppBar(
-      elevation: 0,
-      padding: const EdgeInsets.all(16),
       color: secondaryColor,
       child: ActionButton(
         color: widget._color,
@@ -410,7 +381,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
             widget.selectedAccount,
             transaction,
           );
-
           Navigator.pop(context);
         },
         text: 'Save',

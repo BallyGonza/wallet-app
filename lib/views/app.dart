@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wallet_app/blocs/blocs.dart';
+import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/theme.dart';
 import 'package:wallet_app/views/views.dart';
 
-// A constant to control the debug banner visibility
 const bool kDebugShowCheckedModeBanner = false;
 
 class App extends StatelessWidget {
@@ -31,18 +31,20 @@ class HomeBuilder extends StatelessWidget {
         return state.maybeWhen(
           orElse: () => const Center(child: CircularProgressIndicator()),
           error: (message) => Center(child: Text(message)),
-          loaded: (user) {
-            return AnnotatedRegion<SystemUiOverlayStyle>(
-              value: const SystemUiOverlayStyle(
-                systemNavigationBarColor: Colors.transparent,
-              ),
-              child: HomeScreen(
-                user: user,
-              ),
-            );
-          },
+          loaded: _buildUserHomeScreen,
         );
       },
+    );
+  }
+
+  Widget _buildUserHomeScreen(UserModel user) {
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        systemNavigationBarColor: Colors.transparent,
+      ),
+      child: HomeScreen(
+        user: user,
+      ),
     );
   }
 }

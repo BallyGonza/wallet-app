@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_app/data/constants/colors.dart';
 
-class WalletAlertDialog extends StatelessWidget {
-  const WalletAlertDialog({
+class CustomAlertDialog extends StatelessWidget {
+  const CustomAlertDialog({
     required this.title,
     required this.content,
     required this.primaryActionTitle,
-    required this.onPressed,
+    required this.onPrimaryPressed,
+    this.secondaryActionTitle,
+    this.onSecondaryPressed,
     super.key,
   });
 
   final String title;
   final Widget content;
   final String primaryActionTitle;
-  final VoidCallback onPressed;
+  final String? secondaryActionTitle;
+  final VoidCallback onPrimaryPressed;
+  final VoidCallback? onSecondaryPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -28,22 +32,29 @@ class WalletAlertDialog extends StatelessWidget {
         ),
       ),
       content: content,
-      actions: [
-        TextButton(
+      actions: <Widget>[
+        if (secondaryActionTitle != null && onSecondaryPressed != null)
+          ElevatedButton(
+            onPressed: onSecondaryPressed,
+            child: Text(secondaryActionTitle ?? 'Cancel'),
+          ),
+        ElevatedButton(
           onPressed: () {
-            onPressed();
+            onPrimaryPressed();
             Navigator.of(context).pop();
           },
+          style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
           child: Text(
             primaryActionTitle,
-            style: const TextStyle(color: Colors.green),
+            style: const TextStyle(color: Colors.white),
           ),
         ),
-        TextButton(
+        ElevatedButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: const Text('Cancel', style: TextStyle(color: Colors.red)),
+          style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+          child: const Text('Cancel', style: TextStyle(color: Colors.white)),
         ),
       ],
     );

@@ -36,7 +36,7 @@ class AccountListItem extends StatelessWidget {
             fontWeight: FontWeight.normal,
           ),
         ),
-        subtitle: account.description != null
+        subtitle: account.description != null && account.description!.isNotEmpty
             ? Text(
                 account.description!,
                 style: const TextStyle(

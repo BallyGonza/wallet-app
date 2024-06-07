@@ -56,7 +56,9 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     emit(const AccountState.loading());
     try {
       final newAccount = event.account.copyWith(
-        description: event.newAccount.description,
+        description: event.account.description!.isEmpty
+            ? null
+            : event.account.description,
       );
       await accountRepository.updateAccount(
         event.account,

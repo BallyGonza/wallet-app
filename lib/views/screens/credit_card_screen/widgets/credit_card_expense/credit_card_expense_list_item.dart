@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
 
@@ -88,15 +87,10 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Text(
-                  arg.format(
-                    widget.transaction.amount / widget.transaction.cuotas,
-                  ),
-                  style: const TextStyle(
-                    color: Colors.red,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Number(
+                  number: widget.transaction.amount / widget.transaction.cuotas,
+                  size: 12,
+                  color: Colors.red,
                 ),
                 const SizedBox(height: 2),
                 if (widget.transaction.isReccurent == false)
@@ -142,7 +136,6 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
                           widget.transaction.category.backgroundColor,
                       description: widget.transaction.category.name,
                       transaction: widget.transaction,
-                      onTap: () {},
                     ),
                     DescriptionItem(
                       title: 'Monto',
@@ -153,7 +146,6 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
                           ? incomeColor
                           : expenseColor,
                       transaction: widget.transaction,
-                      onTap: () {},
                     ),
                     DescriptionItem(
                       title: 'Fecha',
@@ -161,7 +153,6 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
                       backgroundColor: white,
                       description: dateFormat.format(widget.transaction.date),
                       transaction: widget.transaction,
-                      onTap: () {},
                     ),
                     DescriptionItem(
                       title: 'Note',
@@ -171,7 +162,6 @@ class _CreditCardExpenseListItemState extends State<CreditCardExpenseListItem> {
                           ? 'None'
                           : widget.transaction.note,
                       transaction: widget.transaction,
-                      onTap: () {},
                     ),
                     const Spacer(),
                     ActionButton(
@@ -201,7 +191,7 @@ class DescriptionItem extends StatelessWidget {
     required this.backgroundColor,
     required this.description,
     required this.transaction,
-    required this.onTap,
+    this.onTap,
     super.key,
     this.iconColor,
     this.descriptionColor,
@@ -214,7 +204,7 @@ class DescriptionItem extends StatelessWidget {
   final String description;
   final Color? descriptionColor;
   final CreditCardTransactionModel transaction;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {

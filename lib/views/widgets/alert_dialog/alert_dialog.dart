@@ -1,1 +1,1 @@
-export 'wallet_alert_dialog.dart';
+export 'custom_alert_dialog.dart';

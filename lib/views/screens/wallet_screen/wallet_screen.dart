@@ -40,7 +40,7 @@ class _WalletScreenState extends State<WalletScreen> {
   TitleListCard _creditCards(BuildContext context) {
     return TitleListCard(
       title: 'Credit Cards',
-      widget: CreditCardList(user: widget.user, date: widget.date),
+      child: CreditCardList(user: widget.user, date: widget.date),
       onTap: () {
         Navigator.push(
           context,
@@ -57,7 +57,7 @@ class _WalletScreenState extends State<WalletScreen> {
   TitleListCard _accounts(BuildContext context) {
     return TitleListCard(
       title: 'Accounts',
-      widget: AccountsList(
+      child: AccountsList(
         user: widget.user,
         date: widget.date,
       ),

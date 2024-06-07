@@ -4,13 +4,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class TitleListCard extends StatelessWidget {
   const TitleListCard({
     required this.title,
-    required this.widget,
+    required this.child,
     required this.onTap,
     super.key,
   });
 
   final String title;
-  final Widget widget;
+  final Widget child;
   final VoidCallback onTap;
 
   @override
@@ -43,7 +43,7 @@ class TitleListCard extends StatelessWidget {
               ),
             ],
           ),
-          widget,
+          child,
         ],
       ),
     );
