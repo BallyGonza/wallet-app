@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
+import 'package:wallet_app/views/widgets/transactions/transaction_list_item.dart';
 
 class TransactionsList extends StatefulWidget {
   const TransactionsList({
@@ -60,7 +62,7 @@ class _TransactionsListState extends State<TransactionsList> {
           transactions,
         ),
         SizedBox(
-          height: transactions.length * 70,
+          height: transactions.length * 56,
           child: ListView.builder(
             reverse: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -98,28 +100,41 @@ class _TransactionsListState extends State<TransactionsList> {
       ),
       child: Row(
         children: [
-          Date(
-            date: widget.date,
-            bold: true,
-            size: 13,
-            color: Colors.white,
+          Text(
+            _getFormattedDate(),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const Spacer(),
           Number(
-            bold: true,
             number: totalIncome,
             color: incomeColor,
             size: 12,
           ),
           const SizedBox(width: 10),
           Number(
-            bold: true,
             number: totalExpenses,
-            color: expenseColor,
             size: 12,
+            color: expenseColor,
           ),
         ],
       ),
+    );
+  }
+
+  // Helper method to format the date
+  String _getFormattedDate() {
+    final now = DateTime.now();
+    if (widget.date.day == widget.day &&
+        widget.date.month == now.month &&
+        widget.date.year == now.year) {
+      return 'Hoy';
+    }
+    return DateFormat('EEEE dd').format(
+      DateTime(widget.date.year, widget.date.month, widget.day),
     );
   }
 }

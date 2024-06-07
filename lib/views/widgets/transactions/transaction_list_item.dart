@@ -30,6 +30,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
 
   @override
   void initState() {
+    super.initState();
     accountRepository = context.read<AccountRepository>();
     transactionRepository = context.read<TransactionRepository>();
     account = transactionRepository.getAccountOfTransaction(
@@ -41,22 +42,20 @@ class _TransactionListItemState extends State<TransactionListItem> {
     noteController = TextEditingController(text: widget.transaction.note);
     selectedCategory = widget.transaction.category;
     isIncome = widget.transaction.category.isIncome;
-    super.initState();
+  }
+
+  @override
+  void dispose() {
+    amountController.dispose();
+    noteController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AccountBloc, AccountState>(
       builder: (context, state) {
-        account = transactionRepository.getAccountOfTransaction(
-          widget.user.accounts,
-          widget.transaction,
-        );
-        amountController =
-            TextEditingController(text: widget.transaction.amount.toString());
-        noteController = TextEditingController(text: widget.transaction.note);
-        selectedCategory = widget.transaction.category;
-        isIncome = widget.transaction.category.isIncome;
+        updateControllersIfNeeded();
         return InkWell(
           onTap: () {
             showModalBottomSheet<Container>(
@@ -158,94 +157,130 @@ class _TransactionListItemState extends State<TransactionListItem> {
               },
             );
           },
-          child: ListTile(
-            leading: Stack(
-              alignment: Alignment.center,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Row(
               children: [
-                CircleAvatar(
-                  radius: 20,
-                  backgroundColor:
-                      Color(widget.transaction.category.backgroundColor),
-                  child: Image(
-                    image: AssetImage(widget.transaction.category.icon),
-                    height: 20,
-                    width: 20,
-                    color: widget.transaction.category.iconColor == null
-                        ? null
-                        : Color(widget.transaction.category.iconColor!),
-                  ),
-                ),
-                Positioned(
-                  right: 0,
-                  bottom: 0,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(),
-                    ),
-                    child: CircleAvatar(
-                      radius: 8,
-                      backgroundColor:
-                          Color(account!.institution.backgroundColor),
-                      child: Image(
-                        image: AssetImage(account!.institution.icon),
-                        height: 13,
-                        width: 13,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            title: Row(
-              children: [
-                Text(
-                  widget.transaction.category.name,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            subtitle: widget.transaction.note == ''
-                ? null
-                : Text(
-                    widget.transaction.note,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 12,
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-            trailing: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Number(
-                  number: widget.transaction.amount,
-                  size: 12,
-                  color: widget.transaction.category.isIncome
-                      ? incomeColor
-                      : expenseColor,
-                  bold: true,
-                  isDolars: widget.transaction.category.name == 'Dolares',
-                ),
-                const SizedBox(
-                  height: 3,
-                ),
-                Date(
-                  date: widget.transaction.date,
-                  bold: true,
-                  size: 9,
-                ),
+                _buildAvatarStack(),
+                const SizedBox(width: 10),
+                _buildTransactionDetails(),
+                const Spacer(),
+                _buildTrailingColumn(),
               ],
             ),
           ),
         );
       },
     );
+  }
+
+  Widget _buildAvatarStack() {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        CircleAvatar(
+          radius: 20,
+          backgroundColor: Color(widget.transaction.category.backgroundColor),
+          child: Image(
+            image: AssetImage(widget.transaction.category.icon),
+            height: 20,
+            width: 20,
+            color: widget.transaction.category.iconColor == null
+                ? null
+                : Color(widget.transaction.category.iconColor!),
+          ),
+        ),
+        Positioned(
+          right: 0,
+          bottom: 0,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(),
+            ),
+            child: CircleAvatar(
+              radius: 8,
+              backgroundColor: Color(account!.institution.backgroundColor),
+              child: Image(
+                image: AssetImage(account!.institution.icon),
+                height: 13,
+                width: 13,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTransactionDetails() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          widget.transaction.category.name,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        if (widget.transaction.note.isNotEmpty)
+          Text(
+            widget.transaction.note,
+            style: const TextStyle(
+              color: Colors.grey,
+              fontSize: 12,
+              fontWeight: FontWeight.normal,
+              fontStyle: FontStyle.italic,
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildTrailingColumn() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        _buildAmountDisplay(),
+        const SizedBox(height: 3),
+        _buildDateDisplay(),
+      ],
+    );
+  }
+
+  Widget _buildAmountDisplay() {
+    final isIncome = widget.transaction.category.isIncome;
+    final categoryName = widget.transaction.category.name;
+    final amount = widget.transaction.amount;
+
+    return Number(
+      number: amount,
+      size: 12,
+      color: isIncome ? incomeColor : expenseColor,
+      bold: true,
+      isDolars: categoryName == 'Dolares',
+    );
+  }
+
+  Widget _buildDateDisplay() {
+    return Date(
+      date: widget.transaction.date,
+      bold: true,
+      size: 9,
+    );
+  }
+
+  void updateControllersIfNeeded() {
+    final currentAmount = widget.transaction.amount.toString();
+    if (amountController.text != currentAmount) {
+      amountController.text = currentAmount;
+    }
+    if (noteController.text != widget.transaction.note) {
+      noteController.text = widget.transaction.note;
+    }
   }
 
   void showModifyNoteDialog(BuildContext context) {
