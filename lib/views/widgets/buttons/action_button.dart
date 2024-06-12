@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_app/data/constants/colors.dart';
 
 class ActionButton extends StatelessWidget {
   const ActionButton({
@@ -38,7 +39,7 @@ class ActionButton extends StatelessWidget {
         child: Text(
           text,
           style: const TextStyle(
-            color: Colors.white,
+            color: primaryColor,
           ),
         ),
       ),

@@ -27,6 +27,7 @@ class CreditCardScreen extends StatefulWidget {
 class _CreditCardScreenState extends State<CreditCardScreen> {
   late CreditCardRepository creditCardRepository;
   late List<CreditCardTransactionModel> creditCardExpenses;
+  final numberCardController = TextEditingController();
 
   @override
   void initState() {
@@ -194,7 +195,6 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
   }
 
   AppBar _appBar(BuildContext context) {
-    final numberCardController = TextEditingController();
     return AppBar(
       elevation: 0,
       title: Container(
@@ -213,10 +213,10 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
       actions: [
         IconButton(
           onPressed: () {
-            showModalBottomSheet<SizedBox>(
+            showModalBottomSheet<void>(
               backgroundColor: primaryColor,
               constraints: const BoxConstraints(
-                maxHeight: 180,
+                maxHeight: 250,
               ),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.vertical(
@@ -229,99 +229,21 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
                   width: double.infinity,
                   child: Column(
                     children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       ActionButton(
-                        text: 'Add expense',
+                        text: 'Agregar gasto',
                         color: Color(expenseColor.value),
-                        onPressed: () {
-                          setState(() {
-                            Navigator.of(context).push(
-                              MaterialPageRoute<AddCreditCardExpenseScreen>(
-                                builder: (_) => AddCreditCardExpenseScreen(
-                                  selectedCreditCard: widget.creditCard,
-                                  user: widget.user,
-                                  onPressed: (
-                                    selectedCreditCard,
-                                    creditCardExpense,
-                                  ) {
-                                    setState(() {
-                                      context.read<CreditCardBloc>().add(
-                                            CreditCardEvent.addTransaction(
-                                              selectedCreditCard,
-                                              creditCardExpense,
-                                            ),
-                                          );
-                                    });
-                                  },
-                                ),
-                              ),
-                            );
-                          });
-                        },
+                        onPressed: () => _handleAddExpense(context),
                       ),
                       ActionButton(
                         text: 'Editar',
                         color: Colors.blue,
-                        onPressed: () {
-                          showDialog<void>(
-                            context: context,
-                            builder: (_) => CustomAlertDialog(
-                              title: 'Editar tarjeta',
-                              content: CustomDialogTextField(
-                                controller: numberCardController,
-                                hint: 'Número de tarjeta',
-                              ),
-                              primaryActionTitle: 'Save',
-                              onPrimaryPressed: () {
-                                setState(() {
-                                  context.read<CreditCardBloc>().add(
-                                        CreditCardEvent.update(
-                                          CreditCardModel(
-                                            id: widget.creditCard.id,
-                                            cardType:
-                                                widget.creditCard.cardType,
-                                            name: widget.creditCard.name,
-                                            number: numberCardController.text
-                                                .trim(),
-                                            institution:
-                                                widget.creditCard.institution,
-                                            expenses:
-                                                widget.creditCard.expenses,
-                                          ),
-                                        ),
-                                      );
-                                });
-                              },
-                            ),
-                          );
-                        },
+                        onPressed: () => _handleEditCard(context),
                       ),
                       ActionButton(
-                        text: 'Delete',
+                        text: 'Eliminar',
                         color: Colors.red,
-                        onPressed: () {
-                          showDialog<void>(
-                            context: context,
-                            builder: (_) => CustomAlertDialog(
-                              title: 'Delete card',
-                              content: const Text(
-                                'Are you sure you want to delete this card?',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              primaryActionTitle: 'Delete',
-                              onPrimaryPressed: () {
-                                Navigator.of(context).pop();
-                                context.read<CreditCardBloc>().add(
-                                      CreditCardEvent.remove(
-                                        widget.creditCard,
-                                      ),
-                                    );
-                              },
-                            ),
-                          );
-                        },
+                        onPressed: () => _handleDeleteCard(context),
                       ),
                     ],
                   ),
@@ -335,23 +257,89 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
     );
   }
 
-  Padding _bottomNavBar(
+  void _handleAddExpense(BuildContext context) {
+    setState(() {
+      Navigator.of(context).push(
+        MaterialPageRoute<AddCreditCardExpenseScreen>(
+          builder: (_) => AddCreditCardExpenseScreen(
+            selectedCreditCard: widget.creditCard,
+            user: widget.user,
+            onPressed: (selectedCreditCard, creditCardExpense) {
+              setState(() {
+                context.read<CreditCardBloc>().add(
+                      CreditCardEvent.addTransaction(
+                        selectedCreditCard,
+                        creditCardExpense,
+                      ),
+                    );
+              });
+            },
+          ),
+        ),
+      );
+    });
+  }
+
+  void _handleEditCard(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => CustomAlertDialog(
+        title: 'Editar tarjeta',
+        content: CustomDialogTextField(
+          controller: numberCardController,
+          hint: 'Número de tarjeta',
+        ),
+        primaryActionTitle: 'Guardar',
+        onPrimaryPressed: () {
+          setState(() {
+            context.read<CreditCardBloc>().add(
+                  CreditCardEvent.update(
+                    CreditCardModel(
+                      id: widget.creditCard.id,
+                      cardType: widget.creditCard.cardType,
+                      name: widget.creditCard.name,
+                      number: numberCardController.text.trim(),
+                      institution: widget.creditCard.institution,
+                      expenses: widget.creditCard.expenses,
+                    ),
+                  ),
+                );
+          });
+        },
+      ),
+    );
+  }
+
+  void _handleDeleteCard(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (_) => CustomAlertDialog(
+        title: 'Eliminar tarjeta',
+        content: const Text(
+          '¿Estás seguro de que quieres eliminar esta tarjeta?',
+          style: TextStyle(color: Colors.white),
+        ),
+        primaryActionTitle: 'Eliminar',
+        onPrimaryPressed: () {
+          Navigator.of(context).pop();
+          context.read<CreditCardBloc>().add(
+                CreditCardEvent.remove(widget.creditCard),
+              );
+        },
+      ),
+    );
+  }
+
+  Widget _bottomNavBar(
     BuildContext context,
     CreditCardRepository creditCardRepository,
     List<CreditCardTransactionModel> creditCardExpenses,
   ) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 8),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
-          ),
-          elevation: 0,
-          backgroundColor: Color(widget.creditCard.institution.logoColor),
-        ),
+      padding: const EdgeInsets.only(bottom: 16),
+      child: ActionButton(
+        text: 'Pagar',
+        color: Color(widget.creditCard.institution.logoColor),
         onPressed: () {
           setState(() {
             context.read<AccountBloc>().add(
@@ -397,14 +385,6 @@ class _CreditCardScreenState extends State<CreditCardScreen> {
             Navigator.pop(context);
           });
         },
-        child: const Text(
-          'Pay',
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
       ),
     );
   }
