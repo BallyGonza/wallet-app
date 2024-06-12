@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:wallet_app/blocs/blocs.dart';
 import 'package:wallet_app/data/data.dart';
 import 'package:wallet_app/views/views.dart';
-import 'package:wallet_app/views/widgets/transactions/transaction_list_item.dart';
 
 class TransactionsList extends StatefulWidget {
   const TransactionsList({
