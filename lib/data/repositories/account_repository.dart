@@ -166,17 +166,17 @@ final AccountModel savingsAccount = AccountModel(
 final AccountModel pago24 = AccountModel(
   id: 8,
   name: 'Pago24',
-  institution: pago24Institution,
+  institution: personalPayInstitution,
 );
 
 final AccountModel pedidosYa = AccountModel(
   id: 9,
   name: 'PedidosYa',
-  institution: pago24Institution,
+  institution: pedidosYaInstitution,
 );
 
 final AccountModel nubiz = AccountModel(
   id: 10,
   name: 'Nubiz',
-  institution: pago24Institution,
+  institution: nubizInstitution,
 );

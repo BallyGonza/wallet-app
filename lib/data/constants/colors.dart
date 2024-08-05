@@ -39,6 +39,7 @@ final amexColor = const Color(0xFF016FD2).value;
 final galiciaColor = const Color(0xFFED5013).value;
 final nubizColor = const Color(0xFFFD4C47).value;
 final pedidosYaColor = const Color(0xFFFF0251).value;
+final personalPayColor = const Color(0xFF5E55F9).value;
 
 // income color
 const incomeColor = Colors.green;

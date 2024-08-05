@@ -19,7 +19,7 @@ List<InstitutionModel> defaultInstitutions = [
   santanderInstitution,
   provinciaInstitution,
   nacionInstitution,
-  pago24Institution,
+  personalPayInstitution,
   pedidosYaInstitution,
   nubizInstitution,
   savingsInstitution,
@@ -152,13 +152,13 @@ InstitutionModel americanExpressInstitution = InstitutionModel(
   logoColor: amexColor,
 );
 
-InstitutionModel pago24Institution = InstitutionModel(
+InstitutionModel personalPayInstitution = InstitutionModel(
   id: 11,
-  name: 'Pago 24',
-  icon: 'assets/icons/institutions/pago_24/pago_24_icon.png',
-  logo: 'assets/icons/institutions/pago_24/pago_24_logo.png',
-  backgroundColor: white,
-  logoColor: amexColor,
+  name: 'Personal Pay',
+  icon: 'assets/icons/institutions/pago_24/personal_pay_icon.png',
+  logo: 'assets/icons/institutions/pago_24/personal_pay_logo.png',
+  backgroundColor: personalPayColor,
+  logoColor: white,
 );
 
 InstitutionModel pedidosYaInstitution = InstitutionModel(
