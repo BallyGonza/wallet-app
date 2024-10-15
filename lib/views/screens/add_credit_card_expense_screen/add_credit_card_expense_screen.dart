@@ -364,109 +364,33 @@ class _AddCreditCardExpenseScreenState
                               size: 20,
                             ),
                           ),
-                          content: DropdownButtonFormField(
+                          content: DropdownButton<int>(
+                            iconSize: 0,
+                            menuMaxHeight: 200,
                             icon: const Icon(
                               Icons.arrow_drop_down,
                               color: Colors.grey,
                             ),
-                            decoration: const InputDecoration(
-                              border: InputBorder.none,
-                              hintStyle: TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
                             value: _cuotas,
-                            items: const [
-                              DropdownMenuItem(
-                                value: 1,
+                            items: List.generate(12, (index) {
+                              final cuota = index + 1;
+                              return DropdownMenuItem<int>(
+                                value: cuota,
                                 child: Text(
-                                  '1 Cuota',
-                                  style: TextStyle(color: Colors.grey),
+                                  '$cuota Cuota${cuota > 1 ? 's' : ''}',
+                                  style: const TextStyle(color: Colors.grey),
                                 ),
-                              ),
-                              DropdownMenuItem(
-                                value: 2,
-                                child: Text(
-                                  '2 Cuotas',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 3,
-                                child: Text(
-                                  '3 Cuotas',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 4,
-                                child: Text(
-                                  '4 Cuotas',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 5,
-                                child: Text(
-                                  '5 Cuotas',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 6,
-                                child: Text(
-                                  '6 Cuotas',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 7,
-                                child: Text(
-                                  '7 Cuotas',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 8,
-                                child: Text(
-                                  '8 Cuotas',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 9,
-                                child: Text(
-                                  '9 Cuotas',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 10,
-                                child: Text(
-                                  '10 Cuotas',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 11,
-                                child: Text(
-                                  '11 Cuotas',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                              DropdownMenuItem(
-                                value: 12,
-                                child: Text(
-                                  '12 Cuotas',
-                                  style: TextStyle(color: Colors.grey),
-                                ),
-                              ),
-                            ],
+                              );
+                            }),
                             onChanged: (value) {
                               setState(() {
                                 _cuotas = value!;
                               });
                             },
+                            dropdownColor: secondaryColor,
+                            underline: Container(
+                              color: Colors.transparent,
+                            ),
                           ),
                           trailing: const SizedBox.shrink(),
                         )
@@ -546,6 +470,7 @@ class _AddCreditCardExpenseScreenState
                   cuotas: _cuotas,
                 );
                 widget.onPressed(widget.selectedCreditCard, creditCardExpense);
+                Navigator.pop(context);
                 Navigator.pop(context);
               },
               child: const Text(

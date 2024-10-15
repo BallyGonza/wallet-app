@@ -312,6 +312,7 @@ class _TransactionListItemState extends State<TransactionListItem> {
 
   void showModifyDatePicker(BuildContext context) {
     FocusScope.of(context).unfocus();
+    final accountBloc = context.read<AccountBloc>();
     showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -322,15 +323,17 @@ class _TransactionListItemState extends State<TransactionListItem> {
         const Duration(days: 365),
       ),
     ).then((value) {
-      context.read<AccountBloc>().add(
-            AccountEvent.updateTransaction(
-              account!,
-              null,
-              widget.transaction.copyWith(
-                date: value,
-              ),
+      if (mounted) {
+        accountBloc.add(
+          AccountEvent.updateTransaction(
+            account!,
+            null,
+            widget.transaction.copyWith(
+              date: value,
             ),
-          );
+          ),
+        );
+      }
     });
   }
 

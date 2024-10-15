@@ -158,7 +158,7 @@ InstitutionModel personalPayInstitution = InstitutionModel(
   icon: 'assets/icons/institutions/personal_pay/personal_pay_icon.png',
   logo: 'assets/icons/institutions/personal_pay/personal_pay_logo.png',
   backgroundColor: personalPayColor,
-  logoColor: white,
+  logoColor: personalPayColor,
 );
 
 InstitutionModel pedidosYaInstitution = InstitutionModel(

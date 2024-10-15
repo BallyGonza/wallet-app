@@ -349,6 +349,7 @@ class _AccountScreenState extends State<AccountScreen> {
                   ),
                 );
           });
+          Navigator.of(context).pop();
         },
       ),
     );
