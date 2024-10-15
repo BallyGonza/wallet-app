@@ -275,10 +275,14 @@ class _TransactionListItemState extends State<TransactionListItem> {
   void updateControllersIfNeeded() {
     final currentAmount = widget.transaction.amount.toString();
     if (amountController.text != currentAmount) {
-      amountController.text = currentAmount;
+      setState(() {
+        amountController.text = currentAmount;
+      });
     }
     if (noteController.text != widget.transaction.note) {
-      noteController.text = widget.transaction.note;
+      setState(() {
+        noteController.text = widget.transaction.note;
+      });
     }
   }
 

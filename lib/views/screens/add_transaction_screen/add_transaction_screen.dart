@@ -107,6 +107,8 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           ),
                           controller: _amountController,
                           keyboardAppearance: Brightness.dark,
+                          onFieldSubmitted: (_) =>
+                              FocusScope.of(context).requestFocus(FocusNode()),
                           keyboardType: const TextInputType.numberWithOptions(
                             decimal: true,
                           ),
@@ -334,10 +336,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
                           keyboardAppearance: Brightness.dark,
-                          keyboardType: TextInputType.multiline,
-                          onEditingComplete: () {
-                            FocusScope.of(context).unfocus();
-                          },
+                          onSubmitted: (_) => FocusScope.of(context).unfocus(),
                         ),
                       ),
                     ],

@@ -417,6 +417,8 @@ class _AddCreditCardExpenseScreenState
                           ),
                           keyboardAppearance: Brightness.dark,
                           keyboardType: TextInputType.multiline,
+                          onFieldSubmitted: (_) =>
+                              FocusScope.of(context).unfocus(),
                         ),
                         trailing: const SizedBox.shrink(),
                       ),

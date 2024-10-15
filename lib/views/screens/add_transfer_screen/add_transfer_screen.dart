@@ -336,7 +336,8 @@ class _AddTransferScreenState extends State<AddTransferScreen> {
                             hintStyle: TextStyle(color: Colors.grey),
                           ),
                           keyboardAppearance: Brightness.dark,
-                          keyboardType: TextInputType.multiline,
+                          onFieldSubmitted: (_) =>
+                              FocusScope.of(context).unfocus(),
                         ),
                       ),
                     ],
