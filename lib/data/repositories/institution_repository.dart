@@ -155,8 +155,8 @@ InstitutionModel americanExpressInstitution = InstitutionModel(
 InstitutionModel personalPayInstitution = InstitutionModel(
   id: 11,
   name: 'Personal Pay',
-  icon: 'assets/icons/institutions/pago_24/personal_pay_icon.png',
-  logo: 'assets/icons/institutions/pago_24/personal_pay_logo.png',
+  icon: 'assets/icons/institutions/personal_pay/personal_pay_icon.png',
+  logo: 'assets/icons/institutions/personal_pay/personal_pay_logo.png',
   backgroundColor: personalPayColor,
   logoColor: white,
 );
